@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architect UX/UI Designer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#64748b'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white bg-opacity-95 shadow-sm z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl text-primary" style="font-size: 28px; font-weight: bold;">Yogesh Malik <span style="font-size: 18px;">Architect GenAI UX/UI Designer</span></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-700 hover:text-primary font-medium">About</a>
+                <a href="#journey" class="text-gray-700 hover:text-primary font-medium">Career Journey</a>
+                <a href="#projects" class="text-gray-700 hover:text-primary font-medium">Case Studies</a>
+                <a href="#insights" class="text-gray-700 hover:text-primary font-medium">Articles</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+            </div>
+            <button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700" id="mobile-menu-button">
+                <i class="ri-menu-line ri-lg"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-6 py-3 flex flex-col space-y-3">
+                <a href="#about" class="text-gray-700 hover:text-primary font-medium">About</a>
+                <a href="#journey" class="text-gray-700 hover:text-primary font-medium">Career Journey</a>
+                <a href="#projects" class="text-gray-700 hover:text-primary font-medium">Case Studies</a>
+                
+                <a href="#insights" class="text-gray-700 hover:text-primary font-medium">Articles</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="w-full relative pt-24 overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=professional%20modern%20minimalist%20abstract%20background%20with%20soft%20gradients%20in%20light%20blue%20and%20white%2C%20clean%20design%2C%20suitable%20for%20a%20UX%2FUI%20designer%20portfolio%20hero%20section%2C%20with%20plenty%20of%20empty%20space%20on%20the%20left%20side%20for%20text&width=1920&height=1080&seq=hero1&orientation=landscape'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 z-10">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4">Crafting Digital Experiences for Over 16 Years</h1>
+                
+                <p class="text-lg text-gray-700 mb-8 max-w-xl">Strategic UX/UI Design Leader with 16+ years of global experience delivering human-centered digital solutions across Fortune 500 enterprises, government platforms, and AI-driven products.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#projects" class="bg-primary text-white px-8 py-3 rounded-button font-medium hover:bg-blue-600 transition-colors whitespace-nowrap">View Case Studies</a>
+                    <a href="#contact" class="border border-primary text-primary px-8 py-3 rounded-button font-medium hover:bg-blue-50 transition-colors whitespace-nowrap">Contact Me</a>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                    <img src="./images/Yogesh Malik.png" alt="Yogesh Malik" class="w-full h-full object-cover object-top">
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent"></div>
+    </section>
+
+     <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">About Me</h2>
+                <p class="text-lg text-gray-700">Trusted contributor to the UK Government Digital Service, with deep expertise in 
+accessibility (WCAG), GenAI-integrated design workflows, and inclusive product innovation. Certified in 
+Human-Centered Design and Advanced UX Strategy, with award-winning contributions in enterprise UX 
+transformation and civic tech design. </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-team-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Design Leadership</h3>
+                    <p class="text-gray-700">Led the strategic growth of UX teams across multiple geographies, fostering inclusive and high-performing design cultures. Actively mentored emerging and senior designers, instilling principles of accessibility, ethical design, and GenAI integration.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-bard-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">AI-Enhanced UX</h3>
+                    <p class="text-gray-700">Pioneered the integration of Generative AI into enterprise-grade design systems, enabling predictive user flows that anticipate intent and streamline navigation. Leveraged GenAI to dynamically adapt interface components based on user behavior, accessibility needs.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-accessibility-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Accessibility & Ethics</h3>
+                    <p class="text-gray-700">Delivered WCAG-compliant design solutions across public sector and enterprise platforms, ensuring digital accessibility for users of all abilities. Embedded inclusive design principles into every stage of the UX process from research and wireframing to final implementation</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-group-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Strategic Collaboration</h3>
+                    <p class="text-gray-700">Collaborated closely with cross-functional teams including product managers, engineers, and policy stakeholders to ensure design decisions were strategically aligned with both business objectives and civic responsibilities. </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-device-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Prototyping & Architecture</h3>
+                    <p class="text-gray-700">Highly proficient in Figma and Adobe XD, I specialize in crafting responsive, modular design systems that scale seamlessly across platforms. My expertise extends to front-end frameworks, enabling close collaboration with developers and ensuring pixel-perfect implementation of UI components.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-lightbulb-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Research & Insight</h3>
+                    <p class="text-gray-700">Led comprehensive UX research initiatives, including stakeholder interviews, user surveys, and contextual inquiries, to uncover deep insights into user needs and pain points. Conducted structured usability testing across multiple platforms to validate design hypotheses and identify friction points in user flows.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded shadow-md">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6">Skills & Expertise</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-medium text-gray-800 mb-4">Design Skills</h4>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">UX Research & Strategy</span>
+                                    <span class="text-gray-600">95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Prototyping & Wireframing</span>
+                                    <span class="text-gray-600">98%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 98%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">GenAI-Enhanced Workflows</span>
+                                    <span class="text-gray-600">98%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Responsive & Modular Design</span>
+                                    <span class="text-gray-600">95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">User-Centered Design</span>
+                                    <span class="text-gray-600">100%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-medium text-gray-800 mb-4">Leadership Skills</h4>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Team Management</span>
+                                    <span class="text-gray-600">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Stakeholder Communication</span>
+                                    <span class="text-gray-600">95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Design System Architecture</span>
+                                    <span class="text-gray-600">85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Strategic Planning</span>
+                                    <span class="text-gray-600">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 90%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-700">Design Vision & Strategy</span>
+                                    <span class="text-gray-600">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-primary rounded-full h-2" style="width: 90%"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">My Journey</h2>
+                <p class="text-lg text-gray-700">From hands-on designer to strategic leader, my career has been a continuous evolution of skills, responsibilities, and impact.</p>
+            </div>
+
+            <div class="relative">
+                <div class="flex justify-between mb-16 relative">
+                    <div class="timeline-item relative flex-1 text-center px-4">
+                        <div class="timeline-dot w-12 h-12 rounded-full bg-white border-2 border-primary flex items-center justify-center mx-auto mb-4">
+                            <span class="text-primary font-semibold">2009</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Junior Web Designer</h3>
+                        <p class="text-gray-700">Junior Web Designer with a keen eye for detail and a growing proficiency in responsive design, dedicated to crafting clean, user-friendly interfaces while continuously learning modern web technologies and design principles.</p>
+                    </div>
+                    
+                    <div class="timeline-item relative flex-1 text-center px-4">
+                        <div class="timeline-dot w-12 h-12 rounded-full bg-white border-2 border-primary flex items-center justify-center mx-auto mb-4">
+                            <span class="text-primary font-semibold">2013</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Senior UX/UI Designer</h3>
+                        <p class="text-gray-700">Senior UX/UI Designer with deep expertise in crafting intuitive, accessible, and visually compelling digital experiences driving user engagement and product success through strategic design thinking and cross-functional collaboration.</p>
+                    </div>
+                    
+                    <div class="timeline-item relative flex-1 text-center px-4">
+                        <div class="timeline-dot w-12 h-12 rounded-full bg-white border-2 border-primary flex items-center justify-center mx-auto mb-4">
+                            <span class="text-primary font-semibold">2017</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Lead UX/UI Designer</h3>
+                        <p class="text-gray-700">Lead UX/UI Designer with a proven track record of driving user-centered innovation, scaling design systems, and guiding cross-functional teams to deliver intuitive, accessible, and high-impact digital experiences.</p>
+                    </div>
+                    
+                    <div class="timeline-item relative flex-1 text-center px-4">
+                        <div class="timeline-dot w-12 h-12 rounded-full bg-white border-2 border-primary flex items-center justify-center mx-auto mb-4">
+                            <span class="text-primary font-semibold">2024</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">GenAI Architect UX/UI Designer</h3>
+                        <p class="text-gray-700">Innovative GenAI Architect UX/UI Designer specializing in intelligent, adaptive interfaces that merge human-centered design with generative AI to deliver scalable, intuitive digital experiences.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded shadow-md mb-16">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6">Career Highlights</h3>
+                
+                <div class="space-y-8">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="ri-award-line ri-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-medium text-gray-800 mb-2">Center of Excellence Award (2023, 2022, 2021) - Exceptional design leadership and innovation</h4>
+                            <p class="text-gray-700">Recognized for leading the redesign of Capita product, resulting in a 45% increase in user engagement and a 30% reduction in support tickets.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="ri-team-line ri-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-medium text-gray-800 mb-2">Pat on the Back Award (2025,2024, 2021, 2020)</h4>
+                            <p class="text-gray-700">Outstanding project delivery and cross-functional collaboration.</p>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Case Studies</h2>
+                <p class="text-lg text-gray-700">A selection of key projects that represent significant milestones in my career journey.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div class="project-card bg-white rounded shadow-md overflow-hidden">
+                    <div class="h-64 overflow-hidden">
+                        <img src="./images/EOS.png" alt="Evolution of sales B2B Salesforce Expierence Builder" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm font-medium text-primary bg-blue-50 px-3 py-1 rounded-full">2024-2025</span>
+                            <span class="text-sm text-gray-600">Lead UX/UI Designer</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Designing of B2B Salesforce store front</h3>
+                        <p class="text-gray-700 mb-4"> The manual nature of Capita’s sales processes contributes to delays in order fulfillment and operational inefficiencies. A lack of standardized templates across departments for key documents like proposals and SLAs further complicates the workflow.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded">+75% Application Interaction</span>
+                                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">+65% Manual Work Reduced</span>
+                            </div>
+                            <a href="https://www.figma.com/proto/67zelTTGG6uN2wZENxeW6z/Project-Case-Studies---Yogesh-Malik?node-id=575-492&t=WnqWPbweuPeJCWSQ-1" target="_blank" class="text-primary hover:text-blue-700 font-medium flex items-center">
+                                View Case Study
+                                <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded shadow-md overflow-hidden">
+                    <div class="h-64 overflow-hidden">
+                        <img src="./images/Capita.png" alt="Capita.com website redesign" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm font-medium text-primary bg-blue-50 px-3 py-1 rounded-full">2020-2024</span>
+                            <span class="text-sm text-gray-600">Design Manager</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Re-design of Capita.com with Drupal CMS (LCNC)</h3>
+                        <p class="text-gray-700 mb-4"> Capita is a consulting, transformation and digital services business. Every day we help millions of people, by delivering innovative solutions to transform and simplify the connections between businesses and customers, governments and citizens.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded">68% user increased</span>
+                                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">1.2M+ view per year</span>
+                            </div>
+                            <a href="https://www.figma.com/proto/67zelTTGG6uN2wZENxeW6z/Project-Case-Studies---Yogesh-Malik?node-id=579-1103&t=WnqWPbweuPeJCWSQ-1" target="_blank" class="text-primary hover:text-blue-700 font-medium flex items-center">
+                                View Case Study
+                                <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card bg-white rounded shadow-md overflow-hidden">
+                    <div class="h-64 overflow-hidden">
+                        <img src="./images/Axelos.png" alt="Axelos website redesign" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm font-medium text-primary bg-blue-50 px-3 py-1 rounded-full">2019-2020</span>
+                            <span class="text-sm text-gray-600">Lead UX/UI Designer</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Re-design Axelos.com with Kentico CMS & Content Stack</h3>
+                        <p class="text-gray-700 mb-4">The Axelos website lacks intuitive navigation, consistent UI, and accessible design making it difficult for users to find certification content like ITIL® and PRINCE2®. Its outdated UX, fragmented content structure, and poor mobile responsiveness hinder engagement and SEO.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded">+65% User Adoption</span>
+                                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">+38% Customer increased</span>
+                            </div>
+                            <a href="https://www.figma.com/proto/67zelTTGG6uN2wZENxeW6z/Project-Case-Studies---Yogesh-Malik?node-id=582-2781&t=WnqWPbweuPeJCWSQ-1" target="_blank" class="text-primary hover:text-blue-700 font-medium flex items-center">
+                                View Case Study
+                                <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded shadow-md overflow-hidden">
+                    <div class="h-64 overflow-hidden">
+                        <img src="./images/Earl-Brew.png" alt="The Earl’s Brew mobile application " class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm font-medium text-primary bg-blue-50 px-3 py-1 rounded-full">2015-2016</span>
+                            <span class="text-sm text-gray-600">Lead UX/UI Designer</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">The Earl’s Brew mobile application with React</h3>
+                        <p class="text-gray-700 mb-4"> This project involved designing a user-friendly and engaging mobile application for "The Earl’s Brew," a hypothetical coffee shop with a focus on community building and a seamless customer experience.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded">+45% Customer Increment</span>
+                                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">30% Increase in Revenue</span>
+                            </div>
+                            <a href="https://www.figma.com/proto/67zelTTGG6uN2wZENxeW6z/Project-Case-Studies---Yogesh-Malik?node-id=579-1597&t=WnqWPbweuPeJCWSQ-1" target="_blank" class="text-primary hover:text-blue-700 font-medium flex items-center">
+                                View Case Study
+                                <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+
+            <!--<div class="text-center">
+                <a href="#" class="inline-flex items-center justify-center bg-white text-primary border border-primary px-6 py-3 rounded-button font-medium hover:bg-blue-50 transition duration-300 whitespace-nowrap">
+                    View All Projects
+                    <i class="ri-arrow-right-line ri-lg ml-2"></i>
+                </a>
+            </div>-->
+        </div>
+    </section>
+
+    <!-- Leadership Philosophy Section 
+    <section id="leadership" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Leadership Philosophy</h2>
+            <p class="text-lg text-gray-600 text-center mb-16 max-w-3xl mx-auto">My approach to building, growing, and guiding design teams to deliver exceptional results.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mb-6">
+                        <i class="ri-compass-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Vision-Driven Leadership</h3>
+                    <p class="text-gray-600 mb-6">I believe in establishing a clear, compelling vision that connects design work to business goals and user needs. This creates purpose and direction for teams, ensuring everyone understands the "why" behind their work.</p>
+                    <div class="border-l-4 border-primary pl-4 italic text-gray-600">
+                        "Michael's ability to articulate a clear vision and connect it to both business metrics and user needs transformed how our entire organization approached product development."
+                        <p class="mt-2 text-sm font-medium text-gray-500">— Sarah Johnson, Chief Product Officer at TechCorp</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mb-6">
+                        <i class="ri-team-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Empowering Team Growth</h3>
+                    <p class="text-gray-600 mb-6">I focus on creating environments where designers can thrive through personalized mentorship, clear career paths, and opportunities to tackle challenging problems that stretch their capabilities.</p>
+                    <div class="border-l-4 border-primary pl-4 italic text-gray-600">
+                        "Under Michael's leadership, I grew from a junior designer to leading my own team in just three years. His mentorship approach balances guidance with autonomy in a way that accelerates growth."
+                        <p class="mt-2 text-sm font-medium text-gray-500">— David Chen, Design Director at InnovateCo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mb-6">
+                        <i class="ri-flow-chart-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Process Excellence</h3>
+                    <p class="text-gray-600 mb-6">I implement scalable design processes that balance efficiency with creativity, ensuring consistent quality while maintaining space for innovation and experimentation.</p>
+                    <div class="border-l-4 border-primary pl-4 italic text-gray-600">
+                        "The design system and processes Michael implemented allowed us to scale from 5 to 35 designers while maintaining consistent quality and reducing time-to-market by 40%."
+                        <p class="mt-2 text-sm font-medium text-gray-500">— Jennifer Williams, VP of Engineering at GlobalTech</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full mb-6">
+                        <i class="ri-group-line ri-lg text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Cross-Functional Collaboration</h3>
+                    <p class="text-gray-600 mb-6">I excel at building bridges between design, product, engineering, and business teams, creating shared understanding and alignment that drives successful outcomes.</p>
+                    <div class="border-l-4 border-primary pl-4 italic text-gray-600">
+                        "Michael's unique ability to speak the language of business, technology, and design transformed our product development process from siloed to truly collaborative."
+                        <p class="mt-2 text-sm font-medium text-gray-500">— Robert Thompson, CTO at FinanceApp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+
+  <!-- Insights Section -->
+    <section id="insights" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Articles</h2>
+                <p class="text-lg text-gray-700">Lessons learned and perspectives gained throughout my design journey.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-book-read-line ri-lg text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">AI Agent Mastery Journey</h3>
+                            <p class="text-sm text-gray-600">2 min read • July 14, 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">Programming Fundamentals: Learn Python, including data structures, object-oriented programming, and basic libraries. Get familiar with Git for version control.</p>
+                    <blockquote class="border-l-4 border-primary pl-4 italic text-gray-700 mb-6">
+                        "Artificial Intelligence Basics: Discover Search Algorithms (BFS, DFS), Game Theory (Nash equilibrium), and Logic & Reasoning (propositional, predicate)."
+                    </blockquote>
+                    <p class="text-gray-700 mb-6">Reinforcement Learning Basics: Get to know Markov Decision Processes (MDPs) (states, actions, rewards), Value Functions (state-value, Q-function), Policies, and the Exploration vs. Exploitation trade-off.</p>
+                    <a href="https://www.linkedin.com/pulse/ai-agent-mastery-journey-yogesh-malik-pjzxc/?trackingId=jEUXz8V9S0u%2Ft9Lb9N1dyA%3D%3D" target="_blank" class="text-primary hover:text-blue-700 font-medium flex items-center">
+                        Read More
+                        <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="ri-team-line ri-lg text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">Decoding "AI for Summarization: The 80/20 Rule"</h3>
+                            <p class="text-sm text-gray-600">2 min read • July 06, 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">This article introduces the powerful concept of AI for summarization, explaining it through the lens of the 80/20 Rule (Pareto Principle) for those new to the technology.</p>
+                    <blockquote class="border-l-4 border-primary pl-4 italic text-gray-700 mb-6">
+                        "The core objective is to show how AI summarization tools can drastically improve information consumption."
+                    </blockquote>
+                    <p class="text-gray-700 mb-6">he 80/20 Rule for AI summarization highlights its efficiency: you gain approximately 80% of valuable information with only 20% of the reading effort and time.</p>
+                    <a href="https://www.linkedin.com/pulse/ai-summarization-8020-rule-yogesh-malik-cb63c/?trackingId=dVAmZRX5Q8C8YzOqlLWNiQ%3D%3D" target="_blank" class="text-primary hover:text-blue-700 font-medium flex items-center">
+                        Read More
+                        <i class="ri-arrow-right-line ri-lg ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/recent-activity/articles/" target="_blank" class="inline-flex items-center justify-center bg-white text-primary border border-primary px-6 py-3 rounded-button font-medium hover:bg-blue-50 transition duration-300 whitespace-nowrap">
+                    View All Articles
+                    <i class="ri-arrow-right-line ri-lg ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Get In Touch</h2>
+            <p class="text-lg text-gray-600 text-center mb-16 max-w-3xl mx-auto">Interested in discussing design leadership, potential opportunities, or collaboration? I'd love to connect.</p>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="w-full md:w-1/2 bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6">Send Me a Message</h3>
+                    <form class="space-y-6" action="https://formspree.io/f/myzdjzlz" method="POST">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" name="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-blue-600 transition-colors whitespace-nowrap">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="w-full md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mr-4">
+                                    <i class="ri-mail-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Email</p>
+                                    <p class="text-gray-800">yogeshmalikbe@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mr-4">
+                                    <i class="ri-map-pin-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Location</p>
+                                    <p class="text-gray-800">Pune Maharashtra, India</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full mr-4">
+                                    <i class="ri-calendar-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-500">Language</p>
+                                    <p class="text-gray-800">English, Hindi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Connect With Me</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full hover:bg-blue-200 transition-colors">
+                                <i class="ri-linkedin-fill text-primary"></i>
+                            </a>
+                            
+                        </div>
+                        
+                        <div class="mt-8">
+                            <a href="./images/Yogesh-Malik-CV.pdf" target="_blank" class="flex items-center justify-center bg-gray-100 text-gray-700 px-6 py-3 rounded-button font-medium hover:bg-gray-200 transition-colors whitespace-nowrap">
+                                <i class="ri-download-line mr-2"></i> Download Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12" style="margin-top: 100px;">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-xl font-['Pacifico'] text-white">Yogesh Malik</a>
+                    <p class="text-gray-400 mt-2">Architect GenAI UX/UI Designer</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
+                <a href="#journey" class="text-gray-300 hover:text-white transition-colors">Career Journey</a>
+                <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Case Studies</a>
+                <a href="#insights" class="text-gray-300 hover:text-white transition-colors">Articles</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+                </div>
+            </div>
+            
+            <hr class="border-gray-700 my-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Yogesh Malik. All rights reserved.</p>
+                <p class="text-gray-400 text-sm">Last updated: August 30, 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Case Study Modal -->
+    <div id="case-study-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
+                <h3 id="modal-title" class="text-2xl font-bold text-gray-800">Case Study Details</h3>
+                <button id="close-modal" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-gray-700">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            <div id="modal-content" class="p-6">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script id="navigation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const nav = document.querySelector('nav');
+            
+            // Mobile menu toggle
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Scroll event for navigation styling
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 10) {
+                    nav.classList.add('shadow-md');
+                    nav.classList.remove('shadow-sm');
+                } else {
+                    nav.classList.remove('shadow-md');
+                    nav.classList.add('shadow-sm');
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="case-study-modal-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('case-study-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            const closeModal = document.getElementById('close-modal');
+            const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+            
+            // Case study content
+            const caseStudies = {
+                case1: {
+                    title: "Global Enterprise Platform Redesign",
+                    content: `
+                        <div class="space-y-8">
+                            <div class="rounded-lg overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=enterprise%20dashboard%20UI%20design%20process%20showing%20wireframes%2C%20user%20flows%2C%20and%20final%20UI%20screens%20with%20blue%20accent%20colors%2C%20professional%20business%20application%20showing%20analytics%20and%20metrics%2C%20high-quality%20mockup%20showing%20design%20evolution&width=1200&height=600&seq=case1detail&orientation=landscape" alt="Enterprise Platform Redesign Process" class="w-full h-auto">
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Project Overview</h4>
+                                <p class="text-gray-600 mb-4">This 18-month initiative involved completely reimagining a complex enterprise platform used by 200+ Fortune 500 companies for managing global operations. The platform had grown organically over 8 years, resulting in inconsistent experiences, high training costs, and declining user satisfaction scores threatening renewal rates.</p>
+                                <p class="text-gray-600">The redesign needed to address critical usability issues while maintaining powerful functionality and ensuring minimal disruption to existing users during the transition.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Strategic Challenges</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>The platform had 12 different modules developed by separate teams over 8 years, resulting in inconsistent UX patterns</li>
+                                    <li>User research revealed that new users required an average of 22 hours of training before becoming proficient</li>
+                                    <li>Enterprise customers were threatening to switch to competitors due to poor user experience</li>
+                                    <li>The engineering team was resistant to a complete overhaul due to technical debt concerns</li>
+                                    <li>The redesign needed to be implemented without disrupting daily operations for existing users</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">My Leadership Role</h4>
+                                <p class="text-gray-600 mb-4">As the Head of Design, I was responsible for the entire redesign initiative, reporting directly to the CEO and working closely with the CTO and CPO. My specific contributions included:</p>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Directing a team of 12 designers across 3 global offices (San Francisco, London, Singapore)</li>
+                                    <li>Establishing a comprehensive design system to ensure consistency across all modules</li>
+                                    <li>Creating a phased implementation strategy to minimize disruption to existing users</li>
+                                    <li>Leading executive workshops to align business objectives with user needs</li>
+                                    <li>Personally overseeing the information architecture redesign and core navigation patterns</li>
+                                    <li>Implementing a robust user testing program with key enterprise customers</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Process & Methodology</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Discovery Phase</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Conducted 45+ stakeholder interviews</li>
+                                            <li>Analyzed 18 months of support tickets</li>
+                                            <li>Performed competitive analysis</li>
+                                            <li>Shadowed users across 8 companies</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Design Phase</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Created unified information architecture</li>
+                                            <li>Developed comprehensive design system</li>
+                                            <li>Prototyped key user flows</li>
+                                            <li>Conducted iterative usability testing</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Implementation Phase</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Created phased rollout strategy</li>
+                                            <li>Developed transition guidance</li>
+                                            <li>Implemented user feedback loops</li>
+                                            <li>Measured KPIs throughout rollout</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">A key innovation was the creation of a "parallel experience" that allowed users to toggle between old and new interfaces during the transition period, collecting feedback and usage data to inform further refinements.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Business Impact</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">68%</p>
+                                        <p class="text-sm text-gray-600">Reduction in onboarding time</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">8.7</p>
+                                        <p class="text-sm text-gray-600">User satisfaction score (from 6.2)</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">24%</p>
+                                        <p class="text-sm text-gray-600">Improvement in renewal rates</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">42%</p>
+                                        <p class="text-sm text-gray-600">Decrease in support tickets</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">The redesign also enabled the company to enter two new market segments that were previously inaccessible due to the complexity of the platform, resulting in $14.2M in new annual recurring revenue within the first year after launch.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Key Learnings</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Enterprise UX requires balancing power and simplicity - we found success by creating progressive disclosure patterns that revealed complexity only when needed</li>
+                                    <li>Cross-functional alignment is critical - our weekly "design+dev pairing" sessions were instrumental in overcoming technical resistance</li>
+                                    <li>Change management is as important as the design itself - our transition strategy was key to user adoption</li>
+                                    <li>Design systems provide both efficiency and consistency - our component library reduced design time by 40% while ensuring a unified experience</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
+                },
+                case2: {
+                    title: "Investment Platform Mobile Experience",
+                    content: `
+                        <div class="space-y-8">
+                            <div class="rounded-lg overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=mobile%20app%20UI%20design%20process%20for%20financial%20services%20showing%20wireframes%2C%20user%20flows%2C%20and%20final%20UI%20screens%2C%20investment%20portfolio%20screens%20with%20clean%20modern%20interface%2C%20data%20visualization%20charts%20in%20blue%20and%20green%20colors%2C%20professional%20fintech%20application%20mockup%20on%20smartphone%20devices%20showing%20design%20evolution&width=1200&height=600&seq=case2detail&orientation=landscape" alt="Investment Platform Mobile Experience Process" class="w-full h-auto">
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Project Overview</h4>
+                                <p class="text-gray-600 mb-4">This 12-month initiative involved creating a new mobile investment platform for a traditional financial institution looking to compete with fintech startups. Despite having superior investment products, the company was losing market share to more user-friendly competitors.</p>
+                                <p class="text-gray-600">The challenge was making sophisticated investment tools accessible to less experienced investors while still providing the depth of functionality that experienced investors expect.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Strategic Challenges</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>The company's existing digital products were designed for financial professionals, not retail investors</li>
+                                    <li>User research revealed that 78% of millennial investors found the company's existing tools "intimidating" or "confusing"</li>
+                                    <li>Compliance and regulatory requirements created significant constraints on the design</li>
+                                    <li>The organization had limited mobile development experience</li>
+                                    <li>The platform needed to integrate with legacy backend systems while providing a modern experience</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">My Leadership Role</h4>
+                                <p class="text-gray-600 mb-4">As the Executive Design Director, I was responsible for the entire product strategy and design, reporting to the Chief Digital Officer and working closely with the CTO and Head of Retail Investing. My specific contributions included:</p>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Leading product strategy workshops with C-suite executives to align business goals with user needs</li>
+                                    <li>Managing a team of 8 designers (4 UX, 3 UI, 1 motion designer)</li>
+                                    <li>Personally directing the information architecture and core user flows</li>
+                                    <li>Creating a design language that balanced approachability with professionalism</li>
+                                    <li>Establishing a user research program targeting millennial investors</li>
+                                    <li>Collaborating with compliance and legal teams to ensure regulatory adherence</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Process & Methodology</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Discovery Phase</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Conducted 32 user interviews</li>
+                                            <li>Created 5 detailed user personas</li>
+                                            <li>Analyzed competitor experiences</li>
+                                            <li>Mapped investment journeys</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Design Phase</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Developed progressive disclosure model</li>
+                                            <li>Created financial data visualization system</li>
+                                            <li>Designed educational onboarding</li>
+                                            <li>Built high-fidelity prototypes</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Testing & Refinement</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Conducted 8 rounds of usability testing</li>
+                                            <li>Ran 4-week beta program with 500 users</li>
+                                            <li>Implemented A/B testing framework</li>
+                                            <li>Created post-launch optimization plan</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">A key innovation was the "Investment Confidence" framework we developed, which used behavioral data to gradually introduce more complex features as users demonstrated readiness, preventing overwhelm while encouraging growth.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Business Impact</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">380K</p>
+                                        <p class="text-sm text-gray-600">New customers in first year</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">215%</p>
+                                        <p class="text-sm text-gray-600">Increase in mobile engagement</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">64%</p>
+                                        <p class="text-sm text-gray-600">Reduction in account opening abandonment</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">$1.8B</p>
+                                        <p class="text-sm text-gray-600">New assets under management</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">The platform won "Best Financial App" at the 2024 Financial Technology Awards and has become the company's primary customer acquisition channel, fundamentally shifting the organization's digital strategy.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Key Learnings</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Financial complexity requires thoughtful progressive disclosure - our "Investment Confidence" framework became a model adopted across other products</li>
+                                    <li>Educational content must be contextual, not separate - embedding learning moments within the core experience increased engagement by 340% compared to traditional help sections</li>
+                                    <li>Compliance requirements can be a design opportunity - we found that clearly explaining regulatory information actually increased user trust</li>
+                                    <li>Cross-functional collaboration is essential - our "compliance by design" approach brought legal teams into the design process early, preventing late-stage revisions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
+                },
+                case3: {
+                    title: "Patient-Centered Healthcare Platform",
+                    content: `
+                        <div class="space-y-8">
+                            <div class="rounded-lg overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=healthcare%20patient%20portal%20UI%20design%20process%20showing%20wireframes%2C%20user%20flows%2C%20and%20final%20UI%20screens%2C%20medical%20records%20and%20appointment%20scheduling%20interface%2C%20clean%20modern%20design%20with%20blue%20and%20white%20color%20scheme%2C%20professional%20medical%20application%20mockup%20on%20tablet%20and%20smartphone%20devices%20showing%20design%20evolution&width=1200&height=600&seq=case3detail&orientation=landscape" alt="Healthcare Platform Design Process" class="w-full h-auto">
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Project Overview</h4>
+                                <p class="text-gray-600 mb-4">This 24-month initiative involved designing an integrated healthcare management platform connecting patients, providers, and insurers. The platform needed to address strict regulatory requirements while creating an intuitive experience for diverse user groups, including elderly and disabled populations.</p>
+                                <p class="text-gray-600">The goal was to create a unified system that would reduce administrative burden, improve patient outcomes, and decrease healthcare costs through better coordination of care.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Strategic Challenges</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>The platform needed to serve multiple stakeholders with different and sometimes conflicting needs (patients, doctors, nurses, administrators, insurers)</li>
+                                    <li>HIPAA compliance and data security requirements created significant design constraints</li>
+                                    <li>The system needed to be accessible to users with varying abilities, including elderly patients and those with disabilities</li>
+                                    <li>Integration with existing electronic health record (EHR) systems presented technical challenges</li>
+                                    <li>The platform needed to work across devices, including in clinical settings with limited technology</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">My Leadership Role</h4>
+                                <p class="text-gray-600 mb-4">As the VP of Product Design, I was responsible for the overall user experience strategy and design direction, reporting to the CEO and working closely with the CTO and Chief Medical Officer. My specific contributions included:</p>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Establishing the UX strategy and vision for the platform</li>
+                                    <li>Leading extensive user research with diverse patient populations, including elderly and disabled users</li>
+                                    <li>Managing a team of 10 designers and researchers</li>
+                                    <li>Creating a comprehensive accessibility framework</li>
+                                    <li>Collaborating with legal and compliance teams to ensure regulatory adherence</li>
+                                    <li>Developing a design system that worked across clinical and patient-facing contexts</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Process & Methodology</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Discovery Phase</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Conducted 60+ contextual inquiries</li>
+                                            <li>Shadowed clinicians across 5 hospitals</li>
+                                            <li>Interviewed patients with diverse needs</li>
+                                            <li>Mapped complex healthcare journeys</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Design Phase</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Created role-based information architecture</li>
+                                            <li>Developed accessibility-first design system</li>
+                                            <li>Built context-aware user flows</li>
+                                            <li>Designed for multiple device environments</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 rounded">
+                                        <h5 class="font-semibold text-gray-800 mb-2">Testing & Implementation</h5>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>Conducted accessibility testing with diverse users</li>
+                                            <li>Piloted in 3 healthcare networks</li>
+                                            <li>Implemented phased rollout strategy</li>
+                                            <li>Created continuous improvement framework</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">A key innovation was our "Unified Care Timeline" - a visualization that showed patients, providers, and insurers the same information but with different levels of detail appropriate to each role, creating a shared understanding while respecting privacy and regulatory requirements.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Business Impact</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">47%</p>
+                                        <p class="text-sm text-gray-600">Reduction in appointment no-shows</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">$4.2M</p>
+                                        <p class="text-sm text-gray-600">Annual administrative cost savings</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">38%</p>
+                                        <p class="text-sm text-gray-600">Improvement in patient satisfaction</p>
+                                    </div>
+                                    <div class="bg-blue-50 p-4 rounded text-center">
+                                        <p class="text-3xl font-bold text-primary mb-1">28</p>
+                                        <p class="text-sm text-gray-600">Healthcare networks adopted</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600">The platform has been recognized by healthcare industry associations for its innovative approach to patient engagement and has become a standard for patient-centered design in healthcare technology.</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Key Learnings</h4>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Accessibility is not a feature, it's a foundation - our "accessibility-first" approach benefited all users, not just those with disabilities</li>
+                                    <li>Multi-stakeholder platforms require role-based experiences with shared touchpoints - our "Unified Care Timeline" became a model for other healthcare systems</li>
+                                    <li>Healthcare design requires deep domain expertise - embedding designers in clinical settings was essential for understanding workflows</li>
+                                    <li>Regulatory requirements can drive innovation - our privacy-preserving design patterns have been adopted as best practices in the industry</li>
+                                </ul>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+            
+            // Open modal with case study content
+            viewDetailsBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const caseId = this.getAttribute('data-case');
+                    const caseStudy = caseStudies[caseId];
+                    
+                    if (caseStudy) {
+                        modalTitle.textContent = caseStudy.title;
+                        modalContent.innerHTML = caseStudy.content;
+                        modal.classList.remove('hidden');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+
+    <script id="contact-form-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                
+                // Validate form (simple validation)
+                if (!name || !email || !subject || !message) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                // In a real application, you would send this data to a server
+                // For this demo, we'll just show a success message
+                alert('Thank you for your message! I will get back to you soon.');
+                
+                // Reset form
+                contactForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
