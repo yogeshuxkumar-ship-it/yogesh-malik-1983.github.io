@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capita.com Global Website Redesign — Case Study | Yogesh Malik</title>
+  <meta name="description" content="How I led the redesign of Capita's global website serving 45,000+ employees, improving task completion by 60%.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #6366f1;
+      --color-accent-dim: rgba(99, 102, 241, 0.15);
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .scroll-to-top {
+      position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
+      background: var(--color-accent); color: white; border: none; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+    .scroll-to-top:hover { transform: translateY(-4px); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
+    }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+
+    .hero-image { margin: 0 48px 80px; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); }
+    .hero-image img { width: 100%; height: auto; display: block; }
+
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
+    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
+    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+
+    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+    .case-section { margin-bottom: 80px; }
+    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
+    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
+    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
+    .case-section li { margin-bottom: 12px; }
+    .case-section li strong { color: var(--color-text); }
+
+    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
+    .callout p { color: var(--color-text); margin-bottom: 0; }
+    .callout strong { color: var(--color-accent); }
+
+    .image-showcase { margin: 48px 0; }
+    .image-showcase img { width: 100%; border-radius: 16px; border: 1px solid var(--color-border); margin-bottom: 16px; }
+    .image-showcase-caption { text-align: center; font-size: 0.9rem; color: var(--color-text-muted); font-style: italic; }
+
+    .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 48px 0; }
+    .image-grid img { width: 100%; border-radius: 12px; border: 1px solid var(--color-border); }
+    .image-grid-caption { grid-column: span 2; text-align: center; font-size: 0.9rem; color: var(--color-text-muted); font-style: italic; }
+
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
+    .process-step:hover { border-color: var(--color-accent); }
+    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
+    .process-step h4 { margin-bottom: 8px; }
+    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
+    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
+    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+
+    .learnings-list { list-style: none; margin-left: 0; }
+    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
+    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: white; padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3); }
+
+    @media (max-width: 900px) {
+      nav, .case-header, .case-content, .next-project, .hero-image { padding-left: 24px; padding-right: 24px; }
+      .hero-image { margin-left: 24px; margin-right: 24px; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
+      .process-grid, .results-grid, .image-grid { grid-template-columns: 1fr; }
+      .image-grid-caption { grid-column: span 1; }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="nav-links">
+      <a href="case-study-eos-salesforce.html">← Previous</a>
+      <a href="index.html">All Projects</a>
+      <a href="case-study-axelos.html">Next →</a>
+    </div>
+  </nav>
+
+  <header class="case-header">
+    <div class="case-meta">
+      <span class="case-tag">Corporate Website</span>
+      <span class="case-tag">Design System</span>
+      <span class="case-tag">Drupal CMS</span>
+      <span class="case-tag">Capita PLC</span>
+    </div>
+    <h1>Capita.com Global Website Redesign</h1>
+    <p class="case-intro">Led an enterprise-wide digital transformation for 45,000+ employees, redesigning the global website ecosystem to improve task completion by 60% and reduce support tickets by 40%.</p>
+  </header>
+
+  <div class="hero-image">
+    <img src="images/Home-v3_1.png" alt="Capita.com Homepage Redesign with modern visual design">
+  </div>
+
+  <div class="quick-stats">
+    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2022 – 2023</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Lead UX Designer</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Platform</div><div class="quick-stat-value">Drupal CMS</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Impact</div><div class="quick-stat-value">45,000+ Employees</div></div>
+  </div>
+
+  <div class="case-content">
+    <section class="case-section">
+      <p class="case-section-label">Context</p>
+      <h2>The Challenge</h2>
+      <p>Capita's corporate website had grown organically over years, resulting in inconsistent experiences, fragmented information architecture, and declining engagement metrics.</p>
+      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we create a unified corporate digital experience that serves diverse user groups while establishing a scalable design system for future growth?</p></div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Discovery</p>
+      <h2>Understanding the Problem Space</h2>
+      <div class="process-grid">
+        <div class="process-step"><div class="process-step-number">1</div><h4>Stakeholder Workshops</h4><p>Facilitated sessions with marketing, HR, investor relations, and IT.</p></div>
+        <div class="process-step"><div class="process-step-number">2</div><h4>Analytics Deep Dive</h4><p>Analyzed 12 months of site data to identify drop-off points.</p></div>
+        <div class="process-step"><div class="process-step-number">3</div><h4>User Interviews</h4><p>Conducted interviews with job seekers, investors, and existing clients.</p></div>
+        <div class="process-step"><div class="process-step-number">4</div><h4>Competitive Analysis</h4><p>Evaluated 8 competitor corporate sites.</p></div>
+      </div>
+      <h3>Key Findings</h3>
+      <ul>
+        <li><strong>Navigation confusion:</strong> 45% of users abandoned before completing their task</li>
+        <li><strong>Inconsistent branding:</strong> 5 different visual styles across sub-sites</li>
+        <li><strong>Poor mobile experience:</strong> 38% of traffic was mobile, but the site wasn't fully responsive</li>
+        <li><strong>Recruitment friction:</strong> 67% drop-off in job application process</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Process</p>
+      <h2>From Sketches to High-Fidelity</h2>
+
+      <h3>Hand Sketches & Responsive Planning</h3>
+      <div class="image-showcase">
+        <img src="hand-scktech.png" alt="Hand-drawn responsive wireframes showing desktop, tablet, and mobile layouts">
+        <p class="image-showcase-caption">Early responsive sketches exploring layout patterns across breakpoints</p>
+      </div>
+
+      <h3>Detailed Wireframing</h3>
+      <div class="image-grid">
+        <img src="images/Desktop_-_2.png" alt="Homepage wireframe with sections for highlights, insights, and case studies">
+        <img src="images/hand-scktech-1.png" alt="E-commerce and category page wireframe patterns">
+        <p class="image-grid-caption">Wireframes establishing content hierarchy, navigation structure, and component patterns</p>
+      </div>
+
+      <h3>High-Fidelity Design</h3>
+      <div class="image-showcase">
+        <img src="Home-v3_1.png" alt="Final high-fidelity homepage design">
+        <p class="image-showcase-caption">Final homepage design featuring hero video, service pillars, and content modules</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Solution</p>
+      <h2>Design System & Components</h2>
+      <ul>
+        <li><strong>Modular page templates:</strong> 6 flexible templates that could create 50+ page variations</li>
+        <li><strong>Workday integration:</strong> Seamless job search experience embedded within the site</li>
+        <li><strong>Investor portal:</strong> Dedicated section with financial reports and governance info</li>
+        <li><strong>Accessibility built-in:</strong> All components designed to WCAG 2.1 AA standards</li>
+      </ul>
+      <h3>Tools & Technologies</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Adobe XD</span>
+        <span class="tool-tag">Drupal 9</span>
+        <span class="tool-tag">Workday HRMS</span>
+        <span class="tool-tag">Zeplin</span>
+        <span class="tool-tag">Confluence</span>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Results</p>
+      <h2>Measurable Impact</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-value">+60%</div><div class="result-label">Task Completion</div></div>
+        <div class="result-card"><div class="result-value">-40%</div><div class="result-label">Support Tickets</div></div>
+        <div class="result-card"><div class="result-value">+35%</div><div class="result-label">Job Conversions</div></div>
+        <div class="result-card"><div class="result-value">-50%</div><div class="result-label">Design-to-Dev Time</div></div>
+        <div class="result-card"><div class="result-value">+25%</div><div class="result-label">Overall Conversions</div></div>
+        <div class="result-card"><div class="result-value">12+</div><div class="result-label">Teams Using DS</div></div>
+      </div>
+      <h3>Recognition</h3>
+      <p>This project earned the <strong>Center of Excellence Award 2022</strong> from Capita PLC.</p>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Reflection</p>
+      <h2>What I Learned</h2>
+      <ul class="learnings-list">
+        <li><span><strong>Sketch first, pixel later.</strong> The hand-sketching phase was invaluable for rapid stakeholder alignment.</span></li>
+        <li><span><strong>Design systems pay compound returns.</strong> The upfront investment reduced ongoing design work by 50%.</span></li>
+        <li><span><strong>Integration is everything.</strong> The Workday HRMS integration had the biggest impact on recruitment metrics.</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="next-project">
+    <p>Next Case Study</p>
+    <h3>Axelos UK Government Platform</h3>
+    <a href="case-study-axelos.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
+    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+</body>
+</html>

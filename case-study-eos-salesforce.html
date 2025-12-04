@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EOS B2B Commerce Platform — Case Study | Yogesh Malik</title>
+  <meta name="description" content="How I led the Salesforce B2B Commerce transformation at Capita, projecting 52% sales uplift and reducing order fulfillment time by 35%.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #f59e0b;
+      --color-accent-dim: rgba(245, 158, 11, 0.15);
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .scroll-to-top {
+      position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
+      background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+    }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+    .scroll-to-top:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
+    }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+
+    .hero-image { margin: 0 48px 80px; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); }
+    .hero-image img { width: 100%; height: auto; display: block; }
+
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
+    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
+    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+
+    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+    .case-section { margin-bottom: 80px; }
+    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
+    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
+    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
+    .case-section li { margin-bottom: 12px; }
+    .case-section li strong { color: var(--color-text); }
+
+    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
+    .callout p { color: var(--color-text); margin-bottom: 0; }
+    .callout strong { color: var(--color-accent); }
+
+    .image-showcase { margin: 48px 0; }
+    .image-showcase img { width: 100%; border-radius: 16px; border: 1px solid var(--color-border); margin-bottom: 16px; }
+    .image-showcase-caption { text-align: center; font-size: 0.9rem; color: var(--color-text-muted); font-style: italic; }
+
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
+    .process-step:hover { border-color: var(--color-accent); }
+    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
+    .process-step h4 { margin-bottom: 8px; }
+    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
+    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
+    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+
+    .learnings-list { list-style: none; margin-left: 0; }
+    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
+    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245, 158, 11, 0.3); }
+
+    @media (max-width: 900px) {
+      nav, .case-header, .case-content, .next-project, .hero-image { padding-left: 24px; padding-right: 24px; }
+      .hero-image { margin-left: 24px; margin-right: 24px; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
+      .process-grid, .results-grid { grid-template-columns: 1fr; }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/>
+        <path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/>
+        <path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/>
+        <path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/>
+      </svg>
+      Back to Portfolio
+    </a>
+    <div class="nav-links">
+      <a href="index.html">All Projects</a>
+      <a href="case-study-capita-website.html">Next →</a>
+    </div>
+  </nav>
+
+  <header class="case-header">
+    <div class="case-meta">
+      <span class="case-tag">Salesforce B2B Commerce</span>
+      <span class="case-tag">Enterprise UX</span>
+      <span class="case-tag">Design System</span>
+      <span class="case-tag">Capita PLC</span>
+    </div>
+    <h1>Evolution of Sales (EOS) B2B Commerce Platform</h1>
+    <p class="case-intro">Architected an end-to-end B2B commerce experience on Salesforce, transforming manual quoting into an automated storefront and projecting a 52% uplift in product sales revenue.</p>
+  </header>
+
+  <div class="hero-image">
+    <img src="images/B2B_commerce_home-v4-FSC_1.png" alt="EOS B2B Commerce Platform - Fire Service College storefront homepage">
+  </div>
+
+  <div class="quick-stats">
+    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2024 – Present</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Lead UX Architect</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Platform</div><div class="quick-stat-value">Salesforce B2B Commerce</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Client</div><div class="quick-stat-value">Fire Service College</div></div>
+  </div>
+
+  <div class="case-content">
+    <section class="case-section">
+      <p class="case-section-label">Context</p>
+      <h2>The Challenge</h2>
+      <p>Capita's Fire Service College needed to modernize their course booking and product sales process. The existing system relied on manual quoting, phone calls, and spreadsheets—creating friction for both customers and internal teams.</p>
+      <p>The business goal was clear: transform this into a self-service digital storefront while maintaining the personalized service that their B2B customers expected.</p>
+      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we create a B2B commerce experience that handles complex course configurations while feeling as simple as a B2C shopping experience?</p></div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Discovery</p>
+      <h2>Understanding the Problem Space</h2>
+      <div class="process-grid">
+        <div class="process-step"><div class="process-step-number">1</div><h4>Stakeholder Interviews</h4><p>Conducted sessions with sales teams, operations, and leadership to understand pain points and business objectives.</p></div>
+        <div class="process-step"><div class="process-step-number">2</div><h4>Competitive Analysis</h4><p>Evaluated 5+ B2B commerce platforms to identify best practices for complex product configuration.</p></div>
+        <div class="process-step"><div class="process-step-number">3</div><h4>User Research</h4><p>Interviewed training coordinators from fire services to understand their booking needs and workflows.</p></div>
+        <div class="process-step"><div class="process-step-number">4</div><h4>Platform Assessment</h4><p>Analyzed Salesforce B2B Commerce capabilities and limitations to inform design decisions.</p></div>
+      </div>
+      <h3>Key Findings</h3>
+      <ul>
+        <li><strong>Complex pricing:</strong> Each course had different pricing based on delegates, dates, and accommodation options</li>
+        <li><strong>Bulk bookings:</strong> Training coordinators often book 5-20 delegates at once</li>
+        <li><strong>Terms acceptance:</strong> Legal requirements mandated terms acceptance before cart addition</li>
+        <li><strong>Return visits:</strong> Most users returned to book again, making account features critical</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Solution</p>
+      <h2>Designing the Experience</h2>
+      
+      <h3>1. Product Discovery & Catalogue</h3>
+      <p>Created a visually-rich storefront that showcases courses by category, with hero imagery and clear value propositions.</p>
+      <div class="image-showcase">
+        <img src="images/B2B_commerce_home-v4-FSC_1.png" alt="Homepage featuring top selling products and promotional items">
+        <p class="image-showcase-caption">Homepage featuring top-selling courses, promotions, and categorical browsing</p>
+      </div>
+
+      <h3>2. Course Configuration & Booking</h3>
+      <p>The product detail page handles complex configuration while maintaining clarity. Users can select dates, number of delegates, and accommodation—with real-time pricing updates.</p>
+      <div class="image-showcase">
+        <img src="images/B2B_commerce_product_detail_FSC-active_1.png" alt="Product detail page with pricing and configuration options">
+        <p class="image-showcase-caption">Course detail page with inline configuration, terms acceptance, and suggested products</p>
+      </div>
+
+      <h3>3. Cart & Checkout</h3>
+      <p>The cart experience allows easy modification of quantities and provides clear pricing breakdown including discounts.</p>
+      <div class="image-showcase">
+        <img src="images/B2B_commerce_product_cart-pill-decrease_1.png" alt="Shopping cart with multiple courses and pricing summary">
+        <p class="image-showcase-caption">Cart with quantity controls, pricing breakdown, and checkout flow</p>
+      </div>
+
+      <h3>Design Decisions</h3>
+      <ul>
+        <li><strong>Dark theme:</strong> Aligned with Fire Service College branding</li>
+        <li><strong>Inline configuration:</strong> All course options visible on one screen</li>
+        <li><strong>Progressive disclosure:</strong> Accommodation options appear when checkbox selected</li>
+        <li><strong>Sticky pricing:</strong> Total price always visible during configuration</li>
+      </ul>
+
+      <h3>Tools & Technologies</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Figma</span>
+        <span class="tool-tag">Salesforce B2B Commerce</span>
+        <span class="tool-tag">Lightning Web Components</span>
+        <span class="tool-tag">Jira</span>
+        <span class="tool-tag">Confluence</span>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Results</p>
+      <h2>Projected Impact</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-value">+52%</div><div class="result-label">Projected Sales Uplift</div></div>
+        <div class="result-card"><div class="result-value">-35%</div><div class="result-label">Order Fulfillment Time</div></div>
+        <div class="result-card"><div class="result-value">+28%</div><div class="result-label">User Satisfaction</div></div>
+        <div class="result-card"><div class="result-value">-40%</div><div class="result-label">Support Tickets</div></div>
+        <div class="result-card"><div class="result-value">24/7</div><div class="result-label">Self-Service Booking</div></div>
+        <div class="result-card"><div class="result-value">5min</div><div class="result-label">Avg. Booking Time</div></div>
+      </div>
+      <h3>Recognition</h3>
+      <p>This project contributed to receiving the <strong>Fearless Innovation Award 2025</strong> from Capita PLC.</p>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Reflection</p>
+      <h2>What I Learned</h2>
+      <ul class="learnings-list">
+        <li><span><strong>Platform constraints can drive creativity.</strong> Salesforce B2B Commerce has limitations, but working within them forced us to prioritize ruthlessly.</span></li>
+        <li><span><strong>B2B doesn't mean boring.</strong> Professional users still appreciate beautiful, intuitive interfaces.</span></li>
+        <li><span><strong>Legal requirements need UX thinking.</strong> The terms acceptance requirement could have been a friction point, but integrating it thoughtfully made it nearly invisible.</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="next-project">
+    <p>Next Case Study</p>
+    <h3>Capita.com Global Website Redesign</h3>
+    <a href="case-study-capita-website.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
+    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+</body>
+</html>

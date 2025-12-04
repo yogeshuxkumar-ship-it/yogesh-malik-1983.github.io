@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awards & Certifications — Yogesh Malik</title>
+  <meta name="description" content="Awards, certifications, and technical proficiencies of Yogesh Malik, Senior AI UX/UI Design Leader.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #c9ff57;
+      --color-accent-dim: rgba(201, 255, 87, 0.15);
+      --color-gold: #ffd700;
+      --color-gold-dim: rgba(255, 215, 0, 0.15);
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+    .scroll-to-top:hover { transform: translateY(-4px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .page-header { padding: 160px 48px 80px; max-width: 900px; margin: 0 auto; text-align: center; }
+    .page-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; }
+    .page-header p { font-size: 1.25rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; }
+
+    section { padding: 0 48px 80px; max-width: 1200px; margin: 0 auto; }
+    .section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 32px; }
+
+    .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+    .award-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
+    .award-card:hover { transform: translateY(-4px); border-color: var(--color-gold); }
+    .award-card.featured { grid-column: span 2; background: linear-gradient(135deg, var(--color-gold-dim) 0%, var(--color-bg-card) 100%); border-color: var(--color-gold); }
+
+    .award-icon { font-size: 2rem; margin-bottom: 16px; }
+    .award-year { font-size: 0.8rem; color: var(--color-gold); font-weight: 600; margin-bottom: 8px; }
+    .award-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
+    .award-org { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 12px; }
+    .award-description { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.6; }
+
+    .certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 80px; }
+    .cert-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; transition: border-color 0.3s; }
+    .cert-card:hover { border-color: var(--color-accent); }
+    .cert-icon { font-size: 2.5rem; flex-shrink: 0; }
+    .cert-content { flex: 1; }
+    .cert-title { font-weight: 600; margin-bottom: 4px; }
+    .cert-org { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 8px; }
+    .cert-level { display: inline-block; background: var(--color-accent-dim); color: var(--color-accent); padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+
+    .skills-section { background: var(--color-bg-elevated); padding: 80px 48px; margin: 0 -48px; }
+    .skills-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 48px; text-align: center; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .skill-category { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .skill-category h3 { font-size: 1rem; margin-bottom: 16px; color: var(--color-accent); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag { background: var(--color-bg); border: 1px solid var(--color-border); padding: 6px 12px; border-radius: 100px; font-size: 0.8rem; color: var(--color-text-muted); }
+
+    .cta-section { text-align: center; padding: 80px 48px; }
+    .cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
+    .cta-section p { color: var(--color-text-muted); margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
+
+    @media (max-width: 900px) {
+      nav, .page-header, section, .cta-section { padding-left: 24px; padding-right: 24px; }
+      .awards-grid, .certs-grid, .skills-grid { grid-template-columns: 1fr; }
+      .award-card.featured { grid-column: span 1; }
+      .skills-section { margin: 0 -24px; padding: 48px 24px; }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <h1>Awards & Certifications</h1>
+    <p>Recognition for design excellence, innovation, and commitment to accessible, user-centered design.</p>
+  </header>
+
+  <section>
+    <p class="section-label">🏆 Awards</p>
+    <div class="awards-grid">
+      <div class="award-card featured">
+        <div class="award-icon">🏅</div>
+        <div class="award-year">2025</div>
+        <div class="award-title">Fearless Innovation Award</div>
+        <div class="award-org">Capita PLC</div>
+        <div class="award-description">Recognized for leading the EOS B2B Commerce Platform transformation, demonstrating bold innovation in enterprise UX design with projected 52% revenue uplift and exceptional cross-functional collaboration.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">⭐</div>
+        <div class="award-year">2025</div>
+        <div class="award-title">Pat on the Back Award</div>
+        <div class="award-org">Capita PLC</div>
+        <div class="award-description">Outstanding project delivery and team collaboration on Fire Service College digital transformation.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">⭐</div>
+        <div class="award-year">2024</div>
+        <div class="award-title">Pat on the Back Award</div>
+        <div class="award-org">Capita PLC</div>
+        <div class="award-description">Excellence in B2B Commerce design system development and cross-team collaboration.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🎯</div>
+        <div class="award-year">2023</div>
+        <div class="award-title">Center of Excellence Award</div>
+        <div class="award-org">Capita PLC</div>
+        <div class="award-description">Design leadership and innovation in enterprise UX transformation initiatives.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🎯</div>
+        <div class="award-year">2022</div>
+        <div class="award-title">Center of Excellence Award</div>
+        <div class="award-org">Capita PLC</div>
+        <div class="award-description">Capita.com redesign achieving 60% task completion improvement and design system adoption across 12+ teams.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🎯</div>
+        <div class="award-year">2021</div>
+        <div class="award-title">Center of Excellence Award</div>
+        <div class="award-org">Capita PLC</div>
+        <div class="award-description">UK Government Axelos platform redesign with full WCAG 2.1 AA compliance.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">♿</div>
+        <div class="award-year">2021</div>
+        <div class="award-title">Pat on the Back Award</div>
+        <div class="award-org">Capita PLC</div>
+        <div class="award-description">Achievement of WCAG 2.1 AA accessibility compliance across government platforms.</div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🤝</div>
+        <div class="award-year">2020</div>
+        <div class="award-title">Pat on the Back Award</div>
+        <div class="award-org">Capita PLC</div>
+        <div class="award-description">Exceptional collaboration with UK Government Digital Service on GDS standards implementation.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">📜 Certifications</p>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-content">
+          <div class="cert-title">Human-Computer Interaction (HCI)</div>
+          <div class="cert-org">Interaction Design Foundation</div>
+          <span class="cert-level">EQF Level 7</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔬</div>
+        <div class="cert-content">
+          <div class="cert-title">User Research — Methods and Best Practices</div>
+          <div class="cert-org">Interaction Design Foundation</div>
+          <span class="cert-level">EQF Level 7</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🧪</div>
+        <div class="cert-content">
+          <div class="cert-title">Conducting Usability Testing</div>
+          <div class="cert-org">Interaction Design Foundation</div>
+          <span class="cert-level">EQF Level 7</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">💡</div>
+        <div class="cert-content">
+          <div class="cert-title">Design Thinking & Service Design</div>
+          <div class="cert-org">Interaction Design Foundation</div>
+          <span class="cert-level">EQF Level 7</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="skills-section">
+    <h2>Technical Proficiency</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>🎨 Design Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Adobe XD</span>
+          <span class="skill-tag">Sketch</span>
+          <span class="skill-tag">InVision</span>
+          <span class="skill-tag">Adobe Creative Suite</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>🔍 UX Research</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">UserTesting</span>
+          <span class="skill-tag">Hotjar</span>
+          <span class="skill-tag">Dovetail</span>
+          <span class="skill-tag">Optimal Workshop</span>
+          <span class="skill-tag">Miro</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>♿ Accessibility</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">WAVE</span>
+          <span class="skill-tag">Lighthouse</span>
+          <span class="skill-tag">axe DevTools</span>
+          <span class="skill-tag">NVDA</span>
+          <span class="skill-tag">VoiceOver</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>🤖 GenAI Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Copilot</span>
+          <span class="skill-tag">Google Gemini</span>
+          <span class="skill-tag">Claude</span>
+          <span class="skill-tag">ChatGPT</span>
+          <span class="skill-tag">Uizard</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>⚙️ Platforms</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Salesforce B2B Commerce</span>
+          <span class="skill-tag">Drupal CMS</span>
+          <span class="skill-tag">Workday HRMS</span>
+          <span class="skill-tag">UK GDS</span>
+          <span class="skill-tag">Angular</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>📋 Project Management</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">Confluence</span>
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">Agile/Scrum</span>
+          <span class="skill-tag">Zeplin</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Let's work together</h2>
+    <p>Interested in bringing award-winning UX leadership to your team?</p>
+    <a href="mailto:yogeshmalikbe@gmail.com" class="btn-primary">Get in Touch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
+    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+</body>
+</html>

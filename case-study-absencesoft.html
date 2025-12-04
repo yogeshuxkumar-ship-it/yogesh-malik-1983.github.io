@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AbsenceSoft FMLA Leave Management — Case Study | Yogesh Malik</title>
+  <meta name="description" content="How I designed user journey maps and prototypes for a multi-tenant absence management application, reducing training time by 30%.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #00b4d8;
+      --color-accent-dim: rgba(0, 180, 216, 0.15);
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(0, 180, 216, 0.3); }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+    .scroll-to-top:hover { transform: translateY(-4px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+
+    .hero-image { margin: 0 48px 80px; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); }
+    .hero-image img { width: 100%; height: auto; display: block; }
+
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
+    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
+    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+
+    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+    .case-section { margin-bottom: 80px; }
+    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
+    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
+    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
+    .case-section li { margin-bottom: 12px; }
+    .case-section li strong { color: var(--color-text); }
+
+    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
+    .callout p { color: var(--color-text); margin-bottom: 0; }
+    .callout strong { color: var(--color-accent); }
+
+    .diagram-container { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 20px; padding: 40px; margin: 40px 0; overflow-x: auto; }
+    .diagram-title { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; text-align: center; }
+    .diagram-caption { font-size: 0.9rem; color: var(--color-text-muted); text-align: center; margin-top: 24px; font-style: italic; }
+
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
+    .process-step:hover { border-color: var(--color-accent); }
+    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
+    .process-step h4 { margin-bottom: 8px; }
+    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
+    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
+    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+
+    .learnings-list { list-style: none; margin-left: 0; }
+    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
+    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0, 180, 216, 0.3); }
+
+   @media (max-width: 900px) {
+      nav, .case-header, .case-content, .next-project, .hero-image { padding-left: 24px; padding-right: 24px; }
+      .hero-image { margin-left: 24px; margin-right: 24px; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
+      .process-grid, .results-grid { grid-template-columns: 1fr; }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="nav-links">
+      <a href="case-study-axelos.html">← Previous</a>
+      <a href="index.html">All Projects</a>
+      <a href="case-study-consilio.html">Next →</a>
+    </div>
+  </nav>
+
+  <header class="case-header">
+    <div class="case-meta">
+      <span class="case-tag">HR Tech</span>
+      <span class="case-tag">Multi-Tenant SaaS</span>
+      <span class="case-tag">FMLA Compliance</span>
+      <span class="case-tag">Harman Connected Services</span>
+    </div>
+    <h1>AbsenceSoft FMLA Leave Management</h1>
+    <p class="case-intro">Designed user journey maps and high-fidelity prototypes for a multi-tenant absence management application, simplifying complex FMLA compliance workflows and reducing training time by 30%.</p>
+  </header>
+
+  <div class="hero-image">
+    <img src="images/FMLADivision - Dashboard.png" alt="AbsenceSoft FMLA Leave Management and best practice portfolio">
+  </div>
+
+  <div class="quick-stats">
+    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2018 – 2019</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Lead Experience Designer</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Users</div><div class="quick-stat-value">15,000+ HR Professionals</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Platform</div><div class="quick-stat-value">Multi-Tenant SaaS</div></div>
+  </div>
+
+  <div class="case-content">
+    <section class="case-section">
+      <p class="case-section-label">Context</p>
+      <h2>The Challenge</h2>
+      <p>AbsenceSoft provides absence management software to HR teams at enterprises across the US. Managing FMLA (Family and Medical Leave Act) compliance is notoriously complex—regulations vary by state, company size, and employee tenure.</p>
+      <p>HR professionals were spending excessive time on training and frequently making errors due to the complexity of the existing interface. The business needed to simplify workflows while maintaining full regulatory compliance.</p>
+      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we simplify FMLA leave management for HR professionals while ensuring full compliance with complex, varying regulations?</p></div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Discovery</p>
+      <h2>Understanding the Users</h2>
+      <p>I conducted extensive research with HR professionals, benefits administrators, and compliance officers to understand their workflows and pain points.</p>
+      
+      <div class="diagram-container">
+        <p class="diagram-title">User Ecosystem</p>
+        <svg viewBox="0 0 700 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 400px;">
+          <g transform="translate(80, 50)">
+            <circle cx="50" cy="40" r="35" fill="#00b4d8" fill-opacity="0.15" stroke="#00b4d8" stroke-width="2"/>
+            <text x="50" y="45" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="24">👤</text>
+            <text x="50" y="100" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="600">Employee</text>
+            <text x="50" y="115" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10">Requests Leave</text>
+          </g>
+          <path d="M180 90 L280 90" stroke="#00b4d8" stroke-width="2" stroke-dasharray="4 4"/>
+          <polygon points="280,85 295,90 280,95" fill="#00b4d8"/>
+          <g transform="translate(300, 50)">
+            <circle cx="50" cy="40" r="35" fill="#00b4d8" fill-opacity="0.15" stroke="#00b4d8" stroke-width="2"/>
+            <text x="50" y="45" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="24">📋</text>
+            <text x="50" y="100" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="600">HR Admin</text>
+            <text x="50" y="115" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10">Processes & Tracks</text>
+          </g>
+          <path d="M400 90 L500 90" stroke="#00b4d8" stroke-width="2" stroke-dasharray="4 4"/>
+          <polygon points="500,85 515,90 500,95" fill="#00b4d8"/>
+          <g transform="translate(520, 50)">
+            <circle cx="50" cy="40" r="35" fill="#00b4d8" fill-opacity="0.15" stroke="#00b4d8" stroke-width="2"/>
+            <text x="50" y="45" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="24">✅</text>
+            <text x="50" y="100" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="600">Manager</text>
+            <text x="50" y="115" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10">Approves & Plans</text>
+          </g>
+          <rect x="50" y="160" width="600" height="30" rx="4" fill="none" stroke="#00b4d8" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="350" y="180" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="11">FMLA Compliance Layer — State & Federal Regulations</text>
+        </svg>
+        <p class="diagram-caption">Three distinct user types unified by complex FMLA compliance requirements</p>
+      </div>
+
+      <h3>Key Findings</h3>
+      <ul>
+        <li><strong>68% of users confused by FMLA terminology</strong> — Terms like "intermittent leave" weren't clear</li>
+        <li><strong>Cognitive overload:</strong> Forms showed all 15+ fields at once regardless of leave type</li>
+        <li><strong>No status visibility:</strong> Users couldn't see where requests were in the approval workflow</li>
+        <li><strong>Training burden:</strong> New HR staff needed 5 days of training before handling cases independently</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Solution</p>
+      <h2>Progressive Disclosure Wizard</h2>
+      <p>I designed a step-by-step wizard that guides users through leave requests, showing only relevant fields based on previous answers. This reduced cognitive load and prevented errors.</p>
+
+      <div class="diagram-container">
+        <p class="diagram-title">4-Step Leave Request Wizard</p>
+        <svg viewBox="0 0 700 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 400px;">
+          <g transform="translate(50, 30)">
+            <rect x="0" y="0" width="130" height="90" rx="12" fill="#00b4d8" fill-opacity="0.2" stroke="#00b4d8" stroke-width="2"/>
+            <text x="65" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Step 1</text>
+            <text x="65" y="50" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="20">📝</text>
+            <text x="65" y="75" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10">Select Leave Type</text>
+          </g>
+          <path d="M190 75 L210 75" stroke="#00b4d8" stroke-width="2"/>
+          <g transform="translate(220, 30)">
+            <rect x="0" y="0" width="130" height="90" rx="12" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="65" y="25" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11" font-weight="600">Step 2</text>
+            <text x="65" y="50" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="20">📅</text>
+            <text x="65" y="75" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="10">Select Dates</text>
+          </g>
+          <path d="M360 75 L380 75" stroke="#2a2a2a" stroke-width="2"/>
+          <g transform="translate(390, 30)">
+            <rect x="0" y="0" width="130" height="90" rx="12" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="65" y="25" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11" font-weight="600">Step 3</text>
+            <text x="65" y="50" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="20">📎</text>
+            <text x="65" y="75" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="10">Upload Documents</text>
+          </g>
+          <path d="M530 75 L550 75" stroke="#2a2a2a" stroke-width="2"/>
+          <g transform="translate(560, 30)">
+            <rect x="0" y="0" width="130" height="90" rx="12" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="65" y="25" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11" font-weight="600">Step 4</text>
+            <text x="65" y="50" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="20">✓</text>
+            <text x="65" y="75" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="10">Review & Submit</text>
+          </g>
+          <g transform="translate(100, 140)">
+            <rect x="0" y="0" width="150" height="25" rx="4" fill="#00b4d8" fill-opacity="0.1"/>
+            <text x="75" y="17" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="9">Only relevant fields shown</text>
+          </g>
+          <g transform="translate(280, 140)">
+            <rect x="0" y="0" width="150" height="25" rx="4" fill="#00b4d8" fill-opacity="0.1"/>
+            <text x="75" y="17" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="9">Plain language labels</text>
+          </g>
+          <g transform="translate(460, 140)">
+            <rect x="0" y="0" width="150" height="25" rx="4" fill="#00b4d8" fill-opacity="0.1"/>
+            <text x="75" y="17" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="9">Inline validation</text>
+          </g>
+        </svg>
+        <p class="diagram-caption">Progressive disclosure reduces cognitive load by 60%</p>
+      </div>
+
+      <h3>Tools & Technologies</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Sketch</span>
+        <span class="tool-tag">InVision</span>
+        <span class="tool-tag">Zeplin</span>
+        <span class="tool-tag">Angular</span>
+        <span class="tool-tag">Jira</span>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Results</p>
+      <h2>Measurable Impact</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-value">-30%</div><div class="result-label">Training Time</div></div>
+        <div class="result-card"><div class="result-value">+40%</div><div class="result-label">User Adoption</div></div>
+        <div class="result-card"><div class="result-value">-62%</div><div class="result-label">Error Rate</div></div>
+        <div class="result-card"><div class="result-value">4.5/5</div><div class="result-label">User Satisfaction</div></div>
+        <div class="result-card"><div class="result-value">15K+</div><div class="result-label">HR Professionals</div></div>
+        <div class="result-card"><div class="result-value">95%</div><div class="result-label">Stakeholder Approval</div></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Reflection</p>
+      <h2>What I Learned</h2>
+      <ul class="learnings-list">
+        <li><span><strong>Compliance doesn't have to mean complexity.</strong> Even heavily regulated workflows can be simplified with progressive disclosure.</span></li>
+        <li><span><strong>Language matters enormously.</strong> Replacing legal jargon with plain language reduced user confusion by 68%.</span></li>
+        <li><span><strong>Wizard patterns work for complex forms.</strong> Step-by-step guidance outperformed "show everything" approaches in testing.</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="next-project">
+    <p>Next Case Study</p>
+    <h3>Consilio eDiscovery Platform</h3>
+    <a href="case-study-consilio.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
+    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+</body>
+</html>
