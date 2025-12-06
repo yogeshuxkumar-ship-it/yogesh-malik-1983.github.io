@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered Design System Dashboard — Case Study | Yogesh Malik</title>
+  <meta name="description" content="How I designed an AI-enhanced design system dashboard that improved design consistency by 90% and reduced component creation time by 40%.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #A855F7;
+      --color-accent-dim: rgba(168, 85, 247, 0.15);
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3); }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+    .scroll-to-top:hover { transform: translateY(-4px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
+    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
+    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+
+    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+    .case-section { margin-bottom: 80px; }
+    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
+    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
+    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
+    .case-section li { margin-bottom: 12px; }
+    .case-section li strong { color: var(--color-text); }
+
+    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
+    .callout p { color: var(--color-text); margin-bottom: 0; }
+    .callout strong { color: var(--color-accent); }
+
+    .diagram-container { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 20px; padding: 40px; margin: 40px 0; overflow-x: auto; }
+    .diagram-title { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; text-align: center; }
+    .diagram-caption { font-size: 0.9rem; color: var(--color-text-muted); text-align: center; margin-top: 24px; font-style: italic; }
+
+    .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .persona-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s, transform 0.3s var(--ease-out-expo); }
+    .persona-card:hover { border-color: var(--color-accent); transform: translateY(-4px); }
+    .persona-avatar { width: 64px; height: 64px; background: var(--color-accent-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 16px; }
+    .persona-name { font-weight: 600; margin-bottom: 4px; }
+    .persona-role { font-size: 0.85rem; color: var(--color-accent); margin-bottom: 12px; }
+    .persona-details { font-size: 0.9rem; color: var(--color-text-muted); }
+    .persona-pain { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--color-border); }
+    .persona-pain h5 { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .persona-pain ul { margin: 0; padding-left: 16px; font-size: 0.85rem; }
+    .persona-pain li { margin-bottom: 4px; }
+
+    .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+    .feature-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
+    .feature-card:hover { border-color: var(--color-accent); }
+    .feature-icon { width: 48px; height: 48px; background: var(--color-accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 16px; }
+    .feature-card h4 { margin-bottom: 8px; }
+    .feature-card p { font-size: 0.95rem; margin-bottom: 0; }
+
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
+    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
+    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+
+    .ai-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+    .ai-feature { background: linear-gradient(135deg, var(--color-accent-dim) 0%, var(--color-bg-card) 100%); border: 1px solid var(--color-accent); border-radius: 16px; padding: 24px; position: relative; overflow: hidden; }
+    .ai-feature::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%); opacity: 0.1; }
+    .ai-feature h4 { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; position: relative; }
+    .ai-badge { background: var(--color-accent); color: var(--color-bg); font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+    .ai-feature p { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0; position: relative; }
+
+    .quote-block { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px; margin: 32px 0; position: relative; }
+    .quote-block::before { content: '"'; font-family: var(--font-display); font-size: 4rem; color: var(--color-accent); position: absolute; top: 10px; left: 24px; line-height: 1; opacity: 0.3; }
+    .quote-text { font-size: 1.1rem; font-style: italic; color: var(--color-text); margin-bottom: 16px; padding-left: 40px; }
+    .quote-author { font-size: 0.9rem; color: var(--color-text-muted); padding-left: 40px; }
+    .quote-author strong { color: var(--color-accent); }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+    .tool-tag.ai { border-color: var(--color-accent); color: var(--color-accent); }
+
+    .learnings-list { list-style: none; margin-left: 0; }
+    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
+    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+
+    .before-after { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+    .before-after-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .before-after-card.before { border-left: 4px solid #ef4444; }
+    .before-after-card.after { border-left: 4px solid var(--color-accent); }
+    .before-after-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .before-after-card.before .before-after-label { color: #ef4444; }
+    .before-after-card.after .before-after-label { color: var(--color-accent); }
+    .before-after-card h4 { margin-bottom: 8px; font-size: 1rem; }
+    .before-after-card ul { font-size: 0.9rem; color: var(--color-text-muted); margin: 0; padding-left: 20px; }
+    .before-after-card li { margin-bottom: 4px; }
+
+    .workflow-steps { display: flex; flex-direction: column; gap: 16px; margin: 32px 0; }
+    .workflow-step { display: flex; align-items: flex-start; gap: 20px; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; transition: border-color 0.3s; }
+    .workflow-step:hover { border-color: var(--color-accent); }
+    .workflow-number { width: 40px; height: 40px; background: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+    .workflow-content h4 { margin-bottom: 4px; }
+    .workflow-content p { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(168, 85, 247, 0.3); }
+
+    .component-showcase { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+    .component-item { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; text-align: center; }
+    .component-item .icon { font-size: 2rem; margin-bottom: 8px; }
+    .component-item .name { font-size: 0.85rem; color: var(--color-text-muted); }
+    .component-item .count { font-size: 0.75rem; color: var(--color-accent); margin-top: 4px; }
+
+    @media (max-width: 900px) {
+      nav, .case-header, .case-content, .next-project { padding-left: 24px; padding-right: 24px; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
+      .feature-grid, .results-grid, .persona-grid, .ai-features, .before-after { grid-template-columns: 1fr; }
+      .component-showcase { grid-template-columns: repeat(2, 1fr); }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="nav-links">
+      <a href="case-study-capita-website.html">← Previous</a>
+      <a href="index.html">All Projects</a>
+      <a href="case-study-axelos.html">Next →</a>
+    </div>
+  </nav>
+
+  <header class="case-header">
+    <div class="case-meta">
+      <span class="case-tag">AI/ML</span>
+      <span class="case-tag">Design Systems</span>
+      <span class="case-tag">Enterprise UX</span>
+      <span class="case-tag">Capita PLC</span>
+    </div>
+    <h1>AI-Powered Design System Dashboard</h1>
+    <p class="case-intro">Designed an internal AI-enhanced design system platform that uses machine learning to suggest components, check accessibility, and maintain design consistency across 8 product teams.</p>
+  </header>
+
+  <div class="quick-stats">
+    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2022 – 2023</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Lead UX/UI Designer</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Teams Served</div><div class="quick-stat-value">8 Product Teams</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Designers</div><div class="quick-stat-value">15+ Users</div></div>
+  </div>
+
+  <div class="case-content">
+    <section class="case-section">
+      <p class="case-section-label">Context</p>
+      <h2>The Challenge</h2>
+      <p>Capita PLC, a FTSE 250 company with 45,000+ employees, was struggling with design inconsistency across its digital products. With 8 different product teams working in silos, each team had developed their own component libraries, color palettes, and interaction patterns.</p>
+      <p>The result? A fragmented user experience, wasted design effort (teams rebuilding the same components), accessibility compliance gaps, and significant technical debt as developers maintained multiple codebases for similar UI elements.</p>
+      
+      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we create a unified design system that not only ensures consistency but actively helps designers make better decisions faster using AI-powered assistance?</p></div>
+
+      <h3>The Numbers That Drove Action</h3>
+      <ul>
+        <li><strong>8 different button styles</strong> across products with no single source of truth</li>
+        <li><strong>40% of designer time</strong> spent recreating existing components</li>
+        <li><strong>23 accessibility violations</strong> found in quarterly audits</li>
+        <li><strong>6 weeks average</strong> to onboard a new designer to team conventions</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Discovery</p>
+      <h2>User Research</h2>
+      <p>I conducted interviews and shadowing sessions with 15 designers, 8 developers, and 5 product managers across different Capita teams to understand their workflows, pain points, and aspirations.</p>
+      
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-avatar">👩‍🎨</div>
+          <div class="persona-name">Sarah Mitchell</div>
+          <div class="persona-role">Senior Product Designer</div>
+          <div class="persona-details">
+            <p>5 years at Capita</p>
+            <p>Works on customer portal</p>
+          </div>
+          <div class="persona-pain">
+            <h5>Pain Points</h5>
+            <ul>
+              <li>Spends hours searching for assets</li>
+              <li>Unsure if components are accessible</li>
+              <li>No single source of truth</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="persona-card">
+          <div class="persona-avatar">👨‍💻</div>
+          <div class="persona-name">James Chen</div>
+          <div class="persona-role">Frontend Developer</div>
+          <div class="persona-details">
+            <p>3 years at Capita</p>
+            <p>Works on B2B platform</p>
+          </div>
+          <div class="persona-pain">
+            <h5>Pain Points</h5>
+            <ul>
+              <li>Designs don't match coded components</li>
+              <li>Inconsistent naming conventions</li>
+              <li>Specs missing key details</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="persona-card">
+          <div class="persona-avatar">👩‍💼</div>
+          <div class="persona-name">Rachel Thompson</div>
+          <div class="persona-role">Junior Designer</div>
+          <div class="persona-details">
+            <p>6 months at Capita</p>
+            <p>Recently onboarded</p>
+          </div>
+          <div class="persona-pain">
+            <h5>Pain Points</h5>
+            <ul>
+              <li>Overwhelming documentation</li>
+              <li>Unsure which patterns to use</li>
+              <li>Afraid of making mistakes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <p class="quote-text">I know we have a component for this somewhere, but I've spent 45 minutes looking for it. At this point, it's faster to just build it from scratch.</p>
+        <p class="quote-author">— <strong>Sarah Mitchell</strong>, Senior Product Designer</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Define</p>
+      <h2>Key Insights</h2>
+      
+      <div class="before-after">
+        <div class="before-after-card before">
+          <p class="before-after-label">❌ Current State Problems</p>
+          <h4>Fragmented & Manual</h4>
+          <ul>
+            <li>Components scattered across 8 Figma files</li>
+            <li>No search functionality</li>
+            <li>Manual accessibility checking</li>
+            <li>Tribal knowledge for best practices</li>
+            <li>Outdated documentation</li>
+            <li>No usage analytics</li>
+          </ul>
+        </div>
+        <div class="before-after-card after">
+          <p class="before-after-label">✓ Desired Future State</p>
+          <h4>Unified & Intelligent</h4>
+          <ul>
+            <li>Single source of truth</li>
+            <li>AI-powered component search</li>
+            <li>Automated accessibility validation</li>
+            <li>Contextual suggestions</li>
+            <li>Living documentation</li>
+            <li>Real-time usage insights</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Ideation</p>
+      <h2>AI Feature Concepts</h2>
+      <p>Working with the data science team, I identified four key AI capabilities that could transform how designers work with the design system:</p>
+      
+      <div class="ai-features">
+        <div class="ai-feature">
+          <h4>🔍 Smart Component Search <span class="ai-badge">AI</span></h4>
+          <p>Natural language search that understands intent. Type "button for submitting forms" and get the right component with all variants, not just keyword matches.</p>
+        </div>
+        <div class="ai-feature">
+          <h4>♿ Accessibility Copilot <span class="ai-badge">AI</span></h4>
+          <p>Real-time WCAG compliance checking with automatic suggestions for fixes. Scans color contrast, touch targets, focus states, and ARIA labels.</p>
+        </div>
+        <div class="ai-feature">
+          <h4>🎨 Design Consistency Checker <span class="ai-badge">AI</span></h4>
+          <p>Analyzes designs against the system and flags deviations. "This button uses #0066CC but your primary blue is #0052CC" with one-click fixes.</p>
+        </div>
+        <div class="ai-feature">
+          <h4>💡 Contextual Recommendations <span class="ai-badge">AI</span></h4>
+          <p>Based on what you're designing, suggests relevant components and patterns. "Designing a form? Here are the most-used form patterns by your team."</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>Information Architecture</h2>
+      <p>I designed a dashboard structure that puts AI assistance at the center while maintaining familiar design system patterns.</p>
+      
+      <div class="diagram-container">
+        <p class="diagram-title">Dashboard Structure</p>
+        <svg viewBox="0 0 700 350" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 500px;">
+          <!-- Main Dashboard -->
+          <g transform="translate(275, 20)">
+            <rect x="0" y="0" width="150" height="50" rx="8" fill="#A855F7" stroke="#A855F7" stroke-width="2"/>
+            <text x="75" y="30" text-anchor="middle" fill="#0a0a0a" font-family="sans-serif" font-size="12" font-weight="600">🏠 Dashboard Home</text>
+          </g>
+          
+          <!-- AI Search Bar -->
+          <g transform="translate(175, 90)">
+            <rect x="0" y="0" width="350" height="40" rx="20" fill="#A855F7" fill-opacity="0.2" stroke="#A855F7" stroke-width="2"/>
+            <text x="175" y="25" text-anchor="middle" fill="#A855F7" font-family="sans-serif" font-size="11" font-weight="500">🔍 AI-Powered Search: "Find me a modal for confirmations..."</text>
+          </g>
+          
+          <!-- Main navigation -->
+          <line x1="350" y1="70" x2="350" y2="150" stroke="#A855F7" stroke-width="2"/>
+          <line x1="100" y1="150" x2="600" y2="150" stroke="#A855F7" stroke-width="1"/>
+          
+          <!-- Nav items -->
+          <g transform="translate(30, 160)">
+            <rect x="0" y="0" width="120" height="45" rx="6" fill="#1a1a1a" stroke="#A855F7" stroke-width="1"/>
+            <text x="60" y="20" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">📦 Components</text>
+            <text x="60" y="35" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">240+ items</text>
+          </g>
+          
+          <g transform="translate(170, 160)">
+            <rect x="0" y="0" width="120" height="45" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="60" y="20" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">🎨 Foundations</text>
+            <text x="60" y="35" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Colors, Type, Space</text>
+          </g>
+          
+          <g transform="translate(310, 160)">
+            <rect x="0" y="0" width="120" height="45" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="60" y="20" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">📐 Patterns</text>
+            <text x="60" y="35" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Forms, Nav, Tables</text>
+          </g>
+          
+          <g transform="translate(450, 160)">
+            <rect x="0" y="0" width="120" height="45" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="60" y="20" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">♿ Accessibility</text>
+            <text x="60" y="35" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">WCAG Tools</text>
+          </g>
+          
+          <g transform="translate(590, 160)">
+            <rect x="0" y="0" width="100" height="45" rx="6" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="50" y="20" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">📊 Analytics</text>
+            <text x="50" y="35" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Usage data</text>
+          </g>
+          
+          <!-- AI Features Row -->
+          <text x="350" y="235" text-anchor="middle" fill="#A855F7" font-family="sans-serif" font-size="10" font-weight="600">AI-POWERED FEATURES</text>
+          
+          <g transform="translate(50, 250)">
+            <rect x="0" y="0" width="140" height="60" rx="8" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
+            <text x="70" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">🤖 AI Assistant</text>
+            <text x="70" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">"Help me design a..."</text>
+          </g>
+          
+          <g transform="translate(210, 250)">
+            <rect x="0" y="0" width="140" height="60" rx="8" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
+            <text x="70" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">♿ A11y Checker</text>
+            <text x="70" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Auto WCAG scan</text>
+          </g>
+          
+          <g transform="translate(370, 250)">
+            <rect x="0" y="0" width="140" height="60" rx="8" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
+            <text x="70" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">🎯 Consistency</text>
+            <text x="70" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Design validation</text>
+          </g>
+          
+          <g transform="translate(530, 250)">
+            <rect x="0" y="0" width="140" height="60" rx="8" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
+            <text x="70" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="500">💡 Suggestions</text>
+            <text x="70" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Context-aware</text>
+          </g>
+        </svg>
+        <p class="diagram-caption">AI features integrated throughout the design system experience</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>Component Library</h2>
+      <p>I designed and documented 240+ components across 12 categories, each with variants, states, and accessibility specifications.</p>
+      
+      <div class="component-showcase">
+        <div class="component-item">
+          <div class="icon">🔘</div>
+          <div class="name">Buttons</div>
+          <div class="count">24 variants</div>
+        </div>
+        <div class="component-item">
+          <div class="icon">📝</div>
+          <div class="name">Form Inputs</div>
+          <div class="count">36 variants</div>
+        </div>
+        <div class="component-item">
+          <div class="icon">🗂️</div>
+          <div class="name">Cards</div>
+          <div class="count">18 variants</div>
+        </div>
+        <div class="component-item">
+          <div class="icon">📊</div>
+          <div class="name">Data Tables</div>
+          <div class="count">12 variants</div>
+        </div>
+        <div class="component-item">
+          <div class="icon">🧭</div>
+          <div class="name">Navigation</div>
+          <div class="count">20 variants</div>
+        </div>
+        <div class="component-item">
+          <div class="icon">💬</div>
+          <div class="name">Modals</div>
+          <div class="count">15 variants</div>
+        </div>
+        <div class="component-item">
+          <div class="icon">🔔</div>
+          <div class="name">Alerts</div>
+          <div class="count">16 variants</div>
+        </div>
+        <div class="component-item">
+          <div class="icon">📈</div>
+          <div class="name">Charts</div>
+          <div class="count">22 variants</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>AI Assistant Workflow</h2>
+      <p>The AI assistant guides designers through component selection and customization, reducing decision fatigue and ensuring best practices.</p>
+      
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="workflow-number">1</div>
+          <div class="workflow-content">
+            <h4>Designer describes need in natural language</h4>
+            <p>"I need a confirmation dialog for deleting user accounts with a warning about permanent data loss"</p>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-number">2</div>
+          <div class="workflow-content">
+            <h4>AI analyzes intent and context</h4>
+            <p>Identifies: destructive action, needs warning, requires confirmation, high-stakes decision</p>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-number">3</div>
+          <div class="workflow-content">
+            <h4>AI suggests relevant components</h4>
+            <p>Returns: Destructive Modal variant with red accent, warning icon, two-button layout, recommended copy patterns</p>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="workflow-number">4</div>
+          <div class="workflow-content">
+            <h4>One-click insert with accessibility baked in</h4>
+            <p>Component includes: focus trap, ARIA labels, escape key handling, color contrast compliant</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Deliver</p>
+      <h2>Tools & Technologies</h2>
+      
+      <h3>Design & Prototyping</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Figma</span>
+        <span class="tool-tag">Figma Tokens</span>
+        <span class="tool-tag">Storybook</span>
+        <span class="tool-tag">Zeroheight</span>
+      </div>
+
+      <h3>AI & Machine Learning</h3>
+      <div class="tools-grid">
+        <span class="tool-tag ai">OpenAI API</span>
+        <span class="tool-tag ai">Azure Cognitive Services</span>
+        <span class="tool-tag ai">Custom ML Models</span>
+        <span class="tool-tag ai">Natural Language Processing</span>
+      </div>
+
+      <h3>Accessibility</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">axe DevTools</span>
+        <span class="tool-tag">WAVE</span>
+        <span class="tool-tag">Stark</span>
+        <span class="tool-tag">Color Contrast Analyzer</span>
+      </div>
+
+      <h3>Collaboration</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Confluence</span>
+        <span class="tool-tag">JIRA</span>
+        <span class="tool-tag">Slack</span>
+        <span class="tool-tag">Loom</span>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Results</p>
+      <h2>Measurable Impact</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-value">90%</div><div class="result-label">Design Consistency Score</div></div>
+        <div class="result-card"><div class="result-value">-40%</div><div class="result-label">Component Creation Time</div></div>
+        <div class="result-card"><div class="result-value">0</div><div class="result-label">Accessibility Violations</div></div>
+        <div class="result-card"><div class="result-value">2 wks</div><div class="result-label">Designer Onboarding (from 6)</div></div>
+        <div class="result-card"><div class="result-value">240+</div><div class="result-label">Components Documented</div></div>
+        <div class="result-card"><div class="result-value">8</div><div class="result-label">Teams Now Unified</div></div>
+      </div>
+      
+      <div class="quote-block">
+        <p class="quote-text">The AI assistant has completely changed how I work. Instead of spending time searching and second-guessing, I describe what I need and get the right component instantly. It's like having a senior designer looking over my shoulder.</p>
+        <p class="quote-author">— <strong>Rachel Thompson</strong>, Junior Designer, Capita</p>
+      </div>
+
+      <div class="quote-block">
+        <p class="quote-text">For the first time, what I see in Figma matches exactly what I can build in code. The design-to-dev handoff that used to take days now takes hours.</p>
+        <p class="quote-author">— <strong>James Chen</strong>, Frontend Developer, Capita</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Recognition</p>
+      <h2>Awards & Recognition</h2>
+      <div class="callout">
+        <p>🏆 This project contributed to winning the <strong>Center of Excellence Award 2023</strong> at Capita, recognizing exceptional contribution to design operations and innovation.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Reflection</p>
+      <h2>What I Learned</h2>
+      <ul class="learnings-list">
+        <li><span><strong>AI augments, not replaces.</strong> The most successful AI features were those that enhanced designer capabilities rather than trying to automate decisions. Designers want superpowers, not autopilot.</span></li>
+        <li><span><strong>Adoption requires showing value fast.</strong> We launched with the AI search feature first because it solved an immediate pain point. Quick wins built trust for more advanced features.</span></li>
+        <li><span><strong>Governance is as important as design.</strong> A design system is only as good as its adoption. We created clear contribution guidelines, review processes, and deprecation policies.</span></li>
+        <li><span><strong>Measure what matters.</strong> Tracking component usage, search queries, and consistency scores gave us data to continuously improve the system based on real behavior.</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="next-project">
+    <p>Next Case Study</p>
+    <h3>Axelos UK Government Platform</h3>
+    <a href="case-study-axelos.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
+    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+</body>
+</html>

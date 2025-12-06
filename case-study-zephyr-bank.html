@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zephyr Bank Mobile Banking Redesign — Case Study | Yogesh Malik</title>
+  <meta name="description" content="How I redesigned a mobile banking app, improving app rating from 2.1 to 4.6 stars and increasing mobile deposits by 67%.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #00D4AA;
+      --color-accent-dim: rgba(0, 212, 170, 0.15);
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(0, 212, 170, 0.3); }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+    .scroll-to-top:hover { transform: translateY(-4px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
+    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
+    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+
+    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+    .case-section { margin-bottom: 80px; }
+    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
+    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
+    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
+    .case-section li { margin-bottom: 12px; }
+    .case-section li strong { color: var(--color-text); }
+
+    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
+    .callout p { color: var(--color-text); margin-bottom: 0; }
+    .callout strong { color: var(--color-accent); }
+
+    .diagram-container { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 20px; padding: 40px; margin: 40px 0; overflow-x: auto; }
+    .diagram-title { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; text-align: center; }
+    .diagram-caption { font-size: 0.9rem; color: var(--color-text-muted); text-align: center; margin-top: 24px; font-style: italic; }
+
+    .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .persona-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s, transform 0.3s var(--ease-out-expo); }
+    .persona-card:hover { border-color: var(--color-accent); transform: translateY(-4px); }
+    .persona-avatar { width: 64px; height: 64px; background: var(--color-accent-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 16px; }
+    .persona-name { font-weight: 600; margin-bottom: 4px; }
+    .persona-role { font-size: 0.85rem; color: var(--color-accent); margin-bottom: 12px; }
+    .persona-details { font-size: 0.9rem; color: var(--color-text-muted); }
+    .persona-goals { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--color-border); }
+    .persona-goals h5 { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .persona-goals ul { margin: 0; padding-left: 16px; font-size: 0.85rem; }
+    .persona-goals li { margin-bottom: 4px; }
+
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
+    .process-step:hover { border-color: var(--color-accent); }
+    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
+    .process-step h4 { margin-bottom: 8px; }
+    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
+    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
+    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+
+    .competitor-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.9rem; }
+    .competitor-table th, .competitor-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--color-border); }
+    .competitor-table th { color: var(--color-accent); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .competitor-table td { color: var(--color-text-muted); }
+    .competitor-table tr:hover td { color: var(--color-text); }
+    .check { color: var(--color-accent); }
+    .cross { color: #ef4444; }
+
+    .quote-block { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px; margin: 32px 0; position: relative; }
+    .quote-block::before { content: '"'; font-family: var(--font-display); font-size: 4rem; color: var(--color-accent); position: absolute; top: 10px; left: 24px; line-height: 1; opacity: 0.3; }
+    .quote-text { font-size: 1.1rem; font-style: italic; color: var(--color-text); margin-bottom: 16px; padding-left: 40px; }
+    .quote-author { font-size: 0.9rem; color: var(--color-text-muted); padding-left: 40px; }
+    .quote-author strong { color: var(--color-accent); }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+
+    .learnings-list { list-style: none; margin-left: 0; }
+    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
+    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+
+    .ab-test-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 32px 0; }
+    .ab-variant { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; text-align: center; }
+    .ab-variant.winner { border-color: var(--color-accent); background: var(--color-accent-dim); }
+    .ab-variant h5 { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 8px; }
+    .ab-variant .rate { font-family: var(--font-display); font-size: 2rem; color: var(--color-text); margin-bottom: 4px; }
+    .ab-variant.winner .rate { color: var(--color-accent); }
+    .ab-variant .label { font-size: 0.8rem; color: var(--color-text-muted); }
+    .winner-badge { background: var(--color-accent); color: var(--color-bg); font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-top: 8px; display: inline-block; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0, 212, 170, 0.3); }
+
+    @media (max-width: 900px) {
+      nav, .case-header, .case-content, .next-project { padding-left: 24px; padding-right: 24px; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
+      .process-grid, .results-grid, .persona-grid, .ab-test-container { grid-template-columns: 1fr; }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="nav-links">
+      <a href="case-study-medconnect.html">← Previous</a>
+      <a href="index.html">All Projects</a>
+      <a href="case-study-consilio.html">Next →</a>
+    </div>
+  </nav>
+
+  <header class="case-header">
+    <div class="case-meta">
+      <span class="case-tag">FinTech</span>
+      <span class="case-tag">Mobile App</span>
+      <span class="case-tag">iOS & Android</span>
+      <span class="case-tag">Harman Connected Services</span>
+    </div>
+    <h1>Zephyr Bank Mobile Banking Redesign</h1>
+    <p class="case-intro">Led the complete UX overhaul of a struggling mobile banking app, transforming a 2.1-star rated experience into an award-winning 4.6-star app with 67% increase in mobile deposits.</p>
+  </header>
+
+  <div class="quick-stats">
+    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2016 – 2018</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Senior UX/UI Designer</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Platform</div><div class="quick-stat-value">iOS & Android</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Users</div><div class="quick-stat-value">850,000+</div></div>
+  </div>
+
+  <!-- Hero Mockup Showcase -->
+  <div style="background: linear-gradient(135deg, #00D4AA08 0%, #0a1a15 30%, #0a0a0a 70%, #00D4AA05 100%); padding: 60px 48px; margin-bottom: 40px; overflow: hidden;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+      <svg viewBox="0 0 160 320" width="160" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 20px 40px rgba(0, 212, 170, 0.3));">
+        <defs>
+          <linearGradient id="heroIphoneFrame" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3a3a3a"/>
+            <stop offset="50%" style="stop-color:#1a1a1a"/>
+            <stop offset="100%" style="stop-color:#0a0a0a"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="160" height="320" rx="28" fill="url(#heroIphoneFrame)" stroke="#4a4a4a" stroke-width="1"/>
+        <rect x="8" y="8" width="144" height="304" rx="22" fill="#0a0a0a"/>
+        <rect x="45" y="14" width="70" height="24" rx="12" fill="#000"/>
+        <circle cx="100" cy="26" r="6" fill="#1a1a1a"/>
+        <text x="20" y="30" fill="#fff" font-family="sans-serif" font-size="10" font-weight="500">9:41</text>
+        <rect x="125" y="22" width="22" height="10" rx="2" fill="none" stroke="#fff" stroke-width="1"/>
+        <rect x="127" y="24" width="16" height="6" rx="1" fill="#00D4AA"/>
+        <rect x="16" y="50" width="128" height="50" fill="#0a0a0a"/>
+        <text x="24" y="70" fill="#fff" font-family="sans-serif" font-size="12" font-weight="600">Good morning, Sarah</text>
+        <text x="24" y="88" fill="#6b7280" font-family="sans-serif" font-size="9">Welcome back to Zephyr</text>
+        <circle cx="130" cy="75" r="16" fill="#00D4AA" fill-opacity="0.2"/>
+        <circle cx="130" cy="75" r="10" fill="#00D4AA" fill-opacity="0.4"/>
+        <rect x="20" y="108" width="120" height="70" rx="12" fill="#00D4AA" fill-opacity="0.15" stroke="#00D4AA" stroke-width="1.5"/>
+        <text x="32" y="130" fill="#9ca3af" font-family="sans-serif" font-size="8">Total Balance</text>
+        <text x="32" y="155" fill="#fff" font-family="sans-serif" font-size="22" font-weight="700">$12,458.50</text>
+        <text x="32" y="172" fill="#00D4AA" font-family="sans-serif" font-size="8">↑ +$342.50 this month</text>
+        <g transform="translate(20, 195)">
+          <rect x="0" y="0" width="36" height="50" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="18" cy="18" r="10" fill="#00D4AA" fill-opacity="0.2"/>
+          <path d="M12 18 L24 18 M18 12 L18 24" stroke="#00D4AA" stroke-width="2" stroke-linecap="round"/>
+          <text x="18" y="40" text-anchor="middle" fill="#9ca3af" font-family="sans-serif" font-size="6">Send</text>
+        </g>
+        <g transform="translate(62, 195)">
+          <rect x="0" y="0" width="36" height="50" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="18" cy="18" r="10" fill="#00D4AA" fill-opacity="0.2"/>
+          <path d="M12 18 L24 18" stroke="#00D4AA" stroke-width="2" stroke-linecap="round"/>
+          <text x="18" y="40" text-anchor="middle" fill="#9ca3af" font-family="sans-serif" font-size="6">Request</text>
+        </g>
+        <g transform="translate(104, 195)">
+          <rect x="0" y="0" width="36" height="50" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+          <circle cx="18" cy="18" r="10" fill="#00D4AA" fill-opacity="0.2"/>
+          <rect x="10" y="12" width="16" height="12" rx="2" fill="none" stroke="#00D4AA" stroke-width="1.5"/>
+          <text x="18" y="40" text-anchor="middle" fill="#9ca3af" font-family="sans-serif" font-size="6">Cards</text>
+        </g>
+        <text x="24" y="268" fill="#fff" font-family="sans-serif" font-size="10" font-weight="600">Recent Activity</text>
+        <rect x="20" y="276" width="120" height="28" rx="6" fill="#1a1a1a"/>
+        <circle cx="34" cy="290" r="8" fill="#ef4444" fill-opacity="0.2"/>
+        <text x="34" y="293" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="8">↓</text>
+        <text x="48" y="287" fill="#fff" font-family="sans-serif" font-size="7">Amazon</text>
+        <text x="48" y="297" fill="#6b7280" font-family="sans-serif" font-size="5">Today, 2:30 PM</text>
+        <text x="132" y="292" text-anchor="end" fill="#ef4444" font-family="sans-serif" font-size="7" font-weight="500">-$54.99</text>
+        <rect x="55" y="310" width="50" height="5" rx="2.5" fill="#fff" fill-opacity="0.3"/>
+      </svg>
+      
+      <svg viewBox="0 0 160 320" width="160" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 20px 40px rgba(0, 212, 170, 0.2)); transform: translateY(20px);">
+        <rect x="0" y="0" width="160" height="320" rx="28" fill="url(#heroIphoneFrame)" stroke="#4a4a4a" stroke-width="1"/>
+        <rect x="8" y="8" width="144" height="304" rx="22" fill="#0a0a0a"/>
+        <rect x="45" y="14" width="70" height="24" rx="12" fill="#000"/>
+        <text x="20" y="30" fill="#fff" font-family="sans-serif" font-size="10" font-weight="500">9:41</text>
+        <path d="M20 55 L32 55" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <text x="50" y="60" fill="#fff" font-family="sans-serif" font-size="14" font-weight="600">Send Money</text>
+        <rect x="20" y="80" width="120" height="45" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+        <circle cx="42" cy="102" r="14" fill="#00D4AA" fill-opacity="0.3"/>
+        <text x="42" y="107" text-anchor="middle" fill="#00D4AA" font-family="sans-serif" font-size="10" font-weight="600">JD</text>
+        <text x="64" y="97" fill="#fff" font-family="sans-serif" font-size="9">John Doe</text>
+        <text x="64" y="112" fill="#6b7280" font-family="sans-serif" font-size="7">@johndoe</text>
+        <text x="80" y="155" text-anchor="middle" fill="#6b7280" font-family="sans-serif" font-size="9">Amount</text>
+        <text x="80" y="195" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="36" font-weight="700">$150</text>
+        <text x="80" y="215" text-anchor="middle" fill="#00D4AA" font-family="sans-serif" font-size="8">Available: $12,458.50</text>
+        <g transform="translate(20, 235)">
+          <rect x="0" y="0" width="36" height="32" rx="6" fill="#2a2a2a"/>
+          <text x="18" y="21" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14">1</text>
+        </g>
+        <g transform="translate(62, 235)">
+          <rect x="0" y="0" width="36" height="32" rx="6" fill="#2a2a2a"/>
+          <text x="18" y="21" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14">2</text>
+        </g>
+        <g transform="translate(104, 235)">
+          <rect x="0" y="0" width="36" height="32" rx="6" fill="#2a2a2a"/>
+          <text x="18" y="21" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14">3</text>
+        </g>
+        <rect x="20" y="280" width="120" height="36" rx="18" fill="#00D4AA"/>
+        <text x="80" y="303" text-anchor="middle" fill="#0a0a0a" font-family="sans-serif" font-size="11" font-weight="600">Send $150</text>
+        <rect x="55" y="310" width="50" height="5" rx="2.5" fill="#fff" fill-opacity="0.3"/>
+      </svg>
+      
+      <svg viewBox="0 0 160 320" width="160" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 20px 40px rgba(0, 212, 170, 0.15));">
+        <rect x="0" y="0" width="160" height="320" rx="28" fill="url(#heroIphoneFrame)" stroke="#4a4a4a" stroke-width="1"/>
+        <rect x="8" y="8" width="144" height="304" rx="22" fill="#0a0a0a"/>
+        <rect x="45" y="14" width="70" height="24" rx="12" fill="#000"/>
+        <text x="20" y="30" fill="#fff" font-family="sans-serif" font-size="10" font-weight="500">9:41</text>
+        <path d="M20 55 L32 55" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <text x="50" y="60" fill="#fff" font-family="sans-serif" font-size="14" font-weight="600">Insights</text>
+        <text x="24" y="90" fill="#6b7280" font-family="sans-serif" font-size="8">This Month's Spending</text>
+        <text x="24" y="115" fill="#fff" font-family="sans-serif" font-size="20" font-weight="700">$2,847.50</text>
+        <text x="24" y="132" fill="#10b981" font-family="sans-serif" font-size="8">↓ 12% less than last month</text>
+        <rect x="20" y="145" width="120" height="60" rx="8" fill="#1a1a1a"/>
+        <rect x="28" y="185" width="12" height="12" rx="2" fill="#00D4AA"/>
+        <rect x="44" y="175" width="12" height="22" rx="2" fill="#00D4AA" fill-opacity="0.7"/>
+        <rect x="60" y="165" width="12" height="32" rx="2" fill="#00D4AA" fill-opacity="0.5"/>
+        <rect x="76" y="170" width="12" height="27" rx="2" fill="#00D4AA" fill-opacity="0.6"/>
+        <rect x="92" y="180" width="12" height="17" rx="2" fill="#00D4AA" fill-opacity="0.4"/>
+        <rect x="108" y="160" width="12" height="37" rx="2" fill="#00D4AA" fill-opacity="0.8"/>
+        <text x="24" y="225" fill="#fff" font-family="sans-serif" font-size="9" font-weight="600">Top Categories</text>
+        <rect x="20" y="235" width="120" height="25" rx="6" fill="#1a1a1a"/>
+        <circle cx="34" cy="247" r="6" fill="#00D4AA" fill-opacity="0.3"/>
+        <text x="46" y="251" fill="#fff" font-family="sans-serif" font-size="7">Shopping</text>
+        <text x="130" y="251" text-anchor="end" fill="#fff" font-family="sans-serif" font-size="7">$842</text>
+        <rect x="20" y="265" width="120" height="25" rx="6" fill="#1a1a1a"/>
+        <circle cx="34" cy="277" r="6" fill="#f59e0b" fill-opacity="0.3"/>
+        <text x="46" y="281" fill="#fff" font-family="sans-serif" font-size="7">Dining</text>
+        <text x="130" y="281" text-anchor="end" fill="#fff" font-family="sans-serif" font-size="7">$456</text>
+        <rect x="55" y="310" width="50" height="5" rx="2.5" fill="#fff" fill-opacity="0.3"/>
+      </svg>
+    </div>
+    <p style="text-align: center; color: #6b7280; font-size: 0.9rem; margin-top: 32px;">Final designs: Home Dashboard, Send Money, and Spending Insights screens</p>
+  </div>
+
+  <div class="case-content">
+    <section class="case-section">
+      <p class="case-section-label">Context</p>
+      <h2>The Challenge</h2>
+      <p>Zephyr Bank, a mid-sized regional bank with 850,000+ customers across the Midwest US, was losing market share to digital-first challenger banks. Their mobile app had a dismal 2.1-star rating, 68% uninstall rate within 30 days, and customers were actively avoiding digital channels.</p>
+      <p>Harman Connected Services was brought in to completely reimagine the mobile banking experience and help Zephyr compete in an increasingly digital-first financial landscape.</p>
+      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we transform an underperforming mobile banking app into a trusted, intuitive experience that drives adoption and reduces branch dependency?</p></div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Discovery</p>
+      <h2>Competitor Analysis</h2>
+      <p>I conducted a comprehensive analysis of 8 competing banking apps to identify industry best practices and opportunities for differentiation.</p>
+      
+      <div class="diagram-container">
+        <p class="diagram-title">Competitor Feature Matrix</p>
+        <table class="competitor-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Chase</th>
+              <th>Simple</th>
+              <th>Chime</th>
+              <th>Zephyr (Before)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Biometric Login</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td>Mobile Check Deposit</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Spending Insights</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td>Instant Transfers</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td>Card Controls</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td>Goal-based Savings</td>
+              <td class="cross">✗</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td>Bill Pay</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td>Dark Mode</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="diagram-caption">Zephyr was missing 6 of 8 key features that competitors offered</p>
+      </div>
+
+      <h3>User Research</h3>
+      <p>I conducted in-depth interviews with 32 customers across different demographics and banking behaviors to understand their needs, frustrations, and expectations.</p>
+      
+      <div class="quote-block">
+        <p class="quote-text">I downloaded the app once, tried to deposit a check, and it crashed three times. I just drove to the branch instead. Haven't opened the app since.</p>
+        <p class="quote-author">— <strong>Sarah, 34</strong>, Zephyr customer for 6 years</p>
+      </div>
+
+      <div class="quote-block">
+        <p class="quote-text">My kids use Venmo and Cash App so easily. Why does checking my balance feel like doing my taxes?</p>
+        <p class="quote-author">— <strong>Robert, 58</strong>, Small business owner</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Define</p>
+      <h2>User Personas</h2>
+      <p>Based on research findings, I developed three primary personas representing Zephyr's core customer segments.</p>
+      
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-avatar">👩‍💼</div>
+          <div class="persona-name">Sarah Chen</div>
+          <div class="persona-role">Young Professional</div>
+          <div class="persona-details">
+            <p>28 years old, Marketing Manager</p>
+            <p>Tech-savvy, uses 5+ finance apps</p>
+          </div>
+          <div class="persona-goals">
+            <h5>Goals</h5>
+            <ul>
+              <li>Quick balance checks</li>
+              <li>Easy peer transfers</li>
+              <li>Spending insights</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="persona-card">
+          <div class="persona-avatar">👨‍💼</div>
+          <div class="persona-name">Robert Williams</div>
+          <div class="persona-role">Small Business Owner</div>
+          <div class="persona-details">
+            <p>52 years old, Auto Shop Owner</p>
+            <p>Moderate tech comfort, values security</p>
+          </div>
+          <div class="persona-goals">
+            <h5>Goals</h5>
+            <ul>
+              <li>Separate business/personal</li>
+              <li>Quick deposits</li>
+              <li>Transaction history</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="persona-card">
+          <div class="persona-avatar">👵</div>
+          <div class="persona-name">Dorothy Miller</div>
+          <div class="persona-role">Retiree</div>
+          <div class="persona-details">
+            <p>67 years old, Retired Teacher</p>
+            <p>Limited tech experience, prefers simplicity</p>
+          </div>
+          <div class="persona-goals">
+            <h5>Goals</h5>
+            <ul>
+              <li>Check balance safely</li>
+              <li>Pay bills on time</li>
+              <li>Fraud protection</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Define</p>
+      <h2>User Journey Mapping</h2>
+      <p>I mapped the complete user journey for the primary flow—mobile check deposit—identifying pain points and opportunities at each stage.</p>
+      
+      <div class="diagram-container">
+        <p class="diagram-title">Mobile Check Deposit Journey</p>
+        <svg viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 600px;">
+          <!-- Journey stages -->
+          <g transform="translate(50, 40)">
+            <rect x="0" y="0" width="120" height="60" rx="8" fill="#00D4AA" fill-opacity="0.2" stroke="#00D4AA" stroke-width="2"/>
+            <text x="60" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Open App</text>
+            <text x="60" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="9">Login required</text>
+          </g>
+          <path d="M180 70 L210 70" stroke="#00D4AA" stroke-width="2"/>
+          
+          <g transform="translate(220, 40)">
+            <rect x="0" y="0" width="120" height="60" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="60" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Find Deposit</text>
+            <text x="60" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="9">Navigate menu</text>
+          </g>
+          <path d="M350 70 L380 70" stroke="#2a2a2a" stroke-width="2"/>
+          
+          <g transform="translate(390, 40)">
+            <rect x="0" y="0" width="120" height="60" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="60" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Capture Check</text>
+            <text x="60" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="9">Photo front/back</text>
+          </g>
+          <path d="M520 70 L550 70" stroke="#2a2a2a" stroke-width="2"/>
+          
+          <g transform="translate(560, 40)">
+            <rect x="0" y="0" width="120" height="60" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="60" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Confirm</text>
+            <text x="60" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="9">Review & submit</text>
+          </g>
+          
+          <!-- Emotion curve -->
+          <text x="50" y="140" fill="#a3a3a3" font-family="sans-serif" font-size="10">EMOTION</text>
+          <line x1="50" y1="180" x2="700" y2="180" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="720" y="165" fill="#00D4AA" font-family="sans-serif" font-size="9">Happy</text>
+          <text x="720" y="200" fill="#ef4444" font-family="sans-serif" font-size="9">Frustrated</text>
+          
+          <!-- Before curve (red/frustrated) -->
+          <path d="M110 170 Q170 190 280 210 Q390 230 450 220 Q560 200 620 195" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+          <text x="640" y="195" fill="#ef4444" font-family="sans-serif" font-size="9">Before</text>
+          
+          <!-- After curve (green/happy) -->
+          <path d="M110 170 Q170 160 280 155 Q390 150 450 150 Q560 150 620 145" stroke="#00D4AA" stroke-width="2" fill="none"/>
+          <text x="640" y="145" fill="#00D4AA" font-family="sans-serif" font-size="9">After</text>
+          
+          <!-- Pain points -->
+          <g transform="translate(50, 240)">
+            <rect x="0" y="0" width="150" height="40" rx="6" fill="#ef4444" fill-opacity="0.1" stroke="#ef4444" stroke-width="1"/>
+            <text x="75" y="15" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="9" font-weight="600">PAIN POINT</text>
+            <text x="75" y="30" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Complex 6-step login</text>
+          </g>
+          
+          <g transform="translate(220, 240)">
+            <rect x="0" y="0" width="150" height="40" rx="6" fill="#ef4444" fill-opacity="0.1" stroke="#ef4444" stroke-width="1"/>
+            <text x="75" y="15" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="9" font-weight="600">PAIN POINT</text>
+            <text x="75" y="30" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Buried in 3rd menu level</text>
+          </g>
+          
+          <g transform="translate(390, 240)">
+            <rect x="0" y="0" width="150" height="40" rx="6" fill="#ef4444" fill-opacity="0.1" stroke="#ef4444" stroke-width="1"/>
+            <text x="75" y="15" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="9" font-weight="600">PAIN POINT</text>
+            <text x="75" y="30" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Camera crashed 40% of time</text>
+          </g>
+          
+          <g transform="translate(560, 240)">
+            <rect x="0" y="0" width="150" height="40" rx="6" fill="#00D4AA" fill-opacity="0.1" stroke="#00D4AA" stroke-width="1"/>
+            <text x="75" y="15" text-anchor="middle" fill="#00D4AA" font-family="sans-serif" font-size="9" font-weight="600">OPPORTUNITY</text>
+            <text x="75" y="30" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Instant confirmation</text>
+          </g>
+        </svg>
+        <p class="diagram-caption">Mapping emotions revealed critical drop-off points in the deposit flow</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>Information Architecture</h2>
+      <p>I restructured the app's navigation from a complex 4-level hierarchy to a streamlined 2-level structure with quick actions on the home screen.</p>
+      
+      <div class="diagram-container">
+        <p class="diagram-title">Simplified Navigation Structure</p>
+        <svg viewBox="0 0 700 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 500px;">
+          <!-- Home/Root -->
+          <g transform="translate(300, 20)">
+            <rect x="0" y="0" width="100" height="45" rx="8" fill="#00D4AA" stroke="#00D4AA" stroke-width="2"/>
+            <text x="50" y="27" text-anchor="middle" fill="#0a0a0a" font-family="sans-serif" font-size="12" font-weight="600">Home</text>
+          </g>
+          
+          <!-- Lines to main sections -->
+          <path d="M350 65 L350 90 L150 90 L150 110" stroke="#00D4AA" stroke-width="2"/>
+          <path d="M350 65 L350 90 L350 110" stroke="#00D4AA" stroke-width="2"/>
+          <path d="M350 65 L350 90 L550 90 L550 110" stroke="#00D4AA" stroke-width="2"/>
+          
+          <!-- Main navigation items -->
+          <g transform="translate(75, 110)">
+            <rect x="0" y="0" width="150" height="40" rx="6" fill="#1a1a1a" stroke="#00D4AA" stroke-width="1"/>
+            <text x="75" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="500">💰 Accounts</text>
+          </g>
+          
+          <g transform="translate(275, 110)">
+            <rect x="0" y="0" width="150" height="40" rx="6" fill="#1a1a1a" stroke="#00D4AA" stroke-width="1"/>
+            <text x="75" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="500">💸 Transfers</text>
+          </g>
+          
+          <g transform="translate(475, 110)">
+            <rect x="0" y="0" width="150" height="40" rx="6" fill="#1a1a1a" stroke="#00D4AA" stroke-width="1"/>
+            <text x="75" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="500">⚙️ More</text>
+          </g>
+          
+          <!-- Sub-items under Accounts -->
+          <path d="M150 150 L150 170" stroke="#2a2a2a" stroke-width="1"/>
+          <g transform="translate(75, 170)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Checking & Savings</text>
+          </g>
+          <g transform="translate(75, 205)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Credit Cards</text>
+          </g>
+          <g transform="translate(75, 240)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Statements</text>
+          </g>
+          
+          <!-- Sub-items under Transfers -->
+          <path d="M350 150 L350 170" stroke="#2a2a2a" stroke-width="1"/>
+          <g transform="translate(275, 170)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Send Money</text>
+          </g>
+          <g transform="translate(275, 205)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Deposit Check</text>
+          </g>
+          <g transform="translate(275, 240)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Pay Bills</text>
+          </g>
+          
+          <!-- Sub-items under More -->
+          <path d="M550 150 L550 170" stroke="#2a2a2a" stroke-width="1"/>
+          <g transform="translate(475, 170)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Card Controls</text>
+          </g>
+          <g transform="translate(475, 205)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Settings</text>
+          </g>
+          <g transform="translate(475, 240)">
+            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Help & Support</text>
+          </g>
+        </svg>
+        <p class="diagram-caption">Reduced navigation depth from 4 levels to 2, with key actions accessible from home</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Test</p>
+      <h2>A/B Testing Onboarding</h2>
+      <p>We tested three different onboarding approaches to maximize completion rates and early engagement.</p>
+      
+      <div class="ab-test-container">
+        <div class="ab-variant">
+          <h5>Variant A</h5>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 16px;">5-screen tutorial</p>
+          <div class="rate">34%</div>
+          <div class="label">Completion Rate</div>
+        </div>
+        <div class="ab-variant">
+          <h5>Variant B</h5>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 16px;">Skip option + tooltips</p>
+          <div class="rate">52%</div>
+          <div class="label">Completion Rate</div>
+        </div>
+        <div class="ab-variant winner">
+          <h5>Variant C</h5>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 16px;">Progressive disclosure</p>
+          <div class="rate">78%</div>
+          <div class="label">Completion Rate</div>
+          <span class="winner-badge">WINNER</span>
+        </div>
+      </div>
+      
+      <p>The winning variant used progressive disclosure—introducing features contextually as users explored the app, rather than front-loading information.</p>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Deliver</p>
+      <h2>Design System & Handoff</h2>
+      <p>I created a comprehensive design system with 80+ components that ensured consistency across iOS and Android platforms while accelerating development.</p>
+
+      <h3>Tools & Technologies</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Sketch</span>
+        <span class="tool-tag">InVision</span>
+        <span class="tool-tag">Zeplin</span>
+        <span class="tool-tag">Principle</span>
+        <span class="tool-tag">UserTesting</span>
+        <span class="tool-tag">Optimizely</span>
+        <span class="tool-tag">JIRA</span>
+        <span class="tool-tag">Confluence</span>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Results</p>
+      <h2>Measurable Impact</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-value">4.6★</div><div class="result-label">App Rating (from 2.1)</div></div>
+        <div class="result-card"><div class="result-value">+67%</div><div class="result-label">Mobile Deposits</div></div>
+        <div class="result-card"><div class="result-value">+55%</div><div class="result-label">Onboarding Completion</div></div>
+        <div class="result-card"><div class="result-value">-40%</div><div class="result-label">Support Calls</div></div>
+        <div class="result-card"><div class="result-value">-68%</div><div class="result-label">Uninstall Rate</div></div>
+        <div class="result-card"><div class="result-value">150+</div><div class="result-label">Screens Designed</div></div>
+      </div>
+      
+      <div class="quote-block">
+        <p class="quote-text">Yogesh and the Harman team delivered beyond our expectations. The new app has completely changed how our customers interact with us digitally.</p>
+        <p class="quote-author">— <strong>Michael Torres</strong>, VP of Digital Banking, Zephyr Financial Services</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Reflection</p>
+      <h2>What I Learned</h2>
+      <ul class="learnings-list">
+        <li><span><strong>Trust is everything in FinTech.</strong> Every interaction must reinforce security without creating friction. Biometric login was the single most impactful feature.</span></li>
+        <li><span><strong>Test with real money anxieties.</strong> Users behave differently when actual finances are involved—lab testing didn't capture the stress of "is my money safe?"</span></li>
+        <li><span><strong>Progressive disclosure beats tutorials.</strong> Users learn better by doing, not by reading. Our A/B tests proved this dramatically.</span></li>
+        <li><span><strong>Accessibility expands your market.</strong> Features we added for accessibility (high contrast, larger touch targets) improved usability for everyone.</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="next-project">
+    <p>Next Case Study</p>
+    <h3>Consilio eDiscovery Platform</h3>
+    <a href="case-study-consilio.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
+    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+</body>
+</html>

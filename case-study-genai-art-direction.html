@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generative AI Art Direction System — Case Study | Yogesh Malik</title>
+  <meta name="description" content="How I designed a system for creating brand-consistent AI-generated imagery using style guides, prompt templates, and creative workflows.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #FBBF24;
+      --color-accent-dim: rgba(251, 191, 36, 0.15);
+      --color-accent-secondary: #F472B6;
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3); }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+    .scroll-to-top:hover { transform: translateY(-4px); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+
+    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
+    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
+    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+
+    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
+    .case-section { margin-bottom: 80px; }
+    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
+    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
+    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
+    .case-section li { margin-bottom: 12px; }
+    .case-section li strong { color: var(--color-text); }
+
+    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
+    .callout p { color: var(--color-text); margin-bottom: 0; }
+    .callout strong { color: var(--color-accent); }
+
+    .diagram-container { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 20px; padding: 40px; margin: 40px 0; overflow-x: auto; }
+    .diagram-title { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; text-align: center; }
+    .diagram-caption { font-size: 0.9rem; color: var(--color-text-muted); text-align: center; margin-top: 24px; font-style: italic; }
+
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
+    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
+    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
+    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+
+    .style-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 32px 0; }
+    .style-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 20px; text-align: center; transition: all 0.3s var(--ease-out-expo); }
+    .style-card:hover { border-color: var(--color-accent); transform: translateY(-4px); }
+    .style-preview { width: 100%; aspect-ratio: 1; border-radius: 12px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+    .style-card h4 { font-size: 0.95rem; margin-bottom: 4px; }
+    .style-card p { font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 0; }
+
+    .prompt-example { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .prompt-label { font-size: 0.75rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .prompt-text { font-family: monospace; font-size: 0.9rem; color: var(--color-text); background: var(--color-bg); padding: 16px; border-radius: 8px; line-height: 1.6; }
+    .prompt-text .highlight { color: var(--color-accent); }
+    .prompt-text .variable { color: var(--color-accent-secondary); }
+
+    .workflow-visual { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin: 32px 0; align-items: center; }
+    .workflow-step { text-align: center; }
+    .workflow-icon { width: 60px; height: 60px; background: var(--color-accent-dim); border: 2px solid var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 12px; }
+    .workflow-step h5 { font-size: 0.85rem; margin-bottom: 4px; }
+    .workflow-step p { font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0; }
+    .workflow-arrow { color: var(--color-accent); font-size: 1.5rem; text-align: center; }
+
+    .template-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
+    .template-card { background: linear-gradient(135deg, var(--color-accent-dim) 0%, var(--color-bg-card) 100%); border: 1px solid var(--color-accent); border-radius: 16px; padding: 24px; }
+    .template-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .template-icon { font-size: 1.5rem; }
+    .template-card h4 { font-size: 1rem; }
+    .template-card p { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 12px; }
+    .template-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .template-tag { background: var(--color-bg); padding: 4px 10px; border-radius: 100px; font-size: 0.7rem; color: var(--color-text-muted); }
+
+    .before-after-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin: 32px 0; }
+    .gallery-item { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; }
+    .gallery-visual { aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; position: relative; }
+    .gallery-visual.before { background: linear-gradient(135deg, #374151 0%, #1f2937 100%); }
+    .gallery-visual.after { background: linear-gradient(135deg, var(--color-accent-dim) 0%, #1a1a1a 100%); }
+    .gallery-label { position: absolute; top: 12px; left: 12px; background: var(--color-bg); padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+    .gallery-visual.before .gallery-label { color: #9ca3af; }
+    .gallery-visual.after .gallery-label { color: var(--color-accent); }
+    .gallery-content { padding: 20px; }
+    .gallery-content h4 { font-size: 1rem; margin-bottom: 8px; }
+    .gallery-content p { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0; }
+
+    .quote-block { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px; margin: 32px 0; position: relative; }
+    .quote-block::before { content: '"'; font-family: var(--font-display); font-size: 4rem; color: var(--color-accent); position: absolute; top: 10px; left: 24px; line-height: 1; opacity: 0.3; }
+    .quote-text { font-size: 1.1rem; font-style: italic; color: var(--color-text); margin-bottom: 16px; padding-left: 40px; }
+    .quote-author { font-size: 0.9rem; color: var(--color-text-muted); padding-left: 40px; }
+    .quote-author strong { color: var(--color-accent); }
+
+    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+    .tool-tag.ai { border-color: var(--color-accent); color: var(--color-accent); }
+
+    .learnings-list { list-style: none; margin-left: 0; }
+    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
+    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(251, 191, 36, 0.3); }
+
+    @media (max-width: 900px) {
+      nav, .case-header, .case-content, .next-project { padding-left: 24px; padding-right: 24px; }
+      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
+      .results-grid, .template-grid, .before-after-gallery { grid-template-columns: 1fr; }
+      .style-grid { grid-template-columns: repeat(2, 1fr); }
+      .workflow-visual { grid-template-columns: 1fr; }
+      .workflow-arrow { transform: rotate(90deg); }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <nav>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="nav-links">
+      <a href="case-study-ai-design-system.html">← Previous</a>
+      <a href="index.html">All Projects</a>
+      <a href="case-study-capita-website.html">Next →</a>
+    </div>
+  </nav>
+
+  <header class="case-header">
+    <div class="case-meta">
+      <span class="case-tag">Generative AI</span>
+      <span class="case-tag">Art Direction</span>
+      <span class="case-tag">Creative Tools</span>
+      <span class="case-tag">Capita PLC</span>
+    </div>
+    <h1>Generative AI Art Direction System</h1>
+    <p class="case-intro">Designed a comprehensive system for creating brand-consistent AI-generated imagery, enabling marketing teams to produce professional visuals 85% faster using style guides, prompt templates, and creative workflows.</p>
+  </header>
+
+  <div class="quick-stats">
+    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2023</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Lead UX Designer</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Teams Served</div><div class="quick-stat-value">Marketing & Creative</div></div>
+    <div class="quick-stat"><div class="quick-stat-label">Templates Created</div><div class="quick-stat-value">50+ Prompts</div></div>
+  </div>
+
+  <div class="case-content">
+    <section class="case-section">
+      <p class="case-section-label">Context</p>
+      <h2>The Challenge</h2>
+      <p>Capita's marketing team was eager to leverage AI image generation tools like Midjourney and DALL-E for campaigns, but faced significant challenges:</p>
+      <ul>
+        <li><strong>Brand inconsistency</strong> — Different team members produced wildly different visual styles</li>
+        <li><strong>Prompt confusion</strong> — Writing effective prompts required significant trial and error</li>
+        <li><strong>Quality control</strong> — No clear guidelines on what made an AI image "on-brand"</li>
+        <li><strong>Time waste</strong> — Hours spent iterating on prompts with unpredictable results</li>
+        <li><strong>Legal concerns</strong> — Uncertainty about copyright and usage rights</li>
+      </ul>
+      
+      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we create a system that enables anyone on the marketing team to generate professional, brand-consistent AI imagery without being a prompt engineering expert?</p></div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Discovery</p>
+      <h2>Research & Analysis</h2>
+      <p>I conducted workshops with the marketing and creative teams to understand their needs, studied AI art generation best practices, and analyzed what made imagery feel "on-brand" for Capita.</p>
+      
+      <h3>Key Findings</h3>
+      <ul>
+        <li><strong>80% of prompts</strong> were being rewritten 5+ times before getting usable results</li>
+        <li><strong>No shared vocabulary</strong> — Team members used inconsistent terminology for styles</li>
+        <li><strong>Corporate photography gaps</strong> — Stock photos felt generic, but AI offered potential</li>
+        <li><strong>Fear of the technology</strong> — Some team members avoided AI tools entirely</li>
+      </ul>
+
+      <div class="quote-block">
+        <p class="quote-text">I love the idea of AI imagery, but every time I try Midjourney, I get something that looks nothing like our brand. I've gone back to stock photos because it's just easier.</p>
+        <p class="quote-author">— <strong>Emma Richards</strong>, Marketing Manager, Capita</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Define</p>
+      <h2>Visual Style Framework</h2>
+      <p>I developed a comprehensive visual style framework that defined four core aesthetic directions aligned with Capita's brand personality:</p>
+      
+      <div class="style-grid">
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);">🏢</div>
+          <h4>Corporate Professional</h4>
+          <p>Clean, minimal, trustworthy</p>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #059669 0%, #34d399 100%);">🌱</div>
+          <h4>Sustainable Future</h4>
+          <p>Natural, hopeful, growth-focused</p>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);">💡</div>
+          <h4>Innovation & Tech</h4>
+          <p>Futuristic, dynamic, cutting-edge</p>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);">🤝</div>
+          <h4>Human Connection</h4>
+          <p>Warm, diverse, collaborative</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>Prompt Template System</h2>
+      <p>I created a modular prompt template system that allows team members to construct consistent, effective prompts by filling in variables while maintaining brand guidelines.</p>
+      
+      <div class="prompt-example">
+        <p class="prompt-label">Template Structure</p>
+        <div class="prompt-text">
+          <span class="highlight">[Subject]</span> in a <span class="highlight">[Setting]</span>, <span class="variable">{style_preset}</span>, 
+          <span class="variable">{lighting_preset}</span>, <span class="variable">{color_palette}</span>, 
+          <span class="variable">{camera_angle}</span>, <span class="variable">{mood_modifier}</span>, 
+          professional commercial photography, 8k, highly detailed --ar 16:9 --v 5
+        </div>
+      </div>
+
+      <div class="prompt-example">
+        <p class="prompt-label">Example: Corporate Professional Style</p>
+        <div class="prompt-text">
+          <span class="highlight">Diverse team collaborating</span> in a <span class="highlight">modern glass office</span>, 
+          <span class="variable">clean minimalist aesthetic</span>, 
+          <span class="variable">soft natural window light</span>, 
+          <span class="variable">Capita blue (#0052CC) accents</span>, 
+          <span class="variable">eye-level perspective</span>, 
+          <span class="variable">confident and approachable</span>, 
+          professional commercial photography, 8k, highly detailed --ar 16:9 --v 5
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>Creative Workflow</h2>
+      <p>I designed a 5-step workflow that guides users from brief to final asset:</p>
+      
+      <div class="workflow-visual">
+        <div class="workflow-step">
+          <div class="workflow-icon">📋</div>
+          <h5>Brief</h5>
+          <p>Define need & context</p>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="workflow-icon">🎨</div>
+          <h5>Style Select</h5>
+          <p>Choose from 4 presets</p>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="workflow-icon">✏️</div>
+          <h5>Generate</h5>
+          <p>Use template prompts</p>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="workflow-icon">🔍</div>
+          <h5>Review</h5>
+          <p>Check brand alignment</p>
+        </div>
+        <div class="workflow-arrow">→</div>
+        <div class="workflow-step">
+          <div class="workflow-icon">✅</div>
+          <h5>Approve</h5>
+          <p>Final sign-off</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>Template Library</h2>
+      <p>I created 50+ ready-to-use prompt templates organized by use case:</p>
+      
+      <div class="template-grid">
+        <div class="template-card">
+          <div class="template-header">
+            <span class="template-icon">👥</span>
+            <h4>Team & Collaboration</h4>
+          </div>
+          <p>Images of diverse teams working together in modern environments.</p>
+          <div class="template-tags">
+            <span class="template-tag">Meetings</span>
+            <span class="template-tag">Brainstorming</span>
+            <span class="template-tag">Office</span>
+            <span class="template-tag">Remote</span>
+          </div>
+        </div>
+        
+        <div class="template-card">
+          <div class="template-header">
+            <span class="template-icon">💻</span>
+            <h4>Technology & Innovation</h4>
+          </div>
+          <p>Abstract tech concepts, data visualization, digital transformation.</p>
+          <div class="template-tags">
+            <span class="template-tag">AI/ML</span>
+            <span class="template-tag">Cloud</span>
+            <span class="template-tag">Data</span>
+            <span class="template-tag">Abstract</span>
+          </div>
+        </div>
+        
+        <div class="template-card">
+          <div class="template-header">
+            <span class="template-icon">🌍</span>
+            <h4>Sustainability & ESG</h4>
+          </div>
+          <p>Environmental responsibility, green initiatives, sustainable future.</p>
+          <div class="template-tags">
+            <span class="template-tag">Nature</span>
+            <span class="template-tag">Green Tech</span>
+            <span class="template-tag">Community</span>
+          </div>
+        </div>
+        
+        <div class="template-card">
+          <div class="template-header">
+            <span class="template-icon">🎯</span>
+            <h4>Business & Strategy</h4>
+          </div>
+          <p>Leadership concepts, growth metaphors, success imagery.</p>
+          <div class="template-tags">
+            <span class="template-tag">Leadership</span>
+            <span class="template-tag">Growth</span>
+            <span class="template-tag">Strategy</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>Before & After: Brand Consistency</h2>
+      <p>The difference between unguided AI generation and our template-driven approach:</p>
+      
+      <div class="before-after-gallery">
+        <div class="gallery-item">
+          <div class="gallery-visual before">
+            <span class="gallery-label">❌ BEFORE</span>
+            <svg viewBox="0 0 160 100" width="140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="60" height="40" rx="4" fill="#374151" stroke="#6b7280" stroke-width="1"/>
+              <rect x="90" y="10" width="60" height="40" rx="4" fill="#1f2937" stroke="#4b5563" stroke-width="1"/>
+              <rect x="10" y="55" width="60" height="35" rx="4" fill="#111827" stroke="#374151" stroke-width="1"/>
+              <rect x="90" y="55" width="60" height="35" rx="4" fill="#4b5563" stroke="#9ca3af" stroke-width="1"/>
+              <text x="80" y="95" text-anchor="middle" fill="#6b7280" font-family="sans-serif" font-size="7">Inconsistent styles</text>
+            </svg>
+          </div>
+          <div class="gallery-content">
+            <h4>Unguided Generation</h4>
+            <p>Random styles, inconsistent lighting, off-brand colors, varying quality levels.</p>
+          </div>
+        </div>
+        
+        <div class="gallery-item">
+          <div class="gallery-visual after">
+            <span class="gallery-label">✓ AFTER</span>
+            <svg viewBox="0 0 160 100" width="140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="60" height="40" rx="4" fill="#FBBF24" fill-opacity="0.2" stroke="#FBBF24" stroke-width="1"/>
+              <rect x="90" y="10" width="60" height="40" rx="4" fill="#FBBF24" fill-opacity="0.25" stroke="#FBBF24" stroke-width="1"/>
+              <rect x="10" y="55" width="60" height="35" rx="4" fill="#FBBF24" fill-opacity="0.15" stroke="#FBBF24" stroke-width="1"/>
+              <rect x="90" y="55" width="60" height="35" rx="4" fill="#FBBF24" fill-opacity="0.3" stroke="#FBBF24" stroke-width="1"/>
+              <text x="80" y="95" text-anchor="middle" fill="#FBBF24" font-family="sans-serif" font-size="7">Unified brand style</text>
+            </svg>
+          </div>
+          <div class="gallery-content">
+            <h4>Template-Driven</h4>
+            <p>Consistent style, brand colors, professional lighting, cohesive visual language.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Design</p>
+      <h2>Brand Alignment Checklist</h2>
+      <p>I created a quality control checklist that helps reviewers evaluate AI-generated images:</p>
+      
+      <div class="diagram-container">
+        <p class="diagram-title">AI Image Brand Alignment Score</p>
+        <svg viewBox="0 0 600 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+          <!-- Checklist items -->
+          <g transform="translate(50, 30)">
+            <rect x="0" y="0" width="500" height="40" rx="8" fill="#1a1a1a" stroke="#FBBF24" stroke-width="1"/>
+            <text x="20" y="25" fill="#FBBF24" font-family="sans-serif" font-size="14">✓</text>
+            <text x="50" y="25" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="500">Color Palette Alignment</text>
+            <text x="400" y="25" fill="#FBBF24" font-family="sans-serif" font-size="11">25 points</text>
+          </g>
+          
+          <g transform="translate(50, 80)">
+            <rect x="0" y="0" width="500" height="40" rx="8" fill="#1a1a1a" stroke="#FBBF24" stroke-width="1"/>
+            <text x="20" y="25" fill="#FBBF24" font-family="sans-serif" font-size="14">✓</text>
+            <text x="50" y="25" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="500">Style Consistency (matches preset)</text>
+            <text x="400" y="25" fill="#FBBF24" font-family="sans-serif" font-size="11">25 points</text>
+          </g>
+          
+          <g transform="translate(50, 130)">
+            <rect x="0" y="0" width="500" height="40" rx="8" fill="#1a1a1a" stroke="#FBBF24" stroke-width="1"/>
+            <text x="20" y="25" fill="#FBBF24" font-family="sans-serif" font-size="14">✓</text>
+            <text x="50" y="25" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="500">Diversity & Representation</text>
+            <text x="400" y="25" fill="#FBBF24" font-family="sans-serif" font-size="11">20 points</text>
+          </g>
+          
+          <g transform="translate(50, 180)">
+            <rect x="0" y="0" width="500" height="40" rx="8" fill="#1a1a1a" stroke="#FBBF24" stroke-width="1"/>
+            <text x="20" y="25" fill="#FBBF24" font-family="sans-serif" font-size="14">✓</text>
+            <text x="50" y="25" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="500">Technical Quality (no artifacts)</text>
+            <text x="400" y="25" fill="#FBBF24" font-family="sans-serif" font-size="11">15 points</text>
+          </g>
+          
+          <g transform="translate(50, 230)">
+            <rect x="0" y="0" width="500" height="40" rx="8" fill="#1a1a1a" stroke="#FBBF24" stroke-width="1"/>
+            <text x="20" y="25" fill="#FBBF24" font-family="sans-serif" font-size="14">✓</text>
+            <text x="50" y="25" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="500">Appropriate for Context (no offensive elements)</text>
+            <text x="400" y="25" fill="#FBBF24" font-family="sans-serif" font-size="11">15 points</text>
+          </g>
+        </svg>
+        <p class="diagram-caption">Images scoring 80+ points are approved for brand use</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Deliver</p>
+      <h2>Tools & Technologies</h2>
+      
+      <h3>AI Generation Platforms</h3>
+      <div class="tools-grid">
+        <span class="tool-tag ai">Midjourney</span>
+        <span class="tool-tag ai">DALL-E 3</span>
+        <span class="tool-tag ai">Stable Diffusion</span>
+        <span class="tool-tag ai">Adobe Firefly</span>
+      </div>
+
+      <h3>Design & Documentation</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Figma</span>
+        <span class="tool-tag">Notion</span>
+        <span class="tool-tag">Adobe Creative Cloud</span>
+        <span class="tool-tag">Miro</span>
+      </div>
+
+      <h3>Workflow & Collaboration</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Airtable</span>
+        <span class="tool-tag">Slack</span>
+        <span class="tool-tag">SharePoint</span>
+        <span class="tool-tag">Loom</span>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Results</p>
+      <h2>Measurable Impact</h2>
+      <div class="results-grid">
+        <div class="result-card"><div class="result-value">85%</div><div class="result-label">Faster Image Creation</div></div>
+        <div class="result-card"><div class="result-value">92%</div><div class="result-label">Brand Consistency Score</div></div>
+        <div class="result-card"><div class="result-value">£45K</div><div class="result-label">Stock Photo Savings</div></div>
+        <div class="result-card"><div class="result-value">50+</div><div class="result-label">Prompt Templates</div></div>
+        <div class="result-card"><div class="result-value">3x</div><div class="result-label">Campaign Visual Output</div></div>
+        <div class="result-card"><div class="result-value">100%</div><div class="result-label">Team Adoption</div></div>
+      </div>
+      
+      <div class="quote-block">
+        <p class="quote-text">This system has completely transformed how we create visuals. What used to take hours of searching stock libraries and iterating on prompts now takes minutes. And everything looks like it belongs to our brand.</p>
+        <p class="quote-author">— <strong>Emma Richards</strong>, Marketing Manager, Capita</p>
+      </div>
+
+      <div class="quote-block">
+        <p class="quote-text">The prompt templates are brilliant. Even team members who were intimidated by AI tools are now confidently generating professional imagery. It's democratized creative production across the team.</p>
+        <p class="quote-author">— <strong>David Park</strong>, Creative Director, Capita</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="case-section-label">Reflection</p>
+      <h2>What I Learned</h2>
+      <ul class="learnings-list">
+        <li><span><strong>Constraints enable creativity.</strong> Counter-intuitively, the style presets and templates didn't limit creativity—they freed team members to focus on content rather than wrestling with tools.</span></li>
+        <li><span><strong>AI amplifies existing skills.</strong> The best results came from team members who understood brand principles. AI is a tool, not a replacement for creative judgment.</span></li>
+        <li><span><strong>Documentation is essential.</strong> Without clear guidelines, AI-generated imagery quickly becomes chaotic. The style guide and checklist were as valuable as the templates themselves.</span></li>
+        <li><span><strong>Ethics require attention.</strong> We built in diversity requirements and prohibited certain imagery types to ensure responsible AI use.</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="next-project">
+    <p>Next Case Study</p>
+    <h3>Capita.com Global Website Redesign</h3>
+    <a href="case-study-capita-website.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
+    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+</body>
+</html>
