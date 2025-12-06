@@ -811,5 +811,13 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    const scrollToTopBtn = document.getElementById('
+ <script>
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); }
+      else { scrollToTopBtn.classList.remove('visible'); }
+    });
+    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  </script>
+  </body>
+</html>
