@@ -25,6 +25,7 @@
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+  
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -35,6 +36,30 @@
       overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
+
+     /* ===== SCROLL ANIMATIONS ===== */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children animation */
+    .stagger-children > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+    }
+    .stagger-children.visible > *:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+    .stagger-children.visible > *:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+    .stagger-children.visible > *:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+    .stagger-children.visible > *:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+    .stagger-children.visible > *:nth-child(5) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+    .stagger-children.visible > *:nth-child(6) { transition-delay: 0.6s; opacity: 1; transform: translateY(0); }
 
     /* Scroll to Top Button */
     .scroll-to-top {
@@ -554,7 +579,7 @@
       }
     }
     section { padding: 120px 48px; }
-    .section-header { max-width: 700px; margin-bottom: 64px; text-align: center; }
+    .section-header { margin-bottom: 64px; text-align: center; }
     .section-eyebrow { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
     .section-title { font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 24px; }
     .section-description { font-size: 1.1rem; color: var(--color-text-muted); }
@@ -787,7 +812,7 @@
 
   <section class="trusted-by">
     <p class="trusted-by-label">Trusted by industry leaders</p>
-    <div class="trusted-logos">
+    <div class="trusted-logos stagger-children">
       <span class="trusted-logo">🏛️ UK Government (GDS)</span>
       <span class="trusted-logo">🏢 Capita PLC</span>
       <span class="trusted-logo">📜 Axelos</span>
@@ -1381,13 +1406,39 @@
     </div>
   </footer>
 
- <script>
+ <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+   
+   // Scroll to Top
     const scrollToTopBtn = document.getElementById('scrollToTop');
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); }
-      else { scrollToTopBtn.classList.remove('visible'); }
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
     });
-    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Scroll Animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.querySelectorAll('.animate-on-scroll, .stagger-children').forEach(el => {
+      observer.observe(el);
+    });
   </script>
   </body>
 </html>
