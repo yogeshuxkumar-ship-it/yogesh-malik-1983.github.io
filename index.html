@@ -596,6 +596,81 @@
     .case-study-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--color-accent); transition: gap 0.3s var(--ease-out-expo); }
     .case-study-link:hover { gap: 16px; }
 
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section {
+      background: var(--color-bg);
+      padding: 120px 48px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 40px 32px;
+      position: relative;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-accent);
+      box-shadow: 0 20px 40px rgba(201, 255, 87, 0.1);
+    }
+    .testimonial-quote-icon {
+      position: absolute;
+      top: -16px;
+      left: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .testimonial-quote-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #0a0a0a;
+    }
+    .testimonial-text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      margin-bottom: 32px;
+      margin-top: 16px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .testimonial-avatar {
+      width: 56px;
+      height: 56px;
+      background: var(--color-accent-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--color-accent);
+      font-size: 1.25rem;
+    }
+    .testimonial-author-info h4 {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .testimonial-author-info p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
     .about { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
     .about-image { aspect-ratio: 3/4; background: var(--color-bg-card); border-radius: 24px; overflow: hidden; position: sticky; top: 120px; border: 1px solid var(--color-border); }
     .about-image img { width: 100%; height: 100%; object-fit: cover; }
@@ -762,7 +837,7 @@
         <div class="bento-reveal">
           <div class="bento-stats">
             <div class="bento-stat-item">
-              <div class="bento-stat-value">45+</div>
+              <div class="bento-stat-value">25+</div>
               <div class="bento-stat-label">User Interviews Avg.</div>
             </div>
             <div class="bento-stat-item">
@@ -1192,6 +1267,56 @@
         View All 9 Case Studies
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+    </div>
+  </section>
+
+    <!-- ===== TESTIMONIALS SECTION ===== -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="section-header animate-on-scroll">
+      <p class="section-eyebrow">Testimonials</p>
+      <h2 class="section-title">What colleagues & stakeholders say</h2>
+      <p class="section-description">Feedback from people I've worked with across different organizations.</p>
+    </div>
+    <div class="testimonials-grid stagger-children">
+      <div class="testimonial-card">
+        <div class="testimonial-quote-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        </div>
+        <p class="testimonial-text">"Yogesh brings a rare combination of strategic thinking and hands-on design excellence. His work on the B2B Commerce platform transformed how our sales team operates — the UX improvements directly contributed to our revenue growth."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RS</div>
+          <div class="testimonial-author-info">
+            <h4>Richard Sterling</h4>
+            <p>Product Director, Capita PLC</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        </div>
+        <p class="testimonial-text">"Working with Yogesh on the government accessibility project was exceptional. He championed WCAG compliance not as a checkbox exercise, but as a genuine commitment to inclusive design. The results speak for themselves."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SP</div>
+          <div class="testimonial-author-info">
+            <h4>Sarah Patterson</h4>
+            <p>Accessibility Lead, UK GDS</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-quote-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+        </div>
+        <p class="testimonial-text">"Yogesh mentored our junior designers and elevated the entire team's capability. His systematic approach to design — from research to delivery — became the gold standard for how we approach projects now."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MK</div>
+          <div class="testimonial-author-info">
+            <h4>Michael Krishnan</h4>
+            <p>UX Manager, Harman</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
