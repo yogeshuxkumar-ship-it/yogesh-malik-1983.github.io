@@ -79,6 +79,186 @@
     .cert-org { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 8px; }
     .cert-level { display: inline-block; background: var(--color-accent-dim); color: var(--color-accent); padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
 
+    /* New certification icon colors */
+    .cert-icon.creativity svg { stroke: #f59e0b; }
+    .cert-icon.mobile svg { stroke: #8b5cf6; }
+
+    /* Industry Certifications - Microsoft & Google */
+    .industry-certs { margin-bottom: 40px; }
+    
+    .cert-card.featured-cert {
+      background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-elevated) 100%);
+      border-width: 2px;
+      padding: 28px;
+    }
+    
+    .cert-card.featured-cert.microsoft {
+      border-color: #00a4ef;
+    }
+    .cert-card.featured-cert.microsoft:hover {
+      border-color: #00a4ef;
+      box-shadow: 0 8px 30px rgba(0, 164, 239, 0.2);
+    }
+    
+    .cert-card.featured-cert.google {
+      border-color: #4285f4;
+    }
+    .cert-card.featured-cert.google:hover {
+      border-color: #4285f4;
+      box-shadow: 0 8px 30px rgba(66, 133, 244, 0.2);
+    }
+    
+    .cert-icon.microsoft-icon {
+      background: rgba(0, 164, 239, 0.1);
+    }
+    .cert-icon.microsoft-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: #00a4ef;
+      stroke: none;
+    }
+    
+    .cert-icon.google-icon {
+      background: rgba(66, 133, 244, 0.1);
+    }
+    .cert-icon.google-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: none;
+    }
+    
+    .cert-level.microsoft-badge {
+      background: rgba(0, 164, 239, 0.15);
+      color: #00a4ef;
+    }
+    
+    .cert-level.google-badge {
+      background: rgba(66, 133, 244, 0.15);
+      color: #4285f4;
+    }
+
+    /* IDF Badge Section */
+    .idf-section {
+      padding: 60px 48px;
+      background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg) 100%);
+    }
+    
+    .idf-badge-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .idf-badge {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background: var(--color-bg-card);
+      border: 2px solid var(--color-accent);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .idf-badge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at top right, var(--color-accent-dim) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .idf-logo {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .idf-logo svg {
+      width: 120px;
+      height: 120px;
+    }
+    
+    .idf-info {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .idf-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--color-accent);
+    }
+    
+    .idf-info > p {
+      color: var(--color-text-muted);
+      margin-bottom: 20px;
+    }
+    
+    .idf-stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 20px;
+    }
+    
+    .idf-stat {
+      text-align: left;
+    }
+    
+    .idf-stat-value {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: var(--color-text);
+      display: block;
+    }
+    
+    .idf-stat-label {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .idf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: gap 0.3s ease;
+    }
+    
+    .idf-link:hover {
+      gap: 12px;
+    }
+    
+    .idf-link svg {
+      transition: transform 0.3s ease;
+    }
+    
+    .idf-link:hover svg {
+      transform: translate(2px, -2px);
+    }
+
+    @media (max-width: 600px) {
+      .idf-badge {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+      }
+      .idf-stats {
+        justify-content: center;
+      }
+      .idf-stat {
+        text-align: center;
+      }
+    }
+
     .skills-section { background: var(--color-bg-elevated); padding: 80px 48px; width: 100%; }
     .skills-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; text-align: center; }
     .skills-section .section-subtitle { text-align: center; color: var(--color-text-muted); margin-bottom: 48px; }
@@ -309,6 +489,118 @@
           <div class="cert-title">Design Thinking & Service Design</div>
           <div class="cert-org">Interaction Design Foundation</div>
           <span class="cert-level">EQF Level 7</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon creativity">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4"/>
+            <path d="M12 18v4"/>
+            <path d="M4.93 4.93l2.83 2.83"/>
+            <path d="M16.24 16.24l2.83 2.83"/>
+            <path d="M2 12h4"/>
+            <path d="M18 12h4"/>
+            <path d="M4.93 19.07l2.83-2.83"/>
+            <path d="M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </div>
+        <div class="cert-content">
+          <div class="cert-title">Creativity: Methods to Design Better Products</div>
+          <div class="cert-org">Interaction Design Foundation</div>
+          <span class="cert-level">EQF Level 7</span>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon mobile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+            <path d="M12 18h.01"/>
+          </svg>
+        </div>
+        <div class="cert-content">
+          <div class="cert-title">Mobile User Experience (UX) Design</div>
+          <div class="cert-org">Interaction Design Foundation</div>
+          <span class="cert-level">EQF Level 7</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Certifications Section -->
+  <section>
+    <p class="section-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+      Industry Certifications
+    </p>
+    <div class="certs-grid industry-certs">
+      <div class="cert-card featured-cert microsoft">
+        <div class="cert-icon microsoft-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z"/>
+          </svg>
+        </div>
+        <div class="cert-content">
+          <div class="cert-title">Microsoft Certified Professional</div>
+          <div class="cert-org">Microsoft Corporation</div>
+          <span class="cert-level microsoft-badge">MCP Certified</span>
+        </div>
+      </div>
+      <div class="cert-card featured-cert google">
+        <div class="cert-icon google-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+        </div>
+        <div class="cert-content">
+          <div class="cert-title">Google UX Design Professional Certificate</div>
+          <div class="cert-org">Google</div>
+          <span class="cert-level google-badge">Google Certified</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDF Membership Badge Section -->
+  <section class="idf-section">
+    <div class="idf-badge-container">
+      <div class="idf-badge">
+        <div class="idf-logo">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" stroke="var(--color-accent)" stroke-width="2" fill="var(--color-bg-card)"/>
+            <circle cx="50" cy="50" r="40" stroke="var(--color-accent)" stroke-width="1" stroke-dasharray="4 2"/>
+            <text x="50" y="35" text-anchor="middle" fill="var(--color-accent)" font-family="var(--font-display)" font-size="12" font-weight="600">IDF</text>
+            <text x="50" y="50" text-anchor="middle" fill="var(--color-text)" font-family="var(--font-body)" font-size="6">INTERACTION DESIGN</text>
+            <text x="50" y="58" text-anchor="middle" fill="var(--color-text)" font-family="var(--font-body)" font-size="6">FOUNDATION</text>
+            <text x="50" y="72" text-anchor="middle" fill="var(--color-accent)" font-family="var(--font-body)" font-size="7" font-weight="600">MEMBER</text>
+            <path d="M30 80 L50 90 L70 80" stroke="var(--color-accent)" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="idf-info">
+          <h3>Interaction Design Foundation</h3>
+          <p>Verified Member & Certificate Holder</p>
+          <div class="idf-stats">
+            <div class="idf-stat">
+              <span class="idf-stat-value">6</span>
+              <span class="idf-stat-label">Courses Completed</span>
+            </div>
+            <div class="idf-stat">
+              <span class="idf-stat-value">EQF 7</span>
+              <span class="idf-stat-label">Certification Level</span>
+            </div>
+          </div>
+          <a href="https://www.interaction-design.org/" target="_blank" class="idf-link">
+            Verify Credentials
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
