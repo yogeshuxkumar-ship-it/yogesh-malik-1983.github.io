@@ -278,10 +278,12 @@
       color: var(--color-text-muted);
     }
 
-    .trusted-by { padding: 40px 48px 80px; text-align: center; border-top: 1px solid var(--color-border); }
-    .trusted-by-label { font-size: 0.85rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 32px; }
-    .trusted-logos { display: flex; gap: 64px; align-items: center; flex-wrap: wrap; opacity: 0.6; }
-    .trusted-logo { font-size: 1.1rem; font-weight: 600; color: var(--color-text-muted); }
+    /* ===== TRUSTED BY ===== */
+    .trusted-by { padding: 48px; text-align: center; background: var(--color-bg); }
+    .trusted-by-label { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .trusted-logos { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .trusted-logo { color: var(--color-text-muted); font-size: 0.95rem; transition: color 0.3s, transform 0.3s; }
+    .trusted-logo:hover { color: var(--color-accent); transform: scale(1.05); }
 
     .stats {
       display: grid;
