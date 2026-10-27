@@ -1,15 +1,23 @@
 <!DOCTYPE html>
+<!--
+  REUSABLE CASE-STUDY TEMPLATE: Yogesh Malik portfolio
+  Duplicate this file, rename it (case-study-<project>.html) and replace the content
+  inside each block marked  ▸ EDIT. Delete any optional section you don't need.
+  Section order: Header → Hero image → Snapshot → TL;DR → Context → Domain landscape →
+  Research → Insights → Principles → Solution → Accessibility & trust → Results →
+  My role → Learnings → Next project.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zephyr Bank Mobile Banking Redesign — Case Study | Yogesh Malik</title>
-  <meta name="description" content="How I redesigned a mobile banking app, improving app rating from 2.1 to 4.6 stars and increasing mobile deposits by 67%.">
-  
+  <!-- ▸ EDIT: title + description -->
+  <title>Zephyr Bank Mobile Banking Redesign | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="UX case study: redesigning Zephyr Bank’s mobile and online banking, from a 2.1-star app to 4.6 stars with 67% more mobile deposits.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --color-bg: #0a0a0a;
@@ -17,8 +25,8 @@
       --color-bg-card: #1a1a1a;
       --color-text: #f5f5f5;
       --color-text-muted: #a3a3a3;
-      --color-accent: #00D4AA;
-      --color-accent-dim: rgba(0, 212, 170, 0.15);
+      --color-accent: #c9ff57;
+      --color-accent-dim: rgba(201, 255, 87, 0.15);
       --color-border: #2a2a2a;
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body: 'Instrument Sans', -apple-system, sans-serif;
@@ -27,684 +35,459 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
-    a { color: inherit; text-decoration: none; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { color: var(--color-text); }
 
-    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(0, 212, 170, 0.3); }
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--color-accent); z-index: 1001; }
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
     .scroll-to-top.visible { opacity: 1; visibility: visible; }
-    .scroll-to-top:hover { transform: translateY(-4px); }
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
-    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back { display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); font-weight: 500; }
     .nav-back:hover { color: var(--color-accent); }
     .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
-    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a { color: var(--color-text-muted); }
     .nav-links a:hover { color: var(--color-text); }
 
-    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
-    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-header { padding: 160px 48px 64px; max-width: 1100px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
     .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
-    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
-    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+    .case-tag.outline { background: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; text-wrap: balance; }
+    .case-header h1 em { color: var(--color-accent); }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 760px; text-wrap: pretty; }
 
-    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
-    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
-    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+    .hero-image { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; }
+    .hero-image figure { border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .hero-image img { width: 100%; height: auto; display: block; }
+    figcaption { font-size: 0.85rem; color: var(--color-text-muted); padding: 14px 20px; border-top: 1px solid var(--color-border); }
 
-    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
-    .case-section { margin-bottom: 80px; }
-    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
-    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
-    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
-    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
-    .case-section li { margin-bottom: 12px; }
-    .case-section li strong { color: var(--color-text); }
+    .snapshot { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--color-border); max-width: 1104px; margin: 0 auto 96px; border-radius: 16px; overflow: hidden; }
+    .snapshot div { background: var(--color-bg-card); padding: 28px 22px; }
+    .snapshot dt { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .snapshot dd { font-weight: 600; line-height: 1.4; }
 
-    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
-    .callout p { color: var(--color-text); margin-bottom: 0; }
-    .callout strong { color: var(--color-accent); }
+    .layout { max-width: 1104px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+    .toc { position: sticky; top: 120px; align-self: start; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; }
+    .toc a { color: var(--color-text-muted); border-left: 2px solid var(--color-border); padding-left: 14px; transition: color .2s, border-color .2s; }
+    .toc a:hover, .toc a.active { color: var(--color-accent); border-color: var(--color-accent); }
 
-    .diagram-container { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 20px; padding: 40px; margin: 40px 0; overflow-x: auto; }
-    .diagram-title { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; text-align: center; }
-    .diagram-caption { font-size: 0.9rem; color: var(--color-text-muted); text-align: center; margin-top: 24px; font-style: italic; }
+    .case-section { margin-bottom: 96px; scroll-margin-top: 120px; }
+    .label { font-size: 0.8rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .case-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 24px; text-wrap: balance; }
+    .case-section h3 { font-size: 1.15rem; margin: 40px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; text-wrap: pretty; }
+    .case-section p strong, .case-section li strong { color: var(--color-text); }
 
-    .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
-    .persona-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s, transform 0.3s var(--ease-out-expo); }
-    .persona-card:hover { border-color: var(--color-accent); transform: translateY(-4px); }
-    .persona-avatar { width: 64px; height: 64px; background: var(--color-accent-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 16px; }
-    .persona-name { font-weight: 600; margin-bottom: 4px; }
-    .persona-role { font-size: 0.85rem; color: var(--color-accent); margin-bottom: 12px; }
-    .persona-details { font-size: 0.9rem; color: var(--color-text-muted); }
-    .persona-goals { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--color-border); }
-    .persona-goals h5 { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .persona-goals ul { margin: 0; padding-left: 16px; font-size: 0.85rem; }
-    .persona-goals li { margin-bottom: 4px; }
+    .tldr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tldr div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .tldr h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 10px; }
+    .tldr p { font-size: 0.95rem; margin: 0; }
 
-    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
-    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
-    .process-step:hover { border-color: var(--color-accent); }
-    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
-    .process-step h4 { margin-bottom: 8px; }
-    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+    .problem { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.3; color: var(--color-text); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 32px 0; margin: 32px 0; }
+    .problem span { color: var(--color-accent); font-style: italic; }
 
-    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
-    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
-    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
-    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
-    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color .3s; }
+    .card:hover { border-color: rgba(201, 255, 87, 0.4); }
+    .card h4 { margin-bottom: 8px; font-size: 1.02rem; }
+    .card p { font-size: 0.95rem; margin: 0; }
+    .card .k { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 12px; display: block; }
 
-    .competitor-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.9rem; }
-    .competitor-table th, .competitor-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--color-border); }
-    .competitor-table th { color: var(--color-accent); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .competitor-table td { color: var(--color-text-muted); }
-    .competitor-table tr:hover td { color: var(--color-text); }
-    .check { color: var(--color-accent); }
-    .cross { color: #ef4444; }
+    .reg { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .reg div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 18px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .reg div:last-child { border-bottom: none; }
+    .reg b { color: var(--color-accent); font-weight: 600; }
+    .reg span { color: var(--color-text-muted); font-size: 0.95rem; }
 
-    .quote-block { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px; margin: 32px 0; position: relative; }
-    .quote-block::before { content: '"'; font-family: var(--font-display); font-size: 4rem; color: var(--color-accent); position: absolute; top: 10px; left: 24px; line-height: 1; opacity: 0.3; }
-    .quote-text { font-size: 1.1rem; font-style: italic; color: var(--color-text); margin-bottom: 16px; padding-left: 40px; }
-    .quote-author { font-size: 0.9rem; color: var(--color-text-muted); padding-left: 40px; }
-    .quote-author strong { color: var(--color-accent); }
+    .persona { display: flex; flex-direction: column; gap: 10px; }
+    .persona .role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .persona ul { list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); font-size: 0.92rem; }
+    .persona li::before { content: ',  '; color: var(--color-accent); }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
-    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0; counter-reset: s; }
+    .flow div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; counter-increment: s; }
+    .flow div::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--font-display); color: var(--color-accent); font-size: 1.4rem; margin-bottom: 8px; }
+    .flow h4 { font-size: 0.98rem; margin-bottom: 6px; }
+    .flow p { font-size: 0.88rem; margin: 0; }
 
-    .learnings-list { list-style: none; margin-left: 0; }
-    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
-    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+    .shot { margin: 32px 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .shot img { width: 100%; display: block; }
 
-    .ab-test-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 32px 0; }
-    .ab-variant { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; text-align: center; }
-    .ab-variant.winner { border-color: var(--color-accent); background: var(--color-accent-dim); }
-    .ab-variant h5 { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 8px; }
-    .ab-variant .rate { font-family: var(--font-display); font-size: 2rem; color: var(--color-text); margin-bottom: 4px; }
-    .ab-variant.winner .rate { color: var(--color-accent); }
-    .ab-variant .label { font-size: 0.8rem; color: var(--color-text-muted); }
-    .winner-badge { background: var(--color-accent); color: var(--color-bg); font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-top: 8px; display: inline-block; }
+    .before-after { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .before-after div { border-radius: 16px; padding: 24px; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .before-after div.after { border-color: rgba(201, 255, 87, 0.4); }
+    .before-after h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; color: var(--color-text-muted); }
+    .before-after .after h4 { color: var(--color-accent); }
+    .before-after ul { list-style: none; display: flex; flex-direction: column; gap: 8px; color: var(--color-text-muted); font-size: 0.95rem; }
 
-    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
-    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
-    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+    .results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .results div { background: var(--color-bg-card); padding: 32px 24px; }
+    .results .v { font-family: var(--font-display); font-size: 2.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
+    .results .l { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.4; }
+    .note { font-size: 0.85rem !important; color: var(--color-text-muted); font-style: italic; }
+
+    .tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tools span { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; font-size: 0.88rem; color: var(--color-text-muted); }
+
+    .learn { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .learn li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; color: var(--color-text-muted); }
+    .learn li::before { content: '→'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 96px 48px; text-align: center; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 12px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 32px; }
     .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0, 212, 170, 0.3); }
+    .btn-primary:hover { color: var(--color-bg); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
 
-    @media (max-width: 900px) {
-      nav, .case-header, .case-content, .next-project { padding-left: 24px; padding-right: 24px; }
-      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
-      .process-grid, .results-grid, .persona-grid, .ab-test-container { grid-template-columns: 1fr; }
+    footer { padding: 40px 48px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--color-text-muted); font-size: 0.9rem; }
+    footer a { color: var(--color-text-muted); }
+    footer a:hover { color: var(--color-accent); }
+
+    @media (max-width: 1000px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .toc { display: none; }
+      .snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-left: 24px; margin-right: 24px; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      nav, .case-header, .layout, .hero-image, .next-project, footer { padding-left: 24px; padding-right: 24px; }
+      .nav-links { display: none; }
+      .tldr, .grid-2, .grid-3, .before-after, .results, .flow { grid-template-columns: minmax(0, 1fr); }
+      .reg div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
       .scroll-to-top { bottom: 24px; right: 24px; }
     }
+  
+    .eos-hero { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; position: relative; z-index: 1; }
+    .eos-hero img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .numbered { list-style: none; counter-reset: n; display: grid; gap: 0; }
+    .numbered li { counter-increment: n; display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .numbered li::before { content: counter(n, decimal-leading-zero); color: var(--color-label); font-weight: 500; font-size: .85rem; padding-top: 2px; }
+    .numbered li strong { color: var(--color-text); font-weight: 600; }
+    .qa { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .qa div { background: #fff; padding: 28px 24px; font-size: 1.15rem; font-weight: 400; line-height: 1.4; color: var(--color-text); }
+    .findings { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .findings article { background: #fff; padding: 28px; display: grid; gap: 10px; }
+    .findings h4 { font-weight: 500; font-size: 1.12rem; line-height: 1.35; }
+    .findings p { margin: 0 !important; font-size: .92rem !important; }
+    .findings b { color: var(--color-text); font-weight: 600; }
+    .sort-setup { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .sort-setup div { padding: 20px 16px; } .sort-setup div + div { border-left: 1px solid var(--color-border); }
+    .sort-setup dt { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+    .sort-setup dd { font-weight: 500; line-height: 1.4; }
+    .people { display: grid; gap: 16px; }
+    .person { display: grid; grid-template-columns: 240px repeat(2, minmax(0,1fr)); gap: 2px; background: var(--color-bg); }
+    .person > div { background: #fff; padding: 24px; }
+    .person .id { display: grid; justify-items: start; gap: 14px; }
+    .person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+    .person .id h4 { font-weight: 500; font-size: 1.2rem; }
+    .person .id span { color: var(--color-text-muted); font-size: .85rem; line-height: 1.5; }
+    .person h5 { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+    .case-section .person p, .person li { font-size: .9rem; margin: 0; color: var(--color-text-muted); line-height: 1.6; }
+    .person ul { list-style: none; display: grid; gap: 4px; }
+    .person li::before { content: '•  '; color: var(--color-accent); }
+    .person .bio { grid-row: span 2; }
+    .table-wrap { overflow-x: auto; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 720px; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid #e6e6e3; vertical-align: top; color: var(--color-text-muted); }
+    th { color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+    td:first-child { color: var(--color-text); font-weight: 500; }
+    td.us { color: var(--color-text); background: var(--color-accent-dim); }
+    .timeline { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 6px 0; font-size: .78rem; }
+    .timeline .wk { grid-row: 5; text-align: center; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 8px; }
+    .timeline .bar { padding: 10px 12px; background: #fff; border-left: 3px solid var(--color-accent); color: var(--color-text); line-height: 1.35; margin-right: 6px; }
+    .timeline .phase { grid-row: 1; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); padding: 0 0 6px; border-bottom: 1px solid var(--color-text); margin-right: 6px; }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+    .roles span { border: 1px solid var(--color-text); border-radius: 100px; padding: 4px 14px; font-size: .8rem; }
+    .screen { margin: 0 0 40px; }
+    .screen h4 { font-weight: 500; font-size: 1.05rem; margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+    .screen h4 span { color: var(--color-label); font-size: .75rem; letter-spacing: .1em; }
+    .screen img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .flowimg { background: #fff; padding: 24px; overflow-x: auto; } .flowimg img { width: 100%; min-width: 900px; display: block; }
+    .laws { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .laws article { background: #fff; padding: 26px 24px; display: grid; gap: 10px; align-content: start; }
+    .laws h4 { font-weight: 500; font-size: 1.08rem; } .laws h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+    .laws p { margin: 0 !important; font-size: .9rem !important; }
+    .wcag { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .wcag article { background: #fff; padding: 24px; display: grid; gap: 12px; align-content: start; }
+    .wcag h4 { font-weight: 500; font-size: 1.1rem; } .wcag h4 small { display: block; color: var(--color-text-muted); font-size: .75rem; font-weight: 400; margin-top: 2px; }
+    .wcag ul { list-style: none; display: grid; gap: 4px; font-size: .9rem; color: var(--color-text-muted); }
+    .wcag li::before { content: '✓  '; color: #3fa66a; font-weight: 700; }
+    .wcag .why { font-size: .85rem; color: var(--color-text); border-top: 1px solid #eee; padding-top: 10px; }
+    .govern { grid-column: 1 / -1; background: var(--color-text); color: #f3f1ec; padding: 28px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 24px; }
+    .govern h4 { font-weight: 300; font-size: 1.4rem; } .govern ul { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 24px; font-size: .9rem; color: #cfcac2; }
+    .govern li::before { content: '→  '; color: var(--color-accent); }
+    .thanks { text-align: center; padding: 96px 24px 72px; border-top: 1px solid var(--color-border); }
+    .thanks h3 { font-weight: 300; font-size: clamp(2rem, 4vw, 3rem); }
+    .thanks p { color: var(--color-text-muted); }
+    @media (max-width: 900px) {
+      .qa, .findings, .laws, .wcag, .person, .govern { grid-template-columns: minmax(0,1fr); }
+      .sort-setup { grid-template-columns: repeat(2, minmax(0,1fr)); } .sort-setup div + div { border-left: none; }
+      .govern ul { grid-template-columns: minmax(0,1fr); }
+      .timeline { grid-template-columns: repeat(6, minmax(0,1fr)); }
+    }
   </style>
+  <style>
+    .gantt { display: grid; grid-template-columns: 210px repeat(15, minmax(0,1fr)); gap: 6px 0; align-items: center; font-size: .82rem; }
+    .gantt .lb { color: var(--color-text-muted); padding-right: 14px; text-align: right; }
+    .gantt .gb { height: 22px; background: var(--color-label); opacity: var(--o); border-radius: 2px; }
+    .gantt .wk { grid-row: 12; text-align: center; color: var(--color-text-muted); font-size: .72rem; border-top: 1px solid var(--color-border); padding-top: 6px; }
+    .gantt .grid { grid-row: 1 / 12; border-left: 1px dashed var(--color-border); height: 100%; }
+    .zz { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 10px; background: linear-gradient(var(--color-label), var(--color-label)) center / 100% 2px no-repeat; }
+    .zz > div { display: grid; grid-template-rows: 1fr 52px 1fr; justify-items: center; }
+    .zz .k { grid-row: 2; width: 52px; height: 52px; border-radius: 50%; background: var(--color-label); color: #fff; display: grid; place-items: center; font-weight: 500; box-shadow: 0 0 0 6px var(--color-bg); }
+    .zz .z { background: #fff; padding: 16px; display: grid; gap: 4px; align-content: start; position: relative; width: 100%; }
+    .zz > div:nth-child(odd) .z { grid-row: 1; align-self: end; margin-bottom: 14px; }
+    .zz > div:nth-child(even) .z { grid-row: 3; align-self: start; margin-top: 14px; }
+    .zz .z h4 { font-weight: 500; font-size: 1rem; } .zz .z p { margin: 0 !important; font-size: .84rem !important; line-height: 1.5 !important; }
+    .comp { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: 32px; align-items: center; }
+    .rings { position: relative; width: min(380px, 100%); aspect-ratio: 1; justify-self: center; }
+    .rings > div { position: absolute; border-radius: 50%; display: grid; justify-items: center; align-content: start; text-align: center; padding-top: 5%; font-size: .78rem; color: var(--color-text-muted); }
+    .rings .o { inset: 0; border: 1.5px dashed var(--color-label); }
+    .rings .m { inset: 17%; border: 1.5px solid var(--color-label); background: var(--color-accent-dim); }
+    .rings .c { inset: 36%; background: var(--color-label); color: #fff; place-content: center; padding: 0; font-weight: 500; font-size: .95rem; }
+    .rings b { font-weight: 600; color: var(--color-text); font-size: .82rem; }
+    .rainbow { position: relative; width: 100%; aspect-ratio: 2 / 1; overflow: hidden; }
+    .rainbow span { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; background: color-mix(in srgb, var(--color-label) var(--p), #fff); }
+    .fw { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr); gap: 32px; align-items: end; margin-top: 40px; }
+    .fw ol { list-style: none; display: grid; gap: 10px; }
+    .fw li { display: grid; grid-template-columns: 14px minmax(0,1fr); gap: 10px; font-size: .9rem; color: var(--color-text-muted); }
+    .fw li::before { content: ''; width: 12px; height: 12px; border-radius: 3px; margin-top: 4px; background: color-mix(in srgb, var(--color-label) var(--p), #fff); }
+    .fw li strong { color: var(--color-text); font-weight: 600; }
+    .recs { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .recs article { background: #fff; padding: 24px; display: grid; gap: 10px; align-content: start; }
+    .recs h4 { font-weight: 500; font-size: 1.05rem; line-height: 1.35; }
+    .recs p { margin: 0 !important; font-size: .88rem !important; }
+    .recs ul { list-style: none; display: grid; gap: 4px; font-size: .88rem; color: var(--color-text-muted); }
+    .recs li::before { content: '•  '; color: var(--color-label); }
+    .recs .imp { justify-self: start; background: var(--color-accent); color: #0f2a2d; font-size: .78rem; font-weight: 600; padding: 4px 12px; border-radius: 100px; }
+    .prio { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); margin: 28px 0 12px; }
+    .ba-img { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.4fr); gap: 24px; align-items: start; }
+    .ba-img figure { margin: 0; } .ba-img img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 20px 40px -24px rgba(0,0,0,.3); }
+    .ba-img h5 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); margin-bottom: 10px; font-weight: 500; }
+    .ba-img ul { list-style: none; display: grid; gap: 8px; font-size: .92rem; color: var(--color-text-muted); }
+    .ba-img li::before { content: '→  '; color: var(--color-label); }
+    .photo { width: 100%; display: block; border-radius: 4px; margin-top: 24px; }
+    @media (max-width: 900px) { .gantt { grid-template-columns: 120px repeat(15, minmax(0,1fr)); font-size: .7rem; } .zz { grid-template-columns: minmax(0,1fr); background: none; } .zz > div { grid-template-rows: auto; } .zz .k { display: none; } .zz > div .z { grid-row: auto !important; margin: 0 !important; } .comp, .fw, .recs, .ba-img { grid-template-columns: minmax(0,1fr); } }
+  </style>
+  <style>
+    .vt { position: relative; display: grid; gap: 0; }
+    .vt::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--color-label); transform: translateX(-50%); }
+    .vt > div { display: grid; grid-template-columns: minmax(0,1fr) 56px minmax(0,1fr); align-items: center; }
+    .vt .k { grid-column: 2; justify-self: center; width: 40px; height: 40px; border-radius: 50%; background: var(--color-bg); border: 2px solid var(--color-label); color: var(--color-label); display: grid; place-items: center; font-weight: 600; font-size: .85rem; position: relative; z-index: 1; }
+    .vt .z { background: #fff; padding: 16px 20px; display: grid; gap: 4px; margin: 6px 0; }
+    .vt > div:nth-child(odd) .z { grid-column: 3; grid-row: 1; } .vt > div:nth-child(even) .z { grid-column: 1; grid-row: 1; text-align: right; }
+    .vt .k { grid-row: 1; }
+    .vt h4 { font-weight: 500; font-size: 1rem; } .vt h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 2px; }
+    .vt p { margin: 0 !important; font-size: .86rem !important; }
+    .hub { position: relative; width: min(640px, 100%); aspect-ratio: 1.35; margin: 0 auto; }
+    .hub::before { content: ''; position: absolute; left: 50%; top: 50%; width: 62%; aspect-ratio: 1; transform: translate(-50%,-50%); border: 1.5px dashed var(--color-label); border-radius: 50%; opacity: .5; }
+    .hub .c { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 25%; aspect-ratio: 1; border-radius: 50%; background: var(--color-label); color: #fff; display: grid; place-content: center; text-align: center; font-weight: 500; font-size: .9rem; line-height: 1.3; padding: 10px; }
+    .hub .n { position: absolute; transform: translate(-50%,-50%); width: 24%; background: #fff; padding: 10px 12px; text-align: center; font-size: .82rem; font-weight: 500; line-height: 1.35; box-shadow: 0 10px 24px -16px rgba(0,0,0,.3); border-top: 3px solid var(--color-accent); }
+    .tree { display: grid; gap: 0; justify-items: center; overflow-x: auto; }
+    .tree .root { background: var(--color-label); color: #fff; padding: 10px 28px; font-weight: 500; }
+    .tree .stem { width: 2px; height: 20px; background: var(--color-label); }
+    .tree .row { display: grid; grid-template-columns: repeat(8, minmax(110px,1fr)); width: 100%; min-width: 900px; border-top: 2px solid var(--color-label); }
+    .tree .col { display: grid; justify-items: center; align-content: start; gap: 6px; padding: 0 4px; }
+    .tree .col::before { content: ''; width: 2px; height: 16px; background: var(--color-label); }
+    .tree .h { background: #fff; border: 1.5px solid var(--color-label); padding: 6px 8px; font-weight: 600; font-size: .82rem; width: 100%; text-align: center; }
+    .tree .l { background: var(--color-accent-dim); padding: 5px 8px; font-size: .76rem; width: 92%; text-align: center; color: var(--color-text); }
+    .issues { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .issues article { background: #fff; padding: 22px 24px; display: grid; gap: 8px; align-content: start; }
+    .issues h4 { font-weight: 500; font-size: 1.05rem; } .issues ul { list-style: none; display: grid; gap: 6px; font-size: .9rem; color: var(--color-text-muted); } .issues li::before { content: '•  '; color: var(--color-label); } .issues b { color: var(--color-text); font-weight: 600; }
+    .stat { color: var(--color-label); font-weight: 600; font-size: .88rem !important; }
+    .resp { display: grid; grid-template-columns: minmax(0,4fr) minmax(150px,1.5fr) minmax(130px,1fr); gap: 20px; align-items: start; }
+    .resp .wf .btn { white-space: normal; max-width: 100%; } .resp .wf .t { overflow-wrap: anywhere; }
+    .hub .n { width: 20%; } .hub .n:nth-of-type(3) { transform: translate(-70%,-50%); } .hub .n:nth-of-type(7) { transform: translate(-30%,-50%); }
+    .resp figure { margin: 0; display: grid; gap: 8px; } .resp img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 24px 50px -30px rgba(0,0,0,.35); }
+    .resp figcaption { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--color-label); border: none !important; padding: 0 !important; }
+    @media (max-width: 900px) { .vt::before { left: 20px; } .vt > div { grid-template-columns: 40px minmax(0,1fr); gap: 10px; } .vt .k { grid-column: 1 !important; } .vt > div .z { grid-column: 2 !important; text-align: left !important; } .hub { aspect-ratio: auto; display: grid; gap: 8px; } .hub::before { display: none; } .hub .c, .hub .n { position: static; transform: none; width: auto; border-radius: 0; aspect-ratio: auto; } .issues { grid-template-columns: minmax(0,1fr); } .resp { grid-template-columns: 1fr 1fr; } .resp figure:first-child { grid-column: 1 / -1; } }
+  </style>
+  <style>
+    .pstate { background: #fff; padding: 28px 32px; display: grid; gap: 10px; border-left: 4px solid var(--color-label); }
+    .pstate p { margin: 0 !important; font-size: 1.06rem !important; line-height: 1.7 !important; color: var(--color-text) !important; }
+    .pstate b { font-weight: 600; }
+    .audit { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); margin: 16px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .audit div { padding: 18px 16px; display: grid; gap: 2px; } .audit div + div { border-left: 1px solid var(--color-border); }
+    .audit b { font-size: 2rem; font-weight: 300; color: var(--color-label); line-height: 1.1; } .audit span { font-size: .85rem; color: var(--color-text-muted); }
+    .pains { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .pains article { background: #fff; padding: 22px 24px; display: grid; gap: 8px; align-content: start; }
+    .pains .k { color: var(--color-label); font-size: .8rem; letter-spacing: .1em; } .pains h4 { font-weight: 500; font-size: 1.06rem; }
+    .pains p { margin: 0 !important; font-size: .9rem !important; line-height: 1.6 !important; } .pains .who { font-size: .82rem !important; border-top: 1px solid #eee; padding-top: 8px; } .pains .who b { color: var(--color-text); font-weight: 600; }
+    .hmw { margin-top: 16px; background: var(--color-label); padding: 28px 32px; display: grid; gap: 8px; }
+    .hmw .label { color: rgba(255,255,255,.75) !important; } .hmw p { margin: 0 !important; color: #fff !important; font-size: 1.22rem !important; line-height: 1.55 !important; font-weight: 300; }
+    .hmw u { text-decoration: none; background: linear-gradient(transparent 62%, rgba(255,255,255,.28) 62%); }
+    .qa .s-who { display: block; margin-top: 12px; font-size: .78rem; color: var(--color-label); letter-spacing: .04em; }
+    .avatar-i { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--color-label); color: #fff; font-weight: 600; font-size: 1.3rem; }
+    .journey { display: grid; grid-template-columns: 130px repeat(5, minmax(0,1fr)); gap: 2px; background: var(--color-bg); font-size: .86rem; }
+    .journey > div { background: #fff; padding: 12px 14px; color: var(--color-text-muted); line-height: 1.5; }
+    .journey .rh { background: transparent; color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; display: flex; align-items: center; }
+    .journey .st { background: var(--color-text); color: #fff; font-weight: 500; }
+    .journey .emo { display: grid; place-items: center; font-size: 1.4rem; }
+    .journey .opp { background: var(--color-accent-dim); color: var(--color-text); }
+    .hifi-row { display: grid; gap: 28px; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(220px, 260px)); }
+    .hifi-row figure { margin: 0; display: grid; gap: 10px; justify-items: center; }
+    .hifi-row figcaption { border: none !important; padding: 0 !important; font-size: .85rem; color: var(--color-text-muted); text-align: center; }
+    .hifi-row figcaption b { display: block; color: var(--color-text); font-weight: 600; }
+    .hp { width: 100%; max-width: 260px; aspect-ratio: 9 / 19.5; border-radius: 34px; border: 7px solid #0d0d0f; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0,0,0,.45); position: relative; display: flex; flex-direction: column; font-size: 10px; line-height: 1.35; }
+    .hp .sb { display: flex; justify-content: space-between; padding: 8px 16px 4px; font-size: 9px; font-weight: 600; }
+    .hd { border-radius: 10px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0,0,0,.4); border: 1px solid #dcdcd8; font-size: 10.5px; line-height: 1.4; }
+    .hd .chrome { height: 26px; background: #f1f1ef; border-bottom: 1px solid #ddd; display: flex; align-items: center; gap: 6px; padding: 0 10px; }
+    .hd .chrome i { width: 8px; height: 8px; border-radius: 50%; background: #cfcfcb; }
+    .hd .chrome span { margin-left: 8px; font-size: 9px; color: #777; background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 1px 10px; }
+    .tilegrid { display: grid; gap: 6px; }
+    @media (max-width: 900px) { .audit { grid-template-columns: repeat(2, minmax(0,1fr)); } .audit div + div { border-left: none; } .pains { grid-template-columns: minmax(0,1fr); } .journey { grid-template-columns: 100px repeat(5, minmax(140px,1fr)); overflow-x: auto; } .qa, .findings, .sort-setup { grid-template-columns: minmax(0,1fr) !important; } }
+
+    .hero-image .hifi-row figure, .hero-shot figure { background: transparent !important; box-shadow: none !important; border-radius: 0 !important; overflow: visible !important; border: none !important; }
+  </style>
+  <link rel="stylesheet" href="assets/editorial.css">
 </head>
-<body>
-  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
-  </button>
 
+
+
+<body data-theme="zephyr">
+  <div class="progress" id="progress"></div>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <nav>
-    <a href="index.html" class="nav-back">
-      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
-      Back to Portfolio
-    </a>
-    <div class="nav-links">
-      <a href="case-study-medconnect.html">← Previous</a>
-      <a href="index.html">All Projects</a>
-      <a href="case-study-consilio.html">Next →</a>
-    </div>
+    <a href="portfolio.html" class="nav-back"><svg viewBox="0 0 100 100" width="30" height="30" fill="none"><circle cx="50" cy="30" r="15" stroke="#171717" stroke-width="4"/><path d="M35 45 L50 65 M65 45 L50 65 M50 65 L50 90" stroke="#171717" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#171717"/><circle cx="65" cy="45" r="4" fill="#171717"/><circle cx="50" cy="90" r="4" fill="#171717"/></svg> Yogesh Malik</a>
+    <div class="nav-links"><a href="case-study-helionova.html">← Previous</a><a href="portfolio.html">All projects</a><a href="case-study-genai-art-direction.html">Next →</a></div>
   </nav>
-
   <header class="case-header">
-    <div class="case-meta">
-      <span class="case-tag">FinTech</span>
-      <span class="case-tag">Mobile App</span>
-      <span class="case-tag">iOS & Android</span>
-      <span class="case-tag">Harman Connected Services</span>
-    </div>
-    <h1>Zephyr Bank Mobile Banking Redesign</h1>
-    <p class="case-intro">Led the complete UX overhaul of a struggling mobile banking app, transforming a 2.1-star rated experience into an award-winning 4.6-star app with 67% increase in mobile deposits.</p>
+    <div class="case-meta"><span class="case-tag">FinTech</span><span class="case-tag">Mobile banking</span><span class="case-tag">iOS · Android · Web</span></div>
+    <h1>Zephyr Bank: rebuilding <em>trust in mobile banking</em></h1>
+    <p class="case-intro">Zephyr Bank’s app had a 2.1-star rating and customers avoided it. I led the end-to-end redesign of its iOS, Android and online banking experience, focusing on the five tasks people do most, and on making every money movement feel safe.</p>
   </header>
+  <div class="hero-image"><div class="hifi-row" style="max-width:900px;margin:0 auto"><figure><div class="hp" style="background:#F3F6F7;color:#0B1F2A"><div style="background:#0B1F2A;color:#fff;padding-bottom:16px"><div class="sb" style="color:#fff"><span>9:41</span><span>●●● ▮</span></div><div style="padding:4px 16px;display:flex;justify-content:space-between;align-items:center"><span>Hi, Sarah</span><span style="width:22px;height:22px;border-radius:50%;background:#00D4AA;color:#0B1F2A;display:grid;place-items:center;font-weight:700;font-size:9px">SC</span></div><div style="padding:10px 16px 0"><span style="color:#9fb3bd;font-size:9px">Total balance</span><div style="font-size:24px;font-weight:800;letter-spacing:-.02em">$8,412.<span style="font-size:15px">36</span></div><span style="color:#00D4AA;font-size:9px">▲ $640 this month</span></div></div><div style="margin:-10px 12px 0;background:#fff;border-radius:14px;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:4px;box-shadow:0 6px 16px -8px rgba(11,31,42,.3)"><span><span style="display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:10px;background:#e6f8f4"></span>Deposit</span><span><span style="display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:10px;background:#e6f8f4"></span>Send</span><span><span style="display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:10px;background:#e6f8f4"></span>Pay bills</span><span><span style="display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:10px;background:#e6f8f4"></span>Cards</span></div><div style="padding:12px 16px;flex:1"><div style="display:flex;justify-content:space-between"><b>Recent activity</b><span style="color:#0a7f6a">See all</span></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">W</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Whole Foods</b><span style="color:#7a8a92;font-size:8.5px">Groceries · Today</span></span><b style="color:#0B1F2A">−$64.20</b></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">P</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Payroll</b><span style="color:#7a8a92;font-size:8.5px">Acme Corp · Fri</span></span><b style="color:#0a7f6a">+$2,450.00</b></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">M</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Mia Chen</b><span style="color:#7a8a92;font-size:8.5px">Sent · Thu</span></span><b style="color:#0B1F2A">−$40.00</b></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">N</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Netflix</b><span style="color:#7a8a92;font-size:8.5px">Subscription · Wed</span></span><b style="color:#0B1F2A">−$15.99</b></div></div><div style="margin-top:auto;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #e3e8ea;padding:7px 4px 10px;text-align:center;font-size:8px;color:#7a8a92"><span style="color:#0B1F2A;font-weight:700"><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#00D4AA"></span>Home</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Accounts</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Pay</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Insights</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>More</span></div></div></figure><figure><div class="hp" style="background:#fff;color:#0B1F2A"><div class="sb" style="color:#0B1F2A"><span>9:41</span><span>●●● ▮</span></div><div style="padding:6px 16px"><b style="font-size:13px">Send money</b></div><div style="padding:4px 16px;display:flex;gap:10px"><span style="text-align:center;font-size:8.5px"><span style="display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-bottom:3px;font-weight:700;background:#00D4AA;outline:2px solid #0B1F2A;outline-offset:2px">M</span>Mia</span><span style="text-align:center;font-size:8.5px"><span style="display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-bottom:3px;font-weight:700;background:#e6edf0">D</span>Dad</span><span style="text-align:center;font-size:8.5px"><span style="display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-bottom:3px;font-weight:700;background:#e6edf0">A</span>Alex</span><span style="text-align:center;font-size:8.5px"><span style="display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-bottom:3px;font-weight:700;background:#e6edf0">J</span>Jo</span></div><div style="text-align:center;padding:14px 0 4px"><span style="color:#7a8a92;font-size:9px">To Mia Chen · instant</span><div style="font-size:30px;font-weight:800;letter-spacing:-.03em">$120<span style="color:#9aa8ae">.00</span></div><span style="display:inline-block;margin-top:4px;padding:2px 8px;border-radius:20px;background:#e6f8f4;color:#0a7f6a;font-size:8.5px">Dinner 🍜</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:8px 22px;text-align:center;font-size:15px;font-weight:600"><span style="padding:7px 0">1</span><span style="padding:7px 0">2</span><span style="padding:7px 0">3</span><span style="padding:7px 0">4</span><span style="padding:7px 0">5</span><span style="padding:7px 0">6</span><span style="padding:7px 0">7</span><span style="padding:7px 0">8</span><span style="padding:7px 0">9</span><span style="padding:7px 0">.</span><span style="padding:7px 0">0</span><span style="padding:7px 0">⌫</span></div><div style="margin-top:auto;padding:12px 16px 18px"><span style="display:block;text-align:center;padding:10px;border-radius:12px;font-weight:700;background:#00D4AA;color:#0B1F2A">Send $120 to Mia</span></div></div></figure><figure><div class="hp" style="background:#F3F6F7;color:#0B1F2A"><div class="sb" style="color:#0B1F2A"><span>9:41</span><span>●●● ▮</span></div><div style="padding:6px 16px;display:flex;justify-content:space-between"><b style="font-size:13px">Spending insights</b><span style="color:#7a8a92">June ▾</span></div><div style="margin:6px 12px;background:#fff;border-radius:14px;padding:14px;display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:center"><span style="width:90px;height:90px;border-radius:50%;background:conic-gradient(#0B1F2A 0 38%, #00D4AA 0 62%, #7fb7ff 0 78%, #ffb547 0 90%, #d6dde0 0);display:grid;place-items:center"><span style="width:58px;height:58px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;font-size:8px;line-height:1.2"><b style="font-size:12px">$2,184</b>spent</span></span><div style="display:grid;gap:5px;font-size:8.5px"><span style="display:flex;gap:5px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#0B1F2A"></i>Housing<b style="margin-left:auto">38%</b></span><span style="display:flex;gap:5px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#00D4AA"></i>Food<b style="margin-left:auto">24%</b></span><span style="display:flex;gap:5px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#7fb7ff"></i>Transport<b style="margin-left:auto">16%</b></span><span style="display:flex;gap:5px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#ffb547"></i>Fun<b style="margin-left:auto">12%</b></span></div></div><div style="margin:6px 12px;background:#e6f8f4;border-radius:12px;padding:10px 12px;color:#075e4f"><b>Nice work!</b> You spent 12% less on dining than May.</div><div style="margin:6px 12px;background:#fff;border-radius:14px;padding:12px"><b>Budgets</b><div style="margin-top:8px;font-size:8.5px"><div style="display:flex;justify-content:space-between"><span>Groceries</span><span style="color:#7a8a92">72%</span></div><div style="height:6px;border-radius:3px;background:#edf1f2;margin-top:3px"><div style="height:100%;width:72%;border-radius:3px;background:#00D4AA"></div></div></div><div style="margin-top:8px;font-size:8.5px"><div style="display:flex;justify-content:space-between"><span>Dining out</span><span style="color:#7a8a92">45%</span></div><div style="height:6px;border-radius:3px;background:#edf1f2;margin-top:3px"><div style="height:100%;width:45%;border-radius:3px;background:#00D4AA"></div></div></div><div style="margin-top:8px;font-size:8.5px"><div style="display:flex;justify-content:space-between"><span>Shopping</span><span style="color:#c5221f">91%</span></div><div style="height:6px;border-radius:3px;background:#edf1f2;margin-top:3px"><div style="height:100%;width:91%;border-radius:3px;background:#e0584f"></div></div></div></div><div style="margin-top:auto;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #e3e8ea;padding:7px 4px 10px;text-align:center;font-size:8px;color:#7a8a92"><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Home</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Accounts</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Pay</span><span style="color:#0B1F2A;font-weight:700"><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#00D4AA"></span>Insights</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>More</span></div></div></figure></div></div>
+  <dl class="snapshot"><div><dt>Client</dt><dd>Zephyr Bank (via Harman)</dd></div><div><dt>My role</dt><dd>Senior UX/UI Designer</dd></div><div><dt>Timeline</dt><dd>2016–2018</dd></div><div><dt>Platforms</dt><dd>iOS, Android, Web</dd></div><div><dt>Customers</dt><dd>850,000+</dd></div></dl>
+  <div class="layout"><main>
 
-  <div class="quick-stats">
-    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2016 – 2018</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Senior UX/UI Designer</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Platform</div><div class="quick-stat-value">iOS & Android</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Users</div><div class="quick-stat-value">850,000+</div></div>
-  </div>
-
-  <!-- Hero Mockup Showcase -->
-  <div style="background: linear-gradient(135deg, #00D4AA08 0%, #0a1a15 30%, #0a0a0a 70%, #00D4AA05 100%); padding: 60px 48px; margin-bottom: 40px; overflow: hidden;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
-      <svg viewBox="0 0 160 320" width="160" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 20px 40px rgba(0, 212, 170, 0.3));">
-        <defs>
-          <linearGradient id="heroIphoneFrame" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#3a3a3a"/>
-            <stop offset="50%" style="stop-color:#1a1a1a"/>
-            <stop offset="100%" style="stop-color:#0a0a0a"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="160" height="320" rx="28" fill="url(#heroIphoneFrame)" stroke="#4a4a4a" stroke-width="1"/>
-        <rect x="8" y="8" width="144" height="304" rx="22" fill="#0a0a0a"/>
-        <rect x="45" y="14" width="70" height="24" rx="12" fill="#000"/>
-        <circle cx="100" cy="26" r="6" fill="#1a1a1a"/>
-        <text x="20" y="30" fill="#fff" font-family="sans-serif" font-size="10" font-weight="500">9:41</text>
-        <rect x="125" y="22" width="22" height="10" rx="2" fill="none" stroke="#fff" stroke-width="1"/>
-        <rect x="127" y="24" width="16" height="6" rx="1" fill="#00D4AA"/>
-        <rect x="16" y="50" width="128" height="50" fill="#0a0a0a"/>
-        <text x="24" y="70" fill="#fff" font-family="sans-serif" font-size="12" font-weight="600">Good morning, Sarah</text>
-        <text x="24" y="88" fill="#6b7280" font-family="sans-serif" font-size="9">Welcome back to Zephyr</text>
-        <circle cx="130" cy="75" r="16" fill="#00D4AA" fill-opacity="0.2"/>
-        <circle cx="130" cy="75" r="10" fill="#00D4AA" fill-opacity="0.4"/>
-        <rect x="20" y="108" width="120" height="70" rx="12" fill="#00D4AA" fill-opacity="0.15" stroke="#00D4AA" stroke-width="1.5"/>
-        <text x="32" y="130" fill="#9ca3af" font-family="sans-serif" font-size="8">Total Balance</text>
-        <text x="32" y="155" fill="#fff" font-family="sans-serif" font-size="22" font-weight="700">$12,458.50</text>
-        <text x="32" y="172" fill="#00D4AA" font-family="sans-serif" font-size="8">↑ +$342.50 this month</text>
-        <g transform="translate(20, 195)">
-          <rect x="0" y="0" width="36" height="50" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-          <circle cx="18" cy="18" r="10" fill="#00D4AA" fill-opacity="0.2"/>
-          <path d="M12 18 L24 18 M18 12 L18 24" stroke="#00D4AA" stroke-width="2" stroke-linecap="round"/>
-          <text x="18" y="40" text-anchor="middle" fill="#9ca3af" font-family="sans-serif" font-size="6">Send</text>
-        </g>
-        <g transform="translate(62, 195)">
-          <rect x="0" y="0" width="36" height="50" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-          <circle cx="18" cy="18" r="10" fill="#00D4AA" fill-opacity="0.2"/>
-          <path d="M12 18 L24 18" stroke="#00D4AA" stroke-width="2" stroke-linecap="round"/>
-          <text x="18" y="40" text-anchor="middle" fill="#9ca3af" font-family="sans-serif" font-size="6">Request</text>
-        </g>
-        <g transform="translate(104, 195)">
-          <rect x="0" y="0" width="36" height="50" rx="10" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-          <circle cx="18" cy="18" r="10" fill="#00D4AA" fill-opacity="0.2"/>
-          <rect x="10" y="12" width="16" height="12" rx="2" fill="none" stroke="#00D4AA" stroke-width="1.5"/>
-          <text x="18" y="40" text-anchor="middle" fill="#9ca3af" font-family="sans-serif" font-size="6">Cards</text>
-        </g>
-        <text x="24" y="268" fill="#fff" font-family="sans-serif" font-size="10" font-weight="600">Recent Activity</text>
-        <rect x="20" y="276" width="120" height="28" rx="6" fill="#1a1a1a"/>
-        <circle cx="34" cy="290" r="8" fill="#ef4444" fill-opacity="0.2"/>
-        <text x="34" y="293" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="8">↓</text>
-        <text x="48" y="287" fill="#fff" font-family="sans-serif" font-size="7">Amazon</text>
-        <text x="48" y="297" fill="#6b7280" font-family="sans-serif" font-size="5">Today, 2:30 PM</text>
-        <text x="132" y="292" text-anchor="end" fill="#ef4444" font-family="sans-serif" font-size="7" font-weight="500">-$54.99</text>
-        <rect x="55" y="310" width="50" height="5" rx="2.5" fill="#fff" fill-opacity="0.3"/>
-      </svg>
-      
-      <svg viewBox="0 0 160 320" width="160" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 20px 40px rgba(0, 212, 170, 0.2)); transform: translateY(20px);">
-        <rect x="0" y="0" width="160" height="320" rx="28" fill="url(#heroIphoneFrame)" stroke="#4a4a4a" stroke-width="1"/>
-        <rect x="8" y="8" width="144" height="304" rx="22" fill="#0a0a0a"/>
-        <rect x="45" y="14" width="70" height="24" rx="12" fill="#000"/>
-        <text x="20" y="30" fill="#fff" font-family="sans-serif" font-size="10" font-weight="500">9:41</text>
-        <path d="M20 55 L32 55" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-        <text x="50" y="60" fill="#fff" font-family="sans-serif" font-size="14" font-weight="600">Send Money</text>
-        <rect x="20" y="80" width="120" height="45" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-        <circle cx="42" cy="102" r="14" fill="#00D4AA" fill-opacity="0.3"/>
-        <text x="42" y="107" text-anchor="middle" fill="#00D4AA" font-family="sans-serif" font-size="10" font-weight="600">JD</text>
-        <text x="64" y="97" fill="#fff" font-family="sans-serif" font-size="9">John Doe</text>
-        <text x="64" y="112" fill="#6b7280" font-family="sans-serif" font-size="7">@johndoe</text>
-        <text x="80" y="155" text-anchor="middle" fill="#6b7280" font-family="sans-serif" font-size="9">Amount</text>
-        <text x="80" y="195" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="36" font-weight="700">$150</text>
-        <text x="80" y="215" text-anchor="middle" fill="#00D4AA" font-family="sans-serif" font-size="8">Available: $12,458.50</text>
-        <g transform="translate(20, 235)">
-          <rect x="0" y="0" width="36" height="32" rx="6" fill="#2a2a2a"/>
-          <text x="18" y="21" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14">1</text>
-        </g>
-        <g transform="translate(62, 235)">
-          <rect x="0" y="0" width="36" height="32" rx="6" fill="#2a2a2a"/>
-          <text x="18" y="21" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14">2</text>
-        </g>
-        <g transform="translate(104, 235)">
-          <rect x="0" y="0" width="36" height="32" rx="6" fill="#2a2a2a"/>
-          <text x="18" y="21" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="14">3</text>
-        </g>
-        <rect x="20" y="280" width="120" height="36" rx="18" fill="#00D4AA"/>
-        <text x="80" y="303" text-anchor="middle" fill="#0a0a0a" font-family="sans-serif" font-size="11" font-weight="600">Send $150</text>
-        <rect x="55" y="310" width="50" height="5" rx="2.5" fill="#fff" fill-opacity="0.3"/>
-      </svg>
-      
-      <svg viewBox="0 0 160 320" width="160" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 20px 40px rgba(0, 212, 170, 0.15));">
-        <rect x="0" y="0" width="160" height="320" rx="28" fill="url(#heroIphoneFrame)" stroke="#4a4a4a" stroke-width="1"/>
-        <rect x="8" y="8" width="144" height="304" rx="22" fill="#0a0a0a"/>
-        <rect x="45" y="14" width="70" height="24" rx="12" fill="#000"/>
-        <text x="20" y="30" fill="#fff" font-family="sans-serif" font-size="10" font-weight="500">9:41</text>
-        <path d="M20 55 L32 55" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-        <text x="50" y="60" fill="#fff" font-family="sans-serif" font-size="14" font-weight="600">Insights</text>
-        <text x="24" y="90" fill="#6b7280" font-family="sans-serif" font-size="8">This Month's Spending</text>
-        <text x="24" y="115" fill="#fff" font-family="sans-serif" font-size="20" font-weight="700">$2,847.50</text>
-        <text x="24" y="132" fill="#10b981" font-family="sans-serif" font-size="8">↓ 12% less than last month</text>
-        <rect x="20" y="145" width="120" height="60" rx="8" fill="#1a1a1a"/>
-        <rect x="28" y="185" width="12" height="12" rx="2" fill="#00D4AA"/>
-        <rect x="44" y="175" width="12" height="22" rx="2" fill="#00D4AA" fill-opacity="0.7"/>
-        <rect x="60" y="165" width="12" height="32" rx="2" fill="#00D4AA" fill-opacity="0.5"/>
-        <rect x="76" y="170" width="12" height="27" rx="2" fill="#00D4AA" fill-opacity="0.6"/>
-        <rect x="92" y="180" width="12" height="17" rx="2" fill="#00D4AA" fill-opacity="0.4"/>
-        <rect x="108" y="160" width="12" height="37" rx="2" fill="#00D4AA" fill-opacity="0.8"/>
-        <text x="24" y="225" fill="#fff" font-family="sans-serif" font-size="9" font-weight="600">Top Categories</text>
-        <rect x="20" y="235" width="120" height="25" rx="6" fill="#1a1a1a"/>
-        <circle cx="34" cy="247" r="6" fill="#00D4AA" fill-opacity="0.3"/>
-        <text x="46" y="251" fill="#fff" font-family="sans-serif" font-size="7">Shopping</text>
-        <text x="130" y="251" text-anchor="end" fill="#fff" font-family="sans-serif" font-size="7">$842</text>
-        <rect x="20" y="265" width="120" height="25" rx="6" fill="#1a1a1a"/>
-        <circle cx="34" cy="277" r="6" fill="#f59e0b" fill-opacity="0.3"/>
-        <text x="46" y="281" fill="#fff" font-family="sans-serif" font-size="7">Dining</text>
-        <text x="130" y="281" text-anchor="end" fill="#fff" font-family="sans-serif" font-size="7">$456</text>
-        <rect x="55" y="310" width="50" height="5" rx="2.5" fill="#fff" fill-opacity="0.3"/>
-      </svg>
-    </div>
-    <p style="text-align: center; color: #6b7280; font-size: 0.9rem; margin-top: 32px;">Final designs: Home Dashboard, Send Money, and Spending Insights screens</p>
-  </div>
-
-  <div class="case-content">
-    <section class="case-section">
-      <p class="case-section-label">Context</p>
-      <h2>The Challenge</h2>
-      <p>Zephyr Bank, a mid-sized regional bank with 850,000+ customers across the Midwest US, was losing market share to digital-first challenger banks. Their mobile app had a dismal 2.1-star rating, 68% uninstall rate within 30 days, and customers were actively avoiding digital channels.</p>
-      <p>Harman Connected Services was brought in to completely reimagine the mobile banking experience and help Zephyr compete in an increasingly digital-first financial landscape.</p>
-      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we transform an underperforming mobile banking app into a trusted, intuitive experience that drives adoption and reduces branch dependency?</p></div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Discovery</p>
-      <h2>Competitor Analysis</h2>
-      <p>I conducted a comprehensive analysis of 8 competing banking apps to identify industry best practices and opportunities for differentiation.</p>
-      
-      <div class="diagram-container">
-        <p class="diagram-title">Competitor Feature Matrix</p>
-        <table class="competitor-table">
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>Chase</th>
-              <th>Simple</th>
-              <th>Chime</th>
-              <th>Zephyr (Before)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Biometric Login</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="cross">✗</td>
-            </tr>
-            <tr>
-              <td>Mobile Check Deposit</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-            </tr>
-            <tr>
-              <td>Spending Insights</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="cross">✗</td>
-            </tr>
-            <tr>
-              <td>Instant Transfers</td>
-              <td class="check">✓</td>
-              <td class="cross">✗</td>
-              <td class="check">✓</td>
-              <td class="cross">✗</td>
-            </tr>
-            <tr>
-              <td>Card Controls</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="cross">✗</td>
-            </tr>
-            <tr>
-              <td>Goal-based Savings</td>
-              <td class="cross">✗</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="cross">✗</td>
-            </tr>
-            <tr>
-              <td>Bill Pay</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="cross">✗</td>
-              <td class="check">✓</td>
-            </tr>
-            <tr>
-              <td>Dark Mode</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="check">✓</td>
-              <td class="cross">✗</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="diagram-caption">Zephyr was missing 6 of 8 key features that competitors offered</p>
-      </div>
-
-      <h3>User Research</h3>
-      <p>I conducted in-depth interviews with 32 customers across different demographics and banking behaviors to understand their needs, frustrations, and expectations.</p>
-      
-      <div class="quote-block">
-        <p class="quote-text">I downloaded the app once, tried to deposit a check, and it crashed three times. I just drove to the branch instead. Haven't opened the app since.</p>
-        <p class="quote-author">— <strong>Sarah, 34</strong>, Zephyr customer for 6 years</p>
-      </div>
-
-      <div class="quote-block">
-        <p class="quote-text">My kids use Venmo and Cash App so easily. Why does checking my balance feel like doing my taxes?</p>
-        <p class="quote-author">— <strong>Robert, 58</strong>, Small business owner</p>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Define</p>
-      <h2>User Personas</h2>
-      <p>Based on research findings, I developed three primary personas representing Zephyr's core customer segments.</p>
-      
-      <div class="persona-grid">
-        <div class="persona-card">
-          <div class="persona-avatar">👩‍💼</div>
-          <div class="persona-name">Sarah Chen</div>
-          <div class="persona-role">Young Professional</div>
-          <div class="persona-details">
-            <p>28 years old, Marketing Manager</p>
-            <p>Tech-savvy, uses 5+ finance apps</p>
-          </div>
-          <div class="persona-goals">
-            <h5>Goals</h5>
-            <ul>
-              <li>Quick balance checks</li>
-              <li>Easy peer transfers</li>
-              <li>Spending insights</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="persona-card">
-          <div class="persona-avatar">👨‍💼</div>
-          <div class="persona-name">Robert Williams</div>
-          <div class="persona-role">Small Business Owner</div>
-          <div class="persona-details">
-            <p>52 years old, Auto Shop Owner</p>
-            <p>Moderate tech comfort, values security</p>
-          </div>
-          <div class="persona-goals">
-            <h5>Goals</h5>
-            <ul>
-              <li>Separate business/personal</li>
-              <li>Quick deposits</li>
-              <li>Transaction history</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="persona-card">
-          <div class="persona-avatar">👵</div>
-          <div class="persona-name">Dorothy Miller</div>
-          <div class="persona-role">Retiree</div>
-          <div class="persona-details">
-            <p>67 years old, Retired Teacher</p>
-            <p>Limited tech experience, prefers simplicity</p>
-          </div>
-          <div class="persona-goals">
-            <h5>Goals</h5>
-            <ul>
-              <li>Check balance safely</li>
-              <li>Pay bills on time</li>
-              <li>Fraud protection</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Define</p>
-      <h2>User Journey Mapping</h2>
-      <p>I mapped the complete user journey for the primary flow—mobile check deposit—identifying pain points and opportunities at each stage.</p>
-      
-      <div class="diagram-container">
-        <p class="diagram-title">Mobile Check Deposit Journey</p>
-        <svg viewBox="0 0 800 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 600px;">
-          <!-- Journey stages -->
-          <g transform="translate(50, 40)">
-            <rect x="0" y="0" width="120" height="60" rx="8" fill="#00D4AA" fill-opacity="0.2" stroke="#00D4AA" stroke-width="2"/>
-            <text x="60" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Open App</text>
-            <text x="60" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="9">Login required</text>
-          </g>
-          <path d="M180 70 L210 70" stroke="#00D4AA" stroke-width="2"/>
-          
-          <g transform="translate(220, 40)">
-            <rect x="0" y="0" width="120" height="60" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="60" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Find Deposit</text>
-            <text x="60" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="9">Navigate menu</text>
-          </g>
-          <path d="M350 70 L380 70" stroke="#2a2a2a" stroke-width="2"/>
-          
-          <g transform="translate(390, 40)">
-            <rect x="0" y="0" width="120" height="60" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="60" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Capture Check</text>
-            <text x="60" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="9">Photo front/back</text>
-          </g>
-          <path d="M520 70 L550 70" stroke="#2a2a2a" stroke-width="2"/>
-          
-          <g transform="translate(560, 40)">
-            <rect x="0" y="0" width="120" height="60" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="60" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Confirm</text>
-            <text x="60" y="45" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="9">Review & submit</text>
-          </g>
-          
-          <!-- Emotion curve -->
-          <text x="50" y="140" fill="#a3a3a3" font-family="sans-serif" font-size="10">EMOTION</text>
-          <line x1="50" y1="180" x2="700" y2="180" stroke="#2a2a2a" stroke-width="1" stroke-dasharray="4 4"/>
-          <text x="720" y="165" fill="#00D4AA" font-family="sans-serif" font-size="9">Happy</text>
-          <text x="720" y="200" fill="#ef4444" font-family="sans-serif" font-size="9">Frustrated</text>
-          
-          <!-- Before curve (red/frustrated) -->
-          <path d="M110 170 Q170 190 280 210 Q390 230 450 220 Q560 200 620 195" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
-          <text x="640" y="195" fill="#ef4444" font-family="sans-serif" font-size="9">Before</text>
-          
-          <!-- After curve (green/happy) -->
-          <path d="M110 170 Q170 160 280 155 Q390 150 450 150 Q560 150 620 145" stroke="#00D4AA" stroke-width="2" fill="none"/>
-          <text x="640" y="145" fill="#00D4AA" font-family="sans-serif" font-size="9">After</text>
-          
-          <!-- Pain points -->
-          <g transform="translate(50, 240)">
-            <rect x="0" y="0" width="150" height="40" rx="6" fill="#ef4444" fill-opacity="0.1" stroke="#ef4444" stroke-width="1"/>
-            <text x="75" y="15" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="9" font-weight="600">PAIN POINT</text>
-            <text x="75" y="30" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Complex 6-step login</text>
-          </g>
-          
-          <g transform="translate(220, 240)">
-            <rect x="0" y="0" width="150" height="40" rx="6" fill="#ef4444" fill-opacity="0.1" stroke="#ef4444" stroke-width="1"/>
-            <text x="75" y="15" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="9" font-weight="600">PAIN POINT</text>
-            <text x="75" y="30" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Buried in 3rd menu level</text>
-          </g>
-          
-          <g transform="translate(390, 240)">
-            <rect x="0" y="0" width="150" height="40" rx="6" fill="#ef4444" fill-opacity="0.1" stroke="#ef4444" stroke-width="1"/>
-            <text x="75" y="15" text-anchor="middle" fill="#ef4444" font-family="sans-serif" font-size="9" font-weight="600">PAIN POINT</text>
-            <text x="75" y="30" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Camera crashed 40% of time</text>
-          </g>
-          
-          <g transform="translate(560, 240)">
-            <rect x="0" y="0" width="150" height="40" rx="6" fill="#00D4AA" fill-opacity="0.1" stroke="#00D4AA" stroke-width="1"/>
-            <text x="75" y="15" text-anchor="middle" fill="#00D4AA" font-family="sans-serif" font-size="9" font-weight="600">OPPORTUNITY</text>
-            <text x="75" y="30" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="8">Instant confirmation</text>
-          </g>
-        </svg>
-        <p class="diagram-caption">Mapping emotions revealed critical drop-off points in the deposit flow</p>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Design</p>
-      <h2>Information Architecture</h2>
-      <p>I restructured the app's navigation from a complex 4-level hierarchy to a streamlined 2-level structure with quick actions on the home screen.</p>
-      
-      <div class="diagram-container">
-        <p class="diagram-title">Simplified Navigation Structure</p>
-        <svg viewBox="0 0 700 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 500px;">
-          <!-- Home/Root -->
-          <g transform="translate(300, 20)">
-            <rect x="0" y="0" width="100" height="45" rx="8" fill="#00D4AA" stroke="#00D4AA" stroke-width="2"/>
-            <text x="50" y="27" text-anchor="middle" fill="#0a0a0a" font-family="sans-serif" font-size="12" font-weight="600">Home</text>
-          </g>
-          
-          <!-- Lines to main sections -->
-          <path d="M350 65 L350 90 L150 90 L150 110" stroke="#00D4AA" stroke-width="2"/>
-          <path d="M350 65 L350 90 L350 110" stroke="#00D4AA" stroke-width="2"/>
-          <path d="M350 65 L350 90 L550 90 L550 110" stroke="#00D4AA" stroke-width="2"/>
-          
-          <!-- Main navigation items -->
-          <g transform="translate(75, 110)">
-            <rect x="0" y="0" width="150" height="40" rx="6" fill="#1a1a1a" stroke="#00D4AA" stroke-width="1"/>
-            <text x="75" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="500">💰 Accounts</text>
-          </g>
-          
-          <g transform="translate(275, 110)">
-            <rect x="0" y="0" width="150" height="40" rx="6" fill="#1a1a1a" stroke="#00D4AA" stroke-width="1"/>
-            <text x="75" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="500">💸 Transfers</text>
-          </g>
-          
-          <g transform="translate(475, 110)">
-            <rect x="0" y="0" width="150" height="40" rx="6" fill="#1a1a1a" stroke="#00D4AA" stroke-width="1"/>
-            <text x="75" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="500">⚙️ More</text>
-          </g>
-          
-          <!-- Sub-items under Accounts -->
-          <path d="M150 150 L150 170" stroke="#2a2a2a" stroke-width="1"/>
-          <g transform="translate(75, 170)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Checking & Savings</text>
-          </g>
-          <g transform="translate(75, 205)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Credit Cards</text>
-          </g>
-          <g transform="translate(75, 240)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Statements</text>
-          </g>
-          
-          <!-- Sub-items under Transfers -->
-          <path d="M350 150 L350 170" stroke="#2a2a2a" stroke-width="1"/>
-          <g transform="translate(275, 170)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Send Money</text>
-          </g>
-          <g transform="translate(275, 205)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Deposit Check</text>
-          </g>
-          <g transform="translate(275, 240)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Pay Bills</text>
-          </g>
-          
-          <!-- Sub-items under More -->
-          <path d="M550 150 L550 170" stroke="#2a2a2a" stroke-width="1"/>
-          <g transform="translate(475, 170)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Card Controls</text>
-          </g>
-          <g transform="translate(475, 205)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Settings</text>
-          </g>
-          <g transform="translate(475, 240)">
-            <rect x="0" y="0" width="150" height="30" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="75" y="20" text-anchor="middle" fill="#a3a3a3" font-family="sans-serif" font-size="10">Help & Support</text>
-          </g>
-        </svg>
-        <p class="diagram-caption">Reduced navigation depth from 4 levels to 2, with key actions accessible from home</p>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Test</p>
-      <h2>A/B Testing Onboarding</h2>
-      <p>We tested three different onboarding approaches to maximize completion rates and early engagement.</p>
-      
-      <div class="ab-test-container">
-        <div class="ab-variant">
-          <h5>Variant A</h5>
-          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 16px;">5-screen tutorial</p>
-          <div class="rate">34%</div>
-          <div class="label">Completion Rate</div>
-        </div>
-        <div class="ab-variant">
-          <h5>Variant B</h5>
-          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 16px;">Skip option + tooltips</p>
-          <div class="rate">52%</div>
-          <div class="label">Completion Rate</div>
-        </div>
-        <div class="ab-variant winner">
-          <h5>Variant C</h5>
-          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 16px;">Progressive disclosure</p>
-          <div class="rate">78%</div>
-          <div class="label">Completion Rate</div>
-          <span class="winner-badge">WINNER</span>
-        </div>
-      </div>
-      
-      <p>The winning variant used progressive disclosure—introducing features contextually as users explored the app, rather than front-loading information.</p>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Deliver</p>
-      <h2>Design System & Handoff</h2>
-      <p>I created a comprehensive design system with 80+ components that ensured consistency across iOS and Android platforms while accelerating development.</p>
-
-      <h3>Tools & Technologies</h3>
-      <div class="tools-grid">
-        <span class="tool-tag">Figma</span>
-        <span class="tool-tag">UserTesting</span>
-        <span class="tool-tag">Optimizely</span>
-        <span class="tool-tag">JIRA</span>
-        <span class="tool-tag">Confluence</span>
-        <span class="tool-tag">React Development</span>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Results</p>
-      <h2>Measurable Impact</h2>
-      <div class="results-grid">
-        <div class="result-card"><div class="result-value">4.6★</div><div class="result-label">App Rating (from 2.1)</div></div>
-        <div class="result-card"><div class="result-value">+67%</div><div class="result-label">Mobile Deposits</div></div>
-        <div class="result-card"><div class="result-value">+55%</div><div class="result-label">Onboarding Completion</div></div>
-        <div class="result-card"><div class="result-value">-40%</div><div class="result-label">Support Calls</div></div>
-        <div class="result-card"><div class="result-value">-68%</div><div class="result-label">Uninstall Rate</div></div>
-        <div class="result-card"><div class="result-value">150+</div><div class="result-label">Screens Designed</div></div>
-      </div>
-      
-      <div class="quote-block">
-        <p class="quote-text">Yogesh and the Harman team delivered beyond our expectations. The new app has completely changed how our customers interact with us digitally.</p>
-        <p class="quote-author">— <strong>Michael Torres</strong>, VP of Digital Banking, Zephyr Financial Services</p>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Reflection</p>
-      <h2>What I Learned</h2>
-      <ul class="learnings-list">
-        <li><span><strong>Trust is everything in FinTech.</strong> Every interaction must reinforce security without creating friction. Biometric login was the single most impactful feature.</span></li>
-        <li><span><strong>Test with real money anxieties.</strong> Users behave differently when actual finances are involved—lab testing didn't capture the stress of "is my money safe?"</span></li>
-        <li><span><strong>Progressive disclosure beats tutorials.</strong> Users learn better by doing, not by reading. Our A/B tests proved this dramatically.</span></li>
-        <li><span><strong>Accessibility expands your market.</strong> Features we added for accessibility (high contrast, larger touch targets) improved usability for everyone.</span></li>
-      </ul>
-    </section>
-  </div>
-
+      <section class="case-section" id="overview">
+        <p class="label">Overview</p>
+        <h2>Project overview</h2>
+        <p>Zephyr Bank is a regional US bank with 850,000+ customers across the Midwest. Its mobile app had a 2.1-star rating and most customers avoided it, choosing branches and phone support instead. Digital-first banks like Chime and Simple were winning younger customers fast.</p>
+        <p>Working with Harman Connected Services, I led the end-to-end redesign of the iOS and Android apps and the companion online banking site, from research to a cross-platform design system.</p>
+      </section>
+      <section class="case-section" id="challenge">
+        <p class="label">The challenge</p>
+        <h2>Problem statement and pain points</h2>
+        <p>The app had grown feature by feature for eight years with no shared design. Core tasks such as depositing a check or sending money took up to 9 taps, crashed often, and gave no feedback. Customers didn’t trust it with their money.</p>
+        <div class="wide"><div class="pstate"><span class="label" style="margin:0">Problem statement</span><p>Zephyr customers <b>can’t complete everyday banking tasks</b> on their phones with confidence. A slow, confusing and unreliable app pushes them to <b>branches and call centres</b>, raising Zephyr’s costs and sending younger customers to <b>digital-first competitors</b>.</p></div>
+<div class="audit"><div><b>2.1★</b><span>App store rating, 4,800 reviews</span></div><div><b>68%</b><span>Uninstalled within 30 days</span></div><div><b>9</b><span>Taps to deposit a check</span></div><div><b>41%</b><span>Of support calls about the app</span></div></div>
+<div class="pains"><article><span class="k">01</span><h4>Unreliable check deposit</h4><p>Photos were rejected or the app crashed mid-flow, so customers drove to a branch anyway.</p><p class="who"><b>Who feels it:</b> Small-business owners, busy parents</p></article><article><span class="k">02</span><h4>Buried core tasks</h4><p>Deposit, transfers and bill pay sat three or four levels deep in an overloaded menu.</p><p class="who"><b>Who feels it:</b> All customers</p></article><article><span class="k">03</span><h4>No trust cues</h4><p>No confirmation, status or security messaging, so people weren’t sure their money had moved.</p><p class="who"><b>Who feels it:</b> Older and cautious customers</p></article><article><span class="k">04</span><h4>Slow sign-in</h4><p>A 6-digit PIN with frequent lockouts; no biometric option.</p><p class="who"><b>Who feels it:</b> Everyone, especially on the go</p></article><article><span class="k">05</span><h4>Missing modern features</h4><p>No instant transfers, card controls or spending insights that competitors offered.</p><p class="who"><b>Who feels it:</b> Younger, digital-first customers</p></article><article><span class="k">06</span><h4>Poor accessibility</h4><p>Small fixed text, low contrast and tiny touch targets.</p><p class="who"><b>Who feels it:</b> Older customers, people with low vision</p></article></div>
+<div class="hmw"><span class="label" style="margin:0">How might we</span><p>How might we turn an app customers <u>avoid</u> into one they <u>trust with their money</u>, so everyday banking takes <u>seconds, not a branch visit</u>?</p></div></div>
+      </section>
+      <section class="case-section" id="approach">
+        <p class="label">Approach</p>
+        <h2>My approach</h2>
+        <ol class="numbered"><li><span><strong>Research first:</strong> interviews, app-review mining, analytics and a competitor audit before any design.</span></li><li><span><strong>Fix the top five tasks:</strong> balance, deposit, send money, pay bills and card controls cover 90% of sessions.</span></li><li><span><strong>Trust by design:</strong> biometrics, clear status and plain-language security messages throughout.</span></li><li><span><strong>Test with real money anxieties:</strong> moderated sessions with customers’ own scenarios, then A/B tests in production.</span></li><li><span><strong>One system, two platforms:</strong> an 80+ component library shared by iOS, Android and web.</span></li></ol>
+      </section>
+      <section class="case-section" id="process">
+        <p class="label">Design process</p>
+        <h2>From discovery to launch</h2>
+        <div class="wide"><div class="flow" style="grid-template-columns:repeat(5,minmax(0,1fr))"><div><h4>Discover</h4><p>Interviews, reviews, analytics</p></div><div><h4>Define</h4><p>Personas, journeys, priorities</p></div><div><h4>Ideate</h4><p>IA, flows, sketches</p></div><div><h4>Design</h4><p>Wireframes, prototypes, UI</p></div><div><h4>Validate</h4><p>Usability + A/B tests</p></div></div></div>
+      </section>
+      <section class="case-section" id="research">
+        <p class="label">Research &amp; analysis</p>
+        <h2>What we learned from customers</h2>
+        <p>I combined qualitative and quantitative research so decisions were based on both what customers said and what they actually did.</p>
+        <div class="wide"><dl class="sort-setup" style="grid-template-columns:repeat(5,minmax(0,1fr))"><div><dt>Interviews</dt><dd>32 customers, 3 segments</dd></div><div><dt>Survey</dt><dd>1,200 responses</dd></div><div><dt>App reviews</dt><dd>4,800 analysed</dd></div><div><dt>Analytics</dt><dd>12 months of sessions</dd></div><div><dt>Competitors</dt><dd>8 banking apps</dd></div></dl><div style="height:20px"></div><div class="findings" style="grid-template-columns:repeat(2,minmax(0,1fr))"><article><h4>Speed is the first impression</h4><p>Customers open the app mostly to check their balance. Anything slower than a few seconds felt broken.</p><p><b>Design impact:</b> Balance visible immediately after biometric sign-in.</p><p class="stat">71% of sessions were balance checks</p></article><article><h4>Deposit drives branch visits</h4><p>Failed mobile deposits were the top reason for branch visits among small-business owners.</p><p><b>Design impact:</b> Rebuilt deposit with auto-capture and clear limits.</p><p class="stat">38% of deposits abandoned</p></article><article><h4>Trust beats features</h4><p>Customers would give up features before they’d accept uncertainty about where their money was.</p><p><b>Design impact:</b> Confirmation screens, status tracking and push alerts.</p><p class="stat">“Did it go through?” was the #1 call reason</p></article><article><h4>Older customers want control</h4><p>Retired customers wanted larger text and fewer, clearer choices, not a simplified “lite” mode.</p><p><b>Design impact:</b> Dynamic type, high contrast and 48px touch targets for everyone.</p><p class="stat">23% of customers are 60+</p></article></div><div style="height:20px"></div><div class="qa" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div>“I tried to deposit a check, it crashed three times. I drove to the branch instead.”<span class="s-who">Sarah, 34 · customer for 6 years</span></div><div>“My kids use Venmo so easily. Why does checking my balance feel like doing my taxes?”<span class="s-who">Robert, 58 · small-business owner</span></div><div>“If I can’t read it, I don’t trust it.”<span class="s-who">Dorothy, 67 · retired teacher</span></div></div></div>
+      </section>
+      <section class="case-section" id="competitors">
+        <p class="label">Market</p>
+        <h2>Competitor analysis</h2>
+        <p>I audited 8 banking apps against the features customers asked for most. Zephyr was missing 6 of the 8.</p>
+        <div class="wide"><div class="table-wrap"><table><thead><tr><th>Feature</th><th>Chase</th><th>Simple</th><th>Chime</th><th>Zephyr (before)</th></tr></thead><tbody><tr><td>Biometric login</td><td>✓</td><td>✓</td><td>✓</td><td class="us">✗</td></tr><tr><td>Mobile check deposit</td><td>✓</td><td>✗</td><td>✓</td><td class="us">Crashes</td></tr><tr><td>Spending insights</td><td>✓</td><td>✓</td><td>✗</td><td class="us">✗</td></tr><tr><td>Instant transfers</td><td>✓</td><td>✓</td><td>✓</td><td class="us">✗</td></tr><tr><td>Card controls</td><td>✓</td><td>✗</td><td>✓</td><td class="us">✗</td></tr><tr><td>Goal-based savings</td><td>✗</td><td>✓</td><td>✓</td><td class="us">✗</td></tr><tr><td>Bill pay</td><td>✓</td><td>✗</td><td>✓</td><td class="us">✓</td></tr><tr><td>Accessible text sizes</td><td>✓</td><td>✓</td><td>✗</td><td class="us">✗</td></tr></tbody></table></div></div>
+      </section>
+      <section class="case-section" id="personas">
+        <p class="label">Define</p>
+        <h2>User personas</h2>
+        <p>Three personas covered Zephyr’s core segments, from a digital-first professional to a cautious retiree.</p>
+        <div class="wide"><div class="people"><div class="person"><div class="id"><span class="avatar-i">SC</span><h4>Sarah Chen</h4><span>28 · Marketing manager<br>Chicago, IL · iPhone</span></div><div class="bio"><h5>Biography</h5><p>Banks mostly on her phone and uses five or more finance apps. She compares Zephyr with Chime and Venmo every day.</p><h5 style="margin-top:14px">Quote</h5><p>“I just want to check my balance and pay my friend back in ten seconds.”</p></div><div><h5>Needs</h5><ul><li>Instant balance on open</li><li>Peer-to-peer transfers</li><li>Spending insights</li><li>Face ID sign-in</li></ul></div><div><h5>Pain points</h5><ul><li>Slow, crash-prone app</li><li>Transfers take 1–3 days</li></ul></div><div><h5>Goals</h5><ul><li>Save for a flat deposit</li><li>Never visit a branch</li></ul></div></div><div class="person"><div class="id"><span class="avatar-i">RW</span><h4>Robert Williams</h4><span>52 · Auto shop owner<br>Columbus, OH · Android</span></div><div class="bio"><h5>Biography</h5><p>Runs a small business and mixes personal and business banking. Deposits 20+ checks a month and values security above speed.</p><h5 style="margin-top:14px">Quote</h5><p>“Depositing a check shouldn’t mean closing the shop and driving to the branch.”</p></div><div><h5>Needs</h5><ul><li>Reliable check deposit</li><li>Separate business view</li><li>Clear transaction history</li><li>Strong security cues</li></ul></div><div><h5>Pain points</h5><ul><li>Deposit crashed 3 times</li><li>Can’t tell if a deposit went through</li></ul></div><div><h5>Goals</h5><ul><li>Deposit from the shop floor</li><li>Reconcile weekly in minutes</li></ul></div></div><div class="person"><div class="id"><span class="avatar-i">DM</span><h4>Dorothy Miller</h4><span>67 · Retired teacher<br>Madison, WI · iPad</span></div><div class="bio"><h5>Biography</h5><p>Uses the app on a tablet with larger text. Cautious about fraud and wants simple, predictable screens.</p><h5 style="margin-top:14px">Quote</h5><p>“If I can’t read it, I don’t trust it.”</p></div><div><h5>Needs</h5><ul><li>Large, readable text</li><li>Simple bill pay</li><li>Fraud alerts</li><li>Phone support option</li></ul></div><div><h5>Pain points</h5><ul><li>Tiny text and low contrast</li><li>Too many menus</li></ul></div><div><h5>Goals</h5><ul><li>Pay bills on time</li><li>Feel safe banking alone</li></ul></div></div></div></div>
+      </section>
+      <section class="case-section" id="journey">
+        <p class="label">Journey</p>
+        <h2>Mobile check deposit journey</h2>
+        <p>Mapping the deposit flow showed exactly where customers gave up, and what would bring them back.</p>
+        <div class="wide"><div class="journey"><div class="rh">Stage</div><div class="st">Open app</div><div class="st">Start deposit</div><div class="st">Capture check</div><div class="st">Confirm</div><div class="st">Funds available</div><div class="rh">Doing</div><div>Signs in with a 6-digit PIN</div><div>Finds Deposit under Accounts → More</div><div>Photographs front and back</div><div>Enters amount and account</div><div>Waits for confirmation</div><div class="rh">Feeling</div><div class="emo">😐</div><div class="emo">😕</div><div class="emo">😤</div><div class="emo">😟</div><div class="emo">😞</div><div class="rh">Pain point</div><div>PIN forgotten often</div><div>Deposit buried 3 taps deep</div><div>Blurry photos rejected, app crashes</div><div>No idea of limits or hold times</div><div>No status, so customers call support</div><div class="rh">Opportunity</div><div class="opp">Face ID / fingerprint</div><div class="opp">Deposit as a home quick action</div><div class="opp">Auto-capture with edge detection</div><div class="opp">Show limits and hold up front</div><div class="opp">Live status + push notification</div></div></div>
+      </section>
+      <section class="case-section" id="ia">
+        <p class="label">Ideate</p>
+        <h2>Information architecture</h2>
+        <p>Navigation went from a 4-level menu to 2 levels, with the most common tasks one tap from Home.</p>
+        <div class="wide"><div class="tree"><div class="root">Zephyr app</div><div class="stem"></div><div class="row" style="grid-template-columns:repeat(5,minmax(110px,1fr));min-width:640px"><div class="col"><div class="h">Home</div><div class="l">Balance</div><div class="l">Quick actions</div><div class="l">Recent activity</div></div><div class="col"><div class="h">Accounts</div><div class="l">Checking</div><div class="l">Savings</div><div class="l">Credit card</div><div class="l">Statements</div></div><div class="col"><div class="h">Pay</div><div class="l">Send money</div><div class="l">Pay bills</div><div class="l">Deposit check</div></div><div class="col"><div class="h">Insights</div><div class="l">Spending</div><div class="l">Budgets</div><div class="l">Goals</div></div><div class="col"><div class="h">More</div><div class="l">Card controls</div><div class="l">Security</div><div class="l">Support</div><div class="l">Settings</div></div></div></div></div>
+      </section>
+      <section class="case-section" id="wireframes">
+        <p class="label">Low-fidelity wireframes</p>
+        <h2>Greyscale wireframes, mobile and web</h2>
+        <p>Each flow was wireframed in greyscale and tested with 12 customers before any visual design. The mobile app came first; the online banking site reuses the same structure on a wider grid.</p>
+        <div class="wide"><p class="label" style="margin:8px 0 12px">Mobile · 6 screens</p><div class="wf-set mob" style="grid-template-columns:repeat(6,minmax(0,1fr))"><figure class="wf-card"><h4><span>M1</span>Sign in</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="t ">Zephyr</span><span class="ic sp"></span></div><div class="pad"><div class="st" style="justify-items:center;gap:8px;padding-top:30px"><span class="t l">Good morning</span><div class="img" style="width:60px;height:60px;border-radius:16px"></div><span class="s">Look at your phone to sign in</span><i></i><i class="w6"></i></div><span class="btn p" style="margin-top:30px">Use Face ID</span><span class="s" style="text-align:center">Use passcode instead</span></div></div><figcaption>Biometric first.</figcaption></figure><figure class="wf-card"><h4><span>M2</span>Home</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="t ">Hi, Sarah</span><span class="ic sp"></span></div><div class="pad"><div class="cd" style="padding:8px;gap:3px;background:#d8d8d3"><span class="s">Total balance</span><span class="t xl">$0,000.00</span><i class="w4"></i></div><div class="g4"><div class="st" style="justify-items:center"><span class="ic"></span><i class="w8"></i></div><div class="st" style="justify-items:center"><span class="ic"></span><i class="w8"></i></div><div class="st" style="justify-items:center"><span class="ic"></span><i class="w8"></i></div><div class="st" style="justify-items:center"><span class="ic"></span><i class="w8"></i></div></div><span class="t ">Recent activity</span><div class="r"><span class="ic"></span><div class="st f"><i></i><i class="w6"></i></div><i class="w4" style="width:22px"></i></div><div class="r"><span class="ic"></span><div class="st f"><i></i><i class="w6"></i></div><i class="w4" style="width:22px"></i></div><div class="r"><span class="ic"></span><div class="st f"><i></i><i class="w6"></i></div><i class="w4" style="width:22px"></i></div><div class="r"><span class="ic"></span><div class="st f"><i></i><i class="w6"></i></div><i class="w4" style="width:22px"></i></div></div><div class="r" style="margin-top:auto;justify-content:space-around;border-top:1.2px solid #bbb;padding:6px 0"><span class="ic"></span><span class="ic"></span><span class="ic"></span><span class="ic"></span><span class="ic"></span></div></div><figcaption>Balance + 4 quick actions.</figcaption></figure><figure class="wf-card"><h4><span>M3</span>Deposit</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="t ">Deposit a check</span><span class="ic sp"></span></div><div class="pad"><div class="r"><span class="dot"></span><i class="f"></i><span class="dot"></span><i class="f"></i><span class="dot"></span></div><div class="img" style="aspect-ratio:1.6/1"></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><span class="fld">$ Amount</span><span class="fld">Into account ▾</span><span class="btn p" style="margin-top:8px">Capture front</span></div></div><figcaption>3 clear steps.</figcaption></figure><figure class="wf-card"><h4><span>M4</span>Send money</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="t ">Send money</span><span class="ic sp"></span></div><div class="pad"><div class="r"><span class="ic" style="width:22px;height:22px;border-radius:50%"></span><span class="ic" style="width:22px;height:22px;border-radius:50%"></span><span class="ic" style="width:22px;height:22px;border-radius:50%"></span><span class="ic" style="width:22px;height:22px;border-radius:50%"></span></div><div class="st" style="justify-items:center;padding:8px 0"><span class="s">To contact</span><span class="t xl">$000.00</span><span class="chip">Note</span></div><div class="g3"><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span><span class="cd" style="padding:6px"></span></div><span class="btn p">Send</span></div></div><figcaption>Contacts, amount, send.</figcaption></figure><figure class="wf-card"><h4><span>M5</span>Insights</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="t ">Insights</span><span class="ic sp"></span></div><div class="pad"><div class="r"><div style="width:58px;height:58px;border-radius:50%;border:10px solid #999;border-right-color:#ddd"></div><div class="st f"><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div></div></div><div class="cd" style="padding:6px"><span class="s">Tip: you spent less on dining</span></div><span class="t ">Budgets</span><div class="st"><i class="w6"></i><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:60%;background:#888;border-radius:3px"></div></div></div><div class="st"><i class="w6"></i><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:60%;background:#888;border-radius:3px"></div></div></div><div class="st"><i class="w6"></i><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:60%;background:#888;border-radius:3px"></div></div></div></div><div class="r" style="margin-top:auto;justify-content:space-around;border-top:1.2px solid #bbb;padding:6px 0"><span class="ic"></span><span class="ic"></span><span class="ic"></span><span class="ic"></span><span class="ic"></span></div></div><figcaption>Spending at a glance.</figcaption></figure><figure class="wf-card"><h4><span>M6</span>Card controls</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="t ">Card controls</span><span class="ic sp"></span></div><div class="pad"><div class="img" style="aspect-ratio:1.6/1;border-radius:10px"></div><div class="r" style="border-bottom:1px solid #ddd;padding:4px 0"><i class="f"></i><span style="width:22px;height:12px;border-radius:6px;background:#999"></span></div><div class="r" style="border-bottom:1px solid #ddd;padding:4px 0"><i class="f"></i><span style="width:22px;height:12px;border-radius:6px;background:#999"></span></div><div class="r" style="border-bottom:1px solid #ddd;padding:4px 0"><i class="f"></i><span style="width:22px;height:12px;border-radius:6px;background:#999"></span></div><div class="r" style="border-bottom:1px solid #ddd;padding:4px 0"><i class="f"></i><span style="width:22px;height:12px;border-radius:6px;background:#999"></span></div><div class="r" style="border-bottom:1px solid #ddd;padding:4px 0"><i class="f"></i><span style="width:22px;height:12px;border-radius:6px;background:#999"></span></div><span class="s">Daily limit</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:60%;background:#888"></div></div></div><div class="r" style="margin-top:auto;justify-content:space-around;border-top:1.2px solid #bbb;padding:6px 0"><span class="ic"></span><span class="ic"></span><span class="ic"></span><span class="ic"></span><span class="ic"></span></div></div><figcaption>Freeze and limits.</figcaption></figure></div>
+<p class="label" style="margin:40px 0 12px">Web · 2 screens</p><div class="wf-set"><figure class="wf-card"><h4><span>W1</span>Online banking overview</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.5fr"><div class="st" style="background:#cfcfca;padding:8px;gap:6px"><span class="t ">Zephyr</span><span class="s">Overview</span><span class="s">Accounts</span><span class="s">Transfers</span><span class="s">Pay bills</span><span class="s">Insights</span><span class="s">Cards</span></div><div class="pad"><div class="r"><span class="t l">Good morning, Sarah</span><span class="btn p sp">Deposit</span><span class="btn">Send money</span></div><div class="g3"><div class="cd" style="padding:6px;gap:3px"><i class="w8"></i><span class="t l">$0,000</span></div><div class="cd" style="padding:6px;gap:3px"><i class="w8"></i><span class="t l">$0,000</span></div><div class="cd" style="padding:6px;gap:3px"><i class="w8"></i><span class="t l">$0,000</span></div></div><div style="display:grid;grid-template-columns:1.4fr 1fr;gap:6px"><div class="cd" style="padding:6px;gap:4px"><span class="t ">Cash flow</span><div class="r" style="align-items:flex-end;height:60px"><span class="f" style="height:50%;background:#aaa"></span><span class="f" style="height:70%;background:#aaa"></span><span class="f" style="height:60%;background:#aaa"></span><span class="f" style="height:80%;background:#aaa"></span><span class="f" style="height:75%;background:#aaa"></span><span class="f" style="height:90%;background:#aaa"></span></div></div><div class="cd" style="padding:6px"><span class="t ">Recent activity</span><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div></div></div></div></div></div><figcaption>Accounts, cash flow and activity on one screen.</figcaption></figure><figure class="wf-card"><h4><span>W2</span>Transfer money</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.5fr"><div class="st" style="background:#cfcfca;padding:8px;gap:6px"><span class="t ">Zephyr</span><span class="s">Overview</span><span class="s">Accounts</span><span class="s">Transfers</span><span class="s">Pay bills</span><span class="s">Insights</span><span class="s">Cards</span></div><div class="pad"><span class="t l">Transfer money</span><div class="g2" style="align-items:start"><div class="st" style="gap:6px"><span class="s">From</span><span class="fld">Everyday Checking ▾</span><span class="s">To</span><span class="fld">Choose contact or account ▾</span><span class="s">Amount</span><span class="fld">$ 0.00</span><span class="s">When</span><div class="r"><span class="chip">Now</span><span class="chip">Schedule</span><span class="chip">Repeat</span></div><span class="btn p">Review transfer</span></div><div class="cd" style="padding:8px;gap:4px"><span class="t ">Summary</span><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><span class="s">Arrives instantly · no fee</span></div></div></div></div></div><figcaption>A single form with a live summary panel.</figcaption></figure></div></div>
+      </section>
+      <section class="case-section" id="design">
+        <p class="label">Design</p>
+        <h2>High-fidelity screens</h2>
+        <p>A calm, trustworthy visual language: deep navy for confidence, a fresh teal accent for actions, and generous white space so balances and amounts are easy to read.</p>
+        <div class="wide"><p class="label" style="margin:8px 0 16px">Mobile · iOS &amp; Android</p><div class="hifi-row"><figure><div class="hp" style="background:#0B1F2A;color:#fff"><div class="sb" style="color:#fff"><span>9:41</span><span>●●● ▮</span></div><div style="flex:1;display:grid;align-content:center;justify-items:center;gap:12px;padding:20px;text-align:center"><span style="font-size:20px;font-weight:800;letter-spacing:-.02em">Zephyr<span style="color:#00D4AA">.</span></span><span style="color:#9fb3bd">Good morning, Sarah</span><span style="width:84px;height:84px;border-radius:24px;border:2px solid #00D4AA;display:grid;place-items:center;margin:14px 0;color:#00D4AA;font-size:26px">☺</span><b style="font-size:12px">Look at your phone to sign in</b><span style="color:#9fb3bd;font-size:9px">Face ID keeps your money safe. We never store your face data.</span></div><div style="padding:0 18px 22px;display:grid;gap:8px"><span style="display:block;text-align:center;padding:10px;border-radius:12px;font-weight:700;background:#00D4AA;color:#0B1F2A">Use Face ID</span><span style="text-align:center;color:#00D4AA;font-weight:600">Use passcode instead</span></div></div><figcaption><b>Sign in</b>Face ID first, passcode fallback</figcaption></figure><figure><div class="hp" style="background:#F3F6F7;color:#0B1F2A"><div style="background:#0B1F2A;color:#fff;padding-bottom:16px"><div class="sb" style="color:#fff"><span>9:41</span><span>●●● ▮</span></div><div style="padding:4px 16px;display:flex;justify-content:space-between;align-items:center"><span>Hi, Sarah</span><span style="width:22px;height:22px;border-radius:50%;background:#00D4AA;color:#0B1F2A;display:grid;place-items:center;font-weight:700;font-size:9px">SC</span></div><div style="padding:10px 16px 0"><span style="color:#9fb3bd;font-size:9px">Total balance</span><div style="font-size:24px;font-weight:800;letter-spacing:-.02em">$8,412.<span style="font-size:15px">36</span></div><span style="color:#00D4AA;font-size:9px">▲ $640 this month</span></div></div><div style="margin:-10px 12px 0;background:#fff;border-radius:14px;padding:10px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:4px;box-shadow:0 6px 16px -8px rgba(11,31,42,.3)"><span><span style="display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:10px;background:#e6f8f4"></span>Deposit</span><span><span style="display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:10px;background:#e6f8f4"></span>Send</span><span><span style="display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:10px;background:#e6f8f4"></span>Pay bills</span><span><span style="display:block;width:30px;height:30px;margin:0 auto 4px;border-radius:10px;background:#e6f8f4"></span>Cards</span></div><div style="padding:12px 16px;flex:1"><div style="display:flex;justify-content:space-between"><b>Recent activity</b><span style="color:#0a7f6a">See all</span></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">W</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Whole Foods</b><span style="color:#7a8a92;font-size:8.5px">Groceries · Today</span></span><b style="color:#0B1F2A">−$64.20</b></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">P</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Payroll</b><span style="color:#7a8a92;font-size:8.5px">Acme Corp · Fri</span></span><b style="color:#0a7f6a">+$2,450.00</b></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">M</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Mia Chen</b><span style="color:#7a8a92;font-size:8.5px">Sent · Thu</span></span><b style="color:#0B1F2A">−$40.00</b></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">N</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Netflix</b><span style="color:#7a8a92;font-size:8.5px">Subscription · Wed</span></span><b style="color:#0B1F2A">−$15.99</b></div></div><div style="margin-top:auto;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #e3e8ea;padding:7px 4px 10px;text-align:center;font-size:8px;color:#7a8a92"><span style="color:#0B1F2A;font-weight:700"><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#00D4AA"></span>Home</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Accounts</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Pay</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Insights</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>More</span></div></div><figcaption><b>Home</b>Balance and quick actions</figcaption></figure><figure><div class="hp" style="background:#fff;color:#0B1F2A"><div class="sb" style="color:#0B1F2A"><span>9:41</span><span>●●● ▮</span></div><div style="padding:6px 16px;display:flex;justify-content:space-between"><b style="font-size:13px">Deposit a check</b><span>✕</span></div><div style="padding:0 16px;display:flex;gap:6px;align-items:center;font-size:8.5px"><span style="display:flex;gap:4px;align-items:center;"><span style="width:16px;height:16px;border-radius:50%;display:grid;place-items:center;background:#00D4AA;color:#0B1F2A;font-weight:700">1</span>Front</span><span style="flex:1;height:1.5px;background:#dde4e6"></span><span style="display:flex;gap:4px;align-items:center;color:#7a8a92"><span style="width:16px;height:16px;border-radius:50%;display:grid;place-items:center;border:1.5px solid #cfd8db">2</span>Back</span><span style="flex:1;height:1.5px;background:#dde4e6"></span><span style="display:flex;gap:4px;align-items:center;color:#7a8a92"><span style="width:16px;height:16px;border-radius:50%;display:grid;place-items:center;border:1.5px solid #cfd8db">3</span>Confirm</span></div><div style="margin:14px 16px;aspect-ratio:1.6/1;border-radius:14px;background:#14303d;display:grid;place-items:center;position:relative"><span style="position:absolute;inset:14px;border:2px dashed #00D4AA;border-radius:8px"></span><span style="color:#cfe9e3;text-align:center;font-size:9px">Align the <b>front</b> of your check<br>inside the frame</span></div><div style="padding:0 16px;display:grid;gap:6px;color:#4d606a;font-size:9px"><span>✓ Use a dark, flat surface</span><span>✓ Make sure all 4 corners are visible</span><span>✓ We capture automatically when it’s sharp</span></div><div style="padding:12px 16px 0"><span style="font-size:8.5px;color:#7a8a92">Amount</span><div style="border:1.5px solid #cfd8db;border-radius:10px;padding:8px 10px;font-size:14px;font-weight:700">$ 1,250.00</div><span style="font-size:8.5px;color:#7a8a92">Into Everyday Checking ••4821</span></div><div style="margin-top:auto;padding:16px"><span style="display:block;text-align:center;padding:10px;border-radius:12px;font-weight:700;background:#00D4AA;color:#0B1F2A">Capture front</span></div></div><figcaption><b>Deposit a check</b>Auto-capture with guidance</figcaption></figure><figure><div class="hp" style="background:#fff;color:#0B1F2A"><div class="sb" style="color:#0B1F2A"><span>9:41</span><span>●●● ▮</span></div><div style="padding:6px 16px"><b style="font-size:13px">Send money</b></div><div style="padding:4px 16px;display:flex;gap:10px"><span style="text-align:center;font-size:8.5px"><span style="display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-bottom:3px;font-weight:700;background:#00D4AA;outline:2px solid #0B1F2A;outline-offset:2px">M</span>Mia</span><span style="text-align:center;font-size:8.5px"><span style="display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-bottom:3px;font-weight:700;background:#e6edf0">D</span>Dad</span><span style="text-align:center;font-size:8.5px"><span style="display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-bottom:3px;font-weight:700;background:#e6edf0">A</span>Alex</span><span style="text-align:center;font-size:8.5px"><span style="display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin-bottom:3px;font-weight:700;background:#e6edf0">J</span>Jo</span></div><div style="text-align:center;padding:14px 0 4px"><span style="color:#7a8a92;font-size:9px">To Mia Chen · instant</span><div style="font-size:30px;font-weight:800;letter-spacing:-.03em">$120<span style="color:#9aa8ae">.00</span></div><span style="display:inline-block;margin-top:4px;padding:2px 8px;border-radius:20px;background:#e6f8f4;color:#0a7f6a;font-size:8.5px">Dinner 🍜</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:8px 22px;text-align:center;font-size:15px;font-weight:600"><span style="padding:7px 0">1</span><span style="padding:7px 0">2</span><span style="padding:7px 0">3</span><span style="padding:7px 0">4</span><span style="padding:7px 0">5</span><span style="padding:7px 0">6</span><span style="padding:7px 0">7</span><span style="padding:7px 0">8</span><span style="padding:7px 0">9</span><span style="padding:7px 0">.</span><span style="padding:7px 0">0</span><span style="padding:7px 0">⌫</span></div><div style="margin-top:auto;padding:12px 16px 18px"><span style="display:block;text-align:center;padding:10px;border-radius:12px;font-weight:700;background:#00D4AA;color:#0B1F2A">Send $120 to Mia</span></div></div><figcaption><b>Send money</b>Instant P2P in three taps</figcaption></figure><figure><div class="hp" style="background:#F3F6F7;color:#0B1F2A"><div class="sb" style="color:#0B1F2A"><span>9:41</span><span>●●● ▮</span></div><div style="padding:6px 16px;display:flex;justify-content:space-between"><b style="font-size:13px">Spending insights</b><span style="color:#7a8a92">June ▾</span></div><div style="margin:6px 12px;background:#fff;border-radius:14px;padding:14px;display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:center"><span style="width:90px;height:90px;border-radius:50%;background:conic-gradient(#0B1F2A 0 38%, #00D4AA 0 62%, #7fb7ff 0 78%, #ffb547 0 90%, #d6dde0 0);display:grid;place-items:center"><span style="width:58px;height:58px;border-radius:50%;background:#fff;display:grid;place-items:center;text-align:center;font-size:8px;line-height:1.2"><b style="font-size:12px">$2,184</b>spent</span></span><div style="display:grid;gap:5px;font-size:8.5px"><span style="display:flex;gap:5px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#0B1F2A"></i>Housing<b style="margin-left:auto">38%</b></span><span style="display:flex;gap:5px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#00D4AA"></i>Food<b style="margin-left:auto">24%</b></span><span style="display:flex;gap:5px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#7fb7ff"></i>Transport<b style="margin-left:auto">16%</b></span><span style="display:flex;gap:5px;align-items:center"><i style="width:8px;height:8px;border-radius:2px;background:#ffb547"></i>Fun<b style="margin-left:auto">12%</b></span></div></div><div style="margin:6px 12px;background:#e6f8f4;border-radius:12px;padding:10px 12px;color:#075e4f"><b>Nice work!</b> You spent 12% less on dining than May.</div><div style="margin:6px 12px;background:#fff;border-radius:14px;padding:12px"><b>Budgets</b><div style="margin-top:8px;font-size:8.5px"><div style="display:flex;justify-content:space-between"><span>Groceries</span><span style="color:#7a8a92">72%</span></div><div style="height:6px;border-radius:3px;background:#edf1f2;margin-top:3px"><div style="height:100%;width:72%;border-radius:3px;background:#00D4AA"></div></div></div><div style="margin-top:8px;font-size:8.5px"><div style="display:flex;justify-content:space-between"><span>Dining out</span><span style="color:#7a8a92">45%</span></div><div style="height:6px;border-radius:3px;background:#edf1f2;margin-top:3px"><div style="height:100%;width:45%;border-radius:3px;background:#00D4AA"></div></div></div><div style="margin-top:8px;font-size:8.5px"><div style="display:flex;justify-content:space-between"><span>Shopping</span><span style="color:#c5221f">91%</span></div><div style="height:6px;border-radius:3px;background:#edf1f2;margin-top:3px"><div style="height:100%;width:91%;border-radius:3px;background:#e0584f"></div></div></div></div><div style="margin-top:auto;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #e3e8ea;padding:7px 4px 10px;text-align:center;font-size:8px;color:#7a8a92"><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Home</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Accounts</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Pay</span><span style="color:#0B1F2A;font-weight:700"><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#00D4AA"></span>Insights</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>More</span></div></div><figcaption><b>Spending insights</b>Categories, tips and budgets</figcaption></figure><figure><div class="hp" style="background:#fff;color:#0B1F2A"><div class="sb" style="color:#0B1F2A"><span>9:41</span><span>●●● ▮</span></div><div style="padding:6px 16px"><b style="font-size:13px">Card controls</b></div><div style="margin:6px 16px;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,#0B1F2A,#14465a);color:#fff;padding:12px;display:grid;align-content:space-between"><span style="font-weight:800">Zephyr<span style="color:#00D4AA">.</span></span><span style="letter-spacing:.14em">•••• •••• •••• 4821</span><span style="display:flex;justify-content:space-between;font-size:8.5px"><span>SARAH CHEN</span><span>DEBIT</span></span></div><div style="padding:4px 16px;display:grid"><div style="display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #edf1f2"><span style="flex:1"><b style="display:block;font-weight:600">Freeze card</b><span style="color:#7a8a92;font-size:8.5px">Temporarily block all payments</span></span><span style="width:30px;height:17px;border-radius:9px;background:#cfd8db;position:relative"><span style="position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff"></span></span></div><div style="display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #edf1f2"><span style="flex:1"><b style="display:block;font-weight:600">Online purchases</b></span><span style="width:30px;height:17px;border-radius:9px;background:#00D4AA;position:relative"><span style="position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#fff"></span></span></div><div style="display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #edf1f2"><span style="flex:1"><b style="display:block;font-weight:600">International use</b></span><span style="width:30px;height:17px;border-radius:9px;background:#cfd8db;position:relative"><span style="position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff"></span></span></div><div style="display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #edf1f2"><span style="flex:1"><b style="display:block;font-weight:600">ATM withdrawals</b></span><span style="width:30px;height:17px;border-radius:9px;background:#00D4AA;position:relative"><span style="position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#fff"></span></span></div><div style="display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #edf1f2"><span style="flex:1"><b style="display:block;font-weight:600">Contactless</b></span><span style="width:30px;height:17px;border-radius:9px;background:#00D4AA;position:relative"><span style="position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#fff"></span></span></div></div><div style="padding:10px 16px"><div style="display:flex;justify-content:space-between;font-size:8.5px"><span>Daily spending limit</span><b>$1,500</b></div><div style="height:6px;border-radius:3px;background:#edf1f2;margin-top:6px"><div style="height:100%;width:60%;background:#0B1F2A;border-radius:3px"></div></div></div><div style="margin-top:auto;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #e3e8ea;padding:7px 4px 10px;text-align:center;font-size:8px;color:#7a8a92"><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Home</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Accounts</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Pay</span><span style=""><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#d6dde0"></span>Insights</span><span style="color:#0B1F2A;font-weight:700"><span style="display:block;width:16px;height:16px;margin:0 auto 2px;border-radius:5px;background:#00D4AA"></span>More</span></div></div><figcaption><b>Card controls</b>Freeze, limits and toggles</figcaption></figure></div>
+<p class="label" style="margin:48px 0 16px">Web · online banking</p><div class="hd"><div class="chrome"><i></i><i></i><i></i><span>online.zephyrbank.com/dashboard</span></div><div style="display:grid;grid-template-columns:150px 1fr;background:#F3F6F7;color:#0B1F2A;min-height:380px"><div style="background:#0B1F2A;color:#cfe0e6;padding:14px 12px;display:grid;gap:6px;align-content:start"><b style="color:#fff;font-size:14px;margin-bottom:8px">Zephyr<span style="color:#00D4AA">.</span></b><span style="padding:6px 8px;border-radius:8px;background:rgba(0,212,170,.16);color:#fff;font-weight:600">Overview</span><span style="padding:6px 8px;border-radius:8px;">Accounts</span><span style="padding:6px 8px;border-radius:8px;">Transfers</span><span style="padding:6px 8px;border-radius:8px;">Pay bills</span><span style="padding:6px 8px;border-radius:8px;">Insights</span><span style="padding:6px 8px;border-radius:8px;">Cards</span><span style="padding:6px 8px;border-radius:8px;">Settings</span></div><div style="padding:16px 18px;display:grid;gap:12px;align-content:start"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">Good morning, Sarah</b><span style="display:flex;gap:8px"><span style="padding:6px 12px;border-radius:10px;background:#00D4AA;font-weight:700">Deposit</span><span style="padding:6px 12px;border-radius:10px;border:1.5px solid #0B1F2A;font-weight:700">Send money</span></span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"><div style="background:#fff;border-radius:12px;padding:12px"><span style="color:#7a8a92;font-size:9px">Everyday Checking ••4821</span><div style="font-size:17px;font-weight:800;margin-top:2px">$5,912.36</div></div><div style="background:#fff;border-radius:12px;padding:12px"><span style="color:#7a8a92;font-size:9px">High-Yield Savings ••0093</span><div style="font-size:17px;font-weight:800;margin-top:2px">$2,500.00</div></div><div style="background:#fff;border-radius:12px;padding:12px"><span style="color:#7a8a92;font-size:9px">Credit Card ••7710</span><div style="font-size:17px;font-weight:800;margin-top:2px">−$642.18</div></div></div><div style="display:grid;grid-template-columns:1.4fr 1fr;gap:10px"><div style="background:#fff;border-radius:12px;padding:12px"><b>Cash flow · last 6 months</b><div style="display:flex;align-items:flex-end;gap:10px;height:110px;margin-top:10px;border-bottom:1px solid #e3e8ea"><span style="flex:1;display:flex;gap:3px;align-items:flex-end;height:100%"><i style="flex:1;height:60%;background:#00D4AA;border-radius:3px 3px 0 0"></i><i style="flex:1;height:48%;background:#0B1F2A;border-radius:3px 3px 0 0"></i></span><span style="flex:1;display:flex;gap:3px;align-items:flex-end;height:100%"><i style="flex:1;height:72%;background:#00D4AA;border-radius:3px 3px 0 0"></i><i style="flex:1;height:55%;background:#0B1F2A;border-radius:3px 3px 0 0"></i></span><span style="flex:1;display:flex;gap:3px;align-items:flex-end;height:100%"><i style="flex:1;height:65%;background:#00D4AA;border-radius:3px 3px 0 0"></i><i style="flex:1;height:62%;background:#0B1F2A;border-radius:3px 3px 0 0"></i></span><span style="flex:1;display:flex;gap:3px;align-items:flex-end;height:100%"><i style="flex:1;height:80%;background:#00D4AA;border-radius:3px 3px 0 0"></i><i style="flex:1;height:58%;background:#0B1F2A;border-radius:3px 3px 0 0"></i></span><span style="flex:1;display:flex;gap:3px;align-items:flex-end;height:100%"><i style="flex:1;height:78%;background:#00D4AA;border-radius:3px 3px 0 0"></i><i style="flex:1;height:50%;background:#0B1F2A;border-radius:3px 3px 0 0"></i></span><span style="flex:1;display:flex;gap:3px;align-items:flex-end;height:100%"><i style="flex:1;height:88%;background:#00D4AA;border-radius:3px 3px 0 0"></i><i style="flex:1;height:52%;background:#0B1F2A;border-radius:3px 3px 0 0"></i></span></div><div style="display:flex;gap:12px;font-size:8.5px;margin-top:6px;color:#7a8a92"><span>■ <span style="color:#00D4AA">In</span></span><span>■ Out</span></div></div><div style="background:#fff;border-radius:12px;padding:12px"><b>Recent activity</b><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">W</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Whole Foods</b><span style="color:#7a8a92;font-size:8.5px">Groceries · Today</span></span><b style="color:#0B1F2A">−$64.20</b></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">P</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Payroll</b><span style="color:#7a8a92;font-size:8.5px">Acme Corp · Fri</span></span><b style="color:#0a7f6a">+$2,450.00</b></div><div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #edf1f2"><span style="width:24px;height:24px;border-radius:8px;background:#e6f8f4;color:#0a7f6a;display:grid;place-items:center;font-weight:700;font-size:9px">M</span><span style="flex:1"><b style="display:block;color:#0B1F2A;font-weight:600">Mia Chen</b><span style="color:#7a8a92;font-size:8.5px">Sent · Thu</span></span><b style="color:#0B1F2A">−$40.00</b></div></div></div></div></div></div></div>
+      </section>
+      <section class="case-section" id="ab">
+        <p class="label">Test</p>
+        <h2>A/B testing onboarding</h2>
+        <p>We tested three onboarding approaches with 9,000 new users over four weeks.</p>
+<div class="results" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div><span class="v">34%</span><span class="l">Variant A · 5-screen tutorial</span></div><div><span class="v">52%</span><span class="l">Variant B · skip + tooltips</span></div><div><span class="v">78%</span><span class="l">Variant C · progressive disclosure (winner)</span></div></div>
+        <p style="margin-top:20px">Progressive disclosure won by introducing features in context, the first time a customer needed them, instead of front-loading a tutorial.</p>
+      </section>
+      <section class="case-section" id="principles">
+        <p class="label">Principles</p>
+        <h2>Design laws applied</h2>
+        <div class="wide"><div class="laws"><article><h4><small>Reachability</small>Fitts’s Law</h4><p><b>Applied:</b> Primary actions sit in the bottom third of the screen, within thumb reach.</p><p><b>Impact:</b> Faster one-handed use on the go.</p></article><article><h4><small>Fewer choices</small>Hick’s Law</h4><p><b>Applied:</b> Home shows four quick actions instead of a 14-item menu.</p><p><b>Impact:</b> Users reach key tasks in one tap.</p></article><article><h4><small>Familiar patterns</small>Jakob’s Law</h4><p><b>Applied:</b> Bottom tab bar and card layouts that match leading banking apps.</p><p><b>Impact:</b> No learning curve for switchers.</p></article><article><h4><small>Memorable moments</small>Peak–End Rule</h4><p><b>Applied:</b> Clear success screens after deposits and transfers.</p><p><b>Impact:</b> Customers finish tasks feeling confident.</p></article><article><h4><small>Speed</small>Doherty Threshold</h4><p><b>Applied:</b> Skeleton loading and optimistic UI keep responses under 400ms.</p><p><b>Impact:</b> The app feels instant even on slow networks.</p></article><article><h4><small>Security</small>Trust cues</h4><p><b>Applied:</b> Masked numbers, biometric prompts and plain-language security notes.</p><p><b>Impact:</b> Higher confidence with money tasks.</p></article></div></div>
+      </section>
+      <section class="case-section" id="accessibility">
+        <p class="label">Accessibility</p>
+        <h2>Built for every customer</h2>
+        <div class="wcag" style="grid-template-columns:repeat(3,minmax(0,1fr))"><article><h4>Readable</h4><ul><li>Supports iOS Dynamic Type and Android font scaling</li><li>Text contrast ≥ 4.5:1</li><li>Amounts never truncated</li></ul></article><article><h4>Operable</h4><ul><li>48px minimum touch targets</li><li>VoiceOver and TalkBack labels</li><li>No time-outs during deposits</li></ul></article><article><h4>Understandable</h4><ul><li>Plain-language errors with next steps</li><li>Status shown by icon and text</li><li>Consistent placement of actions</li></ul></article></div>
+      </section>
+      <section class="case-section" id="system">
+        <p class="label">Deliver</p>
+        <h2>Design system &amp; handoff</h2>
+        <ol class="numbered"><li><span><strong>80+ components</strong> shared across iOS, Android and web, with platform-specific variants where conventions differ.</span></li><li><span><strong>Tokens</strong> for colour, type, spacing and elevation, synced to code.</span></li><li><span><strong>Annotated specs</strong> in Figma with states, edge cases and accessibility notes.</span></li><li><span><strong>Weekly design QA</strong> with developers during each sprint.</span></li></ol>
+      </section>
+      <section class="case-section" id="results">
+        <p class="label">Results</p>
+        <h2>Measurable impact</h2>
+        <p>Measured 6 months after launch.</p>
+<div class="results" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div><span class="v">4.6★</span><span class="l">App rating, up from 2.1</span></div><div><span class="v">+67%</span><span class="l">Mobile deposits</span></div><div><span class="v">−40%</span><span class="l">Support calls</span></div><div><span class="v">−68%</span><span class="l">Uninstall rate</span></div></div>
+      </section>
+      <section class="case-section" id="closing">
+        <p class="label">Closing</p>
+        <h2>Key takeaways</h2>
+        <ul class="learn"><li><span><strong>Trust is everything in FinTech.</strong> Biometric login was the single most impactful feature.</span></li><li><span><strong>Test with real money anxieties.</strong> Lab tests missed the stress of “is my money safe?”</span></li><li><span><strong>Progressive disclosure beats tutorials.</strong> Customers learn by doing.</span></li><li><span><strong>Accessibility expands the market.</strong> Larger targets and contrast helped everyone.</span></li></ul>
+        <div class="tools"><span>Figma</span><span>Sketch</span><span>InVision</span><span>UserTesting</span><span>Optimizely</span><span>Jira</span><span>Confluence</span><span>Zeplin</span></div>
+      </section>
+  </main></div>
+  <div class="thanks"><h3>Thanks for reading</h3><p>Questions or feedback? I’d love to hear them: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></p></div>
   <div class="next-project">
-    <p>Next Case Study</p>
-    <h3>Consilio eDiscovery Platform</h3>
-    <a href="case-study-consilio.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <p>Next case study</p>
+    <h3>Generative AI Art Direction System</h3>
+    <a href="case-study-genai-art-direction.html" class="btn-primary">View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
-
+  <footer><span>© 2026 Yogesh Malik · Get in touch: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></span><span><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span></footer>
   <script>
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
-    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    const btn = document.getElementById('scrollToTop'), bar = document.getElementById('progress');
+    const links = [...document.querySelectorAll('.toc a')];
+    const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      btn.classList.toggle('visible', h.scrollTop > 300);
+      let i = secs.findLastIndex(s => s && s.getBoundingClientRect().top < 160);
+      links.forEach((a, j) => a.classList.toggle('active', j === i));
+    });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/modal.js" defer></script>
 </body>
 </html>

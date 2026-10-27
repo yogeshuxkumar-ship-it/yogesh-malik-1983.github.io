@@ -1,15 +1,23 @@
 <!DOCTYPE html>
+<!--
+  REUSABLE CASE-STUDY TEMPLATE: Yogesh Malik portfolio
+  Duplicate this file, rename it (case-study-<project>.html) and replace the content
+  inside each block marked  ▸ EDIT. Delete any optional section you don't need.
+  Section order: Header → Hero image → Snapshot → TL;DR → Context → Domain landscape →
+  Research → Insights → Principles → Solution → Accessibility & trust → Results →
+  My role → Learnings → Next project.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consilio eDiscovery Platform — Case Study | Yogesh Malik</title>
-  <meta name="description" content="How I led UX design for migrating a 15-year-old desktop application to modern web platform, reducing user errors by 65%.">
-  
+  <!-- ▸ EDIT: title + description -->
+  <title>Consilio eDiscovery Platform: Desktop to Web | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="UX case study: moving the Consilio eDiscovery suite from a legacy desktop application to a modern web platform for 5,000+ legal professionals.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --color-bg: #0a0a0a;
@@ -17,8 +25,8 @@
       --color-bg-card: #1a1a1a;
       --color-text: #f5f5f5;
       --color-text-muted: #a3a3a3;
-      --color-accent: #8b5cf6;
-      --color-accent-dim: rgba(139, 92, 246, 0.15);
+      --color-accent: #c9ff57;
+      --color-accent-dim: rgba(201, 255, 87, 0.15);
       --color-border: #2a2a2a;
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body: 'Instrument Sans', -apple-system, sans-serif;
@@ -27,291 +35,472 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
-    a { color: inherit; text-decoration: none; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { color: var(--color-text); }
 
-    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: white; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3); }
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--color-accent); z-index: 1001; }
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
     .scroll-to-top.visible { opacity: 1; visibility: visible; }
-    .scroll-to-top:hover { transform: translateY(-4px); }
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
-    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back { display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); font-weight: 500; }
     .nav-back:hover { color: var(--color-accent); }
     .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
-    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a { color: var(--color-text-muted); }
     .nav-links a:hover { color: var(--color-text); }
 
-    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
-    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-header { padding: 160px 48px 64px; max-width: 1100px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
     .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
-    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
-    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+    .case-tag.outline { background: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; text-wrap: balance; }
+    .case-header h1 em { color: var(--color-accent); }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 760px; text-wrap: pretty; }
 
-    .hero-image { margin: 0 48px 80px; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); }
+    .hero-image { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; }
+    .hero-image figure { border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
     .hero-image img { width: 100%; height: auto; display: block; }
+    figcaption { font-size: 0.85rem; color: var(--color-text-muted); padding: 14px 20px; border-top: 1px solid var(--color-border); }
 
-    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
-    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
-    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+    .snapshot { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--color-border); max-width: 1104px; margin: 0 auto 96px; border-radius: 16px; overflow: hidden; }
+    .snapshot div { background: var(--color-bg-card); padding: 28px 22px; }
+    .snapshot dt { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .snapshot dd { font-weight: 600; line-height: 1.4; }
 
-    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
-    .case-section { margin-bottom: 80px; }
-    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
-    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
-    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
-    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
-    .case-section li { margin-bottom: 12px; }
-    .case-section li strong { color: var(--color-text); }
+    .layout { max-width: 1104px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+    .toc { position: sticky; top: 120px; align-self: start; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; }
+    .toc a { color: var(--color-text-muted); border-left: 2px solid var(--color-border); padding-left: 14px; transition: color .2s, border-color .2s; }
+    .toc a:hover, .toc a.active { color: var(--color-accent); border-color: var(--color-accent); }
 
-    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
-    .callout p { color: var(--color-text); margin-bottom: 0; }
-    .callout strong { color: var(--color-accent); }
+    .case-section { margin-bottom: 96px; scroll-margin-top: 120px; }
+    .label { font-size: 0.8rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .case-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 24px; text-wrap: balance; }
+    .case-section h3 { font-size: 1.15rem; margin: 40px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; text-wrap: pretty; }
+    .case-section p strong, .case-section li strong { color: var(--color-text); }
 
-    .diagram-container { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 20px; padding: 40px; margin: 40px 0; overflow-x: auto; }
-    .diagram-title { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; text-align: center; }
-    .diagram-caption { font-size: 0.9rem; color: var(--color-text-muted); text-align: center; margin-top: 24px; font-style: italic; }
+    .tldr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tldr div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .tldr h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 10px; }
+    .tldr p { font-size: 0.95rem; margin: 0; }
 
-    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
-    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
-    .process-step:hover { border-color: var(--color-accent); }
-    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
-    .process-step h4 { margin-bottom: 8px; }
-    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+    .problem { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.3; color: var(--color-text); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 32px 0; margin: 32px 0; }
+    .problem span { color: var(--color-accent); font-style: italic; }
 
-    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
-    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
-    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
-    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
-    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color .3s; }
+    .card:hover { border-color: rgba(201, 255, 87, 0.4); }
+    .card h4 { margin-bottom: 8px; font-size: 1.02rem; }
+    .card p { font-size: 0.95rem; margin: 0; }
+    .card .k { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 12px; display: block; }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
-    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+    .reg { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .reg div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 18px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .reg div:last-child { border-bottom: none; }
+    .reg b { color: var(--color-accent); font-weight: 600; }
+    .reg span { color: var(--color-text-muted); font-size: 0.95rem; }
 
-    .learnings-list { list-style: none; margin-left: 0; }
-    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
-    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+    .persona { display: flex; flex-direction: column; gap: 10px; }
+    .persona .role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .persona ul { list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); font-size: 0.92rem; }
+    .persona li::before { content: ',  '; color: var(--color-accent); }
 
-    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
-    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
-    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
-    .btn-primary { background: var(--color-accent); color: white; padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(139, 92, 246, 0.3); }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0; counter-reset: s; }
+    .flow div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; counter-increment: s; }
+    .flow div::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--font-display); color: var(--color-accent); font-size: 1.4rem; margin-bottom: 8px; }
+    .flow h4 { font-size: 0.98rem; margin-bottom: 6px; }
+    .flow p { font-size: 0.88rem; margin: 0; }
 
-    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0; }
-    .comparison-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
-    .comparison-card.before { border-color: #ef4444; }
-    .comparison-card.after { border-color: #10b981; }
-    .comparison-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
-    .comparison-card.before .comparison-label { color: #ef4444; }
-    .comparison-card.after .comparison-label { color: #10b981; }
-    .comparison-card h4 { margin-bottom: 8px; font-size: 1rem; }
-    .comparison-card p { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 0; }
+    .shot { margin: 32px 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .shot img { width: 100%; display: block; }
 
-     @media (max-width: 900px) {
-      nav, .case-header, .case-content, .next-project, .hero-image { padding-left: 24px; padding-right: 24px; }
-      .hero-image { margin-left: 24px; margin-right: 24px; }
-      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
-      .process-grid, .results-grid, .image-grid { grid-template-columns: 1fr; }
-      .image-grid-caption { grid-column: span 1; }
+    .before-after { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .before-after div { border-radius: 16px; padding: 24px; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .before-after div.after { border-color: rgba(201, 255, 87, 0.4); }
+    .before-after h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; color: var(--color-text-muted); }
+    .before-after .after h4 { color: var(--color-accent); }
+    .before-after ul { list-style: none; display: flex; flex-direction: column; gap: 8px; color: var(--color-text-muted); font-size: 0.95rem; }
+
+    .results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .results div { background: var(--color-bg-card); padding: 32px 24px; }
+    .results .v { font-family: var(--font-display); font-size: 2.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
+    .results .l { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.4; }
+    .note { font-size: 0.85rem !important; color: var(--color-text-muted); font-style: italic; }
+
+    .tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tools span { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; font-size: 0.88rem; color: var(--color-text-muted); }
+
+    .learn { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .learn li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; color: var(--color-text-muted); }
+    .learn li::before { content: '→'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 96px 48px; text-align: center; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 12px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { color: var(--color-bg); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
+
+    footer { padding: 40px 48px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--color-text-muted); font-size: 0.9rem; }
+    footer a { color: var(--color-text-muted); }
+    footer a:hover { color: var(--color-accent); }
+
+    @media (max-width: 1000px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .toc { display: none; }
+      .snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-left: 24px; margin-right: 24px; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      nav, .case-header, .layout, .hero-image, .next-project, footer { padding-left: 24px; padding-right: 24px; }
+      .nav-links { display: none; }
+      .tldr, .grid-2, .grid-3, .before-after, .results, .flow { grid-template-columns: minmax(0, 1fr); }
+      .reg div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
       .scroll-to-top { bottom: 24px; right: 24px; }
     }
+  
+    .eos-hero { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; position: relative; z-index: 1; }
+    .eos-hero img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .numbered { list-style: none; counter-reset: n; display: grid; gap: 0; }
+    .numbered li { counter-increment: n; display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .numbered li::before { content: counter(n, decimal-leading-zero); color: var(--color-label); font-weight: 500; font-size: .85rem; padding-top: 2px; }
+    .numbered li strong { color: var(--color-text); font-weight: 600; }
+    .qa { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .qa div { background: #fff; padding: 28px 24px; font-size: 1.15rem; font-weight: 400; line-height: 1.4; color: var(--color-text); }
+    .findings { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .findings article { background: #fff; padding: 28px; display: grid; gap: 10px; }
+    .findings h4 { font-weight: 500; font-size: 1.12rem; line-height: 1.35; }
+    .findings p { margin: 0 !important; font-size: .92rem !important; }
+    .findings b { color: var(--color-text); font-weight: 600; }
+    .sort-setup { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .sort-setup div { padding: 20px 16px; } .sort-setup div + div { border-left: 1px solid var(--color-border); }
+    .sort-setup dt { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+    .sort-setup dd { font-weight: 500; line-height: 1.4; }
+    .people { display: grid; gap: 16px; }
+    .person { display: grid; grid-template-columns: 240px repeat(2, minmax(0,1fr)); gap: 2px; background: var(--color-bg); }
+    .person > div { background: #fff; padding: 24px; }
+    .person .id { display: grid; justify-items: start; gap: 14px; }
+    .person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+    .person .id h4 { font-weight: 500; font-size: 1.2rem; }
+    .person .id span { color: var(--color-text-muted); font-size: .85rem; line-height: 1.5; }
+    .person h5 { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+    .case-section .person p, .person li { font-size: .9rem; margin: 0; color: var(--color-text-muted); line-height: 1.6; }
+    .person ul { list-style: none; display: grid; gap: 4px; }
+    .person li::before { content: '•  '; color: var(--color-accent); }
+    .person .bio { grid-row: span 2; }
+    .table-wrap { overflow-x: auto; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 720px; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid #e6e6e3; vertical-align: top; color: var(--color-text-muted); }
+    th { color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+    td:first-child { color: var(--color-text); font-weight: 500; }
+    td.us { color: var(--color-text); background: var(--color-accent-dim); }
+    .timeline { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 6px 0; font-size: .78rem; }
+    .timeline .wk { grid-row: 5; text-align: center; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 8px; }
+    .timeline .bar { padding: 10px 12px; background: #fff; border-left: 3px solid var(--color-accent); color: var(--color-text); line-height: 1.35; margin-right: 6px; }
+    .timeline .phase { grid-row: 1; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); padding: 0 0 6px; border-bottom: 1px solid var(--color-text); margin-right: 6px; }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+    .roles span { border: 1px solid var(--color-text); border-radius: 100px; padding: 4px 14px; font-size: .8rem; }
+    .screen { margin: 0 0 40px; }
+    .screen h4 { font-weight: 500; font-size: 1.05rem; margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+    .screen h4 span { color: var(--color-label); font-size: .75rem; letter-spacing: .1em; }
+    .screen img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .flowimg { background: #fff; padding: 24px; overflow-x: auto; } .flowimg img { width: 100%; min-width: 900px; display: block; }
+    .laws { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .laws article { background: #fff; padding: 26px 24px; display: grid; gap: 10px; align-content: start; }
+    .laws h4 { font-weight: 500; font-size: 1.08rem; } .laws h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+    .laws p { margin: 0 !important; font-size: .9rem !important; }
+    .wcag { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .wcag article { background: #fff; padding: 24px; display: grid; gap: 12px; align-content: start; }
+    .wcag h4 { font-weight: 500; font-size: 1.1rem; } .wcag h4 small { display: block; color: var(--color-text-muted); font-size: .75rem; font-weight: 400; margin-top: 2px; }
+    .wcag ul { list-style: none; display: grid; gap: 4px; font-size: .9rem; color: var(--color-text-muted); }
+    .wcag li::before { content: '✓  '; color: #3fa66a; font-weight: 700; }
+    .wcag .why { font-size: .85rem; color: var(--color-text); border-top: 1px solid #eee; padding-top: 10px; }
+    .govern { grid-column: 1 / -1; background: var(--color-text); color: #f3f1ec; padding: 28px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 24px; }
+    .govern h4 { font-weight: 300; font-size: 1.4rem; } .govern ul { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 24px; font-size: .9rem; color: #cfcac2; }
+    .govern li::before { content: '→  '; color: var(--color-accent); }
+    .thanks { text-align: center; padding: 96px 24px 72px; border-top: 1px solid var(--color-border); }
+    .thanks h3 { font-weight: 300; font-size: clamp(2rem, 4vw, 3rem); }
+    .thanks p { color: var(--color-text-muted); }
+    @media (max-width: 900px) {
+      .qa, .findings, .laws, .wcag, .person, .govern { grid-template-columns: minmax(0,1fr); }
+      .sort-setup { grid-template-columns: repeat(2, minmax(0,1fr)); } .sort-setup div + div { border-left: none; }
+      .govern ul { grid-template-columns: minmax(0,1fr); }
+      .timeline { grid-template-columns: repeat(6, minmax(0,1fr)); }
+    }
   </style>
+  <style>
+    .app-section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto 72px; padding: 0 48px; }
+    .app-frame { overflow: hidden; }
+    .app-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; }
+    .app-bar i { width: 11px; height: 11px; border-radius: 50%; }
+    .app-bar span { margin-left: 12px; font-size: .78rem; border: 1px solid; border-radius: 6px; padding: 3px 12px; }
+    .app-bar a { margin-left: auto; font-size: .8rem; font-weight: 600; }
+    .app-viewport { position: relative; aspect-ratio: 1440 / 900; overflow: hidden; background: #f4f6fa; }
+    .app-viewport iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; }
+    .screen-head { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 16px; margin: 0 0 20px; }
+    .screen-head .num { font-size: 2.2rem; line-height: 1; }
+    .screen-head p { color: var(--color-text-muted); max-width: 760px; margin: 0; }
+    .screen-notes { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+    .screen-notes div { border-left: 2px solid var(--color-accent); padding: 4px 0 4px 14px; font-size: .9rem; color: var(--color-text-muted); }
+    .screen-notes b { display: block; color: var(--color-text); font-weight: 600; margin-bottom: 2px; }
+    .screens-intro { max-width: 1104px; margin: 0 auto 40px; padding: 56px 48px 0; }
+    .screens-intro p:not(.label) { color: var(--color-text-muted); max-width: 720px; }
+    .phones { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 24px; }
+    .phones figure { margin: 0; display: grid; gap: 10px; }
+    .phone { position: relative; aspect-ratio: 390 / 844; border: 8px solid #171717; border-radius: 30px; overflow: hidden; background: #f4f6fa; box-shadow: 0 30px 60px -30px rgba(0,0,0,.4); }
+    .phone iframe { position: absolute; top: 0; left: 0; width: 390px; height: 844px; border: 0; transform-origin: 0 0; }
+    .phones figcaption { font-size: .85rem; color: var(--color-text-muted); border: none !important; padding: 0 !important; }
+    @media (max-width: 900px) { .phones { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    .edrm { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 4px; }
+    .edrm > div { background: var(--color-label); color: #fff; padding: 18px 26px 18px 30px; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%, 16px 50%); display: grid; gap: 4px; align-content: start; min-height: 150px; }
+    .edrm > div:first-child { clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%); padding-left: 20px; }
+    .edrm > div:nth-child(2) { background: color-mix(in srgb, var(--color-label) 88%, #fff); } .edrm > div:nth-child(3) { background: color-mix(in srgb, var(--color-label) 76%, #fff); }
+    .edrm > div:nth-child(4) { background: var(--color-accent); color: #0d1b33; } .edrm > div:nth-child(5) { background: color-mix(in srgb, var(--color-accent) 80%, #fff); color: #0d1b33; } .edrm > div:nth-child(6) { background: color-mix(in srgb, var(--color-accent) 62%, #fff); color: #0d1b33; }
+    .edrm b { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; opacity: .8; font-weight: 600; }
+    .edrm h4 { font-weight: 500; font-size: 1.02rem; } .edrm p { margin: 0 !important; font-size: .82rem !important; line-height: 1.45 !important; color: inherit !important; opacity: .92; }
+    .shift { display: grid; grid-template-columns: minmax(0,1fr) 48px minmax(0,1fr); align-items: stretch; }
+    .shift > div { background: #fff; padding: 24px; } .shift > span { display: grid; place-items: center; font-size: 1.6rem; color: var(--color-label); }
+    .shift h5 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); margin-bottom: 10px; font-weight: 500; }
+    .shift ul { list-style: none; display: grid; gap: 8px; font-size: .92rem; color: var(--color-text-muted); } .shift li::before { content: '•  '; color: var(--color-label); }
+    @media (max-width: 900px) { .app-section, .screens-intro { padding-left: 16px; padding-right: 16px; } .screen-notes, .shift { grid-template-columns: minmax(0,1fr); } .shift > span { transform: rotate(90deg); } .edrm { grid-template-columns: repeat(2, minmax(0,1fr)); } .edrm > div, .edrm > div:first-child { clip-path: none; padding: 18px; min-height: 0; } }
+  </style>
+  <link rel="stylesheet" href="assets/editorial.css">
 </head>
-<body>
-  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
-  </button>
 
+<body data-theme="consilio">
+  <div class="progress" id="progress"></div>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <nav>
-    <a href="index.html" class="nav-back">
-      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
-      Back to Portfolio
-    </a>
-    <div class="nav-links">
-      <a href="case-study-absencesoft.html">← Previous</a>
-      <a href="index.html">All Projects</a>
-    </div>
+    <a href="portfolio.html" class="nav-back"><svg viewBox="0 0 100 100" width="30" height="30" fill="none"><circle cx="50" cy="30" r="15" stroke="#171717" stroke-width="4"/><path d="M35 45 L50 65 M65 45 L50 65 M50 65 L50 90" stroke="#171717" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#171717"/><circle cx="65" cy="45" r="4" fill="#171717"/><circle cx="50" cy="90" r="4" fill="#171717"/></svg> Yogesh Malik</a>
+    <div class="nav-links"><a href="case-study-absencesoft.html">← Previous</a><a href="portfolio.html">All projects</a><a href="case-study-nasab.html">Next →</a></div>
   </nav>
 
   <header class="case-header">
-    <div class="case-meta">
-      <span class="case-tag">Legal Tech</span>
-      <span class="case-tag">Legacy Migration</span>
-      <span class="case-tag">Enterprise Platform</span>
-      <span class="case-tag">Harman Connected Services</span>
-    </div>
-    <h1>Consilio eDiscovery Platform</h1>
-    <p class="case-intro">Led UX design for migrating a 15-year-old desktop application to modern web platform. Created scalable design patterns used across 8 different modules serving Fortune 500 financial institutions.</p>
+    <div class="case-meta"><span class="case-tag">Legal Tech · eDiscovery</span><span class="case-tag">Desktop to web migration</span></div>
+    <h1>Consilio eDiscovery: moving <em>legal review</em> from desktop to the web</h1>
+    <p class="case-intro">At Harman Connected Services I led UX for migrating Consilio’s eDiscovery suite from a legacy desktop application to a modern web platform used by 5,000+ legal professionals, redesigning every workflow from legal hold to final production.</p>
   </header>
 
-  <div class="hero-image">
-    <img src="images/Consilio - eDiscovery Dashboard.png" alt="Consilio eDiscovery Platform with modern visual design">
+  <div class="app-section">
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio · interactive prototype</span><a href="prototypes/consilio/index.html" target="_blank">Open full prototype ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/index.html" title="Consilio eDiscovery interactive prototype"></iframe></div>
+    </div>
   </div>
 
-  <div class="quick-stats">
-    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2014 – 2018</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Senior UX/UI Designer</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Users</div><div class="quick-stat-value">10,000+ Legal Professionals</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Engagement</div><div class="quick-stat-value">4 Years</div></div>
+  <dl class="snapshot">
+    <div><dt>Client</dt><dd>Consilio, via Harman Connected Services</dd></div>
+    <div><dt>My role</dt><dd>Senior UX/UI Designer</dd></div>
+    <div><dt>Timeline</dt><dd>2014 – 2018</dd></div>
+    <div><dt>Users</dt><dd>5,000+ legal professionals</dd></div>
+    <div><dt>Scope</dt><dd>8 product modules</dd></div>
+  </dl>
+
+  <div class="layout"><main>
+
+      <section class="case-section" id="overview">
+        <p class="label">Overview</p>
+        <h2>Project overview</h2>
+        <p>eDiscovery is how legal teams find, preserve, review and hand over electronic evidence (email, chat, files) for litigation and investigations. Mistakes are expensive: a missed document or a wrongly produced privileged email can change the outcome of a case.</p>
+        <p>Consilio’s suite ran as a legacy desktop application. Moving it to the web meant redesigning workflows for thousands of reviewers, case managers and litigation-support staff without slowing down live matters.</p>
+        <div class="wide"><div class="shift" style="margin-top:12px"><div><h5>Before: legacy desktop</h5><ul><li>Installed per machine, hard to update</li><li>Workflows built around the database, not the legal process</li><li>Little validation, so errors surfaced late</li><li>Each module looked and behaved differently</li></ul></div><span>→</span><div><h5>After: modern web platform</h5><ul><li>Browser-based, one workspace per matter</li><li>Workflows mirror real eDiscovery stages</li><li>Validation and guidance at every risky step</li><li>One pattern library across 8 modules</li></ul></div></div></div>
+      </section>
+
+      <section class="case-section" id="the-challenge">
+        <p class="label">The challenge</p>
+        <h2>Problem statement and pain points</h2>
+        <ol class="numbered">
+          <li><span><strong>High-stakes errors:</strong> coding or production mistakes carried legal risk and were costly to fix.</span></li>
+          <li><span><strong>Slow processing:</strong> reviewers lost time switching between disconnected screens and dialogs.</span></li>
+          <li><span><strong>Heavy support load:</strong> unclear instructions and missing validation drove a steady stream of support requests.</span></li>
+          <li><span><strong>Inconsistent modules:</strong> eight modules each had their own patterns, so every new area meant relearning the tool.</span></li>
+        </ol>
+      </section>
+
+      <section class="case-section" id="approach">
+        <p class="label">Approach</p>
+        <h2>My approach</h2>
+        <ol class="numbered">
+          <li><span><strong>Stakeholder interviews and requirements gathering</strong> with legal, litigation-support and product teams.</span></li>
+          <li><span><strong>Workflow analysis:</strong> observing how reviewers and case managers actually move through a matter.</span></li>
+          <li><span><strong>Information architecture</strong> aligned with real-world eDiscovery stages, from legal hold to production.</span></li>
+          <li><span><strong>Validation and instructional design</strong> at every step where an error would be costly.</span></li>
+          <li><span><strong>Reusable design patterns</strong> shared across all 8 modules of the suite.</span></li>
+        </ol>
+      </section>
+
+      <section class="case-section" id="workflow">
+        <p class="label">Process</p>
+        <h2>Designed around the eDiscovery lifecycle</h2>
+        <p>The new information architecture follows the stages legal teams already think in, so the navigation itself explains where a matter is and what comes next.</p>
+        <div class="wide"><div class="edrm"><div><b>01 · Preserve</b><h4>Legal holds</h4><p>Notices, acknowledgements and custodians</p></div><div><b>02 · Collect</b><h4>Collection</h4><p>Sources, scope and chain of custody</p></div><div><b>03 · Process</b><h4>Processing</h4><p>Loads, exceptions and quality control</p></div><div><b>04 · Review</b><h4>Document review</h4><p>Queue, viewer and coding</p></div><div><b>05 · Analyse</b><h4>Search &amp; analytics</h4><p>ECA, facets and prioritisation</p></div><div><b>06 · Produce</b><h4>Production &amp; audit</h4><p>Wizard, QC and delivery history</p></div></div></div>
+      </section>
+
+      <section class="case-section" id="users">
+        <p class="label">Users</p>
+        <h2>Who it’s for</h2>
+        <div class="wide"><div class="grid-3"><div class="card persona"><span class="role">Primary</span><h4>Document reviewer</h4><ul><li>Codes hundreds of documents a day</li><li>Needs speed without losing context</li><li>Relies on keyboard and queue flow</li></ul></div><div class="card persona"><span class="role">Primary</span><h4>Review lead / case manager</h4><ul><li>Runs batches, protocols and deadlines</li><li>Tracks progress and risk per matter</li><li>Signs off on productions</li></ul></div><div class="card persona"><span class="role">Secondary</span><h4>Litigation support</h4><ul><li>Manages holds, collection and processing</li><li>Handles exceptions and QC</li><li>Owns chain of custody</li></ul></div></div></div>
+      </section>
+
+      <section class="case-section" id="research">
+        <p class="label">Research</p>
+        <h2>What we learned</h2>
+        <div class="wide"><div class="findings">
+          <article><h4>Users think in legal stages, not database tables</h4><p>Reviewers and case managers described their work as hold, collect, review and produce, not by the tool’s internal objects.</p><p><b>Design impact:</b> navigation rebuilt around the eDiscovery lifecycle.</p></article>
+          <article><h4>Context is everything in review</h4><p>Reviewers needed the document, its family and the coding options at the same time; switching windows broke concentration.</p><p><b>Design impact:</b> a three-pane review workspace.</p></article>
+          <article><h4>Errors came from unclear, unvalidated steps</h4><p>Most costly mistakes happened in setup-heavy tasks like production, where settings were scattered and nothing was checked.</p><p><b>Design impact:</b> guided wizards with validation and clear instructions.</p></article>
+          <article><h4>Every action must be defensible</h4><p>Teams had to show who did what and when, months later, sometimes in court.</p><p><b>Design impact:</b> explicit status, audit trails and package manifests.</p></article>
+        </div></div>
+      </section>
+
+      <section class="case-section" id="principles">
+        <p class="label">Principles</p>
+        <h2>Design principles applied</h2>
+        <p>Where research left a choice open, these principles decided it.</p>
+        <div class="wide"><div class="laws"><article><h4><small>Legal-grade trust</small>Defensibility first</h4><p><b>Applied:</b> Every action keeps who, what and when; status is always explicit and auditable.</p><p><b>Impact:</b> Teams can defend their process in court.</p></article><article><h4><small>Human in the loop</small>AI is advisory</h4><p><b>Applied:</b> Model suggestions show confidence and reasons, and need reviewer confirmation.</p><p><b>Impact:</b> Speed without giving up legal judgement.</p></article><article><h4><small>Familiar patterns</small>Jakob’s Law</h4><p><b>Applied:</b> Desktop conventions reviewers relied on (panes, shortcuts, queues) were kept on the web.</p><p><b>Impact:</b> A shorter learning curve during migration.</p></article><article><h4><small>Cognitive load</small>Progressive disclosure</h4><p><b>Applied:</b> Complex settings sit inside guided steps, like the production wizard.</p><p><b>Impact:</b> Fewer configuration errors.</p></article><article><h4><small>One pattern library</small>Consistency</h4><p><b>Applied:</b> Tables, chips, headers and panels shared across all 8 modules.</p><p><b>Impact:</b> Learn once, use everywhere.</p></article><article><h4><small>Validation</small>Error prevention</h4><p><b>Applied:</b> Inline validation and clear instructions at risky steps such as production.</p><p><b>Impact:</b> 40% fewer user errors.</p></article></div></div>
+      </section>
+
+      <section class="case-section" id="wireframes">
+        <p class="label">Low-fidelity wireframes</p>
+        <h2>Greyscale wireframes of every module, desktop and mobile</h2>
+        <p>All eight modules were wireframed in greyscale first, with the same regions as the final screens: module navigation, matter header, status, and each module’s main working area. Reviewers walked through them with real review protocols before any visual design. Key screens were also wireframed for mobile, where the navigation collapses into a menu and panels stack.</p>
+        <div class="wide"><p class="label" style="margin:8px 0 12px">Desktop · 8 modules</p><div class="wf-set" style="grid-template-columns:repeat(2,minmax(0,1fr))"><figure class="wf-card"><h4><span>01</span>Matter overview</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ Consilio</span><div class="cd" style="padding:4px;gap:2px"><span class="s">ORGANIZATION</span><span class="t ">Northwind Legal</span></div><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Overview</span><span class="s" style="padding:3px 4px;">Legal holds</span><span class="s" style="padding:3px 4px;">Collection &amp; processing</span><span class="s" style="padding:3px 4px;">Document review</span><span class="s" style="padding:3px 4px;">Search</span><span class="s" style="padding:3px 4px;">Analytics &amp; AI</span><span class="s" style="padding:3px 4px;">Production setup</span><span class="s" style="padding:3px 4px;">Production &amp; audit</span><span class="s" style="margin-top:6px">GOVERNANCE</span><span class="s">Audit trail</span><span class="s">Access &amp; security</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Matters / MER-2026-014</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Meridian acquisition review</span><span class="s">Matter ID · Client · Lead counsel</span></div><span class="chip">ACTIVE</span><span class="btn">View audit trail</span><span class="btn p">Open review queue →</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">Documents collected</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Review completed</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Needs attention</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Next milestone</span><span class="t l">00,000</span><i class="w6"></i></div></div><div class="cd" style="padding:6px;gap:5px"><span class="t ">Discovery workflow</span><div class="g4" style="grid-template-columns:repeat(6,1fr)"><div class="st" style="gap:2px;border-top:3px solid #666;padding-top:3px"><span class="s" style="color:#222">Preservation</span><i class="w6"></i></div><div class="st" style="gap:2px;border-top:3px solid #666;padding-top:3px"><span class="s" style="color:#222">Collection</span><i class="w6"></i></div><div class="st" style="gap:2px;border-top:3px solid #666;padding-top:3px"><span class="s" style="color:#222">Processing</span><i class="w6"></i></div><div class="st" style="gap:2px;border-top:3px solid #bbb;padding-top:3px"><span class="s" style="color:#222">Review</span><i class="w6"></i></div><div class="st" style="gap:2px;border-top:3px solid #bbb;padding-top:3px"><span class="s" style="color:#222">Analysis</span><i class="w6"></i></div><div class="st" style="gap:2px;border-top:3px solid #bbb;padding-top:3px"><span class="s" style="color:#222">Production</span><i class="w6"></i></div></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Recent matters</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Matter</span><span class="s" style="flex:1">Client</span><span class="s" style="flex:1">Custodians</span><span class="s" style="flex:1">Documents</span><span class="s" style="flex:1">Status</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">STATUS</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">STATUS</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">STATUS</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">STATUS</span></div></div></div></div></div><figcaption>Matter status, the six-stage workflow and every active matter in one view.</figcaption></figure><figure class="wf-card"><h4><span>02</span>Legal holds</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ Consilio</span><div class="cd" style="padding:4px;gap:2px"><span class="s">ORGANIZATION</span><span class="t ">Northwind Legal</span></div><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Legal holds</span><span class="s" style="padding:3px 4px;">Collection &amp; processing</span><span class="s" style="padding:3px 4px;">Document review</span><span class="s" style="padding:3px 4px;">Search</span><span class="s" style="padding:3px 4px;">Analytics &amp; AI</span><span class="s" style="padding:3px 4px;">Production setup</span><span class="s" style="padding:3px 4px;">Production &amp; audit</span><span class="s" style="margin-top:6px">GOVERNANCE</span><span class="s">Audit trail</span><span class="s">Access &amp; security</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Matters / MER-2026-014</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Legal hold management</span><span class="s">Matter · Hold coordinator</span></div><span class="chip">2 OPEN HOLDS</span><span class="btn">View hold activity</span><span class="btn p">＋ Create legal hold</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">Notices to send</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Notices sent</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Custodians in scope</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Active holds</span><span class="t l">00,000</span><i class="w6"></i></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Hold register</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Hold name</span><span class="s" style="flex:1">Custodians</span><span class="s" style="flex:1">Notice issued</span><span class="s" style="flex:1">Follow-up</span><span class="s" style="flex:1">Owner</span><span class="s" style="flex:1">Status</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">OPEN</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">OPEN</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">OPEN</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">OPEN</span></div></div></div></div></div><figcaption>Every hold, notice and follow-up in one register, with the next action on top.</figcaption></figure><figure class="wf-card"><h4><span>03</span>Collection &amp; processing</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ Consilio</span><div class="cd" style="padding:4px;gap:2px"><span class="s">ORGANIZATION</span><span class="t ">Northwind Legal</span></div><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Legal holds</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Collection &amp; processing</span><span class="s" style="padding:3px 4px;">Document review</span><span class="s" style="padding:3px 4px;">Search</span><span class="s" style="padding:3px 4px;">Analytics &amp; AI</span><span class="s" style="padding:3px 4px;">Production setup</span><span class="s" style="padding:3px 4px;">Production &amp; audit</span><span class="s" style="margin-top:6px">GOVERNANCE</span><span class="s">Audit trail</span><span class="s">Access &amp; security</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Matters / MER-2026-014</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Data operations</span><span class="s">Preservation, collection, exceptions and QC</span></div><span class="chip">12 SOURCES</span><span class="btn p">Matter overview</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">Custodians in scope</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Collected items</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Processing exceptions</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Last load</span><span class="t l">00,000</span><i class="w6"></i></div></div><div style="display:grid;grid-template-columns:1.4fr 1fr;gap:6px;align-items:start"><div class="cd" style="padding:6px;gap:4px"><span class="t ">Collection sources</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Custodian / source</span><span class="s" style="flex:1">Scope</span><span class="s" style="flex:1">Preservation</span><span class="s" style="flex:1">Collection</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">CONFIRMED</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">CONFIRMED</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">CONFIRMED</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">CONFIRMED</span></div></div><div class="cd" style="padding:6px;gap:5px"><span class="t ">Processing pipeline</span><div class="r"><span class="dot" style="background:#666"></span><span class="s" style="color:#222">Ingest</span><i class="f w6"></i></div><div class="r"><span class="dot" style="background:#666"></span><span class="s" style="color:#222">Deduplicate</span><i class="f w6"></i></div><div class="r"><span class="dot" style="background:#666"></span><span class="s" style="color:#222">Extract text</span><i class="f w6"></i></div><div class="r"><span class="dot" style="background:#ccc"></span><span class="s" style="color:#222">OCR</span><i class="f w6"></i></div><div class="r"><span class="dot" style="background:#ccc"></span><span class="s" style="color:#222">Index</span><i class="f w6"></i></div></div></div></div></div></div><figcaption>Source-by-source status with chain of custody, and exceptions routed to an operator.</figcaption></figure><figure class="wf-card"><h4><span>04</span>Document review</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ Consilio</span><div class="cd" style="padding:4px;gap:2px"><span class="s">ORGANIZATION</span><span class="t ">Northwind Legal</span></div><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Legal holds</span><span class="s" style="padding:3px 4px;">Collection &amp; processing</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Document review</span><span class="s" style="padding:3px 4px;">Search</span><span class="s" style="padding:3px 4px;">Analytics &amp; AI</span><span class="s" style="padding:3px 4px;">Production setup</span><span class="s" style="padding:3px 4px;">Production &amp; audit</span><span class="s" style="margin-top:6px">GOVERNANCE</span><span class="s">Audit trail</span><span class="s">Access &amp; security</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Matters / MER-2026-014</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Batch 07 / responsiveness &amp; privilege</span><span class="s">24-document batch · Protocol v3.2 · Reviewer</span></div><span class="chip">8 UNCODED</span><span class="btn p">View analytics</span></div><div style="display:grid;grid-template-columns:1.1fr 2fr 1.2fr;gap:6px;align-items:start"><div class="st" style="gap:5px"><span class="t ">Review queue</span><div class="r"><span class="chip">All</span><span class="chip">Uncoded 8</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Merger timing discussion</span><span class="s">TYPE · DATE · CUSTODIAN</span><span class="chip" style="justify-self:start">Likely responsive</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Integration planning notes</span><span class="s">TYPE · DATE · CUSTODIAN</span><span class="chip" style="justify-self:start">Responsive</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Quarterly forecast draft</span><span class="s">TYPE · DATE · CUSTODIAN</span><span class="chip" style="justify-self:start">Needs context</span></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Document viewer</span><span class="s">Original · Page 1 of 3 · 110%</span><div class="st" style="gap:4px;background:#fbfbf9;border:1px solid #ccc;padding:8px"><span class="s">EMAIL · MSG-ID · CUSTODIAN · FAMILY 1 OF 4</span><span class="t l">Meridian integration timeline</span><i></i><i class="w8"></i><i></i><i></i><i class="w6"></i><i></i><i class="w8"></i></div></div><div class="st" style="gap:5px"><div class="cd" style="padding:6px;gap:4px"><span class="t ">Coding panel</span><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="s">Responsive</span></div><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="s">Not responsive</span></div><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="s">Needs review</span></div><div class="hr"></div><span class="t ">Privilege</span><span class="fld">Select basis ▾</span></div><div class="cd" style="padding:6px;gap:4px;border-style:dashed"><span class="t ">AI suggestion · advisory</span><i></i><i class="w8"></i><div class="r"><span class="btn">Accept</span><span class="btn">Override</span></div></div><span class="btn p">Save &amp; next →</span></div></div></div></div></div><figcaption>Queue, document and coding side by side; AI suggestions clearly marked as advisory.</figcaption></figure><figure class="wf-card"><h4><span>05</span>Search &amp; ECA</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ Consilio</span><div class="cd" style="padding:4px;gap:2px"><span class="s">ORGANIZATION</span><span class="t ">Northwind Legal</span></div><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Legal holds</span><span class="s" style="padding:3px 4px;">Collection &amp; processing</span><span class="s" style="padding:3px 4px;">Document review</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Search</span><span class="s" style="padding:3px 4px;">Analytics &amp; AI</span><span class="s" style="padding:3px 4px;">Production setup</span><span class="s" style="padding:3px 4px;">Production &amp; audit</span><span class="s" style="margin-top:6px">GOVERNANCE</span><span class="s">Audit trail</span><span class="s">Access &amp; security</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Matters / MER-2026-014</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Search and explore the matter</span><span class="s">Terms, metadata and visual facets</span></div><span class="chip">DEMO</span><span class="btn">ECA dashboard</span><span class="btn p">Open review set →</span></div><div class="cd" style="padding:6px;gap:4px"><div class="r"><span class="s">Search preview</span><span class="fld f">⌕ Terms, metadata…</span></div><div class="r"><span class="t ">Results: 479 documents</span><span class="s">3,897 pages · 0.21 GB</span><span class="chip">Has duplicates ×</span><span class="chip">Slack ×</span></div></div><div class="g3"><div class="cd" style="padding:6px;gap:4px"><span class="t ">Auto tags</span><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:80%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:55%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:35%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:20%;background:#777;border-radius:3px"></div></div></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Email domain</span><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:80%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:55%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:35%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:20%;background:#777;border-radius:3px"></div></div></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Chat reactions</span><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:80%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:55%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:35%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet value</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:20%;background:#777;border-radius:3px"></div></div></div></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Search results</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Document</span><span class="s" style="flex:1">Custodian</span><span class="s" style="flex:1">Date</span><span class="s" style="flex:1">Type</span><span class="s" style="flex:1">Tag</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">TAG</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">TAG</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">TAG</span></div></div></div></div></div><figcaption>Facets with live counts, removable filter chips and volume for every query.</figcaption></figure><figure class="wf-card"><h4><span>06</span>Analytics &amp; AI</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ Consilio</span><div class="cd" style="padding:4px;gap:2px"><span class="s">ORGANIZATION</span><span class="t ">Northwind Legal</span></div><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Legal holds</span><span class="s" style="padding:3px 4px;">Collection &amp; processing</span><span class="s" style="padding:3px 4px;">Document review</span><span class="s" style="padding:3px 4px;">Search</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Analytics &amp; AI</span><span class="s" style="padding:3px 4px;">Production setup</span><span class="s" style="padding:3px 4px;">Production &amp; audit</span><span class="s" style="margin-top:6px">GOVERNANCE</span><span class="s">Audit trail</span><span class="s">Access &amp; security</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Matters / MER-2026-014</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Explore patterns</span><span class="s">Prioritise review and keep AI work explainable</span></div><span class="chip">DEMO DATA</span><span class="btn p">Open review</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">Documents in scope</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Potentially responsive</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Needs privilege review</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Needs human validation</span><span class="t l">00,000</span><i class="w6"></i></div></div><div style="display:grid;grid-template-columns:1fr 1.3fr;gap:6px;align-items:start"><div class="cd" style="padding:6px;gap:5px"><span class="t ">Review prioritisation</span><span class="chip" style="justify-self:start">MODEL ASSIST</span><div class="st" style="gap:2px"><span class="s">High relevance</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:70%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Potential privilege</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:40%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Near-duplicate groups</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:85%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Needs context</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:25%;background:#777;border-radius:3px"></div></div></div></div><div class="cd" style="padding:6px;gap:5px"><span class="t ">Issue and concept map</span><div class="g3"><div class="st" style="gap:2px;border:1.2px solid #999;border-radius:4px;padding:5px;text-align:center"><span class="s" style="color:#222">Regulatory timing</span><span class="s">000 docs</span></div><div class="st" style="gap:2px;border:1.2px solid #999;border-radius:20px;padding:5px;text-align:center"><span class="s" style="color:#222">Integration planning</span><span class="s">000 docs</span></div><div class="st" style="gap:2px;border:1.2px solid #999;border-radius:4px;padding:5px;text-align:center"><span class="s" style="color:#222">Pricing</span><span class="s">000 docs</span></div><div class="st" style="gap:2px;border:1.2px solid #999;border-radius:20px;padding:5px;text-align:center"><span class="s" style="color:#222">Board updates</span><span class="s">000 docs</span></div><div class="st" style="gap:2px;border:1.2px solid #999;border-radius:4px;padding:5px;text-align:center"><span class="s" style="color:#222">Retention</span><span class="s">000 docs</span></div><div class="st" style="gap:2px;border:1.2px solid #999;border-radius:20px;padding:5px;text-align:center"><span class="s" style="color:#222">Vendors</span><span class="s">000 docs</span></div></div></div></div></div></div></div><figcaption>Prioritisation groups and a concept map, with low-confidence items sent back to people.</figcaption></figure><figure class="wf-card"><h4><span>07</span>Production setup</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ Consilio</span><div class="cd" style="padding:4px;gap:2px"><span class="s">ORGANIZATION</span><span class="t ">Northwind Legal</span></div><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Legal holds</span><span class="s" style="padding:3px 4px;">Collection &amp; processing</span><span class="s" style="padding:3px 4px;">Document review</span><span class="s" style="padding:3px 4px;">Search</span><span class="s" style="padding:3px 4px;">Analytics &amp; AI</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Production setup</span><span class="s" style="padding:3px 4px;">Production &amp; audit</span><span class="s" style="margin-top:6px">GOVERNANCE</span><span class="s">Audit trail</span><span class="s">Access &amp; security</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Matters / MER-2026-014</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">New production set</span><span class="s">Configure source, format and QC before staging</span></div><span class="chip">DRAFT · NOT SUBMITTED</span><span class="btn p">Prototype workflow</span></div><div class="g4" style="grid-template-columns:repeat(6,1fr)"><div class="r" style="border-bottom:2px solid #555;padding-bottom:3px"><span class="dot" style="background:#555"></span><span class="s">Destination</span></div><div class="r" style="border-bottom:2px solid #ccc;padding-bottom:3px"><span class="dot" style="background:#ccc"></span><span class="s">Options</span></div><div class="r" style="border-bottom:2px solid #ccc;padding-bottom:3px"><span class="dot" style="background:#ccc"></span><span class="s">Settings</span></div><div class="r" style="border-bottom:2px solid #ccc;padding-bottom:3px"><span class="dot" style="background:#ccc"></span><span class="s">Other</span></div><div class="r" style="border-bottom:2px solid #ccc;padding-bottom:3px"><span class="dot" style="background:#ccc"></span><span class="s">Summary</span></div><div class="r" style="border-bottom:2px solid #ccc;padding-bottom:3px"><span class="dot" style="background:#ccc"></span><span class="s">Status</span></div></div><div class="g3"><div class="st" style="gap:2px"><span class="s">Production action</span><span class="fld">Select ▾</span></div><div class="st" style="gap:2px"><span class="s">Template</span><span class="fld">Select ▾</span></div><div class="st" style="gap:2px"><span class="s">Production name *</span><span class="fld">Select ▾</span></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Select source sets to include</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Media / source name</span><span class="s" style="flex:1">Original docs</span><span class="s" style="flex:1">Duplicates</span><span class="s" style="flex:1">Include</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">✓</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">✓</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">✓</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">✓</span></div></div><div class="r" style="justify-content:flex-end"><span class="btn">Back</span><span class="btn p">Next step →</span></div></div></div></div><figcaption>A six-step wizard so complex settings are made one decision at a time.</figcaption></figure><figure class="wf-card"><h4><span>08</span>Production &amp; audit</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ Consilio</span><div class="cd" style="padding:4px;gap:2px"><span class="s">ORGANIZATION</span><span class="t ">Northwind Legal</span></div><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Legal holds</span><span class="s" style="padding:3px 4px;">Collection &amp; processing</span><span class="s" style="padding:3px 4px;">Document review</span><span class="s" style="padding:3px 4px;">Search</span><span class="s" style="padding:3px 4px;">Analytics &amp; AI</span><span class="s" style="padding:3px 4px;">Production setup</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Production &amp; audit</span><span class="s" style="margin-top:6px">GOVERNANCE</span><span class="s">Audit trail</span><span class="s">Access &amp; security</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Matters / MER-2026-014</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Deliverables</span><span class="s">Reviewable production set, QC and matter history</span></div><span class="chip">QC IN PROGRESS</span><span class="btn p">Return to review</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">Production sets</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Documents in draft</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">QC checks complete</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Next delivery</span><span class="t l">00,000</span><i class="w6"></i></div></div><div style="display:grid;grid-template-columns:1.4fr 1fr;gap:6px;align-items:start"><div class="cd" style="padding:6px;gap:4px"><span class="t ">Production sets</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Set</span><span class="s" style="flex:1">Documents</span><span class="s" style="flex:1">Format</span><span class="s" style="flex:1">Status</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">DRAFT QC</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">DRAFT QC</span></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Pre-delivery QC</span><div class="r"><span style="width:9px;height:9px;border:1.2px solid #666;background:#666"></span><span class="s" style="color:#222">Counts reconciled</span></div><div class="r"><span style="width:9px;height:9px;border:1.2px solid #666;background:#666"></span><span class="s" style="color:#222">Bates range checked</span></div><div class="r"><span style="width:9px;height:9px;border:1.2px solid #666;background:#666"></span><span class="s" style="color:#222">Redactions applied</span></div><div class="r"><span style="width:9px;height:9px;border:1.2px solid #666;background:#fff"></span><span class="s" style="color:#222">Privilege log</span></div><div class="r"><span style="width:9px;height:9px;border:1.2px solid #666;background:#fff"></span><span class="s" style="color:#222">Load files</span></div></div></div></div></div></div><figcaption>Sets, QC checklist and audit history together, so every delivery is defensible.</figcaption></figure></div>
+        <p class="label" style="margin:40px 0 12px">Mobile · key screens</p><div class="wf-set mob" style="grid-template-columns:repeat(4,minmax(0,1fr))"><figure class="wf-card"><h4><span>M1</span>Matter overview</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">◼ Consilio</span><span class="ic sp"></span></div><div class="pad"><span class="s">MER-2026-014</span><span class="t l">Meridian acquisition review</span><span class="chip" style="justify-self:start">ACTIVE</span><span class="btn p">Open review queue →</span><div class="cd" style="padding:6px;gap:3px"><span class="s">Documents collected</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Review completed</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Discovery workflow</span><div class="g2"><div class="st" style="gap:2px;border-top:3px solid #666;padding-top:3px"><span class="s">Preservation</span></div><div class="st" style="gap:2px;border-top:3px solid #666;padding-top:3px"><span class="s">Collection</span></div><div class="st" style="gap:2px;border-top:3px solid #666;padding-top:3px"><span class="s">Processing</span></div><div class="st" style="gap:2px;border-top:3px solid #bbb;padding-top:3px"><span class="s">Review</span></div></div></div></div></div><figcaption></figcaption></figure><figure class="wf-card"><h4><span>M2</span>Document review</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">◼ Consilio</span><span class="ic sp"></span></div><div class="pad"><span class="t l">Batch 07</span><span class="s">Protocol v3.2</span><span class="chip" style="justify-self:start">8 UNCODED</span><div class="cd" style="padding:5px;gap:2px"><span class="t ">Merger timing discussion</span><span class="s">TYPE · DATE · CUSTODIAN</span><span class="chip" style="justify-self:start">Likely responsive</span></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Document viewer</span><i></i><i class="w8"></i><i></i><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Coding</span><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="s">Responsive</span></div><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="s">Not responsive</span></div></div><span class="btn p">Save &amp; next →</span></div></div><figcaption></figcaption></figure><figure class="wf-card"><h4><span>M3</span>Search &amp; ECA</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">◼ Consilio</span><span class="ic sp"></span></div><div class="pad"><span class="t l">Search the matter</span><span class="fld">⌕ Terms, metadata…</span><span class="t ">479 documents</span><div class="r" style="flex-wrap:wrap"><span class="chip">Duplicates ×</span><span class="chip">Slack ×</span></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Auto tags</span><div class="st" style="gap:2px"><span class="s">Facet</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:80%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:55%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Facet</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:35%;background:#777;border-radius:3px"></div></div></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Email domain</span><div class="st" style="gap:2px"><span class="s">Domain</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:70%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Domain</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:45%;background:#777;border-radius:3px"></div></div></div></div></div></div><figcaption></figcaption></figure><figure class="wf-card"><h4><span>M4</span>Production &amp; audit</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">◼ Consilio</span><span class="ic sp"></span></div><div class="pad"><span class="t l">Deliverables</span><span class="chip" style="justify-self:start">QC IN PROGRESS</span><div class="cd" style="padding:6px;gap:3px"><span class="s">QC checks complete</span><span class="t l">00,000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Production sets</span><div class="r"><i class="f"></i><span class="chip">DELIVERED</span></div><div class="r"><i class="f"></i><span class="chip">DRAFT</span></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Pre-delivery QC</span><div class="r"><span style="width:9px;height:9px;border:1.2px solid #666;background:#666"></span><span class="s">Counts reconciled</span></div><div class="r"><span style="width:9px;height:9px;border:1.2px solid #666;background:#666"></span><span class="s">Bates range</span></div><div class="r"><span style="width:9px;height:9px;border:1.2px solid #666;background:#fff"></span><span class="s">Redactions</span></div></div></div></div><figcaption></figcaption></figure></div></div>
+      </section>
+  </main></div>
+
+  <div class="screens-intro" id="screens">
+    <p class="label">All screens · interactive</p>
+    <h2>Every module, live</h2>
+    <p>Each frame below is a working prototype, not a screenshot, so you can click between modules. I rebuilt these screens to show the workflows; the matter, people and data are fictional and this is not official Consilio software.</p>
   </div>
 
-  <div class="case-content">
-    <section class="case-section">
-      <p class="case-section-label">Context</p>
-      <h2>The Challenge</h2>
-      <p>Consilio provides eDiscovery software to legal teams at Fortune 500 companies handling complex litigation. Their flagship product was a 15-year-old desktop application with a massive feature set but an increasingly dated interface.</p>
-      <p>Legal professionals were struggling with productivity as the industry moved toward remote work and multi-device access. The business needed a complete platform migration without losing any critical functionality.</p>
-      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we modernize a complex 15-year-old desktop application for the web while maintaining feature parity and reducing the steep learning curve?</p></div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Discovery</p>
-      <h2>Understanding the Legacy System</h2>
-      <p>I spent the first 3 months deeply understanding the existing system—its 200+ features, user workflows, and the mental models that legal professionals had built over years of use.</p>
-      
-      <div class="diagram-container">
-        <p class="diagram-title">eDiscovery Workflow</p>
-        <svg viewBox="0 0 700 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 500px;">
-          <g transform="translate(30, 40)">
-            <rect x="0" y="0" width="100" height="70" rx="8" fill="#8b5cf6" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="2"/>
-            <text x="50" y="30" text-anchor="middle" fill="#8b5cf6" font-family="sans-serif" font-size="18">📥</text>
-            <text x="50" y="55" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="10" font-weight="600">Collection</text>
-          </g>
-          <path d="M140 75 L170 75" stroke="#8b5cf6" stroke-width="2"/>
-          <polygon points="170,70 185,75 170,80" fill="#8b5cf6"/>
-          <g transform="translate(195, 40)">
-            <rect x="0" y="0" width="100" height="70" rx="8" fill="#8b5cf6" fill-opacity="0.1" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="50" y="30" text-anchor="middle" fill="#8b5cf6" font-family="sans-serif" font-size="18">⚙️</text>
-            <text x="50" y="55" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10" font-weight="600">Processing</text>
-          </g>
-          <path d="M305 75 L335 75" stroke="#2a2a2a" stroke-width="2"/>
-          <g transform="translate(360, 40)">
-            <rect x="0" y="0" width="100" height="70" rx="8" fill="#8b5cf6" fill-opacity="0.1" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="50" y="30" text-anchor="middle" fill="#8b5cf6" font-family="sans-serif" font-size="18">🔍</text>
-            <text x="50" y="55" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10" font-weight="600">Review</text>
-          </g>
-          <path d="M470 75 L500 75" stroke="#2a2a2a" stroke-width="2"/>
-          <g transform="translate(525, 40)">
-            <rect x="0" y="0" width="100" height="70" rx="8" fill="#8b5cf6" fill-opacity="0.1" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="50" y="30" text-anchor="middle" fill="#8b5cf6" font-family="sans-serif" font-size="18">📤</text>
-            <text x="50" y="55" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10" font-weight="600">Production</text>
-          </g>
-          <text x="350" y="140" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="10">Each phase has 20-50 features that needed to be migrated</text>
-        </svg>
-        <p class="diagram-caption">The EDRM framework guiding eDiscovery workflows across 8 modules</p>
-      </div>
-
-      <div class="process-grid">
-        <div class="process-step"><div class="process-step-number">1</div><h4>Feature Audit</h4><p>Documented all 200+ features and their usage frequency from analytics.</p></div>
-        <div class="process-step"><div class="process-step-number">2</div><h4>User Shadowing</h4><p>Observed legal professionals using the desktop app in real litigation projects.</p></div>
-        <div class="process-step"><div class="process-step-number">3</div><h4>Pain Point Mapping</h4><p>Identified 47 usability issues causing errors and slowdowns.</p></div>
-        <div class="process-step"><div class="process-step-number">4</div><h4>Technical Constraints</h4><p>Worked with engineering to understand web platform limitations.</p></div>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Solution</p>
-      <h2>Modern Interface Design</h2>
-      
-      <h3>Before vs After</h3>
-      <div class="comparison-grid">
-        <div class="comparison-card before">
-          <p class="comparison-label">❌ Before</p>
-          <h4>Cluttered Toolbars</h4>
-          <p>87 buttons visible at once, requiring memorization of icon meanings</p>
-        </div>
-        <div class="comparison-card after">
-          <p class="comparison-label">✓ After</p>
-          <h4>Contextual Actions</h4>
-          <p>Actions appear based on selection, reducing visible options by 70%</p>
-        </div>
-        <div class="comparison-card before">
-          <p class="comparison-label">❌ Before</p>
-          <h4>Modal Dialogs Everywhere</h4>
-          <p>12-step workflows requiring constant dialog dismissal</p>
-        </div>
-        <div class="comparison-card after">
-          <p class="comparison-label">✓ After</p>
-          <h4>Inline Editing</h4>
-          <p>Direct manipulation with inline editing and auto-save</p>
-        </div>
-        <div class="comparison-card before">
-          <p class="comparison-label">❌ Before</p>
-          <h4>Tiny Text & Icons</h4>
-          <p>12px fonts and 16px icons designed for 1024x768 screens</p>
-        </div>
-        <div class="comparison-card after">
-          <p class="comparison-label">✓ After</p>
-          <h4>Responsive Typography</h4>
-          <p>Scalable UI adapting to screen size with 44px touch targets</p>
-        </div>
-      </div>
-
-      <h3>Design System for Scale</h3>
-      <p>I created a comprehensive design system that could be used across all 8 modules, ensuring consistency while allowing for module-specific customization.</p>
-
-      <div class="diagram-container">
-        <p class="diagram-title">Design System Architecture</p>
-        <svg viewBox="0 0 700 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 400px;">
-          <rect x="50" y="20" width="600" height="50" rx="8" fill="#8b5cf6" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="2"/>
-          <text x="350" y="50" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="600">Design Tokens: Colors, Typography, Spacing, Shadows</text>
-          <rect x="50" y="85" width="190" height="45" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-          <text x="145" y="112" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11">Atoms: Buttons, Inputs</text>
-          <rect x="255" y="85" width="190" height="45" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-          <text x="350" y="112" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11">Molecules: Cards, Forms</text>
-          <rect x="460" y="85" width="190" height="45" rx="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-          <text x="555" y="112" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11">Organisms: Tables, Panels</text>
-          <rect x="50" y="145" width="600" height="40" rx="8" fill="#8b5cf6" fill-opacity="0.1" stroke="#2a2a2a" stroke-width="1"/>
-          <text x="350" y="170" text-anchor="middle" fill="#8b5cf6" font-family="sans-serif" font-size="11">8 Module Templates: Collection, Processing, Review, Analysis, Production...</text>
-        </svg>
-        <p class="diagram-caption">Atomic design system serving 8 modules with 200+ components</p>
-      </div>
-
-      <h3>Tools & Technologies</h3>
-      <div class="tools-grid">
-        <span class="tool-tag">Figma</span>
-        <span class="tool-tag">MongoDB</span>
-        <span class="tool-tag">ASP.NET Core</span>
-        <span class="tool-tag">HTML/CSS/JS, Bootstrap, jQuery</span>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Results</p>
-      <h2>Measurable Impact</h2>
-      <div class="results-grid">
-        <div class="result-card"><div class="result-value">-65%</div><div class="result-label">User Errors</div></div>
-        <div class="result-card"><div class="result-value">+45%</div><div class="result-label">Task Efficiency</div></div>
-        <div class="result-card"><div class="result-value">-50%</div><div class="result-label">Support Escalations</div></div>
-        <div class="result-card"><div class="result-value">90%+</div><div class="result-label">User Satisfaction</div></div>
-        <div class="result-card"><div class="result-value">10K+</div><div class="result-label">Legal Professionals</div></div>
-        <div class="result-card"><div class="result-value">4yr</div><div class="result-label">Client Engagement</div></div>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Reflection</p>
-      <h2>What I Learned</h2>
-      <ul class="learnings-list">
-        <li><span><strong>Legacy migration requires empathy.</strong> Users have built muscle memory over years—abrupt changes cause frustration even if "objectively better."</span></li>
-        <li><span><strong>Design systems are essential for scale.</strong> Without a shared component library, 8 modules would have diverged into 8 different products.</span></li>
-        <li><span><strong>Feature parity isn't enough.</strong> Migration success requires improving workflows, not just recreating them in a new technology.</span></li>
-        <li><span><strong>Long engagements build trust.</strong> The 4-year relationship allowed for iterative improvements that shorter projects couldn't achieve.</span></li>
-      </ul>
-    </section>
+  <div class="app-section" id="screen-01">
+    <div class="screen-head"><span class="num">01</span><div><p class="label">Where every matter starts</p><h3>Matter overview</h3><p>A single matter workspace that shows collection volume, review progress, risk and the next deadline, then the full discovery workflow and every active matter.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio / index</span><a href="prototypes/consilio/index.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/index.html" title="Consilio Matter overview screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Matter header</b>ID, client and lead counsel, with one primary action: open the review queue</div><div><b>Workflow tracker</b>Preservation through production, with live counts at each stage</div><div><b>Portfolio table</b>All matters with custodians, volumes, review percent and status</div></div>
   </div>
+  <div class="app-section" id="screen-02">
+    <div class="screen-head"><span class="num">02</span><div><p class="label">Preservation with clear ownership</p><h3>Legal holds</h3><p>Notices, acknowledgements, custodians and follow-ups for every hold in one register, so nothing falls through before collection starts.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio / legal-holds</span><a href="prototypes/consilio/legal-holds.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/legal-holds.html" title="Consilio Legal holds screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Hold register</b>Notice date, follow-up, status, sources and owner per hold</div><div><b>Status chips</b>Open, acknowledgement pending or released, always labelled in text</div><div><b>Next follow-up</b>The next action date is surfaced at the top, not buried in rows</div></div>
+  </div>
+  <div class="app-section" id="screen-03">
+    <div class="screen-head"><span class="num">03</span><div><p class="label">Data operations and QC</p><h3>Collection &amp; processing</h3><p>Source-by-source preservation and collection status, with the processing pipeline and exceptions that need an operator.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio / collection-processing</span><a href="prototypes/consilio/collection-processing.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/collection-processing.html" title="Consilio Collection and processing screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Source register</b>Custodian, scope, preservation and collection state per source</div><div><b>Chain of custody</b>Each record keeps method, time, operator, manifest and integrity check</div><div><b>Exceptions first</b>Processing errors are counted and routed to operator review</div></div>
+  </div>
+  <div class="app-section" id="screen-04">
+    <div class="screen-head"><span class="num">04</span><div><p class="label">The reviewer’s daily workspace</p><h3>Document review</h3><p>The core of the product. A prioritised queue, a faithful document viewer and a coding panel side by side, so reviewers never lose their place.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio / review</span><a href="prototypes/consilio/review.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/review.html" title="Consilio Document review screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Three-pane layout</b>Queue, document and coding visible together</div><div><b>Advisory AI</b>Suggestions need reviewer confirmation and show why</div><div><b>Families and threads</b>Attachments and email families shown in context</div></div>
+  </div>
+  <div class="app-section" id="screen-05">
+    <div class="screen-head"><span class="num">05</span><div><p class="label">Early case assessment</p><h3>Search &amp; ECA</h3><p>Terms, metadata and visual facets combine to narrow the collection quickly, with result counts updating as filters change.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio / search</span><a href="prototypes/consilio/search.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/search.html" title="Consilio Search and ECA screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Faceted search</b>Auto tags, domains, chat reactions and more, each with counts</div><div><b>Removable filters</b>Active filters shown as chips that clear in one click</div><div><b>Volume at a glance</b>Documents, pages and data size for every query</div></div>
+  </div>
+  <div class="app-section" id="screen-06">
+    <div class="screen-head"><span class="num">06</span><div><p class="label">Prioritise, then explain</p><h3>Analytics &amp; AI</h3><p>Patterns across the collection help teams prioritise review, while every model output stays explainable and open to human validation.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio / analytics</span><a href="prototypes/consilio/analytics.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/analytics.html" title="Consilio Analytics and AI screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Prioritisation groups</b>High relevance, potential privilege, near-duplicates, needs context</div><div><b>Concept map</b>Cluster labels for exploration, not final legal decisions</div><div><b>Human validation</b>Low-confidence items routed back to reviewers</div></div>
+  </div>
+  <div class="app-section" id="screen-07">
+    <div class="screen-head"><span class="num">07</span><div><p class="label">A defensible production, step by step</p><h3>Production setup</h3><p>A guided wizard for source population, format and quality controls before anything is staged for delivery.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio / production-wizard</span><a href="prototypes/consilio/production-wizard.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/production-wizard.html" title="Consilio Production setup screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Stepped wizard</b>Destination, options, settings, summary and status</div><div><b>Templates</b>Native with text and load files, or TIFF with image load file</div><div><b>Source selection</b>Review populations with original and duplicate counts</div></div>
+  </div>
+  <div class="app-section" id="screen-08">
+    <div class="screen-head"><span class="num">08</span><div><p class="label">QC and a traceable history</p><h3>Production &amp; audit</h3><p>Production sets, pre-delivery checks and the audit trail together, so every delivery can be defended later.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>consilio / production-audit</span><a href="prototypes/consilio/production-audit.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/consilio/production-audit.html" title="Consilio Production and audit screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Production sets</b>Delivered and draft sets with format and status</div><div><b>QC checklist</b>Counts reconciled, Bates ranges, redactions and more, ticked off before delivery</div><div><b>Package manifest</b>Document count, Bates range, field map and integrity checks</div></div>
+  </div>
+
+  <div class="app-section" id="mobile">
+    <div class="screen-head"><span class="num">M</span><div><p class="label">Responsive · live</p><h3>Mobile version</h3><p>The same prototype at phone width. The sidebar collapses, page actions wrap, and the review queue, viewer and coding panel stack in reading order.</p></div></div>
+    <div class="phones"><figure><div class="phone"><iframe src="prototypes/consilio/index.html" width="390" height="844" title="Consilio Matter overview on mobile" loading="lazy"></iframe></div><figcaption>Matter overview · <a href="prototypes/consilio/index.html">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/consilio/review.html" width="390" height="844" title="Consilio Document review on mobile" loading="lazy"></iframe></div><figcaption>Document review · <a href="prototypes/consilio/review.html">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/consilio/search.html" width="390" height="844" title="Consilio Search and ECA on mobile" loading="lazy"></iframe></div><figcaption>Search &amp; ECA · <a href="prototypes/consilio/search.html">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/consilio/production-audit.html" width="390" height="844" title="Consilio Production and audit on mobile" loading="lazy"></iframe></div><figcaption>Production &amp; audit · <a href="prototypes/consilio/production-audit.html">Open ↗</a></figcaption></figure></div>
+  </div>
+
+  <div class="layout"><main>
+
+      <section class="case-section" id="results">
+        <p class="label">Results</p>
+        <h2>Outcomes and business impact</h2>
+        <p>Results of the desktop-to-web migration for 5,000+ legal professionals.</p>
+        <div class="results" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div><span class="v">−40%</span><span class="l">User errors</span></div><div><span class="v">−25%</span><span class="l">Processing time</span></div><div><span class="v">−35%</span><span class="l">Support requests</span></div><div><span class="v">8</span><span class="l">Modules on one pattern library</span></div></div>
+      </section>
+
+      <section class="case-section" id="role">
+        <p class="label">My role</p>
+        <h2>What I owned</h2>
+        <p>As Senior UX/UI Designer I led UX for the migration: stakeholder interviews, workflow analysis, requirements gathering, information architecture, interaction and visual design, validation and instructional design, and the reusable pattern library adopted across the suite.</p>
+        <div class="roles"><span>Stakeholder interviews</span><span>Workflow analysis</span><span>Requirements gathering</span><span>Information architecture</span><span>Interaction design</span><span>Validation design</span><span>Instructional design</span><span>Design patterns</span><span>Usability testing</span><span>Visual design</span></div>
+      </section>
+
+      <section class="case-section" id="closing">
+        <p class="label">Closing</p>
+        <h2>Key takeaways</h2>
+        <ul class="learn">
+          <li><span><strong>Mirror the real process:</strong> when navigation follows the legal lifecycle, users always know where they are.</span></li>
+          <li><span><strong>Prevent errors where they cost the most:</strong> validation and instructions at production and coding steps paid off more than anywhere else.</span></li>
+          <li><span><strong>Migration is a chance to unify:</strong> one pattern library turned 8 inconsistent modules into one product.</span></li>
+          <li><span><strong>Trust is a design output:</strong> explicit status and audit history make legal teams confident in the tool.</span></li>
+        </ul>
+      </section>
+  </main></div>
+
+  <div class="thanks"><h3>Thanks for reading</h3><p>Questions or feedback? I’d love to hear them: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></p></div>
 
   <div class="next-project">
-    <p>View All Projects</p>
-    <h3>Back to Portfolio</h3>
-    <a href="index.html" class="btn-primary">See All Case Studies <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <p>Next case study</p>
+    <h3>Nasab: Private Family Platform</h3>
+    <a href="case-study-nasab.html" class="btn-primary">View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
+  <footer><span>© 2026 Yogesh Malik · Get in touch: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></span><span><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span></footer>
 
   <script>
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
-    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    function fit(){ document.querySelectorAll('.app-viewport, .phone').forEach(v => { const f = v.querySelector('iframe'); const w = +f.getAttribute('width') || 1440; f.style.transform = 'scale(' + (v.clientWidth / w) + ')'; }); }
+    window.addEventListener('resize', fit); window.addEventListener('load', fit); fit();
   </script>
+  <script>
+    const btn = document.getElementById('scrollToTop'), bar = document.getElementById('progress');
+    const links = [...document.querySelectorAll('.toc a')];
+    const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      btn.classList.toggle('visible', h.scrollTop > 300);
+      let i = secs.findLastIndex(s => s && s.getBoundingClientRect().top < 160);
+      links.forEach((a, j) => a.classList.toggle('active', j === i));
+    });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/modal.js" defer></script>
 </body>
 </html>

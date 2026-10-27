@@ -3,752 +3,319 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Awards & Certifications — Yogesh Malik</title>
-  <meta name="description" content="Awards, certifications, and technical proficiencies of Yogesh Malik, Senior AI UX/UI Design Leader.">
-  
+  <title>Awards &amp; Certifications | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Awards and certifications of Yogesh Malik, AI UX/UI Design Leader: Capita Fearless Innovation, Centre of Excellence and Pat on the Back awards, L&amp;T innovation selection, IDF and AI certifications.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
-      --color-bg: #0a0a0a;
-      --color-bg-elevated: #141414;
-      --color-bg-card: #1a1a1a;
-      --color-text: #f5f5f5;
-      --color-text-muted: #a3a3a3;
-      --color-accent: #c9ff57;
-      --color-accent-dim: rgba(201, 255, 87, 0.15);
-      --color-gold: #ffd700;
-      --color-gold-dim: rgba(255, 215, 0, 0.15);
-      --color-border: #2a2a2a;
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body: 'Instrument Sans', -apple-system, sans-serif;
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --bg: #0a0a0a; --bg-2: #141414; --card: #171717; --text: #f5f5f5; --muted: #a3a3a3;
+      --accent: #c9ff57; --accent-dim: rgba(201,255,87,.14); --gold: #f5c542; --gold-dim: rgba(245,197,66,.14);
+      --violet: #a78bfa; --violet-dim: rgba(167,139,250,.14); --blue: #5b9bff; --blue-dim: rgba(91,155,255,.14);
+      --border: #262626; --display: 'DM Serif Display', Georgia, serif; --body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease: cubic-bezier(.16,1,.3,1);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
-    a { color: inherit; text-decoration: none; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--text); }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
 
-    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
-    .scroll-to-top.visible { opacity: 1; visibility: visible; }
-    .scroll-to-top:hover { transform: translateY(-4px); }
+    nav { position: fixed; inset: 0 0 auto 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: linear-gradient(var(--bg) 40%, transparent); }
+    .nav-back { display: flex; align-items: center; gap: 10px; color: var(--muted); font-weight: 500; }
+    .nav-back:hover { color: var(--accent); }
+    .nav-links { display: flex; gap: 26px; font-size: .9rem; }
+    .nav-links a { color: var(--muted); } .nav-links a:hover { color: var(--text); }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
-    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
-    .nav-back:hover { color: var(--color-accent); }
-    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
-    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
-    .nav-links a:hover { color: var(--color-text); }
+    .hero { position: relative; padding: 170px 0 80px; text-align: center; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; left: 50%; top: 40px; width: 720px; height: 420px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(201,255,87,.16), transparent); filter: blur(30px); pointer-events: none; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(201,255,87,.35); padding: 6px 14px; border-radius: 100px; margin-bottom: 26px; }
+    .hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.05; letter-spacing: -.02em; position: relative; }
+    .hero h1 em { color: var(--accent); }
+    .hero p { color: var(--muted); max-width: 600px; margin: 22px auto 0; font-size: 1.1rem; text-wrap: pretty; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); max-width: 880px; margin: 56px auto 0; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; background: var(--bg-2); }
+    .stats div { padding: 24px 16px; display: grid; gap: 2px; }
+    .stats div + div { border-left: 1px solid var(--border); }
+    .stats b { font-family: var(--display); font-weight: 400; font-size: 2.6rem; line-height: 1; color: var(--accent); }
+    .stats span { font-size: .82rem; color: var(--muted); }
 
-    .page-header { padding: 160px 48px 80px; max-width: 900px; margin: 0 auto; text-align: center; }
-    .page-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; }
-    .page-header p { font-size: 1.25rem; color: var(--color-text-muted); max-width: 600px; margin: 0 auto; }
+    .sec { padding: 72px 0; scroll-margin-top: 80px; }
+    .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; }
+    .label { display: flex; gap: 8px; align-items: center; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .sec h2 { font-family: var(--display); font-weight: 400; font-size: clamp(1.9rem, 3.4vw, 2.8rem); line-height: 1.1; }
+    .sec-head p { color: var(--muted); max-width: 460px; font-size: .98rem; }
 
-    section { padding: 0 48px 80px; max-width: 1200px; margin: 0 auto; }
-    .section-label { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 32px; }
-    .section-label svg { width: 24px; height: 24px; }
+    /* Featured */
+    .featured { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+    .feat { position: relative; border-radius: 22px; padding: 34px; overflow: hidden; border: 1px solid var(--border); background: var(--card); display: grid; gap: 14px; align-content: start; transition: transform .5s var(--ease), border-color .3s; }
+    .feat:hover { transform: translateY(-4px); }
+    .feat.new { border-color: rgba(201,255,87,.45); background: linear-gradient(150deg, rgba(201,255,87,.12), var(--card) 55%); }
+    .feat.gold { border-color: rgba(245,197,66,.45); background: linear-gradient(150deg, rgba(245,197,66,.13), var(--card) 55%); }
+    .feat .medal { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; }
+    .feat.new .medal { background: var(--accent); color: #0a0a0a; } .feat.gold .medal { background: var(--gold); color: #1c1400; }
+    .feat .tag { justify-self: start; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; font-weight: 600; }
+    .feat.new .tag { background: var(--accent); color: #0a0a0a; } .feat.gold .tag { background: var(--gold); color: #1c1400; }
+    .feat h3 { font-family: var(--display); font-weight: 400; font-size: 1.9rem; line-height: 1.15; }
+    .feat .org { color: var(--muted); font-size: .9rem; }
+    .feat p { color: #d4d4d4; font-size: 1rem; text-wrap: pretty; }
+    .feat .yr { position: absolute; right: 24px; top: 14px; font-family: var(--display); font-size: 5.5rem; line-height: 1; color: rgba(255,255,255,.05); pointer-events: none; }
 
-    .awards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    /* Timeline */
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filters button { font: inherit; font-size: .86rem; color: var(--muted); background: transparent; border: 1px solid var(--border); padding: 7px 16px; border-radius: 100px; cursor: pointer; transition: all .25s; }
+    .filters button:hover { color: var(--text); border-color: #444; }
+    .filters button[aria-pressed="true"] { background: var(--accent); color: #0a0a0a; border-color: var(--accent); font-weight: 600; }
+    .timeline { position: relative; display: grid; gap: 0; }
+    .timeline::before { content: ''; position: absolute; left: 110px; top: 10px; bottom: 10px; width: 2px; background: linear-gradient(var(--accent), rgba(201,255,87,.05)); }
+    .year { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 0 36px; padding: 12px 0 28px; }
+    .year > h3 { font-family: var(--display); font-weight: 400; font-size: 2rem; line-height: 1; color: var(--text); position: sticky; top: 90px; align-self: start; padding-top: 14px; }
+    .year > h3::after { content: ''; position: absolute; right: -43px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+    .year .items { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+    .item { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; display: grid; gap: 8px; align-content: start; cursor: pointer; transition: border-color .3s, transform .4s var(--ease), opacity .4s, background .3s; text-align: left; font: inherit; color: inherit; }
+    .item:hover { border-color: #3a3a3a; transform: translateY(-2px); }
+    .item:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .item .top { display: flex; gap: 12px; align-items: center; }
+    .item .ic { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; flex: none; }
+    .item.k-innov .ic { background: var(--accent-dim); color: var(--accent); }
+    .item.k-gold .ic { background: var(--gold-dim); color: var(--gold); }
+    .item.k-coe .ic { background: var(--violet-dim); color: var(--violet); }
+    .item.k-patb .ic { background: var(--blue-dim); color: var(--blue); }
+    .item h4 { font-size: 1.05rem; font-weight: 600; line-height: 1.3; }
+    .item .org { font-size: .8rem; color: var(--muted); }
+    .item p { color: var(--muted); font-size: .92rem; }
+    .item .more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease); }
+    .item .more > div { overflow: hidden; }
+    .item .more p { color: #d4d4d4; padding-top: 10px; border-top: 1px solid var(--border); margin-top: 6px; }
+    .item[aria-expanded="true"] { border-color: rgba(201,255,87,.45); background: #1b1d16; }
+    .item[aria-expanded="true"] .more { grid-template-rows: 1fr; }
+    .item .hint { font-size: .78rem; color: var(--accent); }
+    .item[aria-expanded="true"] .hint::after { content: ' (close)'; color: var(--muted); }
+    .item.is-hidden, .year.is-hidden { display: none; }
 
-    .award-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
-    .award-card:hover { transform: translateY(-4px); border-color: var(--color-gold); }
-    .award-card.featured { grid-column: span 2; background: linear-gradient(135deg, var(--color-gold-dim) 0%, var(--color-bg-card) 100%); border-color: var(--color-gold); }
+    /* Certifications */
+    .cert-tabs { display: flex; gap: 4px; background: var(--bg-2); border: 1px solid var(--border); padding: 4px; border-radius: 100px; }
+    .cert-tabs button { font: inherit; font-size: .86rem; color: var(--muted); background: none; border: none; padding: 8px 18px; border-radius: 100px; cursor: pointer; }
+    .cert-tabs button[aria-selected="true"] { background: var(--text); color: #0a0a0a; font-weight: 600; }
+    .cert-panel { display: none; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .cert-panel.on { display: grid; animation: fadeUp .5s var(--ease) both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .cert { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 14px; align-items: start; transition: border-color .3s, transform .4s var(--ease); }
+    .cert:hover { border-color: #3a3a3a; transform: translateY(-2px); }
+    .cert .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-dim); color: var(--accent); font-weight: 700; font-size: .8rem; letter-spacing: .02em; }
+    .cert h4 { font-size: .98rem; font-weight: 600; line-height: 1.35; }
+    .cert span { display: block; font-size: .82rem; color: var(--muted); margin-top: 2px; }
+    .cert .pill { display: inline-block; margin-top: 10px; font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); }
 
-    .award-icon { width: 48px; height: 48px; background: var(--color-gold-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-    .award-icon svg { width: 24px; height: 24px; stroke: var(--color-gold); fill: none; }
-    .award-icon.innovation svg { stroke: #f59e0b; }
-    .award-icon.star svg { stroke: var(--color-gold); fill: var(--color-gold); }
-    .award-icon.excellence svg { stroke: #a855f7; }
-    .award-icon.accessibility svg { stroke: #3b82f6; }
-    .award-icon.collaboration svg { stroke: #10b981; }
-    
-    .award-year { font-size: 0.8rem; color: var(--color-gold); font-weight: 600; margin-bottom: 8px; }
-    .award-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
-    .award-org { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 12px; }
-    .award-description { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.6; }
+    /* IDF badge */
+    .idf { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 32px; align-items: center; border: 1px solid rgba(201,255,87,.4); background: linear-gradient(120deg, rgba(201,255,87,.10), var(--card) 60%); border-radius: 22px; padding: 32px 36px; margin-top: 28px; }
+    .seal { width: 112px; height: 112px; border-radius: 50%; border: 2px solid var(--accent); display: grid; place-content: center; text-align: center; position: relative; animation: spin 24s linear infinite; }
+    .seal::before { content: ''; position: absolute; inset: 8px; border-radius: 50%; border: 1px dashed rgba(201,255,87,.5); }
+    .seal b { font-family: var(--display); font-size: 1.5rem; color: var(--accent); line-height: 1; font-weight: 400; animation: spin 24s linear infinite reverse; }
+    .seal small { font-size: .55rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); animation: spin 24s linear infinite reverse; display: block; margin-top: 4px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .idf h3 { font-family: var(--display); font-weight: 400; font-size: 1.7rem; color: var(--accent); }
+    .idf p { color: var(--muted); }
+    .idf .nums { display: flex; gap: 32px; margin-top: 12px; }
+    .idf .nums b { font-family: var(--display); font-weight: 400; font-size: 2rem; display: block; line-height: 1; }
+    .idf .nums span { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .btn { display: inline-flex; gap: 8px; align-items: center; font-weight: 600; padding: 12px 22px; border-radius: 100px; background: var(--accent); color: #0a0a0a; transition: transform .3s var(--ease); white-space: nowrap; }
+    .btn:hover { color: #0a0a0a; transform: translateY(-2px); }
+    .btn.ghost { background: transparent; color: var(--text); border: 1px solid #3a3a3a; }
+    .btn.ghost:hover { color: var(--accent); border-color: var(--accent); }
 
-    .certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 80px; }
-    .cert-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; transition: border-color 0.3s; }
-    .cert-card:hover { border-color: var(--color-accent); }
-    .cert-icon { width: 56px; height: 56px; background: var(--color-accent-dim); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .cert-icon svg { width: 28px; height: 28px; stroke: var(--color-accent); fill: none; }
-    .cert-content { flex: 1; }
-    .cert-title { font-weight: 600; margin-bottom: 4px; }
-    .cert-org { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 8px; }
-    .cert-level { display: inline-block; background: var(--color-accent-dim); color: var(--color-accent); padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+    .skill { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+    .skill h4 { display: flex; gap: 10px; align-items: center; font-size: 1rem; margin-bottom: 14px; }
+    .skill h4 span { width: 30px; height: 30px; border-radius: 8px; background: var(--accent-dim); color: var(--accent); display: grid; place-items: center; font-size: .9rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chips span { font-size: .8rem; color: #d4d4d4; border: 1px solid var(--border); padding: 4px 11px; border-radius: 100px; transition: all .2s; }
+    .chips span:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* New certification icon colors */
-    .cert-icon.creativity svg { stroke: #f59e0b; }
-    .cert-icon.mobile svg { stroke: #8b5cf6; }
-
-    /* Industry Certifications - Microsoft & Google */
-    .industry-certs { margin-bottom: 40px; }
-    
-    .cert-card.featured-cert {
-      background: linear-gradient(135deg, var(--color-bg-card) 0%, var(--color-bg-elevated) 100%);
-      border-width: 2px;
-      padding: 28px;
-    }
-    
-    .cert-card.featured-cert.microsoft {
-      border-color: #00a4ef;
-    }
-    .cert-card.featured-cert.microsoft:hover {
-      border-color: #00a4ef;
-      box-shadow: 0 8px 30px rgba(0, 164, 239, 0.2);
-    }
-    
-    .cert-card.featured-cert.google {
-      border-color: #4285f4;
-    }
-    .cert-card.featured-cert.google:hover {
-      border-color: #4285f4;
-      box-shadow: 0 8px 30px rgba(66, 133, 244, 0.2);
-    }
-    
-    .cert-icon.microsoft-icon {
-      background: rgba(0, 164, 239, 0.1);
-    }
-    .cert-icon.microsoft-icon svg {
-      width: 28px;
-      height: 28px;
-      fill: #00a4ef;
-      stroke: none;
-    }
-    
-    .cert-icon.google-icon {
-      background: rgba(66, 133, 244, 0.1);
-    }
-    .cert-icon.google-icon svg {
-      width: 28px;
-      height: 28px;
-      stroke: none;
-    }
-    
-    .cert-level.microsoft-badge {
-      background: rgba(0, 164, 239, 0.15);
-      color: #00a4ef;
-    }
-    
-    .cert-level.google-badge {
-      background: rgba(66, 133, 244, 0.15);
-      color: #4285f4;
-    }
-
-    /* IDF Badge Section */
-    .idf-section {
-      padding: 60px 48px;
-      background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg) 100%);
-    }
-    
-    .idf-badge-container {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    
-    .idf-badge {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      background: var(--color-bg-card);
-      border: 2px solid var(--color-accent);
-      border-radius: 24px;
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .idf-badge::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at top right, var(--color-accent-dim) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    
-    .idf-logo {
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .idf-logo svg {
-      width: 120px;
-      height: 120px;
-    }
-    
-    .idf-info {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .idf-info h3 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      margin-bottom: 8px;
-      color: var(--color-accent);
-    }
-    
-    .idf-info > p {
-      color: var(--color-text-muted);
-      margin-bottom: 20px;
-    }
-    
-    .idf-stats {
-      display: flex;
-      gap: 32px;
-      margin-bottom: 20px;
-    }
-    
-    .idf-stat {
-      text-align: left;
-    }
-    
-    .idf-stat-value {
-      font-family: var(--font-display);
-      font-size: 1.75rem;
-      color: var(--color-text);
-      display: block;
-    }
-    
-    .idf-stat-label {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .idf-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--color-accent);
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: gap 0.3s ease;
-    }
-    
-    .idf-link:hover {
-      gap: 12px;
-    }
-    
-    .idf-link svg {
-      transition: transform 0.3s ease;
-    }
-    
-    .idf-link:hover svg {
-      transform: translate(2px, -2px);
-    }
-
-    @media (max-width: 600px) {
-      .idf-badge {
-        flex-direction: column;
-        text-align: center;
-        padding: 32px 24px;
-      }
-      .idf-stats {
-        justify-content: center;
-      }
-      .idf-stat {
-        text-align: center;
-      }
-    }
-
-    .skills-section { background: var(--color-bg-elevated); padding: 80px 48px; width: 100%; }
-    .skills-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 16px; text-align: center; }
-    .skills-section .section-subtitle { text-align: center; color: var(--color-text-muted); margin-bottom: 48px; }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
-    .skill-category { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
-    .skill-category:hover { border-color: var(--color-accent); }
-    .skill-category-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-    .skill-category-icon { width: 40px; height: 40px; background: var(--color-accent-dim); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-    .skill-category-icon svg { width: 20px; height: 20px; stroke: var(--color-accent); fill: none; }
-    .skill-category h3 { font-size: 1rem; color: var(--color-text); }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skill-tag { background: var(--color-bg); border: 1px solid var(--color-border); padding: 6px 12px; border-radius: 100px; font-size: 0.8rem; color: var(--color-text-muted); transition: border-color 0.3s, color 0.3s; }
-    .skill-tag:hover { border-color: var(--color-accent); color: var(--color-accent); }
-
-    .cta-section { text-align: center; padding: 80px 48px; }
-    .cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
-    .cta-section p { color: var(--color-text-muted); margin-bottom: 32px; }
-    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
+    .cta { text-align: center; padding: 96px 0 110px; border-top: 1px solid var(--border); margin-top: 40px; }
+    .cta h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); }
+    .cta p { color: var(--muted); margin: 12px 0 28px; }
+    .cta .row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    footer { border-top: 1px solid var(--border); padding: 28px 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: .88rem; }
+    footer div { display: flex; gap: 20px; }
+    footer a { color: var(--muted); } footer a:hover { color: var(--accent); }
+    .to-top { position: fixed; right: 32px; bottom: 32px; width: 48px; height: 48px; border-radius: 50%; border: none; background: var(--accent); color: #0a0a0a; display: grid; place-items: center; cursor: pointer; opacity: 0; visibility: hidden; transition: all .3s; z-index: 50; }
+    .to-top.on { opacity: 1; visibility: visible; }
 
     @media (max-width: 900px) {
-      nav, .page-header, section, .cta-section { padding-left: 24px; padding-right: 24px; }
-      .awards-grid, .certs-grid, .skills-grid { grid-template-columns: 1fr; }
-      .award-card.featured { grid-column: span 1; }
-      .skills-section { padding: 48px 24px; }
-      .scroll-to-top { bottom: 24px; right: 24px; }
+      nav { padding: 16px 20px; } .nav-links { gap: 16px; } .wrap { padding: 0 20px; }
+      .stats { grid-template-columns: repeat(2, minmax(0,1fr)); } .stats div:nth-child(3) { border-left: none; } .stats div:nth-child(n+3) { border-top: 1px solid var(--border); }
+      .featured, .year .items, .cert-panel, .skills { grid-template-columns: minmax(0,1fr); }
+      .timeline::before { left: 6px; } .year { grid-template-columns: minmax(0,1fr); padding-left: 30px; } .year > h3 { position: static; margin-bottom: 12px; } .year > h3::after { left: -31px; right: auto; top: 18px; }
+      .idf { grid-template-columns: minmax(0,1fr); text-align: left; }
     }
+    @media (prefers-reduced-motion: reduce) { .seal, .seal b, .seal small { animation: none; } }
   </style>
 </head>
 <body>
-  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
-  </button>
-
   <nav>
-    <a href="index.html" class="nav-back">
-      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
-      Back to Portfolio
-    </a>
-    <div class="nav-links">
-      <a href="index.html#work">Work</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
+    <a href="index.html" class="nav-back"><svg viewBox="0 0 100 100" width="28" height="28" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4"/><path d="M35 45 L50 65 M65 45 L50 65 M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>Back to Portfolio</a>
+    <div class="nav-links"><a href="portfolio.html">Work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a><a href="Yogesh_Malik_CV.pdf" target="_blank" rel="noopener">CV</a></div>
   </nav>
 
-  <header class="page-header">
-    <h1>Awards & Certifications</h1>
-    <p>Recognition for design excellence, innovation, and commitment to accessible, user-centered design.</p>
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">★ Recognition · 2020 to 2026</span>
+      <h1>Awards &amp; <em>Certifications</em></h1>
+      <p>Recognition for design excellence, innovation and accessible, user-centred design, plus continuous learning in UX, AI and agentic systems.</p>
+      <div class="stats">
+        <div><b class="metric-value">10</b><span>Awards &amp; recognitions</span></div>
+        <div><b class="metric-value">7</b><span>Years recognised in a row</span></div>
+        <div><b class="metric-value">6</b><span>IDF courses, EQF Level 7</span></div>
+        <div><b class="metric-value">10</b><span>Industry &amp; AI certifications</span></div>
+      </div>
+    </div>
   </header>
 
-  <section>
-    <p class="section-label">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="8" r="6"/>
-        <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
-      </svg>
-      Awards
-    </p>
-    <div class="awards-grid">
-      <div class="award-card featured">
-        <div class="award-icon innovation">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
-          </svg>
+  <main>
+    <section class="sec" id="latest">
+      <div class="wrap">
+        <div class="sec-head"><div><p class="label">✦ Most recent</p><h2>Latest recognition</h2></div><p>The two most recent highlights, from L&amp;T Technology Services and Capita.</p></div>
+        <div class="featured">
+          <article class="feat new">
+            <span class="yr">2026</span>
+            <span class="medal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></span>
+            <span class="tag">New · 2026</span>
+            <h3>Innovation Idea Selected</h3>
+            <span class="org">L&amp;T Technology Services (LTTS) · IntelliSwift</span>
+            <p>My innovation idea was selected in the L&amp;T innovation programme, recognising an AI-led approach to improving enterprise user experiences.</p>
+          </article>
+          <article class="feat gold">
+            <span class="yr">2025</span>
+            <span class="medal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.4 7 22l5-3 5 3-1.2-8.6"/></svg></span>
+            <span class="tag">Top award · 2025</span>
+            <h3>Fearless Innovation Award</h3>
+            <span class="org">Capita PLC</span>
+            <p>For leading the EOS B2B Commerce Platform transformation, showing bold innovation in enterprise UX design with a projected 52% revenue uplift and strong cross-functional collaboration.</p>
+          </article>
         </div>
-        <div class="award-year">2025</div>
-        <div class="award-title">Fearless Innovation Award</div>
-        <div class="award-org">Capita PLC</div>
-        <div class="award-description">Recognized for leading the EOS B2B Commerce Platform transformation, demonstrating bold innovation in enterprise UX design with projected 52% revenue uplift and exceptional cross-functional collaboration.</div>
       </div>
-      <div class="award-card">
-        <div class="award-icon star">
-          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-        </div>
-        <div class="award-year">2025</div>
-        <div class="award-title">Pat on the Back Award</div>
-        <div class="award-org">Capita PLC</div>
-        <div class="award-description">Outstanding project delivery and team collaboration on Fire Service College digital transformation.</div>
-      </div>
-      <div class="award-card">
-        <div class="award-icon star">
-          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-        </div>
-        <div class="award-year">2024</div>
-        <div class="award-title">Pat on the Back Award</div>
-        <div class="award-org">Capita PLC</div>
-        <div class="award-description">Excellence in B2B Commerce design system development and cross-team collaboration.</div>
-      </div>
-      <div class="award-card">
-        <div class="award-icon excellence">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
-          </svg>
-        </div>
-        <div class="award-year">2023</div>
-        <div class="award-title">Center of Excellence Award</div>
-        <div class="award-org">Capita PLC</div>
-        <div class="award-description">Design leadership and innovation in enterprise UX transformation initiatives.</div>
-      </div>
-      <div class="award-card">
-        <div class="award-icon excellence">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
-          </svg>
-        </div>
-        <div class="award-year">2022</div>
-        <div class="award-title">Center of Excellence Award</div>
-        <div class="award-org">Capita PLC</div>
-        <div class="award-description">Capita.com redesign achieving 60% task completion improvement and design system adoption across 12+ teams.</div>
-      </div>
-      <div class="award-card">
-        <div class="award-icon excellence">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
-          </svg>
-        </div>
-        <div class="award-year">2021</div>
-        <div class="award-title">Center of Excellence Award</div>
-        <div class="award-org">Capita PLC</div>
-        <div class="award-description">UK Government Axelos platform redesign with full WCAG 2.1 AA compliance.</div>
-      </div>
-      <div class="award-card">
-        <div class="award-icon accessibility">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="4" r="2"/>
-            <path d="M12 6v6"/>
-            <path d="M12 12l-4 4"/>
-            <path d="M12 12l4 4"/>
-            <path d="M6 10h12"/>
-          </svg>
-        </div>
-        <div class="award-year">2021</div>
-        <div class="award-title">Pat on the Back Award</div>
-        <div class="award-org">Capita PLC</div>
-        <div class="award-description">Achievement of WCAG 2.1 AA accessibility compliance across government platforms.</div>
-      </div>
-      <div class="award-card">
-        <div class="award-icon collaboration">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <div class="award-year">2020</div>
-        <div class="award-title">Pat on the Back Award</div>
-        <div class="award-org">Capita PLC</div>
-        <div class="award-description">Exceptional collaboration with UK Government Digital Service on GDS standards implementation.</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <p class="section-label">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-        <path d="M12 6v7"/>
-        <path d="M8 13h8"/>
-      </svg>
-      Certifications
-    </p>
-    <div class="certs-grid">
-      <div class="cert-card">
-        <div class="cert-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-            <path d="M8 21h8"/>
-            <path d="M12 17v4"/>
-            <path d="M7 8h2"/>
-            <path d="M7 12h5"/>
-          </svg>
+    <section class="sec" id="timeline">
+      <div class="wrap">
+        <div class="sec-head">
+          <div><p class="label">◷ Timeline</p><h2>Every award, year by year</h2></div>
+          <div class="filters" role="group" aria-label="Filter awards">
+            <button type="button" data-f="all" aria-pressed="true">All</button>
+            <button type="button" data-f="k-innov" aria-pressed="false">Innovation</button>
+            <button type="button" data-f="k-coe" aria-pressed="false">Centre of Excellence</button>
+            <button type="button" data-f="k-patb" aria-pressed="false">Pat on the Back</button>
+          </div>
         </div>
-        <div class="cert-content">
-          <div class="cert-title">Human-Computer Interaction (HCI)</div>
-          <div class="cert-org">Interaction Design Foundation</div>
-          <span class="cert-level">EQF Level 7</span>
-        </div>
+        <div class="timeline" id="tl"></div>
       </div>
-      <div class="cert-card">
-        <div class="cert-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
-            <path d="M11 8v6"/>
-            <path d="M8 11h6"/>
-          </svg>
-        </div>
-        <div class="cert-content">
-          <div class="cert-title">User Research — Methods and Best Practices</div>
-          <div class="cert-org">Interaction Design Foundation</div>
-          <span class="cert-level">EQF Level 7</span>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <path d="M9 15l2 2 4-4"/>
-          </svg>
-        </div>
-        <div class="cert-content">
-          <div class="cert-title">Conducting Usability Testing</div>
-          <div class="cert-org">Interaction Design Foundation</div>
-          <span class="cert-level">EQF Level 7</span>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a8 8 0 0 0-8 8c0 5.4 7.05 11.5 7.35 11.76a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 10a8 8 0 0 0-8-8z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <div class="cert-content">
-          <div class="cert-title">Design Thinking & Service Design</div>
-          <div class="cert-org">Interaction Design Foundation</div>
-          <span class="cert-level">EQF Level 7</span>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon creativity">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2v4"/>
-            <path d="M12 18v4"/>
-            <path d="M4.93 4.93l2.83 2.83"/>
-            <path d="M16.24 16.24l2.83 2.83"/>
-            <path d="M2 12h4"/>
-            <path d="M18 12h4"/>
-            <path d="M4.93 19.07l2.83-2.83"/>
-            <path d="M16.24 7.76l2.83-2.83"/>
-          </svg>
-        </div>
-        <div class="cert-content">
-          <div class="cert-title">Creativity: Methods to Design Better Products</div>
-          <div class="cert-org">Interaction Design Foundation</div>
-          <span class="cert-level">EQF Level 7</span>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon mobile">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-            <path d="M12 18h.01"/>
-          </svg>
-        </div>
-        <div class="cert-content">
-          <div class="cert-title">Mobile User Experience (UX) Design</div>
-          <div class="cert-org">Interaction Design Foundation</div>
-          <span class="cert-level">EQF Level 7</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Industry Certifications Section -->
-  <section>
-    <p class="section-label">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-      </svg>
-      Industry Certifications
-    </p>
-    <div class="certs-grid industry-certs">
-      <div class="cert-card featured-cert microsoft">
-        <div class="cert-icon microsoft-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zM24 11.4H12.6V0H24v11.4z"/>
-          </svg>
+    <section class="sec" id="certifications">
+      <div class="wrap">
+        <div class="sec-head">
+          <div><p class="label">▣ Certifications</p><h2>Always learning</h2></div>
+          <div class="cert-tabs" role="tablist" aria-label="Certification groups">
+            <button type="button" role="tab" aria-selected="true" aria-controls="p-ux" id="t-ux">UX &amp; design</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="p-ai" id="t-ai">AI &amp; agentic</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="p-ind" id="t-ind">Industry</button>
+          </div>
         </div>
-        <div class="cert-content">
-          <div class="cert-title">Microsoft Certified Professional</div>
-          <div class="cert-org">Microsoft Corporation</div>
-          <span class="cert-level microsoft-badge">MCP Certified</span>
-        </div>
-      </div>
-      <div class="cert-card featured-cert google">
-        <div class="cert-icon google-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-          </svg>
-        </div>
-        <div class="cert-content">
-          <div class="cert-title">Google UX Design Professional Certificate</div>
-          <div class="cert-org">Google</div>
-          <span class="cert-level google-badge">Google Certified</span>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="cert-panel on" id="p-ux" role="tabpanel" aria-labelledby="t-ux"></div>
+        <div class="cert-panel" id="p-ai" role="tabpanel" aria-labelledby="t-ai"></div>
+        <div class="cert-panel" id="p-ind" role="tabpanel" aria-labelledby="t-ind"></div>
 
-  <!-- IDF Membership Badge Section -->
-  <section class="idf-section">
-    <div class="idf-badge-container">
-      <div class="idf-badge">
-        <div class="idf-logo">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="48" stroke="var(--color-accent)" stroke-width="2" fill="var(--color-bg-card)"/>
-            <circle cx="50" cy="50" r="40" stroke="var(--color-accent)" stroke-width="1" stroke-dasharray="4 2"/>
-            <text x="50" y="35" text-anchor="middle" fill="var(--color-accent)" font-family="var(--font-display)" font-size="12" font-weight="600">IDF</text>
-            <text x="50" y="50" text-anchor="middle" fill="var(--color-text)" font-family="var(--font-body)" font-size="6">INTERACTION DESIGN</text>
-            <text x="50" y="58" text-anchor="middle" fill="var(--color-text)" font-family="var(--font-body)" font-size="6">FOUNDATION</text>
-            <text x="50" y="72" text-anchor="middle" fill="var(--color-accent)" font-family="var(--font-body)" font-size="7" font-weight="600">MEMBER</text>
-            <path d="M30 80 L50 90 L70 80" stroke="var(--color-accent)" stroke-width="2" fill="none"/>
-          </svg>
-        </div>
-        <div class="idf-info">
-          <h3>Interaction Design Foundation</h3>
-          <p>Verified Member & Certificate Holder</p>
-          <div class="idf-stats">
-            <div class="idf-stat">
-              <span class="idf-stat-value">6</span>
-              <span class="idf-stat-label">Courses Completed</span>
-            </div>
-            <div class="idf-stat">
-              <span class="idf-stat-value">EQF 7</span>
-              <span class="idf-stat-label">Certification Level</span>
-            </div>
+        <div class="idf">
+          <div class="seal"><b>IxDF</b><small>Member</small></div>
+          <div>
+            <h3>Interaction Design Foundation</h3>
+            <p>Verified member and certificate holder.</p>
+            <div class="nums"><div><b>6</b><span>Courses completed</span></div><div><b>EQF 7</b><span>Certification level</span></div></div>
           </div>
-          <a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/details/certifications/" target="_blank" class="idf-link">
-            Verify Credentials
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
+          <a class="btn" href="https://www.credly.com/users/yogesh-malik.71d90138" target="_blank" rel="noopener noreferrer">Verify credentials ↗</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="skills-section">
-    <h2>Technical Proficiency</h2>
-    <p class="section-subtitle">Tools and technologies I use to deliver exceptional user experiences</p>
-    <div class="skills-grid">
-      <div class="skill-category">
-        <div class="skill-category-header">
-          <div class="skill-category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19l7-7 3 3-7 7-3-3z"/>
-              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-              <path d="M2 2l7.586 7.586"/>
-              <circle cx="11" cy="11" r="2"/>
-            </svg>
-          </div>
-          <h3>Design Tools</h3>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">Figma</span>
-          <span class="skill-tag">Adobe XD</span>
-          <span class="skill-tag">Sketch</span>
-          <span class="skill-tag">InVision</span>
-          <span class="skill-tag">Adobe Creative Suite</span>
-        </div>
+    <section class="sec" id="skills">
+      <div class="wrap">
+        <div class="sec-head"><div><p class="label">⚙ Toolkit</p><h2>Technical proficiency</h2></div><p>Tools and technologies I use to deliver accessible, AI-powered user experiences.</p></div>
+        <div class="skills" id="skillGrid"></div>
       </div>
-      <div class="skill-category">
-        <div class="skill-category-header">
-          <div class="skill-category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="M21 21l-4.35-4.35"/>
-            </svg>
-          </div>
-          <h3>UX Research</h3>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">UserTesting</span>
-          <span class="skill-tag">Hotjar</span>
-          <span class="skill-tag">Dovetail</span>
-          <span class="skill-tag">Optimal Workshop</span>
-          <span class="skill-tag">Miro</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <div class="skill-category-header">
-          <div class="skill-category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="4" r="2"/>
-              <path d="M12 6v6"/>
-              <path d="M12 12l-4 4"/>
-              <path d="M12 12l4 4"/>
-              <path d="M6 10h12"/>
-            </svg>
-          </div>
-          <h3>Accessibility</h3>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">WAVE</span>
-          <span class="skill-tag">Lighthouse</span>
-          <span class="skill-tag">axe DevTools</span>
-          <span class="skill-tag">NVDA</span>
-          <span class="skill-tag">VoiceOver</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <div class="skill-category-header">
-          <div class="skill-category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.92L12 14"/>
-              <path d="M9 10a4 4 0 1 0 6 0"/>
-              <path d="M12 14v4"/>
-              <path d="M8 18h8"/>
-              <path d="M10 22h4"/>
-            </svg>
-          </div>
-          <h3>GenAI Tools</h3>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">Microsoft Copilot</span>
-          <span class="skill-tag">Google Gemini</span>
-          <span class="skill-tag">Claude</span>
-          <span class="skill-tag">ChatGPT</span>
-          <span class="skill-tag">Uizard</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <div class="skill-category-header">
-          <div class="skill-category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-              <path d="M8 21h8"/>
-              <path d="M12 17v4"/>
-            </svg>
-          </div>
-          <h3>Platforms</h3>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">Salesforce B2B Commerce</span>
-          <span class="skill-tag">Drupal CMS</span>
-          <span class="skill-tag">Workday HRMS</span>
-          <span class="skill-tag">UK GDS</span>
-          <span class="skill-tag">Angular</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <div class="skill-category-header">
-          <div class="skill-category-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 3h18v18H3z"/>
-              <path d="M3 9h18"/>
-              <path d="M9 21V9"/>
-            </svg>
-          </div>
-          <h3>Project Management</h3>
-        </div>
-        <div class="skill-tags">
-          <span class="skill-tag">Jira</span>
-          <span class="skill-tag">Confluence</span>
-          <span class="skill-tag">Azure DevOps</span>
-          <span class="skill-tag">Agile/Scrum</span>
-          <span class="skill-tag">Zeplin</span>
-        </div>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="cta-section">
-    <h2>Let's work together</h2>
-    <p>Interested in bringing award-winning UX leadership to your team?</p>
-    <a href="index.html#contact" class="btn-primary">Get in Touch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-  </div>
+    <section class="cta">
+      <div class="wrap">
+        <h2>Let’s work together</h2>
+        <p>Interested in bringing award-winning UX leadership to your team?</p>
+        <div class="row"><a class="btn" href="index.html#contact">Get in touch →</a><a class="btn ghost" href="Yogesh_Malik_CV.pdf" target="_blank" rel="noopener">View CV</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>© 2026 Yogesh Malik. Designed with intention.</span><div><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.credly.com/users/yogesh-malik.71d90138" target="_blank" rel="noopener noreferrer">Credly</a><a href="mailto:yogeshmalikbe@gmail.com">Email</a></div></footer>
+  <button class="to-top" id="toTop" aria-label="Scroll to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg></button>
 
   <script>
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    window.addEventListener('scroll', () => { 
-      if (window.pageYOffset > 300) { 
-        scrollToTopBtn.classList.add('visible'); 
-      } else { 
-        scrollToTopBtn.classList.remove('visible'); 
-      } 
-    });
-    scrollToTopBtn.addEventListener('click', () => { 
-      window.scrollTo({ top: 0, behavior: 'smooth' }); 
-    });
+    const ICON = {
+      bulb: '<path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/>',
+      medal: '<circle cx="12" cy="8" r="6"/><path d="M8.2 13.4 7 22l5-3 5 3-1.2-8.6"/>',
+      star: '<path d="m12 2 3 6.5 7 .9-5.2 4.8 1.4 7-6.2-3.6L5.8 21l1.4-7L2 9.4l7-.9z"/>',
+      target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+      access: '<circle cx="12" cy="4" r="2"/><path d="M4 8l8 2 8-2M12 10v5l-3 7M12 15l3 7"/>',
+      team: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.6c2 .7 3.2 2.6 3.5 5.4"/>'
+    };
+    const svg = (k) => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>`;
+    const AWARDS = [
+      [2026, 'k-innov', 'bulb', 'Innovation Idea Selected', 'L&amp;T Technology Services · IntelliSwift', 'An AI-led innovation idea for enterprise UX, selected in the L&amp;T innovation programme.', 'Selected from ideas submitted across the organisation, recognising practical use of AI to simplify complex enterprise workflows.'],
+      [2025, 'k-gold', 'medal', 'Fearless Innovation Award', 'Capita PLC', 'Leading the EOS B2B Commerce Platform transformation.', 'Bold innovation in enterprise UX design, with a projected 52% revenue uplift and strong cross-functional collaboration.'],
+      [2025, 'k-patb', 'star', 'Pat on the Back Award', 'Capita PLC', 'Outstanding project delivery on the Fire Service College digital transformation.', 'Recognised for delivery and teamwork across design, development and stakeholders on the Fire Service College storefront.'],
+      [2024, 'k-patb', 'star', 'Pat on the Back Award', 'Capita PLC', 'Excellence in B2B Commerce design system development.', 'Recognised for building a reusable B2B Commerce design system and for cross-team collaboration.'],
+      [2023, 'k-coe', 'target', 'Centre of Excellence Award', 'Capita PLC', 'Design leadership and innovation in enterprise UX transformation.', 'Recognised for leading enterprise UX transformation and raising design standards across teams.'],
+      [2022, 'k-coe', 'target', 'Centre of Excellence Award', 'Capita PLC', 'Capita.com redesign, with a 60% task-completion improvement.', 'Design system adoption across 12+ teams, and a measurable improvement in task completion on the redesigned site.'],
+      [2021, 'k-coe', 'target', 'Centre of Excellence Award', 'Capita PLC', 'UK Government Axelos platform redesign with full WCAG 2.1 AA compliance.', 'The redesigned Axelos.com passed its WCAG 2.1 AA audit first time, meeting UK Government accessibility requirements.'],
+      [2021, 'k-patb', 'access', 'Pat on the Back Award', 'Capita PLC', 'WCAG 2.1 AA accessibility compliance across government platforms.', 'Recognised for bringing accessibility compliance to government platforms through inclusive design practices.'],
+      [2020, 'k-patb', 'team', 'Pat on the Back Award', 'Capita PLC', 'Collaboration with the UK Government Digital Service on GDS standards.', 'Recognised for applying GDS design standards and collaborating closely with government digital teams.']
+    ];
+    const tl = document.getElementById('tl');
+    const years = [...new Set(AWARDS.map(a => a[0]))];
+    tl.innerHTML = years.map(y => `<div class="year" data-year="${y}"><h3>${y}</h3><div class="items">${AWARDS.filter(a => a[0] === y).map((a, i) => `
+      <button type="button" class="item ${a[1]}" data-k="${a[1] === 'k-gold' ? 'k-innov' : a[1]}" aria-expanded="false">
+        <span class="top"><span class="ic">${svg(a[2])}</span><span><h4>${a[3]}</h4><span class="org">${a[4]}</span></span></span>
+        <p>${a[5]}</p>
+        <span class="more"><div><p>${a[6]}</p></div></span>
+        <span class="hint">Read more</span>
+      </button>`).join('')}</div></div>`).join('');
+    tl.addEventListener('click', (e) => { const it = e.target.closest('.item'); if (!it) return; const o = it.getAttribute('aria-expanded') === 'true'; it.setAttribute('aria-expanded', String(!o)); });
+    document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      const f = b.dataset.f;
+      tl.querySelectorAll('.item').forEach(it => it.classList.toggle('is-hidden', f !== 'all' && it.dataset.k !== f));
+      tl.querySelectorAll('.year').forEach(y => y.classList.toggle('is-hidden', !y.querySelector('.item:not(.is-hidden)')));
+    }));
+
+    const CERTS = {
+      'p-ux': [['HCI','Human-Computer Interaction','Interaction Design Foundation','EQF Level 7'],['UR','User Research: Methods and Best Practices','Interaction Design Foundation','EQF Level 7'],['UT','Conducting Usability Testing','Interaction Design Foundation','EQF Level 7'],['DT','Design Thinking &amp; Service Design','Interaction Design Foundation','EQF Level 7'],['CR','Creativity: Methods to Design Better Products','Interaction Design Foundation','EQF Level 7'],['MX','Mobile User Experience (UX) Design','Interaction Design Foundation','EQF Level 7']],
+      'p-ai': [['DL','AI &amp; generative AI courses','DeepLearning.AI','AI'],['A\\','Building with Claude &amp; agentic AI','Anthropic','Agentic AI'],['AWS','Generative AI fundamentals','Amazon Web Services','Cloud AI'],['IBM','AI for design &amp; business','IBM','AI'],['G','Generative AI learning path','Google','AI']],
+      'p-ind': [['MS','Microsoft Certified Professional','Microsoft Corporation','MCP Certified'],['G','Google UX Design Professional Certificate','Google','Google Certified'],['CSM','Certified ScrumMaster (CSM)','Scrum Alliance','Agile'],['B.T','B.Tech, Computer Science','Pune · 2002 to 2006','Degree']]
+    };
+    Object.entries(CERTS).forEach(([id, list]) => { document.getElementById(id).innerHTML = list.map(c => `<div class="cert"><span class="ic">${c[0]}</span><div><h4>${c[1]}</h4><span>${c[2]}</span><span class="pill">${c[3]}</span></div></div>`).join(''); });
+    const tabs = [...document.querySelectorAll('.cert-tabs [role="tab"]')];
+    const sel = (t) => { tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).classList.toggle('on', on); }); };
+    tabs.forEach((t, i) => { t.addEventListener('click', () => sel(t)); t.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; sel(n); n.focus(); } }); });
+
+    const SKILLS = [['✎','Design tools',['Figma','Figma Make','Adobe XD','Creative Cloud','Sketch','InVision']],['⌕','UX research',['UserTesting','Hotjar','Optimal Workshop','Dovetail','Miro','FigJam']],['♿','Accessibility',['WCAG 2.1 AA','UK GDS','axe DevTools','WAVE','Lighthouse','NVDA','VoiceOver']],['✦','GenAI tools',['Claude &amp; Claude Code','Microsoft Copilot','Google Gemini','ChatGPT','crewAI','Uizard']],['▭','Platforms',['Salesforce B2B Commerce','Drupal CMS','Kentico','Contentstack','Workday','Angular']],['▤','Delivery',['Jira','Confluence','Azure DevOps','Agile / Scrum','Zeplin','HTML5 &amp; CSS3']]];
+    document.getElementById('skillGrid').innerHTML = SKILLS.map(s => `<div class="skill"><h4><span>${s[0]}</span>${s[1]}</h4><div class="chips">${s[2].map(x => `<span>${x}</span>`).join('')}</div></div>`).join('');
+
+    const toTopBtn = document.getElementById('toTop');
+    addEventListener('scroll', () => toTopBtn.classList.toggle('on', scrollY > 400), { passive: true });
+    toTopBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/modal.js" defer></script>
 </body>
 </html>

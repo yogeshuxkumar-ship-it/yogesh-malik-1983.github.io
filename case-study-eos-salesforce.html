@@ -1,15 +1,23 @@
 <!DOCTYPE html>
+<!--
+  REUSABLE CASE-STUDY TEMPLATE: Yogesh Malik portfolio
+  Duplicate this file, rename it (case-study-<project>.html) and replace the content
+  inside each block marked  ▸ EDIT. Delete any optional section you don't need.
+  Section order: Header → Hero image → Snapshot → TL;DR → Context → Domain landscape →
+  Research → Insights → Principles → Solution → Accessibility & trust → Results →
+  My role → Learnings → Next project.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EOS B2B Commerce Platform — Case Study | Yogesh Malik</title>
-  <meta name="description" content="How I led the Salesforce B2B Commerce transformation at Capita, projecting 52% sales uplift and reducing order fulfillment time by 35%.">
-  
+  <!-- ▸ EDIT: title + description -->
+  <title>Evolution of Sales (EOS): B2B Salesforce Storefront | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="UX case study: designing a B2B Salesforce Commerce storefront for Capita, from research and card sorting to WCAG 2.1 AA accessible hi-fi screens.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --color-bg: #0a0a0a;
@@ -17,258 +25,461 @@
       --color-bg-card: #1a1a1a;
       --color-text: #f5f5f5;
       --color-text-muted: #a3a3a3;
-      --color-accent: #f59e0b;
-      --color-accent-dim: rgba(245, 158, 11, 0.15);
+      --color-accent: #c9ff57;
+      --color-accent-dim: rgba(201, 255, 87, 0.15);
       --color-border: #2a2a2a;
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body: 'Instrument Sans', -apple-system, sans-serif;
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
-    a { color: inherit; text-decoration: none; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { color: var(--color-text); }
 
-    .scroll-to-top {
-      position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
-      background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998;
-      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
-    }
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--color-accent); z-index: 1001; }
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
     .scroll-to-top.visible { opacity: 1; visibility: visible; }
-    .scroll-to-top:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4); }
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px;
-      display: flex; justify-content: space-between; align-items: center;
-      background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
-    }
-    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); font-weight: 500; }
     .nav-back:hover { color: var(--color-accent); }
     .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
-    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a { color: var(--color-text-muted); }
     .nav-links a:hover { color: var(--color-text); }
 
-    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
-    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-header { padding: 160px 48px 64px; max-width: 1100px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
     .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
-    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
-    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+    .case-tag.outline { background: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; text-wrap: balance; }
+    .case-header h1 em { color: var(--color-accent); }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 760px; text-wrap: pretty; }
 
-    .hero-image { margin: 0 48px 80px; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); }
+    .hero-image { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; }
+    .hero-image figure { border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
     .hero-image img { width: 100%; height: auto; display: block; }
+    figcaption { font-size: 0.85rem; color: var(--color-text-muted); padding: 14px 20px; border-top: 1px solid var(--color-border); }
 
-    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
-    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
-    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+    .snapshot { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--color-border); max-width: 1104px; margin: 0 auto 96px; border-radius: 16px; overflow: hidden; }
+    .snapshot div { background: var(--color-bg-card); padding: 28px 22px; }
+    .snapshot dt { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .snapshot dd { font-weight: 600; line-height: 1.4; }
 
-    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
-    .case-section { margin-bottom: 80px; }
-    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
-    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
-    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
-    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
-    .case-section li { margin-bottom: 12px; }
-    .case-section li strong { color: var(--color-text); }
+    .layout { max-width: 1104px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+    .toc { position: sticky; top: 120px; align-self: start; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; }
+    .toc a { color: var(--color-text-muted); border-left: 2px solid var(--color-border); padding-left: 14px; transition: color .2s, border-color .2s; }
+    .toc a:hover, .toc a.active { color: var(--color-accent); border-color: var(--color-accent); }
 
-    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
-    .callout p { color: var(--color-text); margin-bottom: 0; }
-    .callout strong { color: var(--color-accent); }
+    .case-section { margin-bottom: 96px; scroll-margin-top: 120px; }
+    .label { font-size: 0.8rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .case-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 24px; text-wrap: balance; }
+    .case-section h3 { font-size: 1.15rem; margin: 40px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; text-wrap: pretty; }
+    .case-section p strong, .case-section li strong { color: var(--color-text); }
 
-    .image-showcase { margin: 48px 0; }
-    .image-showcase img { width: 100%; border-radius: 16px; border: 1px solid var(--color-border); margin-bottom: 16px; }
-    .image-showcase-caption { text-align: center; font-size: 0.9rem; color: var(--color-text-muted); font-style: italic; }
+    .tldr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tldr div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .tldr h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 10px; }
+    .tldr p { font-size: 0.95rem; margin: 0; }
 
-    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
-    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
-    .process-step:hover { border-color: var(--color-accent); }
-    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
-    .process-step h4 { margin-bottom: 8px; }
-    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+    .problem { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.3; color: var(--color-text); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 32px 0; margin: 32px 0; }
+    .problem span { color: var(--color-accent); font-style: italic; }
 
-    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
-    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
-    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
-    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
-    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color .3s; }
+    .card:hover { border-color: rgba(201, 255, 87, 0.4); }
+    .card h4 { margin-bottom: 8px; font-size: 1.02rem; }
+    .card p { font-size: 0.95rem; margin: 0; }
+    .card .k { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 12px; display: block; }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
-    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+    .reg { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .reg div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 18px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .reg div:last-child { border-bottom: none; }
+    .reg b { color: var(--color-accent); font-weight: 600; }
+    .reg span { color: var(--color-text-muted); font-size: 0.95rem; }
 
-    .learnings-list { list-style: none; margin-left: 0; }
-    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
-    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+    .persona { display: flex; flex-direction: column; gap: 10px; }
+    .persona .role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .persona ul { list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); font-size: 0.92rem; }
+    .persona li::before { content: ',  '; color: var(--color-accent); }
 
-    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
-    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
-    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0; counter-reset: s; }
+    .flow div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; counter-increment: s; }
+    .flow div::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--font-display); color: var(--color-accent); font-size: 1.4rem; margin-bottom: 8px; }
+    .flow h4 { font-size: 0.98rem; margin-bottom: 6px; }
+    .flow p { font-size: 0.88rem; margin: 0; }
 
+    .shot { margin: 32px 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .shot img { width: 100%; display: block; }
+
+    .before-after { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .before-after div { border-radius: 16px; padding: 24px; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .before-after div.after { border-color: rgba(201, 255, 87, 0.4); }
+    .before-after h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; color: var(--color-text-muted); }
+    .before-after .after h4 { color: var(--color-accent); }
+    .before-after ul { list-style: none; display: flex; flex-direction: column; gap: 8px; color: var(--color-text-muted); font-size: 0.95rem; }
+
+    .results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .results div { background: var(--color-bg-card); padding: 32px 24px; }
+    .results .v { font-family: var(--font-display); font-size: 2.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
+    .results .l { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.4; }
+    .note { font-size: 0.85rem !important; color: var(--color-text-muted); font-style: italic; }
+
+    .tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tools span { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; font-size: 0.88rem; color: var(--color-text-muted); }
+
+    .learn { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .learn li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; color: var(--color-text-muted); }
+    .learn li::before { content: '→'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 96px 48px; text-align: center; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 12px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 32px; }
     .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245, 158, 11, 0.3); }
+    .btn-primary:hover { color: var(--color-bg); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
 
-    @media (max-width: 900px) {
-      nav, .case-header, .case-content, .next-project, .hero-image { padding-left: 24px; padding-right: 24px; }
-      .hero-image { margin-left: 24px; margin-right: 24px; }
-      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
-      .process-grid, .results-grid { grid-template-columns: 1fr; }
+    footer { padding: 40px 48px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--color-text-muted); font-size: 0.9rem; }
+    footer a { color: var(--color-text-muted); }
+    footer a:hover { color: var(--color-accent); }
+
+    @media (max-width: 1000px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .toc { display: none; }
+      .snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-left: 24px; margin-right: 24px; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      nav, .case-header, .layout, .hero-image, .next-project, footer { padding-left: 24px; padding-right: 24px; }
+      .nav-links { display: none; }
+      .tldr, .grid-2, .grid-3, .before-after, .results, .flow { grid-template-columns: minmax(0, 1fr); }
+      .reg div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
       .scroll-to-top { bottom: 24px; right: 24px; }
     }
+  
+    .eos-hero { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; position: relative; z-index: 1; }
+    .eos-hero img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .numbered { list-style: none; counter-reset: n; display: grid; gap: 0; }
+    .numbered li { counter-increment: n; display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .numbered li::before { content: counter(n, decimal-leading-zero); color: var(--color-label); font-weight: 500; font-size: .85rem; padding-top: 2px; }
+    .numbered li strong { color: var(--color-text); font-weight: 600; }
+    .qa { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .qa div { background: #fff; padding: 28px 24px; font-size: 1.15rem; font-weight: 400; line-height: 1.4; color: var(--color-text); }
+    .findings { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .findings article { background: #fff; padding: 28px; display: grid; gap: 10px; }
+    .findings h4 { font-weight: 500; font-size: 1.12rem; line-height: 1.35; }
+    .findings p { margin: 0 !important; font-size: .92rem !important; }
+    .findings b { color: var(--color-text); font-weight: 600; }
+    .sort-setup { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .sort-setup div { padding: 20px 16px; } .sort-setup div + div { border-left: 1px solid var(--color-border); }
+    .sort-setup dt { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+    .sort-setup dd { font-weight: 500; line-height: 1.4; }
+    .people { display: grid; gap: 16px; }
+    .person { display: grid; grid-template-columns: 240px repeat(2, minmax(0,1fr)); gap: 2px; background: var(--color-bg); }
+    .person > div { background: #fff; padding: 24px; }
+    .person .id { display: grid; justify-items: start; gap: 14px; }
+    .person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+    .person .id h4 { font-weight: 500; font-size: 1.2rem; }
+    .person .id span { color: var(--color-text-muted); font-size: .85rem; line-height: 1.5; }
+    .person h5 { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+    .case-section .person p, .person li { font-size: .9rem; margin: 0; color: var(--color-text-muted); line-height: 1.6; }
+    .person ul { list-style: none; display: grid; gap: 4px; }
+    .person li::before { content: '•  '; color: var(--color-accent); }
+    .person .bio { grid-row: span 2; }
+    .table-wrap { overflow-x: auto; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 720px; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid #e6e6e3; vertical-align: top; color: var(--color-text-muted); }
+    th { color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+    td:first-child { color: var(--color-text); font-weight: 500; }
+    td.us { color: var(--color-text); background: var(--color-accent-dim); }
+    .timeline { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 6px 0; font-size: .78rem; }
+    .timeline .wk { grid-row: 5; text-align: center; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 8px; }
+    .timeline .bar { padding: 10px 12px; background: #fff; border-left: 3px solid var(--color-accent); color: var(--color-text); line-height: 1.35; margin-right: 6px; }
+    .timeline .phase { grid-row: 1; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); padding: 0 0 6px; border-bottom: 1px solid var(--color-text); margin-right: 6px; }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+    .roles span { border: 1px solid var(--color-text); border-radius: 100px; padding: 4px 14px; font-size: .8rem; }
+    .screen { margin: 0 0 40px; }
+    .screen h4 { font-weight: 500; font-size: 1.05rem; margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+    .screen h4 span { color: var(--color-label); font-size: .75rem; letter-spacing: .1em; }
+    .screen img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .flowimg { background: #fff; padding: 24px; overflow-x: auto; } .flowimg img { width: 100%; min-width: 900px; display: block; }
+    .laws { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .laws article { background: #fff; padding: 26px 24px; display: grid; gap: 10px; align-content: start; }
+    .laws h4 { font-weight: 500; font-size: 1.08rem; } .laws h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+    .laws p { margin: 0 !important; font-size: .9rem !important; }
+    .wcag { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .wcag article { background: #fff; padding: 24px; display: grid; gap: 12px; align-content: start; }
+    .wcag h4 { font-weight: 500; font-size: 1.1rem; } .wcag h4 small { display: block; color: var(--color-text-muted); font-size: .75rem; font-weight: 400; margin-top: 2px; }
+    .wcag ul { list-style: none; display: grid; gap: 4px; font-size: .9rem; color: var(--color-text-muted); }
+    .wcag li::before { content: '✓  '; color: #3fa66a; font-weight: 700; }
+    .wcag .why { font-size: .85rem; color: var(--color-text); border-top: 1px solid #eee; padding-top: 10px; }
+    .govern { grid-column: 1 / -1; background: var(--color-text); color: #f3f1ec; padding: 28px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 24px; }
+    .govern h4 { font-weight: 300; font-size: 1.4rem; } .govern ul { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 24px; font-size: .9rem; color: #cfcac2; }
+    .govern li::before { content: '→  '; color: var(--color-accent); }
+    .thanks { text-align: center; padding: 96px 24px 72px; border-top: 1px solid var(--color-border); }
+    .thanks h3 { font-weight: 300; font-size: clamp(2rem, 4vw, 3rem); }
+    .thanks p { color: var(--color-text-muted); }
+    @media (max-width: 900px) {
+      .qa, .findings, .laws, .wcag, .person, .govern { grid-template-columns: minmax(0,1fr); }
+      .sort-setup { grid-template-columns: repeat(2, minmax(0,1fr)); } .sort-setup div + div { border-left: none; }
+      .govern ul { grid-template-columns: minmax(0,1fr); }
+      .timeline { grid-template-columns: repeat(6, minmax(0,1fr)); }
+    }
   </style>
+  <link rel="stylesheet" href="assets/editorial.css">
 </head>
-<body>
-  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
-  </button>
-
+<body data-theme="eos">
+  <div class="progress" id="progress"></div>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <nav>
-    <a href="index.html" class="nav-back">
-      <svg viewBox="0 0 100 100" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/>
-        <path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/>
-        <path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/>
-        <path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/>
-      </svg>
-      Back to Portfolio
-    </a>
-    <div class="nav-links">
-      <a href="index.html">All Projects</a>
-      <a href="case-study-capita-website.html">Next →</a>
-    </div>
+    <a href="portfolio.html" class="nav-back"><svg viewBox="0 0 100 100" width="30" height="30" fill="none"><circle cx="50" cy="30" r="15" stroke="#171717" stroke-width="4"/><path d="M35 45 L50 65 M65 45 L50 65 M50 65 L50 90" stroke="#171717" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#171717"/><circle cx="65" cy="45" r="4" fill="#171717"/><circle cx="50" cy="90" r="4" fill="#171717"/></svg> Yogesh Malik</a>
+    <div class="nav-links"><a href="case-study-stratos-ai.html">← Previous</a><a href="portfolio.html">All projects</a><a href="case-study-axelos.html">Next →</a></div>
   </nav>
 
   <header class="case-header">
-    <div class="case-meta">
-      <span class="case-tag">Salesforce B2B Commerce</span>
-      <span class="case-tag">Enterprise UX</span>
-      <span class="case-tag">Design System</span>
-      <span class="case-tag">Capita PLC</span>
-    </div>
-    <h1>Evolution of Sales (EOS) B2B Commerce Platform</h1>
-    <p class="case-intro">Architected an end-to-end B2B commerce experience on Salesforce, transforming manual quoting into an automated storefront and projecting a 52% uplift in product sales revenue.</p>
+    <div class="case-meta"><span class="case-tag">End-to-end B2B commerce</span></div>
+    <h1>Evolution of Sales: designing a <em>B2B Salesforce storefront</em> for Capita</h1>
+    <p class="case-intro">Capita’s sales process relied on manual data entry and inconsistent documents, which slowed order fulfilment. I led the design of a Salesforce B2B Commerce storefront that lets business buyers find, configure and order services on their own.</p>
   </header>
 
   <div class="hero-image">
-    <img src="images/B2B_commerce_home-v4-FSC_1.png" alt="EOS B2B Commerce Platform - Fire Service College storefront homepage">
+    <figure>
+      <img src="images/eos/home.png" alt="EOS storefront home page for the Fire Service College catalogue" style="aspect-ratio:16/9;object-fit:cover;object-position:top">
+      <figcaption>Storefront home: top-selling services, promotions and the full Fire Service College catalogue.</figcaption>
+    </figure>
   </div>
 
-  <div class="quick-stats">
-    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2024 – Present</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Lead UX Architect</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Platform</div><div class="quick-stat-value">Salesforce B2B Commerce</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Client</div><div class="quick-stat-value">Fire Service College</div></div>
-  </div>
+  <dl class="snapshot">
+    <div><dt>Client</dt><dd>Capita · Fire Service College</dd></div>
+    <div><dt>My role</dt><dd>Lead UX/UI Designer</dd></div>
+    <div><dt>Timeline</dt><dd>~12 weeks, 2 releases</dd></div>
+    <div><dt>Platform</dt><dd>Salesforce B2B Commerce (LWR)</dd></div>
+    <div><dt>Team</dt><dd>Me + 1 junior designer</dd></div>
+  </dl>
 
-  <div class="case-content">
-    <section class="case-section">
-      <p class="case-section-label">Context</p>
-      <h2>The Challenge</h2>
-      <p>Capita's Fire Service College needed to modernize their course booking and product sales process. The existing system relied on manual quoting, phone calls, and spreadsheets—creating friction for both customers and internal teams.</p>
-      <p>The business goal was clear: transform this into a self-service digital storefront while maintaining the personalized service that their B2B customers expected.</p>
-      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we create a B2B commerce experience that handles complex course configurations while feeling as simple as a B2C shopping experience?</p></div>
-    </section>
+  <div class="layout"><main>
 
-    <section class="case-section">
-      <p class="case-section-label">Discovery</p>
-      <h2>Understanding the Problem Space</h2>
-      <div class="process-grid">
-        <div class="process-step"><div class="process-step-number">1</div><h4>Stakeholder Interviews</h4><p>Conducted sessions with sales teams, operations, and leadership to understand pain points and business objectives.</p></div>
-        <div class="process-step"><div class="process-step-number">2</div><h4>Competitive Analysis</h4><p>Evaluated 5+ B2B commerce platforms to identify best practices for complex product configuration.</p></div>
-        <div class="process-step"><div class="process-step-number">3</div><h4>User Research</h4><p>Interviewed training coordinators from fire services to understand their booking needs and workflows.</p></div>
-        <div class="process-step"><div class="process-step-number">4</div><h4>Platform Assessment</h4><p>Analyzed Salesforce B2B Commerce capabilities and limitations to inform design decisions.</p></div>
-      </div>
-      <h3>Key Findings</h3>
-      <ul>
-        <li><strong>Complex pricing:</strong> Each course had different pricing based on delegates, dates, and accommodation options</li>
-        <li><strong>Bulk bookings:</strong> Training coordinators often book 5-20 delegates at once</li>
-        <li><strong>Terms acceptance:</strong> Legal requirements mandated terms acceptance before cart addition</li>
-        <li><strong>Return visits:</strong> Most users returned to book again, making account features critical</li>
-      </ul>
-    </section>
+      <section class="case-section" id="overview">
+        <p class="label">Overview</p>
+        <h2>Project overview</h2>
+        <p>Capita’s sales processes were manual, which delayed order fulfilment and created operational inefficiency. There were no standard templates for key documents such as proposals and SLAs across departments, which made the workflow even harder.</p>
+        <p>The goal was a self-service storefront where Capita business buyers and procurement teams could browse entitled services, see custom pricing and place orders without waiting on a sales rep.</p>
+      </section>
 
-    <section class="case-section">
-      <p class="case-section-label">Solution</p>
-      <h2>Designing the Experience</h2>
-      
-      <h3>1. Product Discovery & Catalogue</h3>
-      <p>Created a visually-rich storefront that showcases courses by category, with hero imagery and clear value propositions.</p>
-      <div class="image-showcase">
-        <img src="images/B2B_commerce_home-v4-FSC_1.png" alt="Homepage featuring top selling products and promotional items">
-        <p class="image-showcase-caption">Homepage featuring top-selling courses, promotions, and categorical browsing</p>
-      </div>
+      <section class="case-section" id="the-challenge">
+        <p class="label">The challenge</p>
+        <h2>Problem statement and pain points</h2>
+        <ol class="numbered">
+          <li><span><strong>Manual data entry</strong> caused 40% of order-processing delays.</span></li>
+          <li><span><strong>No standard templates</strong> for proposals and SLAs across departments.</span></li>
+          <li><span>Sales reps spent <strong>60% of their time</strong> on admin tasks.</span></li>
+          <li><span><strong>High support-ticket volume</strong> caused by confusing interface patterns.</span></li>
+        </ol>
+      </section>
 
-      <h3>2. Course Configuration & Booking</h3>
-      <p>The product detail page handles complex configuration while maintaining clarity. Users can select dates, number of delegates, and accommodation—with real-time pricing updates.</p>
-      <div class="image-showcase">
-        <img src="images/B2B_commerce_product_detail_FSC-active_1.png" alt="Product detail page with pricing and configuration options">
-        <p class="image-showcase-caption">Course detail page with inline configuration, terms acceptance, and suggested products</p>
-      </div>
+      <section class="case-section" id="approach">
+        <p class="label">Approach</p>
+        <h2>My approach</h2>
+        <p>A structured, user-centred process focused on fast validation and stakeholder alignment.</p>
+        <ol class="numbered">
+          <li><span><strong>Discovery and research:</strong> 8 stakeholder interviews and 8 user observation sessions to map pain points.</span></li>
+          <li><span><strong>Information architecture:</strong> navigation restructured around task frequency, cutting clicks-to-action by 50%.</span></li>
+          <li><span><strong>Wireframing and prototyping:</strong> high-fidelity Figma prototypes tested with 15 end users.</span></li>
+          <li><span><strong>Design system:</strong> a modular component library, consistent across 40+ screens.</span></li>
+          <li><span><strong>Handoff and build support:</strong> worked alongside developers for pixel-accurate implementation.</span></li>
+        </ol>
+      </section>
 
-      <h3>3. Cart & Checkout</h3>
-      <p>The cart experience allows easy modification of quantities and provides clear pricing breakdown including discounts.</p>
-      <div class="image-showcase">
-        <img src="images/B2B_commerce_product_cart-pill-decrease_1.png" alt="Shopping cart with multiple courses and pricing summary">
-        <p class="image-showcase-caption">Cart with quantity controls, pricing breakdown, and checkout flow</p>
-      </div>
+      <section class="case-section" id="process">
+        <p class="label">Process</p>
+        <h2>My design process</h2>
+        <p>Human-centred and iterative: empathy for end users, creative problem-solving, and prototyping to validate early.</p>
+        <div class="flow circles" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+          <div><h4>Empathise</h4><p>Discovery, research, survey</p></div>
+          <div><h4>Define</h4><p>Persona, empathy map, journey</p></div>
+          <div><h4>Ideate</h4><p>IA, user flow</p></div>
+          <div><h4>Design</h4><p>Wireframes, visual design, accessibility</p></div>
+          <div><h4>Test</h4><p>Usability check, improvements</p></div>
+        </div>
+      </section>
 
-      <h3>Design Decisions</h3>
-      <ul>
-        <li><strong>Dark theme:</strong> Aligned with Fire Service College branding</li>
-        <li><strong>Inline configuration:</strong> All course options visible on one screen</li>
-        <li><strong>Progressive disclosure:</strong> Accommodation options appear when checkbox selected</li>
-        <li><strong>Sticky pricing:</strong> Total price always visible during configuration</li>
-      </ul>
+      <section class="case-section" id="stakeholders">
+        <p class="label">Stakeholders</p>
+        <h2>Stakeholder and client engagement</h2>
+        <p>I presented progress every two weeks to the Director of Digital Commerce and the VP of Sales. Every presentation was framed around business KPIs (cart completion rate, average order processing time and support-ticket volume) instead of design terms.</p>
+        <p class="problem">Stakeholders asked for <span>12 extra fields</span> on the order form. A card-sorting workshop and abandonment data aligned the team on <span>4 essential fields</span>, and form completion rose by 35%.</p>
+      </section>
 
-      <h3>Tools & Technologies</h3>
-      <div class="tools-grid">
-        <span class="tool-tag">Figma</span>
-        <span class="tool-tag">Salesforce B2B Commerce</span>
-        <span class="tool-tag">Lightning Web Components</span>
-        <span class="tool-tag">Jira</span>
-        <span class="tool-tag">Confluence</span>
-      </div>
-    </section>
+      <section class="case-section" id="audience">
+        <p class="label">Audience</p>
+        <h2>Target audience</h2>
+        <p>Capita business buyers and procurement professionals in specific Lines of Business (LOBs). They expect a consumer-grade experience, but their organisations have structured purchasing: entitlement-based product visibility, custom pricing and account-level order history.</p>
+        <ol class="numbered">
+          <li><span>From experienced buyers who know exactly which SKUs they need, to first-time users exploring the catalogue.</span></li>
+          <li><span>Bulk ordering, quote generation and integration with back-end systems such as RCA.</span></li>
+          <li><span>Branding and UI customisation to reflect each LOB and build trust.</span></li>
+        </ol>
+      </section>
 
-    <section class="case-section">
-      <p class="case-section-label">Results</p>
-      <h2>Projected Impact</h2>
-      <div class="results-grid">
-        <div class="result-card"><div class="result-value">+52%</div><div class="result-label">Projected Sales Uplift</div></div>
-        <div class="result-card"><div class="result-value">-35%</div><div class="result-label">Order Fulfillment Time</div></div>
-        <div class="result-card"><div class="result-value">+28%</div><div class="result-label">User Satisfaction</div></div>
-        <div class="result-card"><div class="result-value">-40%</div><div class="result-label">Support Tickets</div></div>
-        <div class="result-card"><div class="result-value">24/7</div><div class="result-label">Self-Service Booking</div></div>
-        <div class="result-card"><div class="result-value">5min</div><div class="result-label">Avg. Booking Time</div></div>
-      </div>
-      <h3>Recognition</h3>
-      <p>This project contributed to receiving the <strong>Fearless Innovation Award 2025</strong> from Capita PLC.</p>
-    </section>
+      <section class="case-section" id="leadership">
+        <p class="label">Leadership</p>
+        <h2>Team leadership</h2>
+        <p>I led one junior UX designer and set up processes that improved both output quality and team growth.</p>
+        <ol class="numbered">
+          <li><span><strong>Design critique framework:</strong> weekly critiques that sped up iteration by 40%.</span></li>
+          <li><span><strong>Mentorship:</strong> paired with the research lead, leading to their first independent user study.</span></li>
+          <li><span><strong>Process ownership:</strong> final calls on component library architecture and interaction patterns.</span></li>
+          <li><span><strong>Cross-functional alignment:</strong> daily syncs with engineering to clear blockers early.</span></li>
+        </ol>
+        <div class="roles" style="margin-top:20px"><span>Design strategy</span><span>Problem solving</span><span>Information architecture</span><span>Empathy mapping</span><span>Usability testing</span><span>User flow</span><span>Prototyping</span><span>Project management</span><span>User persona</span><span>Wireframes</span><span>User research</span><span>Business analysis</span><span>Visual design</span><span>HTML/CSS implementation</span></div>
+      </section>
 
-    <section class="case-section">
-      <p class="case-section-label">Reflection</p>
-      <h2>What I Learned</h2>
-      <ul class="learnings-list">
-        <li><span><strong>Platform constraints can drive creativity.</strong> Salesforce B2B Commerce has limitations, but working within them forced us to prioritize ruthlessly.</span></li>
-        <li><span><strong>B2B doesn't mean boring.</strong> Professional users still appreciate beautiful, intuitive interfaces.</span></li>
-        <li><span><strong>Legal requirements need UX thinking.</strong> The terms acceptance requirement could have been a friction point, but integrating it thoughtfully made it nearly invisible.</span></li>
-      </ul>
-    </section>
-  </div>
+      <section class="case-section" id="timeline">
+        <p class="label">Timeline</p>
+        <h2>Project timeline</h2>
+        <p>A phased rollout across Release 1 and Release 2, covering sandbox testing, QA handover, SIT/UAT and production builds on Salesforce’s Lightning Web Runtime. About 12 weeks, plus time for training and post-launch support.</p>
+        <div class="wide"><div class="timeline"><div class="phase" style="grid-column:1/9">UX design</div><div class="phase" style="grid-column:9/13">UI design</div><div class="bar" style="grid-column:1/3;grid-row:2">Strategy (research)</div><div class="bar" style="grid-column:2/5;grid-row:3">Interview, empathy map, user journey</div><div class="bar" style="grid-column:4/6;grid-row:2">Problem &amp; goal statement</div><div class="bar" style="grid-column:6/8;grid-row:3">Competitive analysis &amp; IA</div><div class="bar" style="grid-column:9/10;grid-row:2">Paper wireframes</div><div class="bar" style="grid-column:10/12;grid-row:3">Visual design &amp; prototyping</div><div class="bar" style="grid-column:10/13;grid-row:4">Client feedback &amp; approval</div><div class="bar" style="grid-column:11/13;grid-row:4">Usability testing</div><div class="wk" style="grid-column:1">Week 1</div><div class="wk" style="grid-column:2">Week 2</div><div class="wk" style="grid-column:3">Week 3</div><div class="wk" style="grid-column:4">Week 4</div><div class="wk" style="grid-column:5">Week 5</div><div class="wk" style="grid-column:6">Week 6</div><div class="wk" style="grid-column:7">Week 7</div><div class="wk" style="grid-column:8">Week 8</div><div class="wk" style="grid-column:9">Week 9</div><div class="wk" style="grid-column:10">Week 10</div><div class="wk" style="grid-column:11">Week 11</div><div class="wk" style="grid-column:12">Week 12</div></div></div>
+      </section>
+
+      <section class="case-section" id="empathise">
+        <p class="label">Empathise</p>
+        <h2>Research and discovery</h2>
+        <p>I ran 8 contextual inquiry sessions with B2B buyers across 3 customer segments:</p>
+        <ol class="numbered">
+          <li><span><strong>Procurement managers</strong> prioritised quick reordering and order tracking.</span></li>
+          <li><span><strong>Field sales reps</strong> needed mobile-friendly catalogue browsing that works offline.</span></li>
+          <li><span><strong>Finance teams</strong> needed invoice downloads and payment history in self-service.</span></li>
+        </ol>
+        <div class="wide"><p class="label" style="margin:32px 0 12px">Key questions</p><div class="qa"><div>How easy is it to find what you need, and is product information and pricing clear?</div><div>What challenges do you face when placing orders, and how do you work with account managers on complex purchases?</div><div>Do you feel confident sharing sensitive business information, and what do you think of the security features?</div></div></div>
+      </section>
+
+      <section class="case-section" id="card-sorting">
+        <p class="label">Card sorting</p>
+        <h2>What users told us</h2>
+        <dl class="sort-setup"><div><dt>Participants</dt><dd>20 (10 power + 10 standard)</dd></div><div><dt>Method</dt><dd>Open sort + closed validation</dd></div><div><dt>Tools</dt><dd>Optimal Workshop, UserTesting</dd></div><div><dt>Duration</dt><dd>20 min / session</dd></div><div><dt>Analysis</dt><dd>Affinity maps, dendrograms</dd></div></dl>
+        <div class="wide"><div class="findings" style="margin-top:24px">
+          <article><h4>Users think in use cases, not internal categories</h4><p>Participants grouped products by what they wanted to achieve, not by business structure.</p><p><b>Design impact:</b> renamed categories in user language and organised navigation around tasks.</p></article>
+          <article><h4>Strong consensus on top-level navigation</h4><p>Closed sorting showed high agreement on primary categories across both user groups.</p><p><b>Design impact:</b> locked the top-level IA and focused iteration on deeper levels.</p></article>
+          <article><h4>Shallow navigation and powerful filters win</h4><p>Users preferred fewer category levels and relied heavily on filters.</p><p><b>Design impact:</b> reduced depth and moved high-value filters earlier.</p></article>
+          <article><h4>Clear, consistent language builds confidence</h4><p>Ambiguous or overlapping labels caused hesitation and wrong turns.</p><p><b>Design impact:</b> standardised terms across navigation, filters and specs.</p></article>
+        </div></div>
+      </section>
+
+      <section class="case-section" id="define">
+        <p class="label">Define</p>
+        <h2>User personas</h2>
+        <p>Three personas covered the range, from a process-driven procurement manager to a casual buyer who orders a few times a year.</p>
+        <div class="wide"><div class="people"><div class="person"><div class="id"><img src="images/eos/p1.png" alt="Jackson D. Willam" loading="lazy"><h4>Jackson D. Willam</h4><span>38 · School Business Manager<br>Godinton Primary School, London</span></div><div class="bio"><h5>Biography</h5><p>Jackson manages a team of buyers and makes sure raw materials and parts are ordered on time and within budget. He is process-driven and values efficiency, accuracy and cost-effectiveness above everything else.</p></div><div><h5>Needs</h5><ul><li>Clear product descriptions and pricing</li><li>View all orders under the school account</li><li>Streamlined checkout and enquiry options for bespoke items</li></ul></div><div><h5>Pain points</h5><ul><li>Limited visibility into past purchases made by other staff</li><li>Difficulty with bespoke pricing and quotation processes</li></ul></div><div><h5>Goals</h5><ul><li>Purchase training programmes and services for staff</li><li>Ensure budget compliance and audit readiness</li><li>Access product details, pricing and order history</li></ul></div></div><div class="person"><div class="id"><img src="images/eos/p2.png" alt="Shara Colmen" loading="lazy"><h4>Shara Colmen</h4><span>29 · Trust Finance Director<br>Regents Park College, London</span></div><div class="bio"><h5>Biography</h5><p>Shara constantly sources components, researches technical specifications and checks compatibility across multiple schools in the trust.</p></div><div><h5>Needs</h5><ul><li>A central dashboard for multi-account visibility</li><li>Role-based access control for buyers</li><li>Exportable reports for finance and audit</li></ul></div><div><h5>Pain points</h5><ul><li>Fragmented access to order data across schools</li><li>Manual coordination with administrative staff</li></ul></div><div><h5>Goals</h5><ul><li>Oversee purchases across multiple schools</li><li>Manage buyer accounts and permissions</li><li>Ensure financial oversight and reporting</li></ul></div></div><div class="person"><div class="id"><img src="images/eos/p3.png" alt="Maria Jimenez" loading="lazy"><h4>Maria Jimenez</h4><span>39 · Casual buyer<br>Regents Park College, London</span></div><div class="bio"><h5>Biography</h5><p>Maria is an office administrator who sometimes orders supplies and consumables. She is not a procurement professional; she wants the task done quickly so she can return to her main job.</p></div><div><h5>Needs</h5><ul><li>Admin tools for storefront configuration</li><li>Permission sets for buyers and buyer managers</li><li>Seamless integration with RCA and SAP systems</li></ul></div><div><h5>Pain points</h5><ul><li>A complex interface with too many options</li><li>Part numbers and technical jargon she doesn’t understand</li><li>Difficult account management and approval process</li></ul></div><div><h5>Goals</h5><ul><li>Easily find and reorder common consumables</li><li>Quickly get approval from her manager</li><li>A simple, step-by-step checkout</li></ul></div></div></div></div>
+      </section>
+
+      <section class="case-section" id="market">
+        <p class="label">Market</p>
+        <h2>Competitor analysis</h2>
+        <p>I compared leading B2B commerce platforms to find UX opportunities and feature gaps, and to inform design decisions for Capita’s Salesforce storefront.</p>
+        <div class="wide"><div class="table-wrap"><table><thead><tr><th>Feature</th><th>Capita Salesforce B2B</th><th>SAP Commerce</th><th>Magento B2B</th><th>BigCommerce B2B</th></tr></thead><tbody><tr><td>Storefront framework</td><td class="us">Lightning Web Runtime (LWR)</td><td>Spartacus (Angular)</td><td>PWA Studio</td><td>Stencil</td></tr><tr><td>Customisation</td><td class="us">Apex, Flows, LWCs</td><td>Java-based</td><td>PHP modules</td><td>Open APIs</td></tr><tr><td>Buyer group control</td><td class="us">Entitlement-based visibility</td><td>Role-based</td><td>Customer groups</td><td>Price lists</td></tr><tr><td>Search &amp; navigation</td><td class="us">Keyword search</td><td>Faceted search</td><td>ElasticSearch</td><td>AI search</td></tr><tr><td>Checkout</td><td class="us">PO optional, dynamic fields</td><td>Multi-step</td><td>Customisable</td><td>One-page</td></tr><tr><td>Order history &amp; inquiry</td><td class="us">Detailed tracking, inquiry forms</td><td>Order logs</td><td>Reorder tools</td><td>Order APIs</td></tr><tr><td>Integration</td><td class="us">ERP (SAP), RCA, SSO</td><td>SAP-native</td><td>ERP plugins</td><td>Open connectors</td></tr><tr><td>Performance</td><td class="us">Optimised via LWR</td><td>Heavy but scalable</td><td>Moderate</td><td>Fast &amp; lightweight</td></tr></tbody></table></div></div>
+      </section>
+
+      <section class="case-section" id="ideate">
+        <p class="label">Ideate</p>
+        <h2>Task flow</h2>
+        <p>Mapping each touchpoint, from login to order confirmation, showed where to streamline steps and where users needed more reassurance.</p>
+        <div class="wide"><div class="flowimg"><img src="images/eos/taskflow.png" alt="Task flow from login through search, service details, cart, checkout and order confirmation, plus a forgot-password path"></div></div>
+      </section>
+
+
+      <section class="case-section" id="wireframes">
+        <p class="label">Low-fidelity wireframes</p>
+        <h2>Greyscale wireframes of every key screen</h2>
+        <p>Each greyscale wireframe follows the layout of its final screen, block for block: the same header, grid, pricing panel and footer. That let stakeholders sign off structure and content before any brand styling.</p>
+        <div class="wide"><div class="wf-set "><figure class="wf-card"><h4><span>01</span>Login</h4><div class="wf" style="aspect-ratio:1200/666"><div class="pad band d" style="height:100%;align-content:start"><span class="t l">▌Capita</span><div class="st c" style="width:36%;gap:6px;margin-top:3%"><span class="t l">Welcome to the Capita B2B portal</span><i class="w8" style="justify-self:center"></i><i class="w6" style="justify-self:center"></i><div class="cd" style="padding:12px;gap:6px;text-align:left"><span class="t l c">Login</span><div class="hr"></div><span class="s" style="text-align:center">Enter your account details to login</span><span class="s">Email address *</span><span class="fld">firstname.lastname@email.com</span><span class="s">Password *</span><span class="fld">••••••••••</span><span class="btn p" style="margin-top:4px">Login to your account</span><div class="hr"></div><span class="s">Forgot password?</span></div></div></div></div><figcaption>Centred portal welcome, one card, one primary action and a self-serve password reset.</figcaption></figure><figure class="wf-card"><h4><span>02</span>Home</h4><div class="wf"><div class="bar"><span class="t l">▌Capita</span><span class="av">✺</span><span class="btn">Home</span><span class="s">Fire Service College catalogue ▾</span><span class="fld f">Search the store</span><span class="btn p">⌕</span><span class="s">☏ 01608 650 831</span><span class="s">Hello, Martin</span><span class="ic"></span></div><div class="img" style="aspect-ratio:1200/190;display:grid;align-content:center;padding:0 7%;border:none;border-bottom:1.2px solid #999"><span class="t l" style="background:#fbfbf9;justify-self:start;padding:2px 5px;max-width:52%">The fire service college is a leading organisation for fire prevention and protection and response.</span></div><div class="pad band d" style="gap:8px;padding:12px 7%"><span class="t l">Top selling products and services</span><div class="g3"><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Tactical Ventilation Instructor</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">ICL3 Qualification Offsite F2F</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Accommodation</span></div></div><span class="t l">New or promotional items</span><div class="g2"><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:2.6/1"></div><span class="t ">Incident Command : ICL3 Qualification FSC</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:2.6/1"></div><span class="t ">Fire Risk Assessment (Medium)</span></div></div></div><div class="pad band" style="padding:12px 4%"><span class="t l">Fire Service College catalogue</span><div class="r"><span class="t">←</span><div class="g5 f"><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.8/1"></div><span class="t ">Events and Venue</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.8/1"></div><span class="t ">Leadership &amp; Management</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.8/1"></div><span class="t ">Open Program</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.8/1"></div><span class="t ">Events and Venue</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.8/1"></div><span class="t ">Events and Venue</span></div></div><span class="t">→</span></div></div><div class="pad" style="grid-template-columns:1fr 1.3fr 1.3fr .7fr;padding-top:12px"><div class="st"><span class="t ">Resources &amp; support</span><span class="s">FSC catalogue</span><span class="s">Help centre / FAQs</span><span class="s">Submit an enquiry</span></div><div class="st"><span class="t ">Contact details</span><i class="w8"></i><i class="w6"></i><i class="w8"></i><i class="w6"></i></div><div class="st"><span class="t ">Accreditations &amp; certifications</span><div class="r"><span class="av" style="width:22px;height:22px"></span><span class="av" style="width:22px;height:22px"></span><span class="av" style="width:22px;height:22px"></span></div></div><div class="st" style="justify-items:end"><span class="t l">▌Capita</span><span class="ic"></span></div></div><div class="r" style="border-top:1px solid #ccc;padding:6px 10px"><span class="s">© 2025 Copyright Capita plc</span><span class="s" style="margin-left:auto">Modern slavery act · Cookies · Privacy · Terms · Accessibility</span></div></div><figcaption>Hero banner, then top sellers, promotions and the full catalogue carousel.</figcaption></figure><figure class="wf-card"><h4><span>03</span>Product detail</h4><div class="wf"><div class="bar"><span class="t l">▌Capita</span><span class="av">✺</span><span class="btn">Home</span><span class="s">Fire Service College catalogue ▾</span><span class="fld f">Search the store</span><span class="btn p">⌕</span><span class="s">☏ 01608 650 831</span><span class="s">Hello, Martin</span><span class="ic"></span></div><div class="pad band d" style="padding:10px 7%"><span class="s">Fire Service College (FSC) / Tactical Ventilation Instructor</span><div style="display:grid;grid-template-columns:1fr 1.8fr 1.5fr;gap:12px;align-items:start"><div class="st" style="gap:6px"><div class="img" style="aspect-ratio:4/3"></div><div class="g3"><div class="img" style="aspect-ratio:1"></div><div class="img" style="aspect-ratio:1"></div><div class="img" style="aspect-ratio:1"></div></div><span class="btn" style="justify-self:start">View product brochure (PDF)</span></div><div class="st" style="gap:5px"><span class="t l">Tactical ventilation instructor</span><span class="s">Fire cart | SKU#LPP-C37-B</span><i></i><i></i><i class="w6"></i><span class="t ">Product detailed description</span><div class="st" style="gap:4px;border-right:3px solid #bbb;padding-right:6px"><i></i><i></i><i></i><i class="w8"></i><span class="s"><b style="display:inline;background:none;color:#333">The 5-day course includes:</b></span><div class="r"><span class="dot" style="width:4px;height:4px"></span><i class="f"></i></div><div class="r"><span class="dot" style="width:4px;height:4px"></span><i class="f"></i></div><div class="r"><span class="dot" style="width:4px;height:4px"></span><i class="f"></i></div><div class="r"><span class="dot" style="width:4px;height:4px"></span><i class="f"></i></div><i></i><i></i><i class="w6"></i></div></div><div class="cd" style="gap:7px"><span class="t l">Pricing and quantity</span><div class="r"><span class="s" style="width:46%;font-weight:700;color:#333">Course duration</span><span class="s">3 days</span></div><div class="r"><span class="s" style="width:46%;font-weight:700;color:#333">Course start date</span><span class="fld">24 March 2025 ▾</span></div><div class="r"><span class="s" style="width:46%;font-weight:700;color:#333">Number of delegates</span><span class="r" style="gap:0"><span class="btn">−</span><span class="fld" style="width:28px;text-align:center;color:#333">5</span><span class="btn">+</span></span></div><div class="r"><span class="s" style="width:46%;font-weight:700;color:#333">Accommodation</span><span class="ic"></span></div><div class="r"><span class="s" style="width:46%;font-weight:700;color:#333">Delegates for accommodation</span><span class="r" style="gap:0"><span class="btn">−</span><span class="fld" style="width:28px;text-align:center;color:#333">3</span><span class="btn">+</span></span></div><div class="r"><span class="s" style="width:46%;font-weight:700;color:#333">Course end date</span><span class="s">23 March 2026</span></div><div class="r"><span class="s" style="width:46%;font-weight:700;color:#333">Course mode</span><span class="s">Face-to-Face</span></div><div class="hr"></div><div class="r"><span class="t ">Total course price</span><span class="t sp">£4370.12</span></div><div class="r"><span class="t ">Total accommodation price</span><span class="t sp">£330.00</span></div><i></i><i class="w6"></i><div class="r"><span class="ic"></span><span class="s">I have read and agreed to the terms and conditions.</span></div><div class="r"><span class="btn p">Add to cart</span><span class="s">or <u>Raise an enquiry</u></span></div></div></div></div><div class="pad band" style="padding:12px 7%"><span class="t l">Suggested products</span><div class="g3"><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Incident command: ICL3 Qualification FSC</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Level 4 Certificate in Fire Safety</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">ICL3 Qualification Offsite F2F</span></div></div></div><div class="pad" style="grid-template-columns:1fr 1.3fr 1.3fr .7fr;padding-top:12px"><div class="st"><span class="t ">Resources &amp; support</span><span class="s">FSC catalogue</span><span class="s">Help centre / FAQs</span><span class="s">Submit an enquiry</span></div><div class="st"><span class="t ">Contact details</span><i class="w8"></i><i class="w6"></i><i class="w8"></i><i class="w6"></i></div><div class="st"><span class="t ">Accreditations &amp; certifications</span><div class="r"><span class="av" style="width:22px;height:22px"></span><span class="av" style="width:22px;height:22px"></span><span class="av" style="width:22px;height:22px"></span></div></div><div class="st" style="justify-items:end"><span class="t l">▌Capita</span><span class="ic"></span></div></div><div class="r" style="border-top:1px solid #ccc;padding:6px 10px"><span class="s">© 2025 Copyright Capita plc</span><span class="s" style="margin-left:auto">Modern slavery act · Cookies · Privacy · Terms · Accessibility</span></div></div><figcaption>Gallery, scrollable description and a pricing panel that recalculates delegates and totals.</figcaption></figure><figure class="wf-card"><h4><span>04</span>Cart</h4><div class="wf"><div class="bar"><span class="t l">▌Capita</span><span class="av">✺</span><span class="btn">Home</span><span class="s">Fire Service College catalogue ▾</span><span class="fld f">Search the store</span><span class="btn p">⌕</span><span class="s">☏ 01608 650 831</span><span class="s">Hello, Martin</span><span class="ic"></span></div><div class="pad band d" style="padding:14px 7%"><span class="t xl">Product/Service cart</span><div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:start"><div class="st"><div class="r" style="align-items:start;gap:10px;padding:9px 0;border-bottom:1.2px solid #b5b5b0"><div class="img" style="width:24%;aspect-ratio:1.4/1;flex:none"></div><div class="st f" style="gap:5px"><span class="t ">Tactical Ventilation Instructor</span><span class="s">Fire Craft | SKU#LPP-H37-F03</span><span class="s">Course duration: 4 days | Start: 24th June 2025</span><div class="r"><span class="s">Quantity</span><span class="r" style="gap:0"><span class="btn">−</span><span class="fld" style="width:28px;text-align:center;color:#333">18</span><span class="btn">+</span></span></div></div><div class="st" style="justify-items:end;gap:8px"><div class="r"><span class="s">£32.00 / Quantity</span><span class="t ">£320.00</span></div><span class="ic"></span></div></div><div class="r" style="align-items:start;gap:10px;padding:9px 0;border-bottom:1.2px solid #b5b5b0"><div class="img" style="width:24%;aspect-ratio:1.4/1;flex:none"></div><div class="st f" style="gap:5px"><span class="t ">Fire Behaviour Instructor</span><span class="s">Fire Craft | SKU#LPP-H37-F01</span><span class="s">Course duration: 5 days | Start: 10th June 2025</span><div class="r"><span class="s">Quantity</span><span class="r" style="gap:0"><span class="btn">−</span><span class="fld" style="width:28px;text-align:center;color:#333">7</span><span class="btn">+</span></span></div></div><div class="st" style="justify-items:end;gap:8px"><div class="r"><span class="s">£32.00 / Quantity</span><span class="t ">£320.00</span></div><span class="ic"></span></div></div><div class="r" style="align-items:start;gap:10px;padding:9px 0;border-bottom:1.2px solid #b5b5b0"><div class="img" style="width:24%;aspect-ratio:1.4/1;flex:none"></div><div class="st f" style="gap:5px"><span class="t ">Tactical Fire Instructor</span><span class="s">Fire Craft | SKU#LPP-H37-F02</span><span class="s">Course duration: 4 days | Start: 17th June 2025</span><div class="r"><span class="s">Quantity</span><span class="r" style="gap:0"><span class="btn">−</span><span class="fld" style="width:28px;text-align:center;color:#333">17</span><span class="btn">+</span></span></div></div><div class="st" style="justify-items:end;gap:8px"><div class="r"><span class="s">£32.00 / Quantity</span><span class="t ">£320.00</span></div><span class="ic"></span></div></div><div class="r" style="align-items:start;gap:10px;padding:9px 0;border-bottom:1.2px solid #b5b5b0"><div class="img" style="width:24%;aspect-ratio:1.4/1;flex:none"></div><div class="st f" style="gap:5px"><span class="t ">Level 2 Award in Carrying Out Fire Safety Checks</span><span class="s">Fire Safety | SKU#LPP-H37-FS01</span><span class="s">Course duration: 2 days | Start: 5th August 2025</span><div class="r"><span class="s">Quantity</span><span class="r" style="gap:0"><span class="btn">−</span><span class="fld" style="width:28px;text-align:center;color:#333">14</span><span class="btn">+</span></span></div></div><div class="st" style="justify-items:end;gap:8px"><div class="r"><span class="s">£32.00 / Quantity</span><span class="t ">£320.00</span></div><span class="ic"></span></div></div></div><div class="cd" style="gap:8px"><span class="t l">Pricing and summary</span><div class="r"><span class="s">Subtotal</span><span class="s" style="margin-left:auto">£320.00</span></div><div class="r"><span class="s">Discount</span><span class="s" style="margin-left:auto">£28.00</span></div><div class="r"><span class="t ">Total price</span><span class="s">(Excl. VAT)</span><span class="t l sp">£932.00</span></div><span class="btn p">Proceed to checkout</span></div></div></div><div class="pad" style="grid-template-columns:1fr 1.3fr 1.3fr .7fr;padding-top:12px"><div class="st"><span class="t ">Resources &amp; support</span><span class="s">FSC catalogue</span><span class="s">Help centre / FAQs</span><span class="s">Submit an enquiry</span></div><div class="st"><span class="t ">Contact details</span><i class="w8"></i><i class="w6"></i><i class="w8"></i><i class="w6"></i></div><div class="st"><span class="t ">Accreditations &amp; certifications</span><div class="r"><span class="av" style="width:22px;height:22px"></span><span class="av" style="width:22px;height:22px"></span><span class="av" style="width:22px;height:22px"></span></div></div><div class="st" style="justify-items:end"><span class="t l">▌Capita</span><span class="ic"></span></div></div><div class="r" style="border-top:1px solid #ccc;padding:6px 10px"><span class="s">© 2025 Copyright Capita plc</span><span class="s" style="margin-left:auto">Modern slavery act · Cookies · Privacy · Terms · Accessibility</span></div></div><figcaption>Line items with quantity steppers and a persistent pricing summary next to checkout.</figcaption></figure></div></div>
+      </section>
+
+      <section class="case-section" id="design">
+        <p class="label">Design</p>
+        <h2>High-fidelity screens</h2>
+        <p>A dark, high-contrast brand theme with cyan primary actions, designed for buyers placing large multi-delegate course orders.</p>
+        <div class="wide"><figure class="screen"><h4><span>01</span>Login</h4><img src="images/eos/login.png" alt="EOS Login screen" loading="lazy"><figcaption style="border:none;padding:12px 0 0">A focused, branded entry point with a single clear call to action and a self-serve "Forgot password" path.</figcaption></figure><figure class="screen"><h4><span>02</span>Home</h4><img src="images/eos/home.png" alt="EOS Home screen" loading="lazy"><figcaption style="border:none;padding:12px 0 0">Top-selling services and promotions up front, and the full Fire Service College catalogue one scroll away.</figcaption></figure><figure class="screen"><h4><span>03</span>Product detail</h4><img src="images/eos/pdp.png" alt="EOS Product detail screen" loading="lazy"><figcaption style="border:none;padding:12px 0 0">Spec-first layout: course details on the left, and a sticky pricing panel that calculates delegates, accommodation and totals live.</figcaption></figure><figure class="screen"><h4><span>04</span>Cart</h4><img src="images/eos/cart.png" alt="EOS Cart screen" loading="lazy"><figcaption style="border:none;padding:12px 0 0">Bulk-friendly cart with quantity steppers, course dates and a persistent pricing summary next to checkout.</figcaption></figure></div>
+      </section>
+
+      <section class="case-section" id="rationale">
+        <p class="label">Rationale</p>
+        <h2>Design rationale and decisions</h2>
+        <p>Each major decision is traced back to a user need and a measurable outcome.</p>
+        <div class="wide"><div class="table-wrap"><table><thead><tr><th>Design area</th><th>Rationale</th><th>Key decision</th><th>Outcome</th></tr></thead><tbody><tr><td>Core design principle</td><td>B2B commerce has complexity that must be managed, not removed</td><td>Shifted complexity from users to system logic and UI structure</td><td>Lower cognitive load with enterprise-level control</td></tr><tr><td>User-centred foundation</td><td>Power users and standard engineers have different needs</td><td>Role-aware experiences without fragmenting the UI</td><td>Efficient for experts, guided for occasional users</td></tr><tr><td>Information architecture</td><td>Users struggled with deep hierarchies and inconsistent categories</td><td>Open card sorting, validated by closed sorting and dendrograms</td><td>Better findability and faster navigation</td></tr><tr><td>Product discovery</td><td>Buyers need confidence in specs, compatibility and price</td><td>Spec-first layouts and meaningful grouping</td><td>Faster, better-informed purchasing</td></tr><tr><td>Decision support</td><td>Too many choices slow decisions down</td><td>Fewer visible options, progressive disclosure</td><td>Faster tasks, less decision fatigue</td></tr><tr><td>Task efficiency</td><td>Repeat and bulk buying are critical in B2B</td><td>High-frequency actions made prominent and consistent</td><td>Less time on task for power users</td></tr><tr><td>Checkout</td><td>B2C-style checkout caused friction</td><td>Streamlined multi-step checkout with bulk and reorder</td><td>Fewer errors, smoother completion</td></tr><tr><td>Consistency</td><td>Users rely on known patterns</td><td>Followed Salesforce and enterprise eCommerce conventions</td><td>Shorter learning curve, more confidence</td></tr><tr><td>Visual clarity</td><td>Dense information overwhelms users</td><td>Clean layouts, strong hierarchy, minimal decoration</td><td>Better scanning and focus</td></tr><tr><td>Accessibility</td><td>Interfaces must work in real-world conditions</td><td>Readable type, spacing and contrast</td><td>Inclusive and usable on every device</td></tr><tr><td>Validation</td><td>High build cost demands confidence</td><td>Usability testing and affinity mapping</td><td>Less rework, stronger stakeholder buy-in</td></tr><tr><td>Business alignment</td><td>Must scale with growth</td><td>Modular, reusable components</td><td>Future-ready, lower maintenance cost</td></tr></tbody></table></div></div>
+      </section>
+
+      <section class="case-section" id="principles">
+        <p class="label">Principles</p>
+        <h2>Design laws applied</h2>
+        <p>Proven UX laws guided decisions where research alone didn’t settle the choice.</p>
+        <div class="wide"><div class="laws"><article><h4><small>Decision complexity</small>Hick’s Law</h4><p><b>Applied:</b> Reduced category depth using card-sorting insights, and put advanced filters behind progressive disclosure.</p><p><b>Impact:</b> Faster product discovery and less hesitation.</p></article><article><h4><small>Cognitive load</small>Miller’s Law</h4><p><b>Applied:</b> Grouped specifications into clusters (performance, compatibility, pricing) and broke checkout into smaller steps.</p><p><b>Impact:</b> Better understanding of technical data, fewer checkout errors.</p></article><article><h4><small>Interaction efficiency</small>Fitts’s Law</h4><p><b>Applied:</b> Enlarged primary CTAs (Add to cart, Reorder, Checkout) and placed frequent actions in the same spot on every screen.</p><p><b>Impact:</b> Quicker tasks, especially for repeat and bulk orders.</p></article><article><h4><small>Familiarity</small>Jakob’s Law</h4><p><b>Applied:</b> Followed familiar B2B eCommerce patterns (PLP → PDP → Cart → Checkout) and Salesforce conventions.</p><p><b>Impact:</b> Shorter learning curve, faster onboarding.</p></article><article><h4><small>Gestalt principle</small>Law of Proximity</h4><p><b>Applied:</b> Grouped pricing, availability and delivery info, and clustered filters with technical specs.</p><p><b>Impact:</b> Clearer information, less visual noise.</p></article><article><h4><small>Perceived ease</small>Aesthetic–Usability Effect</h4><p><b>Applied:</b> Consistent spacing, type and components, balancing dense data with white space.</p><p><b>Impact:</b> More user confidence, lower perceived complexity.</p></article></div></div>
+      </section>
+
+      <section class="case-section" id="accessibility">
+        <p class="label">Accessibility</p>
+        <h2>WCAG 2.1 AA, aligned with UK GDS</h2>
+        <p>Accessibility was designed and validated against UK Government Digital Service guidelines and WCAG 2.1 AA, so the platform stays usable and compliant through long, task-heavy workflows.</p>
+        <div class="wide"><div class="wcag"><article><h4>Perceivable<small>WCAG 1.x · make content perceivable</small></h4><ul><li>Contrast ≥ 4.5:1 for text</li><li>No colour-only indicators</li><li>Readable at 200% text zoom</li></ul><p class="why">Readable for users with visual impairments.</p></article><article><h4>Operable<small>WCAG 2.x · make it operable</small></h4><ul><li>Full keyboard navigation</li><li>Logical tab order</li><li>Visible focus states</li></ul><p class="why">Users can complete every task without a mouse.</p></article><article><h4>Understandable<small>WCAG 3.x · make it understandable</small></h4><ul><li>Plain, consistent language</li><li>Clear form labels and instructions</li><li>Descriptive error messages</li></ul><p class="why">Fewer errors in complex B2B workflows.</p></article><article><h4>Robust<small>WCAG 4.1 · make it robust</small></h4><ul><li>Semantic component structure</li><li>Accessible forms and alerts</li><li>No fragile custom interactions</li></ul><p class="why">Works reliably with assistive technologies.</p></article><article><h4>Enterprise data<small>WCAG 1.3, 1.4 · GDS patterns</small></h4><ul><li>Proper table structures</li><li>Icons paired with labels</li><li>Clear spacing for dense data</li></ul><p class="why">Dense data stays scannable and unambiguous.</p></article><article><h4>Feedback &amp; errors<small>WCAG 3.3, 4.1</small></h4><ul><li>Inline validation</li><li>Clear success and error states</li><li>Status messages announced properly</li></ul><p class="why">Users always know the system state and next step.</p></article><div class="govern"><h4>Validation &amp; governance</h4><ul><li>Reviewed designs against UK GDS checklists</li><li>Validated against WCAG 2.1 AA</li><li>Keyboard-only and screen-reader testing</li><li>Developer handoff with accessibility notes</li></ul></div></div></div>
+      </section>
+
+      <section class="case-section" id="solution">
+        <p class="label">Solution</p>
+        <h2>Design solution</h2>
+        <ol class="numbered">
+          <li><span><strong>Smart search:</strong> faceted search with predictive suggestions and recent searches for returning buyers.</span></li>
+          <li><span><strong>Streamlined checkout:</strong> 5 steps reduced to 3, with a persistent order summary and inline validation.</span></li>
+          <li><span><strong>Order dashboard:</strong> status, tracking, invoices and quick reorder in one place, reducing support calls.</span></li>
+          <li><span><strong>Bulk order table:</strong> spreadsheet-style bulk ordering with CSV upload.</span></li>
+          <li><span><strong>Mobile-first catalogue:</strong> product grid and filters built for touch, for field sales reps.</span></li>
+        </ol>
+      </section>
+
+      <section class="case-section" id="results">
+        <p class="label">Results</p>
+        <h2>Outcomes and business impact</h2>
+        <p>Results of the Salesforce B2B Commerce transformation.</p>
+        <div class="results" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div><span class="v">+52%</span><span class="l">Projected sales</span></div><div><span class="v">−35%</span><span class="l">Order fulfilment time</span></div><div><span class="v">−40%</span><span class="l">Support tickets</span></div><div><span class="v">+28%</span><span class="l">User satisfaction</span></div></div>
+      </section>
+
+      <section class="case-section" id="closing">
+        <p class="label">Closing</p>
+        <h2>Key takeaways</h2>
+        <ul class="learn">
+          <li><span><strong>Drag-and-drop customisation:</strong> Experience Builder lets teams change pages, layouts and branding with no code.</span></li>
+          <li><span><strong>LWR architecture:</strong> fast page loads and responsive performance for B2B buyers.</span></li>
+          <li><span><strong>Dynamic buyer journeys:</strong> search, cart, checkout and order history tailored to buyer groups and entitlements.</span></li>
+          <li><span><strong>Flexible checkout:</strong> purchase with or without a PO number, with confirmation after checkout.</span></li>
+          <li><span><strong>Connected systems:</strong> integration with CRM, billing and scheduling tools.</span></li>
+        </ul>
+        <div class="tools"><span>Figma</span><span>Adobe XD</span><span>Photoshop</span><span>Illustrator</span><span>Salesforce B2B Commerce</span><span>Experience Builder</span><span>Miro</span><span>Azure DevOps</span><span>Jira</span><span>Optimal Workshop</span><span>DocuSign</span><span>Microsoft 365 Copilot</span></div>
+      </section>
+  </main></div>
+
+  <div class="thanks"><h3>Thanks for reading</h3><p>Questions or feedback? I’d love to hear them: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></p></div>
 
   <div class="next-project">
-    <p>Next Case Study</p>
-    <h3>Capita.com Global Website Redesign</h3>
-    <a href="case-study-capita-website.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <p>Next case study</p>
+    <h3>Axelos.com Redesign</h3>
+    <a href="case-study-axelos.html" class="btn-primary">View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
-
+  <footer><span>© 2026 Yogesh Malik · Get in touch: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></span><span><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span></footer>
   <script>
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
-    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    const btn = document.getElementById('scrollToTop'), bar = document.getElementById('progress');
+    const links = [...document.querySelectorAll('.toc a')];
+    const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      btn.classList.toggle('visible', h.scrollTop > 300);
+      let i = secs.findLastIndex(s => s && s.getBoundingClientRect().top < 160);
+      links.forEach((a, j) => a.classList.toggle('active', j === i));
+    });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/modal.js" defer></script>
 </body>
 </html>

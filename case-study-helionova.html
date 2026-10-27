@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!--
+  REUSABLE CASE-STUDY TEMPLATE: Yogesh Malik portfolio
+  Duplicate this file, rename it (case-study-<project>.html) and replace the content
+  inside each block marked  ▸ EDIT. Delete any optional section you don't need.
+  Section order: Header → Hero image → Snapshot → TL;DR → Context → Domain landscape →
+  Research → Insights → Principles → Solution → Accessibility & trust → Results →
+  My role → Learnings → Next project.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ▸ EDIT: title + description -->
+  <title>HelioNova Design System: One System for Renewable Energy Products | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="UX case study: HelioNova, a renewable-energy design system with 28 accessible components, five colour scales, light and dark themes and copy-paste HTML, built for desktop and mobile.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #c9ff57;
+      --color-accent-dim: rgba(201, 255, 87, 0.15);
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { color: var(--color-text); }
+
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--color-accent); z-index: 1001; }
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); font-weight: 500; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .case-header { padding: 160px 48px 64px; max-width: 1100px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+    .case-tag.outline { background: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; text-wrap: balance; }
+    .case-header h1 em { color: var(--color-accent); }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 760px; text-wrap: pretty; }
+
+    .hero-image { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; }
+    .hero-image figure { border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .hero-image img { width: 100%; height: auto; display: block; }
+    figcaption { font-size: 0.85rem; color: var(--color-text-muted); padding: 14px 20px; border-top: 1px solid var(--color-border); }
+
+    .snapshot { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--color-border); max-width: 1104px; margin: 0 auto 96px; border-radius: 16px; overflow: hidden; }
+    .snapshot div { background: var(--color-bg-card); padding: 28px 22px; }
+    .snapshot dt { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .snapshot dd { font-weight: 600; line-height: 1.4; }
+
+    .layout { max-width: 1104px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+    .toc { position: sticky; top: 120px; align-self: start; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; }
+    .toc a { color: var(--color-text-muted); border-left: 2px solid var(--color-border); padding-left: 14px; transition: color .2s, border-color .2s; }
+    .toc a:hover, .toc a.active { color: var(--color-accent); border-color: var(--color-accent); }
+
+    .case-section { margin-bottom: 96px; scroll-margin-top: 120px; }
+    .label { font-size: 0.8rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .case-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 24px; text-wrap: balance; }
+    .case-section h3 { font-size: 1.15rem; margin: 40px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; text-wrap: pretty; }
+    .case-section p strong, .case-section li strong { color: var(--color-text); }
+
+    .tldr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tldr div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .tldr h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 10px; }
+    .tldr p { font-size: 0.95rem; margin: 0; }
+
+    .problem { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.3; color: var(--color-text); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 32px 0; margin: 32px 0; }
+    .problem span { color: var(--color-accent); font-style: italic; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color .3s; }
+    .card:hover { border-color: rgba(201, 255, 87, 0.4); }
+    .card h4 { margin-bottom: 8px; font-size: 1.02rem; }
+    .card p { font-size: 0.95rem; margin: 0; }
+    .card .k { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 12px; display: block; }
+
+    .reg { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .reg div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 18px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .reg div:last-child { border-bottom: none; }
+    .reg b { color: var(--color-accent); font-weight: 600; }
+    .reg span { color: var(--color-text-muted); font-size: 0.95rem; }
+
+    .persona { display: flex; flex-direction: column; gap: 10px; }
+    .persona .role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .persona ul { list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); font-size: 0.92rem; }
+    .persona li::before { content: ',  '; color: var(--color-accent); }
+
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0; counter-reset: s; }
+    .flow div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; counter-increment: s; }
+    .flow div::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--font-display); color: var(--color-accent); font-size: 1.4rem; margin-bottom: 8px; }
+    .flow h4 { font-size: 0.98rem; margin-bottom: 6px; }
+    .flow p { font-size: 0.88rem; margin: 0; }
+
+    .shot { margin: 32px 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .shot img { width: 100%; display: block; }
+
+    .before-after { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .before-after div { border-radius: 16px; padding: 24px; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .before-after div.after { border-color: rgba(201, 255, 87, 0.4); }
+    .before-after h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; color: var(--color-text-muted); }
+    .before-after .after h4 { color: var(--color-accent); }
+    .before-after ul { list-style: none; display: flex; flex-direction: column; gap: 8px; color: var(--color-text-muted); font-size: 0.95rem; }
+
+    .results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .results div { background: var(--color-bg-card); padding: 32px 24px; }
+    .results .v { font-family: var(--font-display); font-size: 2.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
+    .results .l { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.4; }
+    .note { font-size: 0.85rem !important; color: var(--color-text-muted); font-style: italic; }
+
+    .tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tools span { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; font-size: 0.88rem; color: var(--color-text-muted); }
+
+    .learn { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .learn li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; color: var(--color-text-muted); }
+    .learn li::before { content: '→'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 96px 48px; text-align: center; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 12px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { color: var(--color-bg); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
+
+    footer { padding: 40px 48px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--color-text-muted); font-size: 0.9rem; }
+    footer a { color: var(--color-text-muted); }
+    footer a:hover { color: var(--color-accent); }
+
+    @media (max-width: 1000px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .toc { display: none; }
+      .snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-left: 24px; margin-right: 24px; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      nav, .case-header, .layout, .hero-image, .next-project, footer { padding-left: 24px; padding-right: 24px; }
+      .nav-links { display: none; }
+      .tldr, .grid-2, .grid-3, .before-after, .results, .flow { grid-template-columns: minmax(0, 1fr); }
+      .reg div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  
+    .eos-hero { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; position: relative; z-index: 1; }
+    .eos-hero img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .numbered { list-style: none; counter-reset: n; display: grid; gap: 0; }
+    .numbered li { counter-increment: n; display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .numbered li::before { content: counter(n, decimal-leading-zero); color: var(--color-label); font-weight: 500; font-size: .85rem; padding-top: 2px; }
+    .numbered li strong { color: var(--color-text); font-weight: 600; }
+    .qa { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .qa div { background: #fff; padding: 28px 24px; font-size: 1.15rem; font-weight: 400; line-height: 1.4; color: var(--color-text); }
+    .findings { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .findings article { background: #fff; padding: 28px; display: grid; gap: 10px; }
+    .findings h4 { font-weight: 500; font-size: 1.12rem; line-height: 1.35; }
+    .findings p { margin: 0 !important; font-size: .92rem !important; }
+    .findings b { color: var(--color-text); font-weight: 600; }
+    .sort-setup { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .sort-setup div { padding: 20px 16px; } .sort-setup div + div { border-left: 1px solid var(--color-border); }
+    .sort-setup dt { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+    .sort-setup dd { font-weight: 500; line-height: 1.4; }
+    .people { display: grid; gap: 16px; }
+    .person { display: grid; grid-template-columns: 240px repeat(2, minmax(0,1fr)); gap: 2px; background: var(--color-bg); }
+    .person > div { background: #fff; padding: 24px; }
+    .person .id { display: grid; justify-items: start; gap: 14px; }
+    .person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+    .person .id h4 { font-weight: 500; font-size: 1.2rem; }
+    .person .id span { color: var(--color-text-muted); font-size: .85rem; line-height: 1.5; }
+    .person h5 { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+    .case-section .person p, .person li { font-size: .9rem; margin: 0; color: var(--color-text-muted); line-height: 1.6; }
+    .person ul { list-style: none; display: grid; gap: 4px; }
+    .person li::before { content: '•  '; color: var(--color-accent); }
+    .person .bio { grid-row: span 2; }
+    .table-wrap { overflow-x: auto; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 720px; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid #e6e6e3; vertical-align: top; color: var(--color-text-muted); }
+    th { color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+    td:first-child { color: var(--color-text); font-weight: 500; }
+    td.us { color: var(--color-text); background: var(--color-accent-dim); }
+    .timeline { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 6px 0; font-size: .78rem; }
+    .timeline .wk { grid-row: 5; text-align: center; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 8px; }
+    .timeline .bar { padding: 10px 12px; background: #fff; border-left: 3px solid var(--color-accent); color: var(--color-text); line-height: 1.35; margin-right: 6px; }
+    .timeline .phase { grid-row: 1; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); padding: 0 0 6px; border-bottom: 1px solid var(--color-text); margin-right: 6px; }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+    .roles span { border: 1px solid var(--color-text); border-radius: 100px; padding: 4px 14px; font-size: .8rem; }
+    .screen { margin: 0 0 40px; }
+    .screen h4 { font-weight: 500; font-size: 1.05rem; margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+    .screen h4 span { color: var(--color-label); font-size: .75rem; letter-spacing: .1em; }
+    .screen img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .flowimg { background: #fff; padding: 24px; overflow-x: auto; } .flowimg img { width: 100%; min-width: 900px; display: block; }
+    .laws { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .laws article { background: #fff; padding: 26px 24px; display: grid; gap: 10px; align-content: start; }
+    .laws h4 { font-weight: 500; font-size: 1.08rem; } .laws h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+    .laws p { margin: 0 !important; font-size: .9rem !important; }
+    .wcag { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .wcag article { background: #fff; padding: 24px; display: grid; gap: 12px; align-content: start; }
+    .wcag h4 { font-weight: 500; font-size: 1.1rem; } .wcag h4 small { display: block; color: var(--color-text-muted); font-size: .75rem; font-weight: 400; margin-top: 2px; }
+    .wcag ul { list-style: none; display: grid; gap: 4px; font-size: .9rem; color: var(--color-text-muted); }
+    .wcag li::before { content: '✓  '; color: #3fa66a; font-weight: 700; }
+    .wcag .why { font-size: .85rem; color: var(--color-text); border-top: 1px solid #eee; padding-top: 10px; }
+    .govern { grid-column: 1 / -1; background: var(--color-text); color: #f3f1ec; padding: 28px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 24px; }
+    .govern h4 { font-weight: 300; font-size: 1.4rem; } .govern ul { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 24px; font-size: .9rem; color: #cfcac2; }
+    .govern li::before { content: '→  '; color: var(--color-accent); }
+    .thanks { text-align: center; padding: 96px 24px 72px; border-top: 1px solid var(--color-border); }
+    .thanks h3 { font-weight: 300; font-size: clamp(2rem, 4vw, 3rem); }
+    .thanks p { color: var(--color-text-muted); }
+    @media (max-width: 900px) {
+      .qa, .findings, .laws, .wcag, .person, .govern { grid-template-columns: minmax(0,1fr); }
+      .sort-setup { grid-template-columns: repeat(2, minmax(0,1fr)); } .sort-setup div + div { border-left: none; }
+      .govern ul { grid-template-columns: minmax(0,1fr); }
+      .timeline { grid-template-columns: repeat(6, minmax(0,1fr)); }
+    }
+      .swatches { display: grid; gap: 10px; }
+    .swatches .row { display: grid; grid-template-columns: 150px repeat(10, minmax(0,1fr)); gap: 4px; align-items: center; }
+    .swatches .row b { font-weight: 600; font-size: .92rem; display: grid; } .swatches .row b small { font-weight: 400; color: var(--color-text-muted); font-size: .74rem; line-height: 1.35; }
+    .swatches .row span { height: 44px; border-radius: 6px; }
+    .type-spec { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .type-spec article { background: #fff; padding: 28px; display: grid; gap: 8px; }
+    .type-spec .big { font-size: 3.2rem; line-height: 1; color: #075E4C; }
+    .space-scale { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; background: #fff; padding: 24px; }
+    .space-scale div { display: grid; gap: 6px; justify-items: center; font-size: .72rem; color: var(--color-text-muted); }
+    .space-scale span { display: block; background: #0B7A63; border-radius: 3px; width: 18px; }
+    .inv { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
+    .inv article { background: #fff; padding: 20px 22px; display: grid; gap: 10px; align-content: start; }
+    .inv h4 { font-weight: 500; font-size: 1rem; } .inv h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
+    .inv ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+    .inv li { border: 1px solid var(--color-border); border-radius: 100px; padding: 2px 10px; font-size: .78rem; }
+    .anatomy { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 0; background: #fff; }
+    .anatomy div { padding: 20px 18px; border-left: 1px solid var(--color-border); display: grid; gap: 6px; align-content: start; }
+    .anatomy div:first-child { border-left: none; }
+    .anatomy b { color: var(--color-label); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; }
+    .anatomy p { margin: 0 !important; font-size: .88rem !important; line-height: 1.55 !important; }
+    @media (max-width: 900px) { .swatches .row { grid-template-columns: repeat(10, minmax(0,1fr)); } .swatches .row b { grid-column: 1 / -1; } .type-spec, .inv { grid-template-columns: minmax(0,1fr); } .anatomy { grid-template-columns: minmax(0,1fr); } .anatomy div { border-left: none; border-top: 1px solid var(--color-border); } }
+    .pstate { background: #fff; padding: 28px 32px; display: grid; gap: 10px; border-left: 4px solid var(--color-label); }
+    .pstate p { margin: 0 !important; font-size: 1.08rem !important; line-height: 1.7 !important; color: var(--color-text) !important; }
+    .pstate b { font-weight: 600; }
+    .audit { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); margin: 16px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .audit div { padding: 18px 16px; display: grid; gap: 2px; } .audit div + div { border-left: 1px solid var(--color-border); }
+    .audit b { font-size: 2rem; font-weight: 300; color: var(--color-label); line-height: 1.1; } .audit span { font-size: .85rem; color: var(--color-text-muted); }
+    .pains { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .pains article { background: #fff; padding: 22px 24px; display: grid; gap: 8px; align-content: start; }
+    .pains .k { color: var(--color-label); font-size: .8rem; letter-spacing: .1em; } .pains h4 { font-weight: 500; font-size: 1.08rem; }
+    .pains p { margin: 0 !important; font-size: .9rem !important; line-height: 1.6 !important; } .pains .who { font-size: .82rem !important; border-top: 1px solid #eee; padding-top: 8px; } .pains .who b { color: var(--color-text); font-weight: 600; }
+    .hmw { margin-top: 16px; background: var(--color-label); color: #fff; padding: 28px 32px; display: grid; gap: 8px; }
+    .hmw .label { color: #cfeee5 !important; } .hmw p { margin: 0 !important; color: #fff !important; font-size: 1.25rem !important; line-height: 1.55 !important; font-weight: 300; }
+    .hmw u { text-decoration: none; background: linear-gradient(transparent 62%, rgba(242,169,0,.55) 62%); }
+    .personas4 .persona h5 { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin: 14px 0 6px; }
+    .personas4 .persona ul { display: grid; gap: 4px; }
+    @media (max-width: 900px) { .audit { grid-template-columns: repeat(2, minmax(0,1fr)); } .audit div + div { border-left: none; } .pains { grid-template-columns: minmax(0,1fr); } }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .app-section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto 72px; padding: 0 48px; }
+    .app-frame { overflow: hidden; }
+    .app-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; }
+    .app-bar i { width: 11px; height: 11px; border-radius: 50%; }
+    .app-bar span { margin-left: 12px; font-size: .78rem; border: 1px solid; border-radius: 6px; padding: 3px 12px; }
+    .app-bar a { margin-left: auto; font-size: .8rem; font-weight: 600; }
+    .app-viewport { position: relative; aspect-ratio: 1440 / 900; overflow: hidden; background: #f4f6fa; }
+    .app-viewport iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; }
+    .screen-head { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 16px; margin: 0 0 20px; }
+    .screen-head .num { font-size: 2.2rem; line-height: 1; }
+    .screen-head p { color: var(--color-text-muted); max-width: 760px; margin: 0; }
+    .screen-notes { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+    .screen-notes div { border-left: 2px solid var(--color-accent); padding: 4px 0 4px 14px; font-size: .9rem; color: var(--color-text-muted); }
+    .screen-notes b { display: block; color: var(--color-text); font-weight: 600; margin-bottom: 2px; }
+    .screens-intro { max-width: 1104px; margin: 0 auto 40px; padding: 56px 48px 0; }
+    .screens-intro p:not(.label) { color: var(--color-text-muted); max-width: 720px; }
+    .phones { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 24px; }
+    .phones figure { margin: 0; display: grid; gap: 10px; }
+    .phone { position: relative; aspect-ratio: 390 / 844; border: 8px solid #171717; border-radius: 30px; overflow: hidden; background: #f4f6fa; box-shadow: 0 30px 60px -30px rgba(0,0,0,.4); }
+    .phone iframe { position: absolute; top: 0; left: 0; width: 390px; height: 844px; border: 0; transform-origin: 0 0; }
+    .phones figcaption { font-size: .85rem; color: var(--color-text-muted); border: none !important; padding: 0 !important; }
+    @media (max-width: 900px) { .phones { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    .zoom { display: grid; gap: 6px; }
+    .zoom > div { display: grid; grid-template-columns: 160px minmax(0,1fr); gap: 0; align-items: stretch; }
+    .zoom .lv { background: var(--color-label); color: #fff; padding: 14px 16px; display: grid; align-content: center; }
+    .zoom .lv b { font-size: .66rem; letter-spacing: .12em; opacity: .75; font-weight: 600; } .zoom .lv span { font-weight: 500; }
+    .zoom .bd { background: #fff; padding: 14px 18px; display: grid; gap: 4px; border-left: 4px solid var(--color-accent); }
+    .zoom .bd h4 { font-weight: 500; font-size: 1rem; } .zoom .bd p { margin: 0 !important; font-size: .88rem !important; }
+    .zoom > div:nth-child(2) { margin-left: 6%; } .zoom > div:nth-child(3) { margin-left: 12%; } .zoom > div:nth-child(4) { margin-left: 18%; }
+    @media (max-width: 900px) { .zoom > div { grid-template-columns: minmax(0,1fr); margin-left: 0 !important; } }
+    .lanes { display: grid; grid-template-columns: 150px repeat(6, minmax(0,1fr)); gap: 4px; font-size: .8rem; }
+    .lanes .hd { background: var(--color-label); color: #fff; padding: 10px; font-weight: 500; line-height: 1.3; }
+    .lanes .hd b { display: block; font-size: .66rem; letter-spacing: .12em; opacity: .75; font-weight: 600; }
+    .lanes .rl { background: #fff; padding: 10px; font-weight: 600; color: var(--color-text); display: grid; align-content: center; }
+    .lanes .c { background: #fff; padding: 8px 10px; color: var(--color-text-muted); line-height: 1.4; min-height: 64px; }
+    .lanes .c.on { background: var(--color-accent-dim); color: var(--color-text); border-left: 3px solid var(--color-accent); }
+    .lanes .c:empty { background: rgba(255,255,255,.45); }
+    @media (max-width: 900px) { .lanes { grid-template-columns: 110px repeat(6, minmax(120px,1fr)); overflow-x: auto; } }
+    .edrm { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 4px; }
+    .edrm > div { background: var(--color-label); color: #fff; padding: 18px 26px 18px 30px; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%, 16px 50%); display: grid; gap: 4px; align-content: start; min-height: 150px; }
+    .edrm > div:first-child { clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%); padding-left: 20px; }
+    .edrm > div:nth-child(2) { background: color-mix(in srgb, var(--color-label) 88%, #fff); } .edrm > div:nth-child(3) { background: color-mix(in srgb, var(--color-label) 76%, #fff); }
+    .edrm > div:nth-child(4) { background: var(--color-accent); color: #0d1b33; } .edrm > div:nth-child(5) { background: color-mix(in srgb, var(--color-accent) 80%, #fff); color: #0d1b33; } .edrm > div:nth-child(6) { background: color-mix(in srgb, var(--color-accent) 62%, #fff); color: #0d1b33; }
+    .edrm b { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; opacity: .8; font-weight: 600; }
+    .edrm h4 { font-weight: 500; font-size: 1.02rem; } .edrm p { margin: 0 !important; font-size: .82rem !important; line-height: 1.45 !important; color: inherit !important; opacity: .92; }
+    .shift { display: grid; grid-template-columns: minmax(0,1fr) 48px minmax(0,1fr); align-items: stretch; }
+    .shift > div { background: #fff; padding: 24px; } .shift > span { display: grid; place-items: center; font-size: 1.6rem; color: var(--color-label); }
+    .shift h5 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); margin-bottom: 10px; font-weight: 500; }
+    .shift ul { list-style: none; display: grid; gap: 8px; font-size: .92rem; color: var(--color-text-muted); } .shift li::before { content: '•  '; color: var(--color-label); }
+    @media (max-width: 900px) { .app-section, .screens-intro { padding-left: 16px; padding-right: 16px; } .screen-notes, .shift { grid-template-columns: minmax(0,1fr); } .shift > span { transform: rotate(90deg); } .edrm { grid-template-columns: repeat(2, minmax(0,1fr)); } .edrm > div, .edrm > div:first-child { clip-path: none; padding: 18px; min-height: 0; } }
+  </style>
+  <link rel="stylesheet" href="assets/editorial.css">
+</head>
+
+
+
+
+<body data-theme="helionova">
+  <div class="progress" id="progress"></div>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  <nav>
+    <a href="portfolio.html" class="nav-back"><svg viewBox="0 0 100 100" width="30" height="30" fill="none"><circle cx="50" cy="30" r="15" stroke="#171717" stroke-width="4"/><path d="M35 45 L50 65 M65 45 L50 65 M50 65 L50 90" stroke="#171717" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#171717"/><circle cx="65" cy="45" r="4" fill="#171717"/><circle cx="50" cy="90" r="4" fill="#171717"/></svg> Yogesh Malik</a>
+    <div class="nav-links"><a href="case-study-stratos-ai.html">← Previous</a><a href="portfolio.html">All projects</a><a href="case-study-eos-salesforce.html">Next →</a></div>
+  </nav>
+
+  <header class="case-header">
+    <div class="case-meta"><span class="case-tag">Design system</span><span class="case-tag">Renewable energy</span><span class="case-tag">Desktop + mobile</span></div>
+    <h1>HelioNova: <em>one design system</em> for every renewable-energy product</h1>
+    <p class="case-intro">HelioNova builds products for two very different audiences: families watching their rooftop solar, and engineers running wind and solar parks. I designed the shared design system behind both, with foundations, 28 accessible components and copy-paste HTML that works in any framework.</p>
+  </header>
+
+  <div class="app-section">
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>design.helionova.energy · live documentation site</span><a href="prototypes/helionova.html" target="_blank">Open full site ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/helionova.html#home" title="HelioNova design system documentation site"></iframe></div>
+    </div>
+  </div>
+
+  <dl class="snapshot">
+    <div><dt>Year</dt><dd>2026</dd></div>
+    <div><dt>My role</dt><dd>Lead Product &amp; Design Systems Designer</dd></div>
+    <div><dt>Domain</dt><dd>Renewable energy, solar &amp; wind</dd></div>
+    <div><dt>Scope</dt><dd>4 foundations, 28 components</dd></div>
+    <div><dt>Standard</dt><dd>WCAG 2.1 AA · light + dark</dd></div>
+  </dl>
+
+  <div class="layout"><main>
+
+      <section class="case-section" id="overview">
+        <p class="label">Overview</p>
+        <h2>Project overview</h2>
+        <p>HelioNova’s products had grown separately. The customer app, the installer portal and the operations console each had their own buttons, greens and chart styles, and the same "energy generated" number looked different in every one.</p>
+        <p>The goal was one system that feels warm and simple for homeowners, is precise enough for grid engineers, and is easy for any team to adopt without a framework migration.</p>
+      </section>
+
+      <section class="case-section" id="the-challenge">
+        <p class="label">The challenge</p>
+        <h2>Problem statement and pain points</h2>
+        <p>HelioNova had three products built by three teams over four years: the <strong>customer app</strong> (homeowners tracking rooftop solar and savings), the <strong>installer portal</strong> (surveys, quotes and installs) and the <strong>operations console</strong> (engineers monitoring wind and solar parks). Each grew its own UI. A UI audit of 140 screens found the same patterns rebuilt again and again, and the inconsistency was now costing time, trust and accessibility.</p>
+        <div class="wide"><div class="pstate"><span class="label" style="margin:0">Problem statement</span><p>Designers and developers across HelioNova have <b>no shared foundations or components</b>. Every team recreates buttons, tables and metric cards in its own framework, so the <b>same energy data looks and behaves differently</b> in each product. This slows delivery, confuses customers who use more than one product, and leaves <b>accessibility gaps</b> that block public-sector and utility contracts.</p></div>
+<div class="audit"><div><b>140</b><span>screens audited across 3 products</span></div><div><b>14</b><span>different greens used as "primary"</span></div><div><b>9</b><span>button styles, 6 table designs</span></div><div><b>38%</b><span>of text failing contrast in dark mode</span></div></div>
+<div class="pains">
+  <article><span class="k">01</span><h4>Inconsistent UI</h4><p>The same "energy generated" figure used three fonts, two units (kWh vs MWh) and different colours for "up".</p><p class="who"><b>Who feels it:</b> homeowners and operators comparing numbers</p></article>
+  <article><span class="k">02</span><h4>Slow, duplicated delivery</h4><p>Each new feature rebuilt its own modal, table and metric card. Roughly a third of front-end effort went on UI that already existed elsewhere.</p><p class="who"><b>Who feels it:</b> designers, developers, product managers</p></article>
+  <article><span class="k">03</span><h4>Accessibility gaps</h4><p>Status shown by colour alone, missing focus states, and a dark mode that failed WCAG contrast. This blocked tenders that require AA.</p><p class="who"><b>Who feels it:</b> users with low vision, sales and compliance</p></article>
+  <article><span class="k">04</span><h4>Mixed tech stacks</h4><p>React, Angular and server-rendered pages meant a React-only library would leave two of three teams behind.</p><p class="who"><b>Who feels it:</b> engineering leads planning migrations</p></article>
+  <article><span class="k">05</span><h4>No single source of truth</h4><p>Design files, code and brand guidelines disagreed. Nobody could say which version of a component was "correct".</p><p class="who"><b>Who feels it:</b> new joiners, QA, brand team</p></article>
+  <article><span class="k">06</span><h4>Weak trust in the data</h4><p>Customers saw different savings figures in the app and in emails, which drove support calls and doubts about the product.</p><p class="who"><b>Who feels it:</b> customers, support team</p></article>
+</div>
+<div class="hmw"><span class="label" style="margin:0">How might we</span><p>How might we give every HelioNova team <u>one shared language</u> for building energy products, one that works in <u>any framework</u>, meets <u>WCAG 2.1 AA in light and dark</u>, and makes energy numbers look the same everywhere?</p></div></div>
+      </section>
+
+      <section class="case-section" id="approach">
+        <p class="label">Approach</p>
+        <h2>My approach</h2>
+        <ol class="numbered">
+          <li><span><strong>UI audit:</strong> screenshotted every screen across the three products and grouped duplicates by pattern.</span></li>
+          <li><span><strong>Foundations first:</strong> colour, type, spacing and icons, defined as tokens before any component was drawn.</span></li>
+          <li><span><strong>Component inventory:</strong> prioritised the 28 components that covered most of the audited screens.</span></li>
+          <li><span><strong>Plain HTML and CSS:</strong> every component ships as copy-paste markup, so it works with any stack.</span></li>
+          <li><span><strong>Documentation as product:</strong> a searchable site with live examples, code and accessibility notes for each component.</span></li>
+        </ol>
+      </section>
+
+      <section class="case-section" id="process">
+        <p class="label">Design process</p>
+        <h2>From audit to documentation</h2>
+        <div class="flow" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+          <div><h4>Audit</h4><p>Inventory of every UI pattern</p></div>
+          <div><h4>Define</h4><p>Principles, tokens and naming</p></div>
+          <div><h4>Design</h4><p>Components, variants and states</p></div>
+          <div><h4>Build</h4><p>HTML and CSS with live docs</p></div>
+          <div><h4>Govern</h4><p>Contribution, versioning and adoption</p></div>
+        </div>
+      </section>
+
+      <section class="case-section" id="users">
+        <p class="label">Users</p>
+        <h2>Who the system serves</h2>
+        <p>Two groups use the design system directly, and two more benefit from it through the products built with it.</p>
+        <div class="wide"><div class="grid-2 personas4">
+<div class="card persona"><span class="role">Primary · builds with it</span><h4>Product designers</h4><h5>Needs</h5><ul><li>Ready-made patterns for common screens</li><li>Clear rules on when to use each component</li><li>Light and dark versions of every component</li><li>Tokens that match the code exactly</li></ul><h5>Pain points</h5><ul><li>Redrawing the same table for every feature</li><li>Guessing which green is "correct"</li></ul><h5>Goals</h5><ul><li>Spend time on problems, not pixels</li><li>Hand off with no surprises in build</li></ul></div>
+<div class="card persona"><span class="role">Primary · builds with it</span><h4>Front-end developers</h4><h5>Needs</h5><ul><li>Copy-paste HTML that works in any stack</li><li>Every state covered: hover, focus, disabled, error</li><li>Accessibility handled in the markup</li><li>Stable class names and tokens between versions</li></ul><h5>Pain points</h5><ul><li>Rebuilding UI that exists in another repo</li><li>Fixing contrast bugs late in QA</li></ul><h5>Goals</h5><ul><li>Ship features faster</li><li>Fewer UI bugs reported</li></ul></div>
+<div class="card persona"><span class="role">End user · customer app</span><h4>Homeowners</h4><h5>Needs</h5><ul><li>Plain-language savings and generation figures</li><li>Big, readable numbers on a phone</li><li>Clear signs of what changed and why</li><li>Reassurance that the system is working</li></ul><h5>Pain points</h5><ul><li>Different figures in the app and emails</li><li>Small text and low-contrast charts</li></ul><h5>Goals</h5><ul><li>Know how much they saved this month</li><li>Spot a problem with their panels early</li></ul></div>
+<div class="card persona"><span class="role">End user · operations console</span><h4>Grid &amp; park operators</h4><h5>Needs</h5><ul><li>Dense, scannable data tables</li><li>Status that never relies on colour alone</li><li>Consistent units (kW, MW, MWh) everywhere</li><li>Dark mode for control rooms</li></ul><h5>Pain points</h5><ul><li>Alerts styled differently in each tool</li><li>Eye strain on bright screens at night</li></ul><h5>Goals</h5><ul><li>Find a faulty turbine in seconds</li><li>Trust the number on screen</li></ul></div>
+</div></div>
+      </section>
+
+      <section class="case-section" id="principles">
+        <p class="label">Principles</p>
+        <h2>Design principles</h2>
+        <div class="grid-2">
+          <div class="card"><span class="k">01</span><h4>Naturally clear</h4><p>Calm surfaces and a nature-inspired palette, so the data is what stands out.</p></div>
+          <div class="card"><span class="k">02</span><h4>Numbers you can trust</h4><p>One way to show kWh, MW and savings, with units and change always labelled.</p></div>
+          <div class="card"><span class="k">03</span><h4>Accessible by default</h4><p>AA contrast in both themes, visible focus, and never colour alone for status.</p></div>
+          <div class="card"><span class="k">04</span><h4>Works anywhere</h4><p>Plain HTML and CSS with tokens, so any team can adopt it today.</p></div>
+        </div>
+      </section>
+
+      <section class="case-section" id="colour">
+        <p class="label">Foundations</p>
+        <h2>Colour: five scales from sunlight, canopy and sky</h2>
+        <p>Each scale has ten steps. Components never use raw hex values; they use semantic tokens such as <code>--hn-primary</code> and <code>--hn-danger</code>, which switch automatically in dark mode.</p>
+        <div class="wide"><div class="swatches"><div class="row"><b>Canopy<small>Primary brand, success, positive change</small></b><span style="background:#EAF6F2" title="#EAF6F2"></span><span style="background:#D3EEE5" title="#D3EEE5"></span><span style="background:#A6DCCB" title="#A6DCCB"></span><span style="background:#6FC4AA" title="#6FC4AA"></span><span style="background:#3CA889" title="#3CA889"></span><span style="background:#0E8C71" title="#0E8C71"></span><span style="background:#0B7A63" title="#0B7A63"></span><span style="background:#075E4C" title="#075E4C"></span><span style="background:#064A3D" title="#064A3D"></span><span style="background:#04342B" title="#04342B"></span></div><div class="row"><b>Helio<small>Sunlight accent, solar data, warnings</small></b><span style="background:#FFF8E6" title="#FFF8E6"></span><span style="background:#FFF1CC" title="#FFF1CC"></span><span style="background:#FFE199" title="#FFE199"></span><span style="background:#FFCE5C" title="#FFCE5C"></span><span style="background:#FFBE2E" title="#FFBE2E"></span><span style="background:#F2A900" title="#F2A900"></span><span style="background:#CC8A00" title="#CC8A00"></span><span style="background:#A86400" title="#A86400"></span><span style="background:#7A4800" title="#7A4800"></span><span style="background:#4F2F00" title="#4F2F00"></span></div><div class="row"><b>Sky<small>Information, wind data, focus rings</small></b><span style="background:#EEF5FC" title="#EEF5FC"></span><span style="background:#E2EEFA" title="#E2EEFA"></span><span style="background:#C3DBF3" title="#C3DBF3"></span><span style="background:#8DB8E3" title="#8DB8E3"></span><span style="background:#5A93CC" title="#5A93CC"></span><span style="background:#2D6FB0" title="#2D6FB0"></span><span style="background:#255F98" title="#255F98"></span><span style="background:#1D4E80" title="#1D4E80"></span><span style="background:#163C62" title="#163C62"></span><span style="background:#0F2A45" title="#0F2A45"></span></div><div class="row"><b>Slate<small>Text, borders and surfaces</small></b><span style="background:#F3F7F6" title="#F3F7F6"></span><span style="background:#E4ECEB" title="#E4ECEB"></span><span style="background:#D9E3E1" title="#D9E3E1"></span><span style="background:#B3C3C6" title="#B3C3C6"></span><span style="background:#8496A0" title="#8496A0"></span><span style="background:#6A7F8C" title="#6A7F8C"></span><span style="background:#4F6574" title="#4F6574"></span><span style="background:#3E5566" title="#3E5566"></span><span style="background:#24394A" title="#24394A"></span><span style="background:#12293B" title="#12293B"></span></div><div class="row"><b>Ember<small>Errors and destructive actions</small></b><span style="background:#FDF2F0" title="#FDF2F0"></span><span style="background:#FBE5E1" title="#FBE5E1"></span><span style="background:#F4C3BA" title="#F4C3BA"></span><span style="background:#EB9A8C" title="#EB9A8C"></span><span style="background:#D9695A" title="#D9695A"></span><span style="background:#B83A2B" title="#B83A2B"></span><span style="background:#9E3123" title="#9E3123"></span><span style="background:#8A2A1F" title="#8A2A1F"></span><span style="background:#661F17" title="#661F17"></span><span style="background:#43140F" title="#43140F"></span></div></div></div>
+      </section>
+
+      <section class="case-section" id="type">
+        <p class="label">Foundations</p>
+        <h2>Typography and spacing</h2>
+        <p>Sora gives headings and numbers a confident, geometric voice; Public Sans keeps long reading comfortable. Spacing follows a 4-point scale with four corner radii.</p>
+        <div class="wide"><div class="type-spec"><article><span class="label" style="margin:0">Display · headings &amp; data</span><span class="big" style="font-family:Sora,sans-serif;font-weight:700">Sora</span><p style="font-family:Sora,sans-serif;font-size:1.4rem !important;color:#12293B;margin:0 !important">12.4 MWh generated today</p></article><article><span class="label" style="margin:0">Body · reading</span><span class="big" style="font-family:'Public Sans',sans-serif;font-weight:600">Public Sans</span><p style="font-family:'Public Sans',sans-serif;margin:0 !important;color:#3E5566 !important">Your rooftop panels covered 82% of this month’s bill. Here is how that compares with last year.</p></article></div><div style="height:16px"></div><div class="space-scale"><div><span style="height:4px"></span>4</div><div><span style="height:8px"></span>8</div><div><span style="height:12px"></span>12</div><div><span style="height:16px"></span>16</div><div><span style="height:24px"></span>24</div><div><span style="height:32px"></span>32</div><div><span style="height:48px"></span>48</div><div><span style="height:64px"></span>64</div><div style="margin-left:auto;display:flex;gap:12px;align-items:flex-end"><div><span style="width:44px;height:44px;background:#D3EEE5;border:2px solid #0B7A63;border-radius:6px"></span>sm · 6</div><div><span style="width:44px;height:44px;background:#D3EEE5;border:2px solid #0B7A63;border-radius:10px"></span>md · 10</div><div><span style="width:44px;height:44px;background:#D3EEE5;border:2px solid #0B7A63;border-radius:16px"></span>lg · 16</div><div><span style="width:44px;height:44px;background:#D3EEE5;border:2px solid #0B7A63;border-radius:22px"></span>pill · 999</div></div></div></div>
+      </section>
+
+      <section class="case-section" id="inventory">
+        <p class="label">Components</p>
+        <h2>28 components in six families</h2>
+        <p>The audit showed these 28 components covered most of the screens across all three products, including one built only for HelioNova: the energy stat card.</p>
+        <div class="wide"><div class="inv" style="grid-template-columns:repeat(3,minmax(0,1fr))"><article><h4><small>Trigger and choose</small>Actions</h4><ul><li>Button</li><li>Dropdown menu</li><li>Chip</li></ul></article><article><h4><small>Collect input</small>Forms</h4><ul><li>Text input</li><li>Select</li><li>Checkbox</li><li>Radio group</li><li>Switch</li><li>Slider</li></ul></article><article><h4><small>Report status</small>Feedback</h4><ul><li>Alert</li><li>Toast</li><li>Progress</li><li>Skeleton</li><li>Empty state</li><li>Tooltip</li></ul></article><article><h4><small>Move around</small>Navigation</h4><ul><li>Breadcrumb</li><li>Tabs</li><li>Pagination</li><li>Stepper</li></ul></article><article><h4><small>Group content</small>Containers</h4><ul><li>Card</li><li>Accordion</li><li>Drawer</li><li>Modal</li><li>Divider</li></ul></article><article><h4><small>Show numbers</small>Data</h4><ul><li>Data table</li><li>Energy stat</li><li>Badge</li><li>Avatar</li></ul></article></div></div>
+      </section>
+
+      <section class="case-section" id="anatomy">
+        <p class="label">Documentation</p>
+        <h2>One template for every component page</h2>
+        <p>Every component page follows the same structure, so once people learn one page they know them all.</p>
+        <div class="wide"><div class="anatomy"><div><b>01 · Purpose</b><p>One sentence on what it is for, in plain language.</p></div><div><b>02 · Live examples</b><p>Variants and states rendered as real, interactive HTML.</p></div><div><b>03 · Code</b><p>Copyable markup with a one-click copy button.</p></div><div><b>04 · Usage</b><p>When to use it, and when to reach for something else.</p></div><div><b>05 · Accessibility</b><p>Keyboard behaviour, ARIA roles and focus notes.</p></div></div></div>
+      </section>
+
+      <section class="case-section" id="accessibility">
+        <p class="label">Accessibility</p>
+        <h2>WCAG 2.1 AA in light and dark</h2>
+        <div class="wcag" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+          <article><h4>Contrast</h4><ul><li>Text ≥ 4.5:1 in both themes</li><li>UI borders ≥ 3:1</li><li>Dark theme tuned separately</li></ul></article>
+          <article><h4>Keyboard &amp; focus</h4><ul><li>Every control reachable by Tab</li><li>Visible Sky-blue focus ring</li><li>Modals and drawers trap focus</li></ul></article>
+          <article><h4>Meaning</h4><ul><li>Status uses icon + text, not colour</li><li>Tooltips work on focus, not just hover</li><li>Reduced-motion respected</li></ul></article>
+        </div>
+      </section>
+
+      <section class="case-section" id="wireframes">
+        <p class="label">Low-fidelity wireframes</p>
+        <h2>Greyscale wireframes of every key page, desktop and mobile</h2>
+        <p>Each page was wireframed in greyscale first, with the same regions as the final site. On mobile the sidebar collapses behind a menu button, card grids stack into one column, colour scales wrap into two rows, and data tables turn into cards.</p>
+        <div class="wide"><p class="label" style="margin:8px 0 12px">Desktop · 9 pages</p><div class="wf-set" style="grid-template-columns:repeat(3,minmax(0,1fr))"><figure class="wf-card"><h4><span>01</span>Overview</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Overview</span><span class="s" style="padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="padding:2px 4px">Colours</span><span class="s" style="padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="padding:2px 4px">Data table</span><span class="s" style="padding:2px 4px">Energy stat</span><span class="s" style="padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><div class="g2" style="align-items:center;gap:12px"><div class="st" style="gap:6px"><span class="s">☘ HelioNova Energy</span><span class="t xl">HelioNova Design System</span><span class="s">Powering Tomorrow, Naturally.</span><div class="r"><span class="btn p">Get started</span><span class="btn">Browse components</span></div></div><div class="img" style="aspect-ratio:1.7/1"></div></div><div class="g3"><div class="cd" style="padding:6px;gap:2px"><span class="t l">28</span><span class="s">Components</span></div><div class="cd" style="padding:6px;gap:2px"><span class="t l">4</span><span class="s">Foundation guides</span></div><div class="cd" style="padding:6px;gap:2px"><span class="t l">AA</span><span class="s">Contrast</span></div></div><span class="t ">Foundations</span><div class="g4"><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Colours</span><i></i><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Typography</span><i></i><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Spacing</span><i></i><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Icons</span><i></i><i class="w6"></i></div></div><span class="t ">Components</span><div class="g4"><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Accordion</span><i></i><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Alert</span><i></i><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Avatar</span><i></i><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Badge</span><i></i><i class="w6"></i></div></div></div></div></div><figcaption>Hero, facts, then foundations and components as card grids.</figcaption></figure><figure class="wf-card"><h4><span>02</span>Get started</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="padding:2px 4px">Overview</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="padding:2px 4px">Colours</span><span class="s" style="padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="padding:2px 4px">Data table</span><span class="s" style="padding:2px 4px">Energy stat</span><span class="s" style="padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><span class="s">Home / Get started</span><span class="t xl">Get started</span><i></i><i class="w8"></i><span class="t ">1. Add the stylesheet</span><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div><span class="t ">2. Use the tokens</span><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div><span class="t ">3. Copy a component</span><div class="g3"><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Button</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Card</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Alert</span><i class="w6"></i></div></div></div></div></div><figcaption>Three numbered steps: stylesheet, tokens, first component.</figcaption></figure><figure class="wf-card"><h4><span>03</span>Colours</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="padding:2px 4px">Overview</span><span class="s" style="padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Colours</span><span class="s" style="padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="padding:2px 4px">Data table</span><span class="s" style="padding:2px 4px">Energy stat</span><span class="s" style="padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><span class="s">Home / Foundations / Colours</span><span class="t xl">Colours</span><i class="w8"></i><div class="st" style="gap:2px"><span class="t ">Canopy</span><div style="display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:2px"><span style="height:16px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><div class="st" style="gap:2px"><span class="t ">Helio</span><div style="display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:2px"><span style="height:16px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><div class="st" style="gap:2px"><span class="t ">Sky</span><div style="display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:2px"><span style="height:16px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><div class="st" style="gap:2px"><span class="t ">Slate</span><div style="display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:2px"><span style="height:16px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><div class="st" style="gap:2px"><span class="t ">Ember</span><div style="display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:2px"><span style="height:16px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:16px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><span class="t ">Semantic tokens</span><div class="g3"><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div></div></div></div></div><figcaption>Five 10-step scales, then semantic tokens.</figcaption></figure><figure class="wf-card"><h4><span>04</span>Typography</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="padding:2px 4px">Overview</span><span class="s" style="padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="padding:2px 4px">Colours</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="padding:2px 4px">Data table</span><span class="s" style="padding:2px 4px">Energy stat</span><span class="s" style="padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><span class="s">Home / Foundations / Typography</span><span class="t xl">Typography</span><i class="w8"></i><div class="g2"><div class="cd" style="padding:10px;gap:4px"><span class="s">DISPLAY</span><span class="t" style="font-size:26px">Aa</span><i class="w6"></i></div><div class="cd" style="padding:10px;gap:4px"><span class="s">BODY</span><span class="t" style="font-size:26px;font-weight:400">Aa</span><i class="w6"></i></div></div><span class="t ">Type scale</span><div class="r" style="border-bottom:1px solid #ddd;padding-bottom:3px"><span class="s" style="width:34px">18px</span><span class="t" style="font-size:18px">Sunlight to savings</span></div><div class="r" style="border-bottom:1px solid #ddd;padding-bottom:3px"><span class="s" style="width:34px">15px</span><span class="t" style="font-size:15px">Sunlight to savings</span></div><div class="r" style="border-bottom:1px solid #ddd;padding-bottom:3px"><span class="s" style="width:34px">12.5px</span><span class="t" style="font-size:12.5px">Sunlight to savings</span></div><div class="r" style="border-bottom:1px solid #ddd;padding-bottom:3px"><span class="s" style="width:34px">10.5px</span><span class="t" style="font-size:10.5px">Sunlight to savings</span></div><div class="r" style="border-bottom:1px solid #ddd;padding-bottom:3px"><span class="s" style="width:34px">9px</span><span class="t" style="font-size:9px">Sunlight to savings</span></div></div></div></div><figcaption>Display and body faces, then the type scale.</figcaption></figure><figure class="wf-card"><h4><span>05</span>Components index</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Overview</span><span class="s" style="padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="padding:2px 4px">Colours</span><span class="s" style="padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="padding:2px 4px">Data table</span><span class="s" style="padding:2px 4px">Energy stat</span><span class="s" style="padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><span class="s">Home / Components</span><span class="t xl">Components</span><i class="w8"></i><div class="g4"><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Accordion</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Alert</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Avatar</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Badge</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Breadcrumb</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Button</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Card</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Checkbox</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Chip</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Data table</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Divider</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Drawer</span><i class="w6"></i></div></div></div></div></div><figcaption>Every component as a live thumbnail.</figcaption></figure><figure class="wf-card"><h4><span>06</span>Button</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="padding:2px 4px">Overview</span><span class="s" style="padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="padding:2px 4px">Colours</span><span class="s" style="padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="padding:2px 4px">Data table</span><span class="s" style="padding:2px 4px">Energy stat</span><span class="s" style="padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><span class="s">Home / Components / Button</span><span class="t xl">Button</span><i></i><i class="w6"></i><div class="r" style="border-bottom:1.2px solid #bbb;padding-bottom:3px;gap:12px"><span class="t ">Variants</span><span class="s">States</span><span class="s">Sizes</span><span class="s">Accessibility</span></div><div class="cd" style="padding:14px;justify-items:center"><div class="r"><span class="btn p">Primary</span><span class="btn">Secondary</span><span class="btn">Ghost</span><span class="btn" style="border-style:dashed">Disabled</span></div></div><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div><span class="t ">Accessibility</span><div class="g2"><div class="st"><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div></div><div class="st"><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div></div></div></div></div></div><figcaption>Variants, code and accessibility on one page.</figcaption></figure><figure class="wf-card"><h4><span>07</span>Data table</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="padding:2px 4px">Overview</span><span class="s" style="padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="padding:2px 4px">Colours</span><span class="s" style="padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Data table</span><span class="s" style="padding:2px 4px">Energy stat</span><span class="s" style="padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><span class="s">Home / Components / Data table</span><span class="t xl">Data table</span><i class="w8"></i><div class="cd" style="padding:0;gap:0"><div class="r" style="background:#e3e3df;padding:5px 8px"><span class="t ">Site</span><span class="f"></span><span class="t ">Type</span><span class="f"></span><span class="t ">Output</span><span class="f"></span><span class="t ">Status</span><span class="f"></span></div><div class="r" style="padding:5px 8px;border-top:1px solid #ddd"><i class="f"></i><span class="f"></span><i class="f w4"></i><span class="f"></span><i class="f"></i><span class="chip">● OK</span></div><div class="r" style="padding:5px 8px;border-top:1px solid #ddd"><i class="f"></i><span class="f"></span><i class="f w4"></i><span class="f"></span><i class="f"></i><span class="chip">● OK</span></div><div class="r" style="padding:5px 8px;border-top:1px solid #ddd"><i class="f"></i><span class="f"></span><i class="f w4"></i><span class="f"></span><i class="f"></i><span class="chip">● OK</span></div><div class="r" style="padding:5px 8px;border-top:1px solid #ddd"><i class="f"></i><span class="f"></span><i class="f w4"></i><span class="f"></span><i class="f"></i><span class="chip">● OK</span></div><div class="r" style="padding:5px 8px;border-top:1px solid #ddd"><i class="f"></i><span class="f"></span><i class="f w4"></i><span class="f"></span><i class="f"></i><span class="chip">● OK</span></div></div><div class="r" style="justify-content:flex-end"><span class="s">‹ 1 2 3 ›</span></div><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div></div></div></div><figcaption>Sortable columns, status chips and pagination.</figcaption></figure><figure class="wf-card"><h4><span>08</span>Energy stat</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="padding:2px 4px">Overview</span><span class="s" style="padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="padding:2px 4px">Colours</span><span class="s" style="padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="padding:2px 4px">Data table</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Energy stat</span><span class="s" style="padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><span class="s">Home / Components / Energy stat</span><span class="t xl">Energy stat</span><i class="w8"></i><div class="g3"><div class="cd" style="padding:8px;gap:3px"><span class="s">Generated today</span><span class="t l">12.4 MWh</span><span class="s">▲ 8% vs yesterday</span><div style="height:18px;border-bottom:1.5px solid #777;background:linear-gradient(170deg,transparent 45%,#ddd 46%)"></div></div><div class="cd" style="padding:8px;gap:3px"><span class="s">Bill offset</span><span class="t l">12.4 MWh</span><span class="s">▲ 8% vs yesterday</span><div style="height:18px;border-bottom:1.5px solid #777;background:linear-gradient(170deg,transparent 45%,#ddd 46%)"></div></div><div class="cd" style="padding:8px;gap:3px"><span class="s">Battery</span><span class="t l">12.4 MWh</span><span class="s">▲ 8% vs yesterday</span><div style="height:18px;border-bottom:1.5px solid #777;background:linear-gradient(170deg,transparent 45%,#ddd 46%)"></div></div></div><div class="r" style="border-bottom:1.2px solid #bbb;padding-bottom:3px;gap:12px"><span class="t ">Variants</span><span class="s">States</span><span class="s">Accessibility</span></div><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div></div></div></div><figcaption>Value, unit, change and trend line.</figcaption></figure><figure class="wf-card"><h4><span>09</span>Modal</h4><div class="wf"><div class="bar" style="padding:6px 8px;gap:6px"><span class="t">☼ HelioNova</span><div class="r sp" style="gap:6px"><span class="s">Foundations</span><span class="s">Components</span><span class="fld" style="flex:none;padding:1px 4px">⌕</span><span class="ic"></span></div></div><div style="display:grid;grid-template-columns:1fr 4.4fr"><div class="st" style="background:#ecece8;padding:8px 6px;gap:4px;align-content:start;border-right:1.2px solid #bbb"><span class="s">GET STARTED</span><span class="s" style="padding:2px 4px">Overview</span><span class="s" style="padding:2px 4px">Installation</span><span class="s" style="margin-top:5px">FOUNDATIONS</span><span class="s" style="padding:2px 4px">Colours</span><span class="s" style="padding:2px 4px">Typography</span><span class="s" style="padding:2px 4px">Spacing &amp; shape</span><span class="s" style="padding:2px 4px">Icons</span><span class="s" style="margin-top:5px">COMPONENTS</span><span class="s" style="padding:2px 4px">Accordion</span><span class="s" style="padding:2px 4px">Alert</span><span class="s" style="padding:2px 4px">Badge</span><span class="s" style="padding:2px 4px">Button</span><span class="s" style="padding:2px 4px">Card</span><span class="s" style="padding:2px 4px">Data table</span><span class="s" style="padding:2px 4px">Energy stat</span><span class="s" style="background:#fbfbf9;color:#111;font-weight:700;padding:2px 4px">Modal</span><span class="s" style="padding:2px 4px">Tabs</span><span class="s" style="padding:2px 4px">Toast</span></div><div class="pad" style="gap:9px;padding:12px 16px"><span class="s">Home / Components / Modal</span><span class="t xl">Modal</span><i class="w8"></i><div class="cd" style="padding:16px;background:#d8d8d3;justify-items:center"><div class="cd" style="width:62%;gap:5px;padding:10px"><span class="t ">Switch off inverter?</span><i></i><i class="w8"></i><div class="r" style="justify-content:flex-end"><span class="btn">Cancel</span><span class="btn p">Switch off</span></div></div></div><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div><span class="t ">Accessibility</span><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div></div></div></div><figcaption>A focused dialog with clear primary and cancel actions.</figcaption></figure></div>
+<p class="label" style="margin:40px 0 12px">Mobile · 8 pages</p><div class="wf-set mob" style="grid-template-columns:repeat(4,minmax(0,1fr));max-width:900px"><figure class="wf-card"><h4><span>M1</span>Overview</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">☼ HelioNova</span><span class="ic sp"></span></div><div class="pad"><span class="s">☘ HelioNova Energy</span><span class="t xl">HelioNova Design System</span><span class="s">Powering Tomorrow, Naturally.</span><span class="btn p">Get started</span><span class="btn">Browse components</span><div class="img" style="aspect-ratio:1.6/1"></div><div class="cd" style="padding:5px;gap:1px"><span class="t l">28</span><span class="s">Components</span></div><div class="cd" style="padding:5px;gap:1px"><span class="t l">4</span><span class="s">Foundations</span></div><div class="cd" style="padding:5px;gap:1px"><span class="t l">AA</span><span class="s">Contrast</span></div></div></div><figcaption>Stacked hero and facts.</figcaption></figure><figure class="wf-card"><h4><span>M2</span>Get started</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">☼ HelioNova</span><span class="ic sp"></span></div><div class="pad"><span class="s">Home / Get started</span><span class="t xl">Get started</span><i></i><i class="w8"></i><span class="t ">1. Add the stylesheet</span><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div><span class="t ">2. Use the tokens</span><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div><span class="t ">3. Copy a component</span><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Button</span><i class="w6"></i></div></div></div><figcaption>Steps in one column.</figcaption></figure><figure class="wf-card"><h4><span>M3</span>Colours</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">☼ HelioNova</span><span class="ic sp"></span></div><div class="pad"><span class="s">Foundations / Colours</span><span class="t xl">Colours</span><i class="w8"></i><div class="st" style="gap:2px"><span class="t ">Canopy</span><div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px"><span style="height:12px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><div class="st" style="gap:2px"><span class="t ">Helio</span><div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px"><span style="height:12px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><div class="st" style="gap:2px"><span class="t ">Sky</span><div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px"><span style="height:12px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><div class="st" style="gap:2px"><span class="t ">Slate</span><div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px"><span style="height:12px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div><div class="st" style="gap:2px"><span class="t ">Ember</span><div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px"><span style="height:12px;border-radius:2px;background:hsl(0 0% 92%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 85%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 78%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 71%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 64%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 57%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 50%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 43%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 36%)"></span><span style="height:12px;border-radius:2px;background:hsl(0 0% 29%)"></span></div></div></div></div><figcaption>Scales wrap into 5 + 5.</figcaption></figure><figure class="wf-card"><h4><span>M4</span>Typography</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">☼ HelioNova</span><span class="ic sp"></span></div><div class="pad"><span class="s">Foundations / Typography</span><span class="t xl">Typography</span><i class="w8"></i><div class="cd" style="padding:8px"><span class="s">DISPLAY</span><span class="t" style="font-size:22px">Aa</span></div><div class="cd" style="padding:8px"><span class="s">BODY</span><span class="t" style="font-size:22px;font-weight:400">Aa</span></div><span class="t" style="font-size:16px;border-bottom:1px solid #ddd">Sunlight to savings</span><span class="t" style="font-size:13px;border-bottom:1px solid #ddd">Sunlight to savings</span><span class="t" style="font-size:11px;border-bottom:1px solid #ddd">Sunlight to savings</span><span class="t" style="font-size:9px;border-bottom:1px solid #ddd">Sunlight to savings</span></div></div><figcaption>Scale reads top to bottom.</figcaption></figure><figure class="wf-card"><h4><span>M5</span>Components</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">☼ HelioNova</span><span class="ic sp"></span></div><div class="pad"><span class="s">Home / Components</span><span class="t xl">Components</span><i></i><i class="w6"></i><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Accordion</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Alert</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Avatar</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><div class="img" style="aspect-ratio:2/1"></div><span class="t ">Badge</span><i class="w6"></i></div></div></div><figcaption>One card per row.</figcaption></figure><figure class="wf-card"><h4><span>M6</span>Button</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">☼ HelioNova</span><span class="ic sp"></span></div><div class="pad"><span class="s">Components / Button</span><span class="t xl">Button</span><i></i><i class="w8"></i><div class="r" style="border-bottom:1.2px solid #bbb;padding-bottom:3px;gap:12px"><span class="t ">Variants</span><span class="s">States</span><span class="s">A11y</span></div><div class="cd" style="padding:10px;gap:6px"><span class="btn p">Primary</span><span class="btn">Secondary</span><span class="btn">Ghost</span></div><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div><span class="t ">Accessibility</span><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div><div class="r"><span class="dot"></span><i class="f"></i></div></div></div><figcaption>Variants stack vertically.</figcaption></figure><figure class="wf-card"><h4><span>M7</span>Data table</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">☼ HelioNova</span><span class="ic sp"></span></div><div class="pad"><span class="s">Components / Data table</span><span class="t xl">Data table</span><i class="w8"></i><div class="cd" style="padding:6px;gap:3px"><div class="r"><span class="t ">Site name</span><span class="chip sp">● OK</span></div><div class="r"><i class="f"></i><i class="f w6"></i></div></div><div class="cd" style="padding:6px;gap:3px"><div class="r"><span class="t ">Site name</span><span class="chip sp">● OK</span></div><div class="r"><i class="f"></i><i class="f w6"></i></div></div><div class="cd" style="padding:6px;gap:3px"><div class="r"><span class="t ">Site name</span><span class="chip sp">● OK</span></div><div class="r"><i class="f"></i><i class="f w6"></i></div></div><div class="cd" style="padding:6px;gap:3px"><div class="r"><span class="t ">Site name</span><span class="chip sp">● OK</span></div><div class="r"><i class="f"></i><i class="f w6"></i></div></div><span class="s">Rows become cards on mobile</span></div></div><figcaption>Rows become cards.</figcaption></figure><figure class="wf-card"><h4><span>M8</span>Energy stat</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">☼ HelioNova</span><span class="ic sp"></span></div><div class="pad"><span class="s">Components / Energy stat</span><span class="t xl">Energy stat</span><i class="w8"></i><div class="cd" style="padding:7px;gap:2px"><span class="s">Generated today</span><span class="t l">12.4 MWh</span><span class="s">▲ 8% vs yesterday</span></div><div class="cd" style="padding:7px;gap:2px"><span class="s">Bill offset</span><span class="t l">12.4 MWh</span><span class="s">▲ 8% vs yesterday</span></div><div class="cd" style="padding:7px;gap:2px"><span class="s">Battery</span><span class="t l">12.4 MWh</span><span class="s">▲ 8% vs yesterday</span></div><div class="cd" style="background:#555;padding:8px;gap:3px"><i style="background:#888"></i><i class="w8" style="background:#888"></i><i class="w6" style="background:#888"></i></div></div></div><figcaption>Metric cards stack.</figcaption></figure></div></div>
+      </section>
+  </main></div>
+
+  <div class="screens-intro" id="screens">
+    <p class="label">High-fidelity · interactive</p>
+    <h2>Every page, live</h2>
+    <p>Each frame below is the real documentation site, not a screenshot. Click components, switch tabs and copy code. Use "Open full screen" to explore a page at full size.</p>
+  </div>
+
+  <div class="app-section" id="screen-01">
+    <div class="screen-head"><span class="num">01</span><div><p class="label">The front door</p><h3>Overview</h3><p>Opens with the brand promise and three facts, then lets people choose foundations or components. Everything starts here.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>design.helionova.energy / home</span><a href="prototypes/helionova.html#home" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/helionova.html#home" title="HelioNova Overview page" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Two clear paths</b>"Get started" for new teams, "Browse components" for builders</div><div><b>Proof up front</b>28 components, 4 guides and AA contrast in one row</div><div><b>Live thumbnails</b>Component cards render the real component, not a picture</div></div>
+  </div>
+  <div class="app-section" id="screen-02">
+    <div class="screen-head"><span class="num">02</span><div><p class="label">Foundations</p><h3>Colours</h3><p>Five scales named after nature (Canopy, Helio, Sky, Slate, Ember), each mapped to semantic tokens so teams never pick raw hex values.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>design.helionova.energy / colours</span><a href="prototypes/helionova.html#colours" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/helionova.html#colours" title="HelioNova Colours page" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Semantic first</b>Tokens like --hn-primary carry meaning, not just colour</div><div><b>Light and dark</b>Every pair is checked for AA contrast in both themes</div><div><b>Click to copy</b>Any swatch or token copies its value</div></div>
+  </div>
+  <div class="app-section" id="screen-03">
+    <div class="screen-head"><span class="num">03</span><div><p class="label">Browse</p><h3>Components index</h3><p>All 28 components in a grid of live previews, so people find what they need by recognising it.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>design.helionova.energy / components</span><a href="prototypes/helionova.html#components" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/helionova.html#components" title="HelioNova Components index page" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Visual browsing</b>Real rendered components as thumbnails</div><div><b>Search everywhere</b>The top bar search covers foundations and components</div><div><b>Consistent cards</b>Name, one-line purpose, live preview</div></div>
+  </div>
+  <div class="app-section" id="screen-04">
+    <div class="screen-head"><span class="num">04</span><div><p class="label">Component page</p><h3>Button</h3><p>Each component page follows one template: variants and states as live examples, the HTML to copy, and accessibility notes.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>design.helionova.energy / button</span><a href="prototypes/helionova.html#button" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/helionova.html#button" title="HelioNova Button page" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Live, not static</b>Every example is real HTML you can click and tab through</div><div><b>Copy-paste HTML</b>Framework-free code, ready for any stack</div><div><b>Accessibility built in</b>Keyboard, focus and screen-reader notes on every page</div></div>
+  </div>
+  <div class="app-section" id="screen-05">
+    <div class="screen-head"><span class="num">05</span><div><p class="label">Domain component</p><h3>Energy stat</h3><p>A component unique to HelioNova: a headline metric with unit, change and a small trend line, for generation and savings dashboards.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>design.helionova.energy / energy-stat</span><a href="prototypes/helionova.html#energy-stat" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/helionova.html#energy-stat" title="HelioNova Energy stat page" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Built for energy data</b>kWh, MW and % savings formatted consistently</div><div><b>Change made clear</b>Up and down shown by icon and text, never colour alone</div><div><b>Dashboard-ready</b>Works in the customer app and the operations console</div></div>
+  </div>
+
+  <div class="app-section" id="mobile">
+    <div class="screen-head"><span class="num">M</span><div><p class="label">Mobile · live</p><h3>Mobile version</h3><p>Developers check the system on their phones in stand-ups and site visits, so it is fully responsive. The sidebar moves behind a menu button, card grids stack, tables become cards, and every component example stays live and tappable. Eight key pages are shown below.</p></div></div>
+    <div class="phones" style="grid-template-columns:repeat(4,minmax(0,1fr));max-width:1100px;row-gap:40px"><figure><div class="phone"><iframe src="prototypes/helionova.html#home" width="390" height="844" title="HelioNova Overview on mobile" loading="lazy"></iframe></div><figcaption>Overview · <a href="prototypes/helionova.html#home">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/helionova.html#get-started" width="390" height="844" title="HelioNova Get started on mobile" loading="lazy"></iframe></div><figcaption>Get started · <a href="prototypes/helionova.html#get-started">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/helionova.html#colours" width="390" height="844" title="HelioNova Colours on mobile" loading="lazy"></iframe></div><figcaption>Colours · <a href="prototypes/helionova.html#colours">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/helionova.html#typography" width="390" height="844" title="HelioNova Typography on mobile" loading="lazy"></iframe></div><figcaption>Typography · <a href="prototypes/helionova.html#typography">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/helionova.html#components" width="390" height="844" title="HelioNova Components on mobile" loading="lazy"></iframe></div><figcaption>Components · <a href="prototypes/helionova.html#components">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/helionova.html#button" width="390" height="844" title="HelioNova Button on mobile" loading="lazy"></iframe></div><figcaption>Button · <a href="prototypes/helionova.html#button">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/helionova.html#data-table" width="390" height="844" title="HelioNova Data table on mobile" loading="lazy"></iframe></div><figcaption>Data table · <a href="prototypes/helionova.html#data-table">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/helionova.html#energy-stat" width="390" height="844" title="HelioNova Energy stat on mobile" loading="lazy"></iframe></div><figcaption>Energy stat · <a href="prototypes/helionova.html#energy-stat">Open ↗</a></figcaption></figure></div>
+  </div>
+
+  <div class="layout"><main>
+
+      <section class="case-section" id="governance">
+        <p class="label">Governance</p>
+        <h2>Keeping the system alive</h2>
+        <ol class="numbered">
+          <li><span><strong>Versioning:</strong> semantic versions (v1.0 today) with a changelog for every release.</span></li>
+          <li><span><strong>Contribution:</strong> teams propose components through a short template: problem, examples, accessibility notes.</span></li>
+          <li><span><strong>Office hours:</strong> a weekly session for designers and developers to review new patterns together.</span></li>
+        </ol>
+      </section>
+
+      <section class="case-section" id="measure">
+        <p class="label">Success metrics</p>
+        <h2>How success would be measured</h2>
+        <div class="grid-2">
+          <div class="card"><h4>Adoption</h4><p>The share of screens across the three products built with HelioNova components.</p></div>
+          <div class="card"><h4>Delivery speed</h4><p>Time from design to shipped feature, before and after adoption.</p></div>
+          <div class="card"><h4>Consistency</h4><p>One-off colours and components remaining in each product audit.</p></div>
+          <div class="card"><h4>Accessibility</h4><p>Contrast and keyboard issues found in QA, per release.</p></div>
+        </div>
+      </section>
+
+      <section class="case-section" id="role">
+        <p class="label">My role</p>
+        <h2>What I owned</h2>
+        <p>I owned the system <strong>end to end</strong>: the UI audit, principles, colour, type and spacing foundations, all 28 components and their states, the documentation site, and the accessibility checks, building it with AI-assisted tools.</p>
+        <div class="roles"><span>Design systems</span><span>Design tokens</span><span>Component design</span><span>Accessibility (WCAG 2.1 AA)</span><span>Dark mode</span><span>Documentation</span><span>HTML/CSS</span><span>Information architecture</span><span>Claude</span></div>
+      </section>
+
+      <section class="case-section" id="closing">
+        <p class="label">Closing</p>
+        <h2>Key takeaways</h2>
+        <ul class="learn">
+          <li><span><strong>Foundations before components:</strong> agreeing tokens first meant components rarely needed rework.</span></li>
+          <li><span><strong>Plain HTML wins adoption:</strong> no framework lock-in meant every team could start the same week.</span></li>
+          <li><span><strong>Domain components matter:</strong> the energy stat card made the system feel built for HelioNova, not borrowed.</span></li>
+          <li><span><strong>Docs are the product:</strong> live examples and copyable code did more for adoption than any presentation.</span></li>
+        </ul>
+      </section>
+  </main></div>
+
+  <div class="thanks"><h3>Thanks for reading</h3><p>Questions or feedback? I’d love to hear them: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></p></div>
+
+  <div class="next-project">
+    <p>Next case study</p>
+    <h3>Evolution of Sales (EOS) Platform</h3>
+    <a href="case-study-eos-salesforce.html" class="btn-primary">View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <footer><span>© 2026 Yogesh Malik · Get in touch: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></span><span><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span></footer>
+  <script>
+    function fit(){ document.querySelectorAll('.app-viewport').forEach(v => { const f = v.querySelector('iframe'); f.style.transform = 'scale(' + (v.clientWidth / 1440) + ')'; }); }
+    window.addEventListener('resize', fit); fit();
+  </script>
+  <script>
+    const btn = document.getElementById('scrollToTop'), bar = document.getElementById('progress');
+    const links = [...document.querySelectorAll('.toc a')];
+    const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      btn.classList.toggle('visible', h.scrollTop > 300);
+      let i = secs.findLastIndex(s => s && s.getBoundingClientRect().top < 160);
+      links.forEach((a, j) => a.classList.toggle('active', j === i));
+    });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+  <script src="assets/motion.js" defer></script>
+  
+  <script src="assets/modal.js" defer></script>
+  <script>
+    (function(){ function fitPhones(){ document.querySelectorAll('.phone').forEach(p => { const f = p.querySelector('iframe'); if (!f) return; p.style.overflow = 'hidden'; p.style.position = p.style.position || 'relative'; p.style.aspectRatio = p.style.aspectRatio || '390 / 844'; f.style.position = 'absolute'; f.style.top = '0'; f.style.left = '0'; f.style.width = '390px'; f.style.height = '844px'; f.style.transformOrigin = '0 0'; const w = p.getBoundingClientRect().width; if (w > 0) f.style.transform = 'scale(' + (w / 390) + ')'; }); }
+      addEventListener('resize', fitPhones); addEventListener('load', () => { fitPhones(); setTimeout(fitPhones, 300); }); requestAnimationFrame(() => requestAnimationFrame(fitPhones)); setTimeout(fitPhones, 800); fitPhones();
+      if ('ResizeObserver' in window) document.querySelectorAll('.phone').forEach(p => new ResizeObserver(fitPhones).observe(p)); })();
+  </script>
+</body>
+</html>

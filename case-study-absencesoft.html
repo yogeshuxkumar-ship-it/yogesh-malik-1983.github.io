@@ -1,15 +1,23 @@
 <!DOCTYPE html>
+<!--
+  REUSABLE CASE-STUDY TEMPLATE: Yogesh Malik portfolio
+  Duplicate this file, rename it (case-study-<project>.html) and replace the content
+  inside each block marked  ▸ EDIT. Delete any optional section you don't need.
+  Section order: Header → Hero image → Snapshot → TL;DR → Context → Domain landscape →
+  Research → Insights → Principles → Solution → Accessibility & trust → Results →
+  My role → Learnings → Next project.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AbsenceSoft FMLA Leave Management — Case Study | Yogesh Malik</title>
-  <meta name="description" content="How I designed user journey maps and prototypes for a multi-tenant absence management application, reducing training time by 30%.">
-  
+  <!-- ▸ EDIT: title + description -->
+  <title>AbsenceSoft: Medical Leave &amp; Accommodation Platform | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="UX case study: designing a multi-tenant medical leave, FMLA and workplace accommodation platform for 10,000+ employees at AbsenceSoft.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --color-bg: #0a0a0a;
@@ -17,8 +25,8 @@
       --color-bg-card: #1a1a1a;
       --color-text: #f5f5f5;
       --color-text-muted: #a3a3a3;
-      --color-accent: #00b4d8;
-      --color-accent-dim: rgba(0, 180, 216, 0.15);
+      --color-accent: #c9ff57;
+      --color-accent-dim: rgba(201, 255, 87, 0.15);
       --color-border: #2a2a2a;
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body: 'Instrument Sans', -apple-system, sans-serif;
@@ -27,274 +35,454 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
-    a { color: inherit; text-decoration: none; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { color: var(--color-text); }
 
-    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(0, 180, 216, 0.3); }
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--color-accent); z-index: 1001; }
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
     .scroll-to-top.visible { opacity: 1; visibility: visible; }
-    .scroll-to-top:hover { transform: translateY(-4px); }
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
-    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    .nav-back { display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); font-weight: 500; }
     .nav-back:hover { color: var(--color-accent); }
     .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
-    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a { color: var(--color-text-muted); }
     .nav-links a:hover { color: var(--color-text); }
 
-    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
-    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-header { padding: 160px 48px 64px; max-width: 1100px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
     .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
-    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
-    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+    .case-tag.outline { background: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; text-wrap: balance; }
+    .case-header h1 em { color: var(--color-accent); }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 760px; text-wrap: pretty; }
 
-    .hero-image { margin: 0 48px 80px; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); }
+    .hero-image { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; }
+    .hero-image figure { border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
     .hero-image img { width: 100%; height: auto; display: block; }
+    figcaption { font-size: 0.85rem; color: var(--color-text-muted); padding: 14px 20px; border-top: 1px solid var(--color-border); }
 
-    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
-    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
-    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+    .snapshot { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--color-border); max-width: 1104px; margin: 0 auto 96px; border-radius: 16px; overflow: hidden; }
+    .snapshot div { background: var(--color-bg-card); padding: 28px 22px; }
+    .snapshot dt { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .snapshot dd { font-weight: 600; line-height: 1.4; }
 
-    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
-    .case-section { margin-bottom: 80px; }
-    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
-    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
-    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
-    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
-    .case-section li { margin-bottom: 12px; }
-    .case-section li strong { color: var(--color-text); }
+    .layout { max-width: 1104px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+    .toc { position: sticky; top: 120px; align-self: start; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; }
+    .toc a { color: var(--color-text-muted); border-left: 2px solid var(--color-border); padding-left: 14px; transition: color .2s, border-color .2s; }
+    .toc a:hover, .toc a.active { color: var(--color-accent); border-color: var(--color-accent); }
 
-    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
-    .callout p { color: var(--color-text); margin-bottom: 0; }
-    .callout strong { color: var(--color-accent); }
+    .case-section { margin-bottom: 96px; scroll-margin-top: 120px; }
+    .label { font-size: 0.8rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .case-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 24px; text-wrap: balance; }
+    .case-section h3 { font-size: 1.15rem; margin: 40px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; text-wrap: pretty; }
+    .case-section p strong, .case-section li strong { color: var(--color-text); }
 
-    .diagram-container { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 20px; padding: 40px; margin: 40px 0; overflow-x: auto; }
-    .diagram-title { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; text-align: center; }
-    .diagram-caption { font-size: 0.9rem; color: var(--color-text-muted); text-align: center; margin-top: 24px; font-style: italic; }
+    .tldr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tldr div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .tldr h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 10px; }
+    .tldr p { font-size: 0.95rem; margin: 0; }
 
-    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
-    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
-    .process-step:hover { border-color: var(--color-accent); }
-    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
-    .process-step h4 { margin-bottom: 8px; }
-    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+    .problem { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.3; color: var(--color-text); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 32px 0; margin: 32px 0; }
+    .problem span { color: var(--color-accent); font-style: italic; }
 
-    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
-    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
-    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
-    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
-    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color .3s; }
+    .card:hover { border-color: rgba(201, 255, 87, 0.4); }
+    .card h4 { margin-bottom: 8px; font-size: 1.02rem; }
+    .card p { font-size: 0.95rem; margin: 0; }
+    .card .k { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 12px; display: block; }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
-    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+    .reg { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .reg div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 18px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .reg div:last-child { border-bottom: none; }
+    .reg b { color: var(--color-accent); font-weight: 600; }
+    .reg span { color: var(--color-text-muted); font-size: 0.95rem; }
 
-    .learnings-list { list-style: none; margin-left: 0; }
-    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
-    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+    .persona { display: flex; flex-direction: column; gap: 10px; }
+    .persona .role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .persona ul { list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); font-size: 0.92rem; }
+    .persona li::before { content: ',  '; color: var(--color-accent); }
 
-    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
-    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
-    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0; counter-reset: s; }
+    .flow div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; counter-increment: s; }
+    .flow div::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--font-display); color: var(--color-accent); font-size: 1.4rem; margin-bottom: 8px; }
+    .flow h4 { font-size: 0.98rem; margin-bottom: 6px; }
+    .flow p { font-size: 0.88rem; margin: 0; }
+
+    .shot { margin: 32px 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .shot img { width: 100%; display: block; }
+
+    .before-after { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .before-after div { border-radius: 16px; padding: 24px; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .before-after div.after { border-color: rgba(201, 255, 87, 0.4); }
+    .before-after h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; color: var(--color-text-muted); }
+    .before-after .after h4 { color: var(--color-accent); }
+    .before-after ul { list-style: none; display: flex; flex-direction: column; gap: 8px; color: var(--color-text-muted); font-size: 0.95rem; }
+
+    .results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .results div { background: var(--color-bg-card); padding: 32px 24px; }
+    .results .v { font-family: var(--font-display); font-size: 2.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
+    .results .l { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.4; }
+    .note { font-size: 0.85rem !important; color: var(--color-text-muted); font-style: italic; }
+
+    .tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tools span { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; font-size: 0.88rem; color: var(--color-text-muted); }
+
+    .learn { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .learn li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; color: var(--color-text-muted); }
+    .learn li::before { content: '→'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 96px 48px; text-align: center; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 12px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 32px; }
     .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0, 180, 216, 0.3); }
+    .btn-primary:hover { color: var(--color-bg); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
 
-   @media (max-width: 900px) {
-      nav, .case-header, .case-content, .next-project, .hero-image { padding-left: 24px; padding-right: 24px; }
-      .hero-image { margin-left: 24px; margin-right: 24px; }
-      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
-      .process-grid, .results-grid { grid-template-columns: 1fr; }
+    footer { padding: 40px 48px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--color-text-muted); font-size: 0.9rem; }
+    footer a { color: var(--color-text-muted); }
+    footer a:hover { color: var(--color-accent); }
+
+    @media (max-width: 1000px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .toc { display: none; }
+      .snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-left: 24px; margin-right: 24px; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      nav, .case-header, .layout, .hero-image, .next-project, footer { padding-left: 24px; padding-right: 24px; }
+      .nav-links { display: none; }
+      .tldr, .grid-2, .grid-3, .before-after, .results, .flow { grid-template-columns: minmax(0, 1fr); }
+      .reg div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
       .scroll-to-top { bottom: 24px; right: 24px; }
     }
+  
+    .eos-hero { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; position: relative; z-index: 1; }
+    .eos-hero img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .numbered { list-style: none; counter-reset: n; display: grid; gap: 0; }
+    .numbered li { counter-increment: n; display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .numbered li::before { content: counter(n, decimal-leading-zero); color: var(--color-label); font-weight: 500; font-size: .85rem; padding-top: 2px; }
+    .numbered li strong { color: var(--color-text); font-weight: 600; }
+    .qa { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .qa div { background: #fff; padding: 28px 24px; font-size: 1.15rem; font-weight: 400; line-height: 1.4; color: var(--color-text); }
+    .findings { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .findings article { background: #fff; padding: 28px; display: grid; gap: 10px; }
+    .findings h4 { font-weight: 500; font-size: 1.12rem; line-height: 1.35; }
+    .findings p { margin: 0 !important; font-size: .92rem !important; }
+    .findings b { color: var(--color-text); font-weight: 600; }
+    .sort-setup { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .sort-setup div { padding: 20px 16px; } .sort-setup div + div { border-left: 1px solid var(--color-border); }
+    .sort-setup dt { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+    .sort-setup dd { font-weight: 500; line-height: 1.4; }
+    .people { display: grid; gap: 16px; }
+    .person { display: grid; grid-template-columns: 240px repeat(2, minmax(0,1fr)); gap: 2px; background: var(--color-bg); }
+    .person > div { background: #fff; padding: 24px; }
+    .person .id { display: grid; justify-items: start; gap: 14px; }
+    .person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+    .person .id h4 { font-weight: 500; font-size: 1.2rem; }
+    .person .id span { color: var(--color-text-muted); font-size: .85rem; line-height: 1.5; }
+    .person h5 { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+    .case-section .person p, .person li { font-size: .9rem; margin: 0; color: var(--color-text-muted); line-height: 1.6; }
+    .person ul { list-style: none; display: grid; gap: 4px; }
+    .person li::before { content: '•  '; color: var(--color-accent); }
+    .person .bio { grid-row: span 2; }
+    .table-wrap { overflow-x: auto; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 720px; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid #e6e6e3; vertical-align: top; color: var(--color-text-muted); }
+    th { color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+    td:first-child { color: var(--color-text); font-weight: 500; }
+    td.us { color: var(--color-text); background: var(--color-accent-dim); }
+    .timeline { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 6px 0; font-size: .78rem; }
+    .timeline .wk { grid-row: 5; text-align: center; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 8px; }
+    .timeline .bar { padding: 10px 12px; background: #fff; border-left: 3px solid var(--color-accent); color: var(--color-text); line-height: 1.35; margin-right: 6px; }
+    .timeline .phase { grid-row: 1; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); padding: 0 0 6px; border-bottom: 1px solid var(--color-text); margin-right: 6px; }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+    .roles span { border: 1px solid var(--color-text); border-radius: 100px; padding: 4px 14px; font-size: .8rem; }
+    .screen { margin: 0 0 40px; }
+    .screen h4 { font-weight: 500; font-size: 1.05rem; margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+    .screen h4 span { color: var(--color-label); font-size: .75rem; letter-spacing: .1em; }
+    .screen img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .flowimg { background: #fff; padding: 24px; overflow-x: auto; } .flowimg img { width: 100%; min-width: 900px; display: block; }
+    .laws { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .laws article { background: #fff; padding: 26px 24px; display: grid; gap: 10px; align-content: start; }
+    .laws h4 { font-weight: 500; font-size: 1.08rem; } .laws h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+    .laws p { margin: 0 !important; font-size: .9rem !important; }
+    .wcag { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .wcag article { background: #fff; padding: 24px; display: grid; gap: 12px; align-content: start; }
+    .wcag h4 { font-weight: 500; font-size: 1.1rem; } .wcag h4 small { display: block; color: var(--color-text-muted); font-size: .75rem; font-weight: 400; margin-top: 2px; }
+    .wcag ul { list-style: none; display: grid; gap: 4px; font-size: .9rem; color: var(--color-text-muted); }
+    .wcag li::before { content: '✓  '; color: #3fa66a; font-weight: 700; }
+    .wcag .why { font-size: .85rem; color: var(--color-text); border-top: 1px solid #eee; padding-top: 10px; }
+    .govern { grid-column: 1 / -1; background: var(--color-text); color: #f3f1ec; padding: 28px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 24px; }
+    .govern h4 { font-weight: 300; font-size: 1.4rem; } .govern ul { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 24px; font-size: .9rem; color: #cfcac2; }
+    .govern li::before { content: '→  '; color: var(--color-accent); }
+    .thanks { text-align: center; padding: 96px 24px 72px; border-top: 1px solid var(--color-border); }
+    .thanks h3 { font-weight: 300; font-size: clamp(2rem, 4vw, 3rem); }
+    .thanks p { color: var(--color-text-muted); }
+    @media (max-width: 900px) {
+      .qa, .findings, .laws, .wcag, .person, .govern { grid-template-columns: minmax(0,1fr); }
+      .sort-setup { grid-template-columns: repeat(2, minmax(0,1fr)); } .sort-setup div + div { border-left: none; }
+      .govern ul { grid-template-columns: minmax(0,1fr); }
+      .timeline { grid-template-columns: repeat(6, minmax(0,1fr)); }
+    }
   </style>
+  <style>
+    .app-section { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto 72px; padding: 0 48px; }
+    .app-frame { overflow: hidden; }
+    .app-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; }
+    .app-bar i { width: 11px; height: 11px; border-radius: 50%; }
+    .app-bar span { margin-left: 12px; font-size: .78rem; border: 1px solid; border-radius: 6px; padding: 3px 12px; }
+    .app-bar a { margin-left: auto; font-size: .8rem; font-weight: 600; }
+    .app-viewport { position: relative; aspect-ratio: 1440 / 900; overflow: hidden; background: #f4f6fa; }
+    .app-viewport iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; }
+    .screen-head { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 16px; margin: 0 0 20px; }
+    .screen-head .num { font-size: 2.2rem; line-height: 1; }
+    .screen-head p { color: var(--color-text-muted); max-width: 760px; margin: 0; }
+    .screen-notes { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+    .screen-notes div { border-left: 2px solid var(--color-accent); padding: 4px 0 4px 14px; font-size: .9rem; color: var(--color-text-muted); }
+    .screen-notes b { display: block; color: var(--color-text); font-weight: 600; margin-bottom: 2px; }
+    .screens-intro { max-width: 1104px; margin: 0 auto 40px; padding: 56px 48px 0; }
+    .screens-intro p:not(.label) { color: var(--color-text-muted); max-width: 720px; }
+    .phones { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 24px; }
+    .phones figure { margin: 0; display: grid; gap: 10px; }
+    .phone { position: relative; aspect-ratio: 390 / 844; border: 8px solid #171717; border-radius: 30px; overflow: hidden; background: #f4f6fa; box-shadow: 0 30px 60px -30px rgba(0,0,0,.4); }
+    .phone iframe { position: absolute; top: 0; left: 0; width: 390px; height: 844px; border: 0; transform-origin: 0 0; }
+    .phones figcaption { font-size: .85rem; color: var(--color-text-muted); border: none !important; padding: 0 !important; }
+    @media (max-width: 900px) { .phones { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    .lanes { display: grid; grid-template-columns: 150px repeat(6, minmax(0,1fr)); gap: 4px; font-size: .8rem; }
+    .lanes .hd { background: var(--color-label); color: #fff; padding: 10px; font-weight: 500; line-height: 1.3; }
+    .lanes .hd b { display: block; font-size: .66rem; letter-spacing: .12em; opacity: .75; font-weight: 600; }
+    .lanes .rl { background: #fff; padding: 10px; font-weight: 600; color: var(--color-text); display: grid; align-content: center; }
+    .lanes .c { background: #fff; padding: 8px 10px; color: var(--color-text-muted); line-height: 1.4; min-height: 64px; }
+    .lanes .c.on { background: var(--color-accent-dim); color: var(--color-text); border-left: 3px solid var(--color-accent); }
+    .lanes .c:empty { background: rgba(255,255,255,.45); }
+    @media (max-width: 900px) { .lanes { grid-template-columns: 110px repeat(6, minmax(120px,1fr)); overflow-x: auto; } }
+    .edrm { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 4px; }
+    .edrm > div { background: var(--color-label); color: #fff; padding: 18px 26px 18px 30px; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%, 16px 50%); display: grid; gap: 4px; align-content: start; min-height: 150px; }
+    .edrm > div:first-child { clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%); padding-left: 20px; }
+    .edrm > div:nth-child(2) { background: color-mix(in srgb, var(--color-label) 88%, #fff); } .edrm > div:nth-child(3) { background: color-mix(in srgb, var(--color-label) 76%, #fff); }
+    .edrm > div:nth-child(4) { background: var(--color-accent); color: #0d1b33; } .edrm > div:nth-child(5) { background: color-mix(in srgb, var(--color-accent) 80%, #fff); color: #0d1b33; } .edrm > div:nth-child(6) { background: color-mix(in srgb, var(--color-accent) 62%, #fff); color: #0d1b33; }
+    .edrm b { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; opacity: .8; font-weight: 600; }
+    .edrm h4 { font-weight: 500; font-size: 1.02rem; } .edrm p { margin: 0 !important; font-size: .82rem !important; line-height: 1.45 !important; color: inherit !important; opacity: .92; }
+    .shift { display: grid; grid-template-columns: minmax(0,1fr) 48px minmax(0,1fr); align-items: stretch; }
+    .shift > div { background: #fff; padding: 24px; } .shift > span { display: grid; place-items: center; font-size: 1.6rem; color: var(--color-label); }
+    .shift h5 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); margin-bottom: 10px; font-weight: 500; }
+    .shift ul { list-style: none; display: grid; gap: 8px; font-size: .92rem; color: var(--color-text-muted); } .shift li::before { content: '•  '; color: var(--color-label); }
+    @media (max-width: 900px) { .app-section, .screens-intro { padding-left: 16px; padding-right: 16px; } .screen-notes, .shift { grid-template-columns: minmax(0,1fr); } .shift > span { transform: rotate(90deg); } .edrm { grid-template-columns: repeat(2, minmax(0,1fr)); } .edrm > div, .edrm > div:first-child { clip-path: none; padding: 18px; min-height: 0; } }
+  </style>
+  <link rel="stylesheet" href="assets/editorial.css">
 </head>
-<body>
-  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
-  </button>
 
+
+<body data-theme="absencesoft">
+  <div class="progress" id="progress"></div>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <nav>
-    <a href="index.html" class="nav-back">
-      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
-      Back to Portfolio
-    </a>
-    <div class="nav-links">
-      <a href="case-study-axelos.html">← Previous</a>
-      <a href="index.html">All Projects</a>
-      <a href="case-study-consilio.html">Next →</a>
-    </div>
+    <a href="portfolio.html" class="nav-back"><svg viewBox="0 0 100 100" width="30" height="30" fill="none"><circle cx="50" cy="30" r="15" stroke="#171717" stroke-width="4"/><path d="M35 45 L50 65 M65 45 L50 65 M50 65 L50 90" stroke="#171717" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#171717"/><circle cx="65" cy="45" r="4" fill="#171717"/><circle cx="50" cy="90" r="4" fill="#171717"/></svg> Yogesh Malik</a>
+    <div class="nav-links"><a href="case-study-capita-website.html">← Previous</a><a href="portfolio.html">All projects</a><a href="case-study-consilio.html">Next →</a></div>
   </nav>
 
   <header class="case-header">
-    <div class="case-meta">
-      <span class="case-tag">HR Tech</span>
-      <span class="case-tag">Multi-Tenant SaaS</span>
-      <span class="case-tag">FMLA Compliance</span>
-      <span class="case-tag">Harman Connected Services</span>
-    </div>
-    <h1>AbsenceSoft FMLA Leave Management</h1>
-    <p class="case-intro">Designed user journey maps and high-fidelity prototypes for a multi-tenant absence management application, simplifying complex FMLA compliance workflows and reducing training time by 30%.</p>
+    <div class="case-meta"><span class="case-tag">HR Tech &amp; Compliance</span><span class="case-tag">Multi-tenant SaaS</span></div>
+    <h1>AbsenceSoft: making <em>medical leave and accommodation</em> one clear journey</h1>
+    <p class="case-intro">As Lead Experience Designer at AbsenceSoft, I mapped and redesigned the end-to-end journeys of a multi-tenant FMLA, absence and accommodation platform used by 10,000+ employees, so employees, HR, managers and admins always know what happens next.</p>
   </header>
 
-  <div class="hero-image">
-    <img src="images/FMLADivision - Dashboard.png" alt="AbsenceSoft FMLA Leave Management and best practice portfolio">
+  <div class="app-section">
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>absencesoft · interactive prototype</span><a href="prototypes/absencesoft/index.html" target="_blank">Open full prototype ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/absencesoft/index.html" title="AbsenceSoft interactive prototype"></iframe></div>
+    </div>
   </div>
 
-  <div class="quick-stats">
-    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2018 – 2019</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Lead Experience Designer</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Users</div><div class="quick-stat-value">15,000+ HR Professionals</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Platform</div><div class="quick-stat-value">Multi-Tenant SaaS</div></div>
+  <dl class="snapshot">
+    <div><dt>Client</dt><dd>AbsenceSoft</dd></div>
+    <div><dt>My role</dt><dd>Lead Experience Designer</dd></div>
+    <div><dt>Timeline</dt><dd>07/2018 – 02/2019</dd></div>
+    <div><dt>Users</dt><dd>10,000+ employees</dd></div>
+    <div><dt>Platform</dt><dd>Multi-tenant SaaS</dd></div>
+  </dl>
+
+  <div class="layout"><main>
+
+      <section class="case-section" id="overview">
+        <p class="label">Overview</p>
+        <h2>Project overview</h2>
+        <p>When an employee needs time away from work, a change at work, or both, the request touches HR, a people manager, payroll, timekeeping and policy teams. For the employee it often happens during a difficult moment, and internal handoffs can feel like a maze.</p>
+        <p>AbsenceSoft manages FMLA, absence and workplace accommodation cases for employers. My job was to turn fragmented, form-heavy workflows into one coordinated, understandable journey, from the first question to a supported return.</p>
+        <div class="wide"><div class="shift" style="margin-top:12px"><div><h5>Before</h5><ul><li>Leave and accommodation handled as separate, disconnected processes</li><li>Employees repeat information and can’t tell what happens next</li><li>Case owners track deadlines across inboxes and spreadsheets</li><li>Sensitive details visible to more people than necessary</li></ul></div><span>→</span><div><h5>After</h5><ul><li>One linked case timeline across leave and accommodation</li><li>Plain-language intake with clear next steps</li><li>Every task has an owner and a due date</li><li>Role-based access: managers see only what they need</li></ul></div></div></div>
+      </section>
+
+      <section class="case-section" id="the-challenge">
+        <p class="label">The challenge</p>
+        <h2>Problem statement and pain points</h2>
+        <ol class="numbered">
+          <li><span><strong>Lost in the process:</strong> employees repeated information and couldn’t see what would happen next.</span></li>
+          <li><span><strong>Missed deadlines:</strong> FMLA and accommodation steps have legal timelines, but tasks were scattered across tools.</span></li>
+          <li><span><strong>Privacy risk:</strong> managers needed to plan coverage without seeing health information.</span></li>
+          <li><span><strong>Heavy training and support:</strong> complex screens meant long onboarding for HR teams and frequent support tickets.</span></li>
+        </ol>
+        <p class="problem">How might we make <span>the next action obvious</span>, keep the conversation supportive and the record dependable, <span>without exposing more than a role needs</span>?</p>
+      </section>
+
+      <section class="case-section" id="approach">
+        <p class="label">Approach</p>
+        <h2>My approach</h2>
+        <ol class="numbered">
+          <li><span><strong>Journey mapping</strong> for every role across the full leave and accommodation lifecycle.</span></li>
+          <li><span><strong>Workflow analysis</strong> with leave specialists to find where cases stall and where rework happens.</span></li>
+          <li><span><strong>Wireframes and high-fidelity prototypes</strong> for employee intake, case management and the interactive process.</span></li>
+          <li><span><strong>Embedded in agile sprints</strong> with engineering, reaching 95% design-to-development accuracy.</span></li>
+          <li><span><strong>Iterative releases</strong> validated with users, lifting satisfaction from 3.2 to 4.5 out of 5.</span></li>
+        </ol>
+      </section>
+
+      <section class="case-section" id="journey">
+        <p class="label">Journey</p>
+        <h2>Four roles across six stages</h2>
+        <p>The core design artefact: who acts at each stage of a request, so no step is left without an owner and no role sees more than it should.</p>
+        <div class="wide"><div class="lanes"><div></div><div class="hd"><b>01</b>Recognize</div><div class="hd"><b>02</b>Intake</div><div class="hd"><b>03</b>Triage</div><div class="hd"><b>04</b>Discuss</div><div class="hd"><b>05</b>Implement</div><div class="hd"><b>06</b>Follow up</div><div class="rl">Employee</div><div class="c on">Starts privately: leave, change at work or not sure</div><div class="c on">Shares dates, work impact and contact preference</div><div class="c"></div><div class="c on">Talks through options with HR</div><div class="c on">Confirms the agreed plan</div><div class="c on">Checks in, extends or plans return</div><div class="rl">Leave specialist</div><div class="c"></div><div class="c"></div><div class="c on">Links workstreams; owns next action and due date</div><div class="c on">Leads the discussion; validates policy</div><div class="c on">Records plan, timing and communications</div><div class="c on">Revises, extends or closes the case</div><div class="rl">People manager</div><div class="c"></div><div class="c"></div><div class="c"></div><div class="c on">Gets a limited feasibility task</div><div class="c on">Coordinates agreed work changes</div><div class="c on">Plans coverage for the return</div><div class="rl">Program admin</div><div class="c"></div><div class="c"></div><div class="c on">Monitors queues and deadlines</div><div class="c"></div><div class="c on">Reconciles payroll and timekeeping sync</div><div class="c on">Audits consistency; refines templates</div></div></div>
+      </section>
+
+      <section class="case-section" id="users">
+        <p class="label">Users</p>
+        <h2>Who it’s for</h2>
+        <div class="wide"><div class="grid-2"><div class="card persona"><span class="role">Primary</span><h4>Employee</h4><ul><li>Describes the support needed</li><li>Sends requested items and tracks status</li><li>Plans their return</li></ul></div><div class="card persona"><span class="role">Primary</span><h4>Leave specialist</h4><ul><li>Reviews information and validates policy</li><li>Communicates and owns due dates</li><li>Makes the case decisions</li></ul></div><div class="card persona"><span class="role">Secondary</span><h4>People manager</h4><ul><li>Plans coverage</li><li>Coordinates agreed work changes</li><li>Sees limited operational detail only</li></ul></div><div class="card persona"><span class="role">Secondary</span><h4>Program admin</h4><ul><li>Monitors queues and consistency</li><li>Reconciles integrations</li><li>Refines templates</li></ul></div></div></div>
+      </section>
+
+      <section class="case-section" id="principles">
+        <p class="label">Principles</p>
+        <h2>Design principles applied</h2>
+        <p>Six principles that resolved the tension between standard steps and individual circumstances.</p>
+        <div class="wide"><div class="laws"><article><h4><small>Need to know</small>Privacy by role</h4><p><b>Applied:</b> Each role sees only what it needs; managers never see health details.</p><p><b>Impact:</b> Trust from employees and compliance teams.</p></article><article><h4><small>Clarity</small>Next action, owner, date</h4><p><b>Applied:</b> Every screen says who acts next, why and by when.</p><p><b>Impact:</b> Fewer status-chasing contacts.</p></article><article><h4><small>Cognitive load</small>Progressive disclosure</h4><p><b>Applied:</b> Intake asks intent first and shows only relevant fields.</p><p><b>Impact:</b> Higher completion, less rework.</p></article><article><h4><small>Human judgement</small>Automation assists</h4><p><b>Applied:</b> Rules create tasks and reminders; qualified staff make the decisions.</p><p><b>Impact:</b> Speed without automated case decisions.</p></article><article><h4><small>Error prevention</small>Visible exceptions</h4><p><b>Applied:</b> Missing info, date changes, overdue tasks and sync errors get an owner.</p><p><b>Impact:</b> Nothing fails silently.</p></article><article><h4><small>Familiar patterns</small>Jakob’s Law</h4><p><b>Applied:</b> Standard queues, steppers and case records that HR teams already know.</p><p><b>Impact:</b> 30% less training time.</p></article></div></div>
+      </section>
+      <section class="case-section" id="wireframes">
+        <p class="label">Low-fidelity wireframes</p>
+        <h2>Greyscale wireframes of every screen, desktop and mobile</h2>
+        <p>Every screen was wireframed in greyscale first, with the same regions as the final design: workspace navigation, page header, status and each screen’s main working area. Leave specialists reviewed them against real case scenarios before visual design. The employee-facing screens were also wireframed for mobile, where requests often start.</p>
+        <div class="wide"><p class="label" style="margin:8px 0 12px">Desktop · 6 screens</p><div class="wf-set" style="grid-template-columns:repeat(2,minmax(0,1fr))"><figure class="wf-card"><h4><span>01</span>Operations overview</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ AbsenceSoft</span><div class="cd" style="padding:4px;gap:2px"><span class="s">EMPLOYER WORKSPACE</span><span class="t ">Northwind Services</span></div><span class="s">LEAVE OPERATIONS</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Overview</span><span class="s" style="padding:3px 4px;">Cases</span><span class="s" style="padding:3px 4px;">Employee requests</span><span class="s" style="padding:3px 4px;">Accommodations</span><span class="s" style="padding:3px 4px;">Insights &amp; integrations</span><span class="s" style="margin-top:6px">ADMINISTRATION</span><span class="s">Communications</span><span class="s">Policies &amp; settings</span><span class="s" style="margin-top:6px">CASE STUDY</span><span class="s" style="padding:3px 4px;">Product story &amp; journey</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Workspace / Leave operations</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Good morning, Jamie</span><span class="s">Current workload and next actions</span></div><span class="btn">View all cases</span><span class="btn p">＋ Start a request</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">Active cases</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Tasks due soon</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Employees away</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Return planning</span><span class="t l">000</span><i class="w6"></i></div></div><div class="cd" style="padding:6px;gap:5px"><span class="t ">Case lifecycle snapshot</span><div class="r" style="gap:4px"><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Request received</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Eligibility</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Documentation</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Decision</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Leave active</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Return</span></div></div></div><div class="g2"><div class="cd" style="padding:6px;gap:4px"><span class="t ">Next actions</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Task</span><span class="s" style="flex:1">Owner</span><span class="s" style="flex:1">Due</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">TODAY</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">TODAY</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">TODAY</span></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Returning soon</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Employee</span><span class="s" style="flex:1">Return date</span><span class="s" style="flex:1">Plan</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">PLAN</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">PLAN</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">PLAN</span></div></div></div></div></div></div><figcaption>The day’s workload, due tasks and returns, with the next action always one click away.</figcaption></figure><figure class="wf-card"><h4><span>02</span>Case workspace</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ AbsenceSoft</span><div class="cd" style="padding:4px;gap:2px"><span class="s">EMPLOYER WORKSPACE</span><span class="t ">Northwind Services</span></div><span class="s">LEAVE OPERATIONS</span><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Cases</span><span class="s" style="padding:3px 4px;">Employee requests</span><span class="s" style="padding:3px 4px;">Accommodations</span><span class="s" style="padding:3px 4px;">Insights &amp; integrations</span><span class="s" style="margin-top:6px">ADMINISTRATION</span><span class="s">Communications</span><span class="s">Policies &amp; settings</span><span class="s" style="margin-top:6px">CASE STUDY</span><span class="s" style="padding:3px 4px;">Product story &amp; journey</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Leave operations / Cases</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Leave and accommodation cases</span><span class="s">A shared record for milestones, tasks and decisions</span></div><span class="chip">14 TASKS DUE</span><span class="btn">Export view</span><span class="btn p">＋ Create case</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">All active cases</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Continuous leave</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Intermittent leave</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Accommodation cases</span><span class="t l">000</span><i class="w6"></i></div></div><div style="display:grid;grid-template-columns:1.5fr 1fr;gap:6px;align-items:start"><div class="cd" style="padding:6px;gap:4px"><span class="t ">Case queue</span><div class="r" style="gap:8px"><span class="s" style="flex:1">Case / employee</span><span class="s" style="flex:1">Case type</span><span class="s" style="flex:1">Owner</span><span class="s" style="flex:1">Next action</span><span class="s" style="flex:1">Status</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">OPEN</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">OPEN</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">OPEN</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><i class="f w6"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">OPEN</span></div></div><div class="cd" style="padding:6px;gap:5px"><span class="t ">Selected case</span><span class="s">Milestones</span><div class="r"><span class="dot" style="background:#555"></span><span class="s" style="color:#222">Request</span><i class="f w6"></i></div><div class="r"><span class="dot" style="background:#555"></span><span class="s" style="color:#222">Eligibility</span><i class="f w6"></i></div><div class="r"><span class="dot" style="background:#ccc"></span><span class="s" style="color:#222">Certification</span><i class="f w6"></i></div><div class="r"><span class="dot" style="background:#ccc"></span><span class="s" style="color:#222">Approved</span><i class="f w6"></i></div><div class="hr"></div><span class="t ">Next action · owner · due</span><i class="w8"></i></div></div></div></div></div><figcaption>One timeline per case: milestones, owner, next action and due date together.</figcaption></figure><figure class="wf-card"><h4><span>03</span>Employee request</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ AbsenceSoft</span><div class="cd" style="padding:4px;gap:2px"><span class="s">EMPLOYER WORKSPACE</span><span class="t ">Northwind Services</span></div><span class="s">LEAVE OPERATIONS</span><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Cases</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Employee requests</span><span class="s" style="padding:3px 4px;">Accommodations</span><span class="s" style="padding:3px 4px;">Insights &amp; integrations</span><span class="s" style="margin-top:6px">ADMINISTRATION</span><span class="s">Communications</span><span class="s">Policies &amp; settings</span><span class="s" style="margin-top:6px">CASE STUDY</span><span class="s" style="padding:3px 4px;">Product story &amp; journey</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Employee services / New request</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">How can we support you?</span><span class="s">Start a private conversation with your leave team</span></div><span class="chip">PRIVATE WORKSPACE</span></div><div class="r" style="gap:4px"><div class="st f" style="gap:2px;border-top:3px solid #555;padding-top:3px"><span class="s" style="color:#111;font-weight:700">Request type</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Details</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Review</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Confirmation</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Support</span></div></div><div class="g3"><div class="cd" style="padding:7px;gap:3px;border:1.6px solid #333"><div class="r"><span class="dot" style="background:#333;border:1.2px solid #777"></span><span class="t ">I need time away from work</span></div><i class="w8"></i></div><div class="cd" style="padding:7px;gap:3px;"><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="t ">I need a change or support at work</span></div><i class="w8"></i></div><div class="cd" style="padding:7px;gap:3px;"><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="t ">I’m not sure yet</span></div><i class="w8"></i></div></div><div class="cd" style="padding:6px;gap:4px;border-style:dashed"><span class="s">What happens next</span><i></i><i class="w8"></i></div><div class="r" style="justify-content:flex-end"><span class="btn">Save draft</span><span class="btn p">Continue →</span></div></div></div></div><figcaption>Intent first in plain language, including “not sure”, with save and resume.</figcaption></figure><figure class="wf-card"><h4><span>04</span>Accommodation process</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ AbsenceSoft</span><div class="cd" style="padding:4px;gap:2px"><span class="s">EMPLOYER WORKSPACE</span><span class="t ">Northwind Services</span></div><span class="s">LEAVE OPERATIONS</span><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Cases</span><span class="s" style="padding:3px 4px;">Employee requests</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Accommodations</span><span class="s" style="padding:3px 4px;">Insights &amp; integrations</span><span class="s" style="margin-top:6px">ADMINISTRATION</span><span class="s">Communications</span><span class="s">Policies &amp; settings</span><span class="s" style="margin-top:6px">CASE STUDY</span><span class="s" style="padding:3px 4px;">Product story &amp; journey</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Leave operations / Accommodations</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Workplace support cases</span><span class="s">Discussion, options, implementation and follow-up</span></div><span class="chip">16 ACTIVE</span><span class="btn p">＋ Start a request</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">Requests in progress</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Discussion due</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Trial / follow-up</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Waiting on input</span><span class="t l">000</span><i class="w6"></i></div></div><div class="cd" style="padding:6px;gap:5px"><span class="t ">Interactive process · AS-2034</span><span class="s">Employee · Owner · Opened</span><div class="r" style="gap:4px"><div class="st f" style="gap:2px;border-top:3px solid #555;padding-top:3px"><span class="s">Recognize</span></div><div class="st f" style="gap:2px;border-top:3px solid #555;padding-top:3px"><span class="s">Gather</span></div><div class="st f" style="gap:2px;border-top:3px solid #555;padding-top:3px"><span class="s" style="color:#111;font-weight:700">Explore</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Implement</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Follow up</span></div></div><div class="g3"><div class="cd" style="padding:5px;gap:2px"><span class="t ">Option A</span><i></i><span class="chip" style="justify-self:start">FEASIBILITY</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Option B</span><i></i><span class="chip" style="justify-self:start">FEASIBILITY</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Option C</span><i></i><span class="chip" style="justify-self:start">FEASIBILITY</span></div></div></div></div></div></div><figcaption>A guided interactive process with options, feasibility checks and a clear history.</figcaption></figure><figure class="wf-card"><h4><span>05</span>Insights &amp; integrations</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ AbsenceSoft</span><div class="cd" style="padding:4px;gap:2px"><span class="s">EMPLOYER WORKSPACE</span><span class="t ">Northwind Services</span></div><span class="s">LEAVE OPERATIONS</span><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Cases</span><span class="s" style="padding:3px 4px;">Employee requests</span><span class="s" style="padding:3px 4px;">Accommodations</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Insights &amp; integrations</span><span class="s" style="margin-top:6px">ADMINISTRATION</span><span class="s">Communications</span><span class="s">Policies &amp; settings</span><span class="s" style="margin-top:6px">CASE STUDY</span><span class="s" style="padding:3px 4px;">Product story &amp; journey</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Leave operations / Insights</span><div class="r" style="align-items:center"><div class="st f" style="gap:3px"><span class="t xl">Insights and system connections</span><span class="s">Workload, upcoming tasks and integration health</span></div><span class="chip">SAMPLE REPORTING</span><span class="btn">Export report</span><span class="btn p">Review settings</span></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="s">Cases opened</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Tasks on time</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Awaiting input</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Returns due</span><span class="t l">000</span><i class="w6"></i></div></div><div class="g2"><div class="cd" style="padding:6px;gap:5px"><span class="t ">Workload by case stage</span><div class="st" style="gap:2px"><span class="s">Stage 1</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:80%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Stage 2</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:60%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Stage 3</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:45%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Stage 4</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:30%;background:#777;border-radius:3px"></div></div></div><div class="st" style="gap:2px"><span class="s">Stage 5</span><div style="height:6px;background:#e3e3df;border-radius:3px"><div style="height:100%;width:20%;background:#777;border-radius:3px"></div></div></div></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">System connections</span><div class="r" style="gap:8px"><span class="s" style="flex:1">System</span><span class="s" style="flex:1">Last sync</span><span class="s" style="flex:1">Status</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">SYNCED</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">SYNCED</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">SYNCED</span></div><div class="r" style="border-top:1px solid #ddd;padding-top:4px;gap:8px"><i class="f"></i><i class="f w6"></i><span class="chip" style="flex:1;text-align:center">SYNCED</span></div></div></div></div></div></div><figcaption>Program health and HR, payroll and timekeeping sync status in one admin view.</figcaption></figure><figure class="wf-card"><h4><span>06</span>Product story &amp; journey</h4><div class="wf"><div style="display:grid;grid-template-columns:1fr 4.2fr"><div class="st" style="background:#bdbdb8;padding:8px 6px;gap:5px;align-content:start"><span class="t l">◼ AbsenceSoft</span><div class="cd" style="padding:4px;gap:2px"><span class="s">EMPLOYER WORKSPACE</span><span class="t ">Northwind Services</span></div><span class="s">LEAVE OPERATIONS</span><span class="s" style="padding:3px 4px;">Overview</span><span class="s" style="padding:3px 4px;">Cases</span><span class="s" style="padding:3px 4px;">Employee requests</span><span class="s" style="padding:3px 4px;">Accommodations</span><span class="s" style="padding:3px 4px;">Insights &amp; integrations</span><span class="s" style="margin-top:6px">ADMINISTRATION</span><span class="s">Communications</span><span class="s">Policies &amp; settings</span><span class="s" style="margin-top:6px">CASE STUDY</span><span class="s" style="padding:3px 4px;background:#fbfbf9;color:#111;font-weight:700">Product story &amp; journey</span></div><div class="st" style="gap:7px;padding:8px 10px;align-content:start"><span class="s">Product story / Concept</span><div class="cd" style="padding:10px;gap:5px;background:#e6e6e2"><span class="s">UX CASE STUDY</span><span class="t xl">Make a difficult life moment easier to navigate.</span><i class="w8"></i><div class="r"><span class="btn p">Explore employee journey →</span><span class="btn">Open HR operations</span></div></div><div class="g4"><div class="cd" style="padding:6px;gap:3px"><span class="t ">Employee</span><i></i><i class="w8"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="t ">Leave specialist</span><i></i><i class="w8"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="t ">People manager</span><i></i><i class="w8"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="t ">Program admin</span><i></i><i class="w8"></i></div></div><div class="r" style="gap:4px"><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Recognize</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Intake</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Triage</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Discuss</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Implement</span></div><div class="st f" style="gap:2px;border-top:3px solid #ccc;padding-top:3px"><span class="s">Follow up</span></div></div></div></div></div><figcaption>The journey and role model, used to align the team on what “good” looks like.</figcaption></figure></div>
+        <p class="label" style="margin:40px 0 12px">Mobile · key screens</p><div class="wf-set mob" style="grid-template-columns:repeat(4,minmax(0,1fr))"><figure class="wf-card"><h4><span>M1</span>Operations overview</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">◼ AbsenceSoft</span><span class="ic sp"></span></div><div class="pad"><span class="t l">Good morning, Jamie</span><span class="btn p">＋ Start a request</span><div class="cd" style="padding:6px;gap:3px"><span class="s">Active cases</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:3px"><span class="s">Tasks due soon</span><span class="t l">000</span><i class="w6"></i></div><div class="cd" style="padding:6px;gap:4px"><span class="t ">Next actions</span><div class="r"><i class="f"></i><span class="chip">TODAY</span></div><div class="r"><i class="f"></i><span class="chip">TODAY</span></div></div></div></div><figcaption></figcaption></figure><figure class="wf-card"><h4><span>M2</span>Employee request</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">◼ AbsenceSoft</span><span class="ic sp"></span></div><div class="pad"><span class="t l">How can we support you?</span><span class="s">Step 1 of 5 · Request type</span><div class="cd" style="padding:7px;gap:3px;border:1.6px solid #333"><div class="r"><span class="dot" style="background:#333;border:1.2px solid #777"></span><span class="t ">I need time away from work</span></div><i class="w8"></i></div><div class="cd" style="padding:7px;gap:3px;"><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="t ">I need a change at work</span></div><i class="w8"></i></div><div class="cd" style="padding:7px;gap:3px;"><div class="r"><span class="dot" style="background:#fff;border:1.2px solid #777"></span><span class="t ">I’m not sure yet</span></div><i class="w8"></i></div><span class="btn p">Continue →</span><span class="btn">Save draft</span></div></div><figcaption></figcaption></figure><figure class="wf-card"><h4><span>M3</span>Case workspace</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">◼ AbsenceSoft</span><span class="ic sp"></span></div><div class="pad"><span class="t l">Cases</span><div class="r"><span class="chip">All</span><span class="chip">Due 14</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Continuous leave</span><span class="s">Owner · next action · due</span><span class="chip" style="justify-self:start">OPEN</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Intermittent leave</span><span class="s">Owner · next action · due</span><span class="chip" style="justify-self:start">OPEN</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Accommodation</span><span class="s">Owner · next action · due</span><span class="chip" style="justify-self:start">OPEN</span></div></div></div><figcaption></figcaption></figure><figure class="wf-card"><h4><span>M4</span>Accommodation process</h4><div class="wf m"><div class="sbar"><span>9:41</span><span>●●● ▮</span></div><div class="bar l" style="padding:6px 10px"><span class="ic"></span><span class="t ">◼ AbsenceSoft</span><span class="ic sp"></span></div><div class="pad"><span class="t l">Interactive process</span><span class="s">AS-2034 · Step 3 of 5</span><div class="r" style="gap:3px"><div class="f" style="height:4px;background:#555"></div><div class="f" style="height:4px;background:#555"></div><div class="f" style="height:4px;background:#555"></div><div class="f" style="height:4px;background:#ccc"></div><div class="f" style="height:4px;background:#ccc"></div></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Option A</span><i></i><span class="chip" style="justify-self:start">FEASIBILITY</span></div><div class="cd" style="padding:5px;gap:2px"><span class="t ">Option B</span><i></i><span class="chip" style="justify-self:start">FEASIBILITY</span></div><span class="btn p">Record plan →</span></div></div><figcaption></figcaption></figure></div></div>
+      </section>
+  </main></div>
+
+  <div class="screens-intro" id="screens">
+    <p class="label">All screens · interactive</p>
+    <h2>Every screen, live</h2>
+    <p>Each frame below is a working prototype, not a screenshot. I rebuilt these screens to show the workflows; names, cases and data are fictional, no diagnosis information is shown, and this is not official AbsenceSoft software.</p>
   </div>
 
-  <div class="case-content">
-    <section class="case-section">
-      <p class="case-section-label">Context</p>
-      <h2>The Challenge</h2>
-      <p>AbsenceSoft provides absence management software to HR teams at enterprises across the US. Managing FMLA (Family and Medical Leave Act) compliance is notoriously complex—regulations vary by state, company size, and employee tenure.</p>
-      <p>HR professionals were spending excessive time on training and frequently making errors due to the complexity of the existing interface. The business needed to simplify workflows while maintaining full regulatory compliance.</p>
-      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we simplify FMLA leave management for HR professionals while ensuring full compliance with complex, varying regulations?</p></div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Discovery</p>
-      <h2>Understanding the Users</h2>
-      <p>I conducted extensive research with HR professionals, benefits administrators, and compliance officers to understand their workflows and pain points.</p>
-      
-      <div class="diagram-container">
-        <p class="diagram-title">User Ecosystem</p>
-        <svg viewBox="0 0 700 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 400px;">
-          <g transform="translate(80, 50)">
-            <circle cx="50" cy="40" r="35" fill="#00b4d8" fill-opacity="0.15" stroke="#00b4d8" stroke-width="2"/>
-            <text x="50" y="45" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="24">👤</text>
-            <text x="50" y="100" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="600">Employee</text>
-            <text x="50" y="115" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10">Requests Leave</text>
-          </g>
-          <path d="M180 90 L280 90" stroke="#00b4d8" stroke-width="2" stroke-dasharray="4 4"/>
-          <polygon points="280,85 295,90 280,95" fill="#00b4d8"/>
-          <g transform="translate(300, 50)">
-            <circle cx="50" cy="40" r="35" fill="#00b4d8" fill-opacity="0.15" stroke="#00b4d8" stroke-width="2"/>
-            <text x="50" y="45" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="24">📋</text>
-            <text x="50" y="100" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="600">HR Admin</text>
-            <text x="50" y="115" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10">Processes & Tracks</text>
-          </g>
-          <path d="M400 90 L500 90" stroke="#00b4d8" stroke-width="2" stroke-dasharray="4 4"/>
-          <polygon points="500,85 515,90 500,95" fill="#00b4d8"/>
-          <g transform="translate(520, 50)">
-            <circle cx="50" cy="40" r="35" fill="#00b4d8" fill-opacity="0.15" stroke="#00b4d8" stroke-width="2"/>
-            <text x="50" y="45" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="24">✅</text>
-            <text x="50" y="100" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="12" font-weight="600">Manager</text>
-            <text x="50" y="115" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10">Approves & Plans</text>
-          </g>
-          <rect x="50" y="160" width="600" height="30" rx="4" fill="none" stroke="#00b4d8" stroke-width="1" stroke-dasharray="4 4"/>
-          <text x="350" y="180" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="11">FMLA Compliance Layer — State & Federal Regulations</text>
-        </svg>
-        <p class="diagram-caption">Three distinct user types unified by complex FMLA compliance requirements</p>
-      </div>
-
-      <h3>Key Findings</h3>
-      <ul>
-        <li><strong>68% of users confused by FMLA terminology</strong> — Terms like "intermittent leave" weren't clear</li>
-        <li><strong>Cognitive overload:</strong> Forms showed all 15+ fields at once regardless of leave type</li>
-        <li><strong>No status visibility:</strong> Users couldn't see where requests were in the approval workflow</li>
-        <li><strong>Training burden:</strong> New HR staff needed 5 days of training before handling cases independently</li>
-      </ul>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Solution</p>
-      <h2>Progressive Disclosure Wizard</h2>
-      <p>I designed a step-by-step wizard that guides users through leave requests, showing only relevant fields based on previous answers. This reduced cognitive load and prevented errors.</p>
-
-      <div class="diagram-container">
-        <p class="diagram-title">4-Step Leave Request Wizard</p>
-        <svg viewBox="0 0 700 180" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; min-width: 400px;">
-          <g transform="translate(50, 30)">
-            <rect x="0" y="0" width="130" height="90" rx="12" fill="#00b4d8" fill-opacity="0.2" stroke="#00b4d8" stroke-width="2"/>
-            <text x="65" y="25" text-anchor="middle" fill="#f5f5f5" font-family="sans-serif" font-size="11" font-weight="600">Step 1</text>
-            <text x="65" y="50" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="20">📝</text>
-            <text x="65" y="75" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="10">Select Leave Type</text>
-          </g>
-          <path d="M190 75 L210 75" stroke="#00b4d8" stroke-width="2"/>
-          <g transform="translate(220, 30)">
-            <rect x="0" y="0" width="130" height="90" rx="12" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="65" y="25" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11" font-weight="600">Step 2</text>
-            <text x="65" y="50" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="20">📅</text>
-            <text x="65" y="75" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="10">Select Dates</text>
-          </g>
-          <path d="M360 75 L380 75" stroke="#2a2a2a" stroke-width="2"/>
-          <g transform="translate(390, 30)">
-            <rect x="0" y="0" width="130" height="90" rx="12" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="65" y="25" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11" font-weight="600">Step 3</text>
-            <text x="65" y="50" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="20">📎</text>
-            <text x="65" y="75" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="10">Upload Documents</text>
-          </g>
-          <path d="M530 75 L550 75" stroke="#2a2a2a" stroke-width="2"/>
-          <g transform="translate(560, 30)">
-            <rect x="0" y="0" width="130" height="90" rx="12" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-            <text x="65" y="25" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="11" font-weight="600">Step 4</text>
-            <text x="65" y="50" text-anchor="middle" fill="#888" font-family="sans-serif" font-size="20">✓</text>
-            <text x="65" y="75" text-anchor="middle" fill="#666" font-family="sans-serif" font-size="10">Review & Submit</text>
-          </g>
-          <g transform="translate(100, 140)">
-            <rect x="0" y="0" width="150" height="25" rx="4" fill="#00b4d8" fill-opacity="0.1"/>
-            <text x="75" y="17" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="9">Only relevant fields shown</text>
-          </g>
-          <g transform="translate(280, 140)">
-            <rect x="0" y="0" width="150" height="25" rx="4" fill="#00b4d8" fill-opacity="0.1"/>
-            <text x="75" y="17" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="9">Plain language labels</text>
-          </g>
-          <g transform="translate(460, 140)">
-            <rect x="0" y="0" width="150" height="25" rx="4" fill="#00b4d8" fill-opacity="0.1"/>
-            <text x="75" y="17" text-anchor="middle" fill="#00b4d8" font-family="sans-serif" font-size="9">Inline validation</text>
-          </g>
-        </svg>
-        <p class="diagram-caption">Progressive disclosure reduces cognitive load by 60%</p>
-      </div>
-
-      <h3>Tools & Technologies</h3>
-      <div class="tools-grid">
-        <span class="tool-tag">Sketch</span>
-        <span class="tool-tag">InVision</span>
-        <span class="tool-tag">Zeplin</span>
-        <span class="tool-tag">Angular</span>
-        <span class="tool-tag">Jira</span>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Results</p>
-      <h2>Measurable Impact</h2>
-      <div class="results-grid">
-        <div class="result-card"><div class="result-value">-30%</div><div class="result-label">Training Time</div></div>
-        <div class="result-card"><div class="result-value">+40%</div><div class="result-label">User Adoption</div></div>
-        <div class="result-card"><div class="result-value">-62%</div><div class="result-label">Error Rate</div></div>
-        <div class="result-card"><div class="result-value">4.5/5</div><div class="result-label">User Satisfaction</div></div>
-        <div class="result-card"><div class="result-value">15K+</div><div class="result-label">HR Professionals</div></div>
-        <div class="result-card"><div class="result-value">95%</div><div class="result-label">Stakeholder Approval</div></div>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <p class="case-section-label">Reflection</p>
-      <h2>What I Learned</h2>
-      <ul class="learnings-list">
-        <li><span><strong>Compliance doesn't have to mean complexity.</strong> Even heavily regulated workflows can be simplified with progressive disclosure.</span></li>
-        <li><span><strong>Language matters enormously.</strong> Replacing legal jargon with plain language reduced user confusion by 68%.</span></li>
-        <li><span><strong>Wizard patterns work for complex forms.</strong> Step-by-step guidance outperformed "show everything" approaches in testing.</span></li>
-      </ul>
-    </section>
+  <div class="app-section" id="screen-01">
+    <div class="screen-head"><span class="num">01</span><div><p class="label">The leave team’s day</p><h3>Operations overview</h3><p>Active cases, tasks due, people away and upcoming returns, then a lifecycle snapshot that shows where work is piling up.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>absencesoft / index</span><a href="prototypes/absencesoft/index.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/absencesoft/index.html" title="AbsenceSoft Operations overview screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Greeting + workload</b>A calm start: what changed and what is due today</div><div><b>Lifecycle snapshot</b>Counts per stage, from request received to return</div><div><b>Next actions</b>Every task has an owner and a due date</div></div>
   </div>
+  <div class="app-section" id="screen-02">
+    <div class="screen-head"><span class="num">02</span><div><p class="label">One shared case record</p><h3>Case workspace</h3><p>Leave and accommodation cases in one queue, with milestones, tasks, communications and reviewer decisions for the selected case.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>absencesoft / cases</span><a href="prototypes/absencesoft/cases.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/absencesoft/cases.html" title="AbsenceSoft Case workspace screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Case queue</b>Type, owner, next action and status, ready to filter</div><div><b>Milestones</b>Request, eligibility, certification and decision at a glance</div><div><b>No diagnosis shown</b>Only what each role needs to act</div></div>
+  </div>
+  <div class="app-section" id="screen-03">
+    <div class="screen-head"><span class="num">03</span><div><p class="label">Self-service intake</p><h3>Employee request</h3><p>A private, plain-language request that starts with intent (“time away”, “a change at work” or “not sure”) and reveals only relevant fields.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>absencesoft / employee-portal</span><a href="prototypes/absencesoft/employee-portal.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/absencesoft/employee-portal.html" title="AbsenceSoft Employee request screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Intent first</b>Three clear starting options, including “not sure”</div><div><b>Stepped flow</b>Type, details, review, confirmation and support</div><div><b>What happens next</b>Who acts next, and when, is always explained</div></div>
+  </div>
+  <div class="app-section" id="screen-04">
+    <div class="screen-head"><span class="num">04</span><div><p class="label">The interactive process</p><h3>Accommodation process</h3><p>A guided process for workplace adjustments: recognise, gather, explore, implement and follow up, with options and a case history.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>absencesoft / accommodations</span><a href="prototypes/absencesoft/accommodations.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/absencesoft/accommodations.html" title="AbsenceSoft Accommodation process screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Five-step tracker</b>Everyone sees the current step and what is next</div><div><b>Options with feasibility</b>Managers get limited, operational tasks only</div><div><b>Trial and follow-up</b>Effectiveness checks are built into the process</div></div>
+  </div>
+  <div class="app-section" id="screen-05">
+    <div class="screen-head"><span class="num">05</span><div><p class="label">Program health and systems</p><h3>Insights &amp; integrations</h3><p>Workload by stage, on-time task completion and the sync status of HR, payroll and timekeeping systems.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>absencesoft / insights-integrations</span><a href="prototypes/absencesoft/insights-integrations.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/absencesoft/insights-integrations.html" title="AbsenceSoft Insights and integrations screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Program KPIs</b>Cases opened, on-time tasks, waiting on input</div><div><b>Workload by stage</b>Spot bottlenecks before deadlines slip</div><div><b>Integration health</b>Sync errors get an owner, not a silent failure</div></div>
+  </div>
+  <div class="app-section" id="screen-06">
+    <div class="screen-head"><span class="num">06</span><div><p class="label">The journey behind the screens</p><h3>Product story &amp; journey</h3><p>The role journeys, the six-stage task flow and the design responses that shaped every screen.</p></div></div>
+    <div class="app-frame">
+      <div class="app-bar"><i></i><i></i><i></i><span>absencesoft / case-study</span><a href="prototypes/absencesoft/case-study.html" target="_blank">Open full screen ↗</a></div>
+      <div class="app-viewport"><iframe src="prototypes/absencesoft/case-study.html" title="AbsenceSoft Product story and journey screen" loading="lazy"></iframe></div>
+    </div>
+    <div class="screen-notes"><div><b>Four role journeys</b>Employee, leave specialist, manager and admin</div><div><b>Deep task flow</b>An overlapping leave and accommodation request</div><div><b>Design guardrails</b>Automation assists; people decide</div></div>
+  </div>
+
+  <div class="app-section" id="mobile">
+    <div class="screen-head"><span class="num">M</span><div><p class="label">Responsive · live</p><h3>Mobile version</h3><p>Employees often start a request from their phone, so every screen works at phone width: the sidebar becomes a menu, and cards and steps stack in reading order.</p></div></div>
+    <div class="phones"><figure><div class="phone"><iframe src="prototypes/absencesoft/index.html" width="390" height="844" title="AbsenceSoft Operations overview on mobile" loading="lazy"></iframe></div><figcaption>Operations overview · <a href="prototypes/absencesoft/index.html">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/absencesoft/employee-portal.html" width="390" height="844" title="AbsenceSoft Employee request on mobile" loading="lazy"></iframe></div><figcaption>Employee request · <a href="prototypes/absencesoft/employee-portal.html">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/absencesoft/cases.html" width="390" height="844" title="AbsenceSoft Case workspace on mobile" loading="lazy"></iframe></div><figcaption>Case workspace · <a href="prototypes/absencesoft/cases.html">Open ↗</a></figcaption></figure><figure><div class="phone"><iframe src="prototypes/absencesoft/accommodations.html" width="390" height="844" title="AbsenceSoft Accommodation process on mobile" loading="lazy"></iframe></div><figcaption>Accommodation process · <a href="prototypes/absencesoft/accommodations.html">Open ↗</a></figcaption></figure></div>
+  </div>
+
+  <div class="layout"><main>
+
+      <section class="case-section" id="results">
+        <p class="label">Results</p>
+        <h2>Outcomes and business impact</h2>
+        <p>Results across the engagement, for a platform serving 10,000+ employees.</p>
+        <div class="results" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div><span class="v">−30%</span><span class="l">User training time</span></div><div><span class="v">−20%</span><span class="l">Support tickets</span></div><div><span class="v">4.5/5</span><span class="l">Satisfaction, up from 3.2</span></div><div><span class="v">95%</span><span class="l">Design-to-development accuracy</span></div></div>
+      </section>
+
+      <section class="case-section" id="role">
+        <p class="label">My role</p>
+        <h2>What I owned</h2>
+        <p>As Lead Experience Designer I owned the end-to-end journeys: research and workflow analysis, journey maps, information architecture, wireframes, high-fidelity prototypes and usability evaluations, working inside engineering’s agile sprints through delivery.</p>
+        <div class="roles"><span>User research</span><span>Workflow analysis</span><span>Journey mapping</span><span>Information architecture</span><span>Wireframing</span><span>Prototyping</span><span>Usability evaluation</span><span>Accessibility</span><span>Agile delivery</span><span>Visual design</span></div>
+      </section>
+
+      <section class="case-section" id="closing">
+        <p class="label">Closing</p>
+        <h2>Key takeaways</h2>
+        <ul class="learn">
+          <li><span><strong>Design for the hardest moment:</strong> plain language and clear next steps matter most when someone is unwell or stressed.</span></li>
+          <li><span><strong>Privacy is an interaction pattern:</strong> role-based views let managers help without seeing what they shouldn’t.</span></li>
+          <li><span><strong>Ownership beats reminders:</strong> giving every task an owner and a date did more than any notification.</span></li>
+          <li><span><strong>Sit with engineering:</strong> being in the sprints is how 95% design-to-development accuracy happened.</span></li>
+        </ul>
+      </section>
+  </main></div>
+
+  <div class="thanks"><h3>Thanks for reading</h3><p>Questions or feedback? I’d love to hear them: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></p></div>
 
   <div class="next-project">
-    <p>Next Case Study</p>
+    <p>Next case study</p>
     <h3>Consilio eDiscovery Platform</h3>
-    <a href="case-study-consilio.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a href="case-study-consilio.html" class="btn-primary">View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
+  <footer><span>© 2026 Yogesh Malik · Get in touch: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></span><span><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span></footer>
 
   <script>
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
-    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    function fit(){ document.querySelectorAll('.app-viewport, .phone').forEach(v => { const f = v.querySelector('iframe'); const w = +f.getAttribute('width') || 1440; f.style.transform = 'scale(' + (v.clientWidth / w) + ')'; }); }
+    window.addEventListener('resize', fit); window.addEventListener('load', fit); fit();
   </script>
+  <script>
+    const btn = document.getElementById('scrollToTop'), bar = document.getElementById('progress');
+    const links = [...document.querySelectorAll('.toc a')];
+    const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      btn.classList.toggle('visible', h.scrollTop > 300);
+      let i = secs.findLastIndex(s => s && s.getBoundingClientRect().top < 160);
+      links.forEach((a, j) => a.classList.toggle('active', j === i));
+    });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/modal.js" defer></script>
 </body>
 </html>

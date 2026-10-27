@@ -1,15 +1,23 @@
 <!DOCTYPE html>
+<!--
+  REUSABLE CASE-STUDY TEMPLATE: Yogesh Malik portfolio
+  Duplicate this file, rename it (case-study-<project>.html) and replace the content
+  inside each block marked  ▸ EDIT. Delete any optional section you don't need.
+  Section order: Header → Hero image → Snapshot → TL;DR → Context → Domain landscape →
+  Research → Insights → Principles → Solution → Accessibility & trust → Results →
+  My role → Learnings → Next project.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Capita.com Global Website Redesign — Case Study | Yogesh Malik</title>
-  <meta name="description" content="How I led the redesign of Capita's global website serving 45,000+ employees, improving task completion by 60%.">
-  
+  <!-- ▸ EDIT: title + description -->
+  <title>Capita.com Redesign: Drupal CMS (Low-Code/No-Code) | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="UX case study: redesigning Capita.com on Acquia Drupal with Site Studio, from card sorting and problem-based IA to a responsive, WCAG 2.1 AA website.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
     :root {
       --color-bg: #0a0a0a;
@@ -17,256 +25,510 @@
       --color-bg-card: #1a1a1a;
       --color-text: #f5f5f5;
       --color-text-muted: #a3a3a3;
-      --color-accent: #6366f1;
-      --color-accent-dim: rgba(99, 102, 241, 0.15);
+      --color-accent: #c9ff57;
+      --color-accent-dim: rgba(201, 255, 87, 0.15);
       --color-border: #2a2a2a;
       --font-display: 'DM Serif Display', Georgia, serif;
       --font-body: 'Instrument Sans', -apple-system, sans-serif;
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
-    a { color: inherit; text-decoration: none; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { color: var(--color-text); }
 
-    .scroll-to-top {
-      position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
-      background: var(--color-accent); color: white; border: none; border-radius: 50%;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998;
-      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-    }
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--color-accent); z-index: 1001; }
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
     .scroll-to-top.visible { opacity: 1; visibility: visible; }
-    .scroll-to-top:hover { transform: translateY(-4px); }
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px;
-      display: flex; justify-content: space-between; align-items: center;
-      background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
-    }
-    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-weight: 500; transition: color 0.3s; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); font-weight: 500; }
     .nav-back:hover { color: var(--color-accent); }
     .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
-    .nav-links a { color: var(--color-text-muted); transition: color 0.3s; }
+    .nav-links a { color: var(--color-text-muted); }
     .nav-links a:hover { color: var(--color-text); }
 
-    .case-header { padding: 160px 48px 80px; max-width: 1000px; margin: 0 auto; }
-    .case-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-header { padding: 160px 48px 64px; max-width: 1100px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
     .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
-    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 24px; }
-    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 700px; }
+    .case-tag.outline { background: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; text-wrap: balance; }
+    .case-header h1 em { color: var(--color-accent); }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 760px; text-wrap: pretty; }
 
-    .hero-image { margin: 0 48px 80px; border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); }
+    .hero-image { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; }
+    .hero-image figure { border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
     .hero-image img { width: 100%; height: auto; display: block; }
+    figcaption { font-size: 0.85rem; color: var(--color-text-muted); padding: 14px 20px; border-top: 1px solid var(--color-border); }
 
-    .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-border); margin: 0 48px 80px; border-radius: 16px; overflow: hidden; }
-    .quick-stat { background: var(--color-bg-card); padding: 32px 24px; text-align: center; }
-    .quick-stat-label { font-size: 0.8rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .quick-stat-value { font-size: 1.1rem; font-weight: 600; }
+    .snapshot { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--color-border); max-width: 1104px; margin: 0 auto 96px; border-radius: 16px; overflow: hidden; }
+    .snapshot div { background: var(--color-bg-card); padding: 28px 22px; }
+    .snapshot dt { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .snapshot dd { font-weight: 600; line-height: 1.4; }
 
-    .case-content { max-width: 800px; margin: 0 auto; padding: 0 48px; }
-    .case-section { margin-bottom: 80px; }
-    .case-section-label { font-size: 0.85rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-    .case-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 24px; }
-    .case-section h3 { font-size: 1.25rem; margin: 32px 0 16px; }
-    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; }
-    .case-section ul { color: var(--color-text-muted); margin-left: 24px; margin-bottom: 20px; }
-    .case-section li { margin-bottom: 12px; }
-    .case-section li strong { color: var(--color-text); }
+    .layout { max-width: 1104px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+    .toc { position: sticky; top: 120px; align-self: start; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; }
+    .toc a { color: var(--color-text-muted); border-left: 2px solid var(--color-border); padding-left: 14px; transition: color .2s, border-color .2s; }
+    .toc a:hover, .toc a.active { color: var(--color-accent); border-color: var(--color-accent); }
 
-    .callout { background: var(--color-accent-dim); border-left: 4px solid var(--color-accent); padding: 24px 32px; border-radius: 0 12px 12px 0; margin: 32px 0; }
-    .callout p { color: var(--color-text); margin-bottom: 0; }
-    .callout strong { color: var(--color-accent); }
+    .case-section { margin-bottom: 96px; scroll-margin-top: 120px; }
+    .label { font-size: 0.8rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .case-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 24px; text-wrap: balance; }
+    .case-section h3 { font-size: 1.15rem; margin: 40px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; text-wrap: pretty; }
+    .case-section p strong, .case-section li strong { color: var(--color-text); }
 
-    .image-showcase { margin: 48px 0; }
-    .image-showcase img { width: 100%; border-radius: 16px; border: 1px solid var(--color-border); margin-bottom: 16px; }
-    .image-showcase-caption { text-align: center; font-size: 0.9rem; color: var(--color-text-muted); font-style: italic; }
+    .tldr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tldr div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .tldr h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 10px; }
+    .tldr p { font-size: 0.95rem; margin: 0; }
 
-    .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 48px 0; }
-    .image-grid img { width: 100%; border-radius: 12px; border: 1px solid var(--color-border); }
-    .image-grid-caption { grid-column: span 2; text-align: center; font-size: 0.9rem; color: var(--color-text-muted); font-style: italic; }
+    .problem { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.3; color: var(--color-text); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 32px 0; margin: 32px 0; }
+    .problem span { color: var(--color-accent); font-style: italic; }
 
-    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin: 32px 0; }
-    .process-step { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color 0.3s; }
-    .process-step:hover { border-color: var(--color-accent); }
-    .process-step-number { width: 32px; height: 32px; background: var(--color-accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; }
-    .process-step h4 { margin-bottom: 8px; }
-    .process-step p { font-size: 0.95rem; margin-bottom: 0; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color .3s; }
+    .card:hover { border-color: rgba(201, 255, 87, 0.4); }
+    .card h4 { margin-bottom: 8px; font-size: 1.02rem; }
+    .card p { font-size: 0.95rem; margin: 0; }
+    .card .k { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 12px; display: block; }
 
-    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0; }
-    .result-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 32px 24px; text-align: center; transition: transform 0.3s var(--ease-out-expo), border-color 0.3s; }
-    .result-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
-    .result-value { font-family: var(--font-display); font-size: 2.5rem; color: var(--color-accent); line-height: 1; margin-bottom: 8px; }
-    .result-label { color: var(--color-text-muted); font-size: 0.85rem; }
+    .reg { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .reg div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 18px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .reg div:last-child { border-bottom: none; }
+    .reg b { color: var(--color-accent); font-weight: 600; }
+    .reg span { color: var(--color-text-muted); font-size: 0.95rem; }
 
-    .tools-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
-    .tool-tag { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 10px 18px; border-radius: 100px; font-size: 0.9rem; color: var(--color-text-muted); }
+    .persona { display: flex; flex-direction: column; gap: 10px; }
+    .persona .role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .persona ul { list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); font-size: 0.92rem; }
+    .persona li::before { content: ',  '; color: var(--color-accent); }
 
-    .learnings-list { list-style: none; margin-left: 0; }
-    .learnings-list li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; }
-    .learnings-list li::before { content: '→'; color: var(--color-accent); font-weight: bold; flex-shrink: 0; }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0; counter-reset: s; }
+    .flow div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; counter-increment: s; }
+    .flow div::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--font-display); color: var(--color-accent); font-size: 1.4rem; margin-bottom: 8px; }
+    .flow h4 { font-size: 0.98rem; margin-bottom: 6px; }
+    .flow p { font-size: 0.88rem; margin: 0; }
 
-    .next-project { background: var(--color-bg-elevated); padding: 80px 48px; text-align: center; margin-top: 80px; }
-    .next-project p { color: var(--color-text-muted); margin-bottom: 16px; }
-    .next-project h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 32px; }
-    .btn-primary { background: var(--color-accent); color: white; padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3); }
+    .shot { margin: 32px 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .shot img { width: 100%; display: block; }
 
-    @media (max-width: 900px) {
-      nav, .case-header, .case-content, .next-project, .hero-image { padding-left: 24px; padding-right: 24px; }
-      .hero-image { margin-left: 24px; margin-right: 24px; }
-      .quick-stats { grid-template-columns: repeat(2, 1fr); margin: 0 24px 48px; }
-      .process-grid, .results-grid, .image-grid { grid-template-columns: 1fr; }
-      .image-grid-caption { grid-column: span 1; }
+    .before-after { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .before-after div { border-radius: 16px; padding: 24px; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .before-after div.after { border-color: rgba(201, 255, 87, 0.4); }
+    .before-after h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; color: var(--color-text-muted); }
+    .before-after .after h4 { color: var(--color-accent); }
+    .before-after ul { list-style: none; display: flex; flex-direction: column; gap: 8px; color: var(--color-text-muted); font-size: 0.95rem; }
+
+    .results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .results div { background: var(--color-bg-card); padding: 32px 24px; }
+    .results .v { font-family: var(--font-display); font-size: 2.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
+    .results .l { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.4; }
+    .note { font-size: 0.85rem !important; color: var(--color-text-muted); font-style: italic; }
+
+    .tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tools span { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; font-size: 0.88rem; color: var(--color-text-muted); }
+
+    .learn { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .learn li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; color: var(--color-text-muted); }
+    .learn li::before { content: '→'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 96px 48px; text-align: center; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 12px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { color: var(--color-bg); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
+
+    footer { padding: 40px 48px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--color-text-muted); font-size: 0.9rem; }
+    footer a { color: var(--color-text-muted); }
+    footer a:hover { color: var(--color-accent); }
+
+    @media (max-width: 1000px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .toc { display: none; }
+      .snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-left: 24px; margin-right: 24px; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      nav, .case-header, .layout, .hero-image, .next-project, footer { padding-left: 24px; padding-right: 24px; }
+      .nav-links { display: none; }
+      .tldr, .grid-2, .grid-3, .before-after, .results, .flow { grid-template-columns: minmax(0, 1fr); }
+      .reg div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
       .scroll-to-top { bottom: 24px; right: 24px; }
     }
+  
+    .eos-hero { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; position: relative; z-index: 1; }
+    .eos-hero img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .numbered { list-style: none; counter-reset: n; display: grid; gap: 0; }
+    .numbered li { counter-increment: n; display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .numbered li::before { content: counter(n, decimal-leading-zero); color: var(--color-label); font-weight: 500; font-size: .85rem; padding-top: 2px; }
+    .numbered li strong { color: var(--color-text); font-weight: 600; }
+    .qa { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .qa div { background: #fff; padding: 28px 24px; font-size: 1.15rem; font-weight: 400; line-height: 1.4; color: var(--color-text); }
+    .findings { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .findings article { background: #fff; padding: 28px; display: grid; gap: 10px; }
+    .findings h4 { font-weight: 500; font-size: 1.12rem; line-height: 1.35; }
+    .findings p { margin: 0 !important; font-size: .92rem !important; }
+    .findings b { color: var(--color-text); font-weight: 600; }
+    .sort-setup { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+    .sort-setup div { padding: 20px 16px; } .sort-setup div + div { border-left: 1px solid var(--color-border); }
+    .sort-setup dt { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+    .sort-setup dd { font-weight: 500; line-height: 1.4; }
+    .people { display: grid; gap: 16px; }
+    .person { display: grid; grid-template-columns: 240px repeat(2, minmax(0,1fr)); gap: 2px; background: var(--color-bg); }
+    .person > div { background: #fff; padding: 24px; }
+    .person .id { display: grid; justify-items: start; gap: 14px; }
+    .person img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+    .person .id h4 { font-weight: 500; font-size: 1.2rem; }
+    .person .id span { color: var(--color-text-muted); font-size: .85rem; line-height: 1.5; }
+    .person h5 { color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; }
+    .case-section .person p, .person li { font-size: .9rem; margin: 0; color: var(--color-text-muted); line-height: 1.6; }
+    .person ul { list-style: none; display: grid; gap: 4px; }
+    .person li::before { content: '•  '; color: var(--color-accent); }
+    .person .bio { grid-row: span 2; }
+    .table-wrap { overflow-x: auto; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 720px; }
+    th, td { text-align: left; padding: 14px 16px; border-bottom: 1px solid #e6e6e3; vertical-align: top; color: var(--color-text-muted); }
+    th { color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+    td:first-child { color: var(--color-text); font-weight: 500; }
+    td.us { color: var(--color-text); background: var(--color-accent-dim); }
+    .timeline { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 6px 0; font-size: .78rem; }
+    .timeline .wk { grid-row: 5; text-align: center; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 8px; }
+    .timeline .bar { padding: 10px 12px; background: #fff; border-left: 3px solid var(--color-accent); color: var(--color-text); line-height: 1.35; margin-right: 6px; }
+    .timeline .phase { grid-row: 1; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); padding: 0 0 6px; border-bottom: 1px solid var(--color-text); margin-right: 6px; }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+    .roles span { border: 1px solid var(--color-text); border-radius: 100px; padding: 4px 14px; font-size: .8rem; }
+    .screen { margin: 0 0 40px; }
+    .screen h4 { font-weight: 500; font-size: 1.05rem; margin-bottom: 12px; display: flex; gap: 12px; align-items: baseline; }
+    .screen h4 span { color: var(--color-label); font-size: .75rem; letter-spacing: .1em; }
+    .screen img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.3); }
+    .flowimg { background: #fff; padding: 24px; overflow-x: auto; } .flowimg img { width: 100%; min-width: 900px; display: block; }
+    .laws { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .laws article { background: #fff; padding: 26px 24px; display: grid; gap: 10px; align-content: start; }
+    .laws h4 { font-weight: 500; font-size: 1.08rem; } .laws h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+    .laws p { margin: 0 !important; font-size: .9rem !important; }
+    .wcag { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .wcag article { background: #fff; padding: 24px; display: grid; gap: 12px; align-content: start; }
+    .wcag h4 { font-weight: 500; font-size: 1.1rem; } .wcag h4 small { display: block; color: var(--color-text-muted); font-size: .75rem; font-weight: 400; margin-top: 2px; }
+    .wcag ul { list-style: none; display: grid; gap: 4px; font-size: .9rem; color: var(--color-text-muted); }
+    .wcag li::before { content: '✓  '; color: #3fa66a; font-weight: 700; }
+    .wcag .why { font-size: .85rem; color: var(--color-text); border-top: 1px solid #eee; padding-top: 10px; }
+    .govern { grid-column: 1 / -1; background: var(--color-text); color: #f3f1ec; padding: 28px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 24px; }
+    .govern h4 { font-weight: 300; font-size: 1.4rem; } .govern ul { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px 24px; font-size: .9rem; color: #cfcac2; }
+    .govern li::before { content: '→  '; color: var(--color-accent); }
+    .thanks { text-align: center; padding: 96px 24px 72px; border-top: 1px solid var(--color-border); }
+    .thanks h3 { font-weight: 300; font-size: clamp(2rem, 4vw, 3rem); }
+    .thanks p { color: var(--color-text-muted); }
+    @media (max-width: 900px) {
+      .qa, .findings, .laws, .wcag, .person, .govern { grid-template-columns: minmax(0,1fr); }
+      .sort-setup { grid-template-columns: repeat(2, minmax(0,1fr)); } .sort-setup div + div { border-left: none; }
+      .govern ul { grid-template-columns: minmax(0,1fr); }
+      .timeline { grid-template-columns: repeat(6, minmax(0,1fr)); }
+    }
   </style>
+  <style>
+    .gantt { display: grid; grid-template-columns: 210px repeat(15, minmax(0,1fr)); gap: 6px 0; align-items: center; font-size: .82rem; }
+    .gantt .lb { color: var(--color-text-muted); padding-right: 14px; text-align: right; }
+    .gantt .gb { height: 22px; background: var(--color-label); opacity: var(--o); border-radius: 2px; }
+    .gantt .wk { grid-row: 12; text-align: center; color: var(--color-text-muted); font-size: .72rem; border-top: 1px solid var(--color-border); padding-top: 6px; }
+    .gantt .grid { grid-row: 1 / 12; border-left: 1px dashed var(--color-border); height: 100%; }
+    .zz { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 10px; background: linear-gradient(var(--color-label), var(--color-label)) center / 100% 2px no-repeat; }
+    .zz > div { display: grid; grid-template-rows: 1fr 52px 1fr; justify-items: center; }
+    .zz .k { grid-row: 2; width: 52px; height: 52px; border-radius: 50%; background: var(--color-label); color: #fff; display: grid; place-items: center; font-weight: 500; box-shadow: 0 0 0 6px var(--color-bg); }
+    .zz .z { background: #fff; padding: 16px; display: grid; gap: 4px; align-content: start; position: relative; width: 100%; }
+    .zz > div:nth-child(odd) .z { grid-row: 1; align-self: end; margin-bottom: 14px; }
+    .zz > div:nth-child(even) .z { grid-row: 3; align-self: start; margin-top: 14px; }
+    .zz .z h4 { font-weight: 500; font-size: 1rem; } .zz .z p { margin: 0 !important; font-size: .84rem !important; line-height: 1.5 !important; }
+    .comp { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: 32px; align-items: center; }
+    .rings { position: relative; width: min(380px, 100%); aspect-ratio: 1; justify-self: center; }
+    .rings > div { position: absolute; border-radius: 50%; display: grid; justify-items: center; align-content: start; text-align: center; padding-top: 5%; font-size: .78rem; color: var(--color-text-muted); }
+    .rings .o { inset: 0; border: 1.5px dashed var(--color-label); }
+    .rings .m { inset: 17%; border: 1.5px solid var(--color-label); background: var(--color-accent-dim); }
+    .rings .c { inset: 36%; background: var(--color-label); color: #fff; place-content: center; padding: 0; font-weight: 500; font-size: .95rem; }
+    .rings b { font-weight: 600; color: var(--color-text); font-size: .82rem; }
+    .rainbow { position: relative; width: 100%; aspect-ratio: 2 / 1; overflow: hidden; }
+    .rainbow span { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); aspect-ratio: 2 / 1; border-radius: 999px 999px 0 0; background: color-mix(in srgb, var(--color-label) var(--p), #fff); }
+    .fw { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.2fr); gap: 32px; align-items: end; margin-top: 40px; }
+    .fw ol { list-style: none; display: grid; gap: 10px; }
+    .fw li { display: grid; grid-template-columns: 14px minmax(0,1fr); gap: 10px; font-size: .9rem; color: var(--color-text-muted); }
+    .fw li::before { content: ''; width: 12px; height: 12px; border-radius: 3px; margin-top: 4px; background: color-mix(in srgb, var(--color-label) var(--p), #fff); }
+    .fw li strong { color: var(--color-text); font-weight: 600; }
+    .recs { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .recs article { background: #fff; padding: 24px; display: grid; gap: 10px; align-content: start; }
+    .recs h4 { font-weight: 500; font-size: 1.05rem; line-height: 1.35; }
+    .recs p { margin: 0 !important; font-size: .88rem !important; }
+    .recs ul { list-style: none; display: grid; gap: 4px; font-size: .88rem; color: var(--color-text-muted); }
+    .recs li::before { content: '•  '; color: var(--color-label); }
+    .recs .imp { justify-self: start; background: var(--color-accent); color: #0f2a2d; font-size: .78rem; font-weight: 600; padding: 4px 12px; border-radius: 100px; }
+    .prio { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); margin: 28px 0 12px; }
+    .ba-img { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.4fr); gap: 24px; align-items: start; }
+    .ba-img figure { margin: 0; } .ba-img img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 20px 40px -24px rgba(0,0,0,.3); }
+    .ba-img h5 { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--color-label); margin-bottom: 10px; font-weight: 500; }
+    .ba-img ul { list-style: none; display: grid; gap: 8px; font-size: .92rem; color: var(--color-text-muted); }
+    .ba-img li::before { content: '→  '; color: var(--color-label); }
+    .photo { width: 100%; display: block; border-radius: 4px; margin-top: 24px; }
+    @media (max-width: 900px) { .gantt { grid-template-columns: 120px repeat(15, minmax(0,1fr)); font-size: .7rem; } .zz { grid-template-columns: minmax(0,1fr); background: none; } .zz > div { grid-template-rows: auto; } .zz .k { display: none; } .zz > div .z { grid-row: auto !important; margin: 0 !important; } .comp, .fw, .recs, .ba-img { grid-template-columns: minmax(0,1fr); } }
+  </style>
+  <style>
+    .vt { position: relative; display: grid; gap: 0; }
+    .vt::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--color-label); transform: translateX(-50%); }
+    .vt > div { display: grid; grid-template-columns: minmax(0,1fr) 56px minmax(0,1fr); align-items: center; }
+    .vt .k { grid-column: 2; justify-self: center; width: 40px; height: 40px; border-radius: 50%; background: var(--color-bg); border: 2px solid var(--color-label); color: var(--color-label); display: grid; place-items: center; font-weight: 600; font-size: .85rem; position: relative; z-index: 1; }
+    .vt .z { background: #fff; padding: 16px 20px; display: grid; gap: 4px; margin: 6px 0; }
+    .vt > div:nth-child(odd) .z { grid-column: 3; grid-row: 1; } .vt > div:nth-child(even) .z { grid-column: 1; grid-row: 1; text-align: right; }
+    .vt .k { grid-row: 1; }
+    .vt h4 { font-weight: 500; font-size: 1rem; } .vt h4 small { display: block; color: var(--color-label); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 2px; }
+    .vt p { margin: 0 !important; font-size: .86rem !important; }
+    .hub { position: relative; width: min(640px, 100%); aspect-ratio: 1.35; margin: 0 auto; }
+    .hub::before { content: ''; position: absolute; left: 50%; top: 50%; width: 62%; aspect-ratio: 1; transform: translate(-50%,-50%); border: 1.5px dashed var(--color-label); border-radius: 50%; opacity: .5; }
+    .hub .c { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 25%; aspect-ratio: 1; border-radius: 50%; background: var(--color-label); color: #fff; display: grid; place-content: center; text-align: center; font-weight: 500; font-size: .9rem; line-height: 1.3; padding: 10px; }
+    .hub .n { position: absolute; transform: translate(-50%,-50%); width: 24%; background: #fff; padding: 10px 12px; text-align: center; font-size: .82rem; font-weight: 500; line-height: 1.35; box-shadow: 0 10px 24px -16px rgba(0,0,0,.3); border-top: 3px solid var(--color-accent); }
+    .tree { display: grid; gap: 0; justify-items: center; overflow-x: auto; }
+    .tree .root { background: var(--color-label); color: #fff; padding: 10px 28px; font-weight: 500; }
+    .tree .stem { width: 2px; height: 20px; background: var(--color-label); }
+    .tree .row { display: grid; grid-template-columns: repeat(8, minmax(110px,1fr)); width: 100%; min-width: 900px; border-top: 2px solid var(--color-label); }
+    .tree .col { display: grid; justify-items: center; align-content: start; gap: 6px; padding: 0 4px; }
+    .tree .col::before { content: ''; width: 2px; height: 16px; background: var(--color-label); }
+    .tree .h { background: #fff; border: 1.5px solid var(--color-label); padding: 6px 8px; font-weight: 600; font-size: .82rem; width: 100%; text-align: center; }
+    .tree .l { background: var(--color-accent-dim); padding: 5px 8px; font-size: .76rem; width: 92%; text-align: center; color: var(--color-text); }
+    .issues { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .issues article { background: #fff; padding: 22px 24px; display: grid; gap: 8px; align-content: start; }
+    .issues h4 { font-weight: 500; font-size: 1.05rem; } .issues ul { list-style: none; display: grid; gap: 6px; font-size: .9rem; color: var(--color-text-muted); } .issues li::before { content: '•  '; color: var(--color-label); } .issues b { color: var(--color-text); font-weight: 600; }
+    .stat { color: var(--color-label); font-weight: 600; font-size: .88rem !important; }
+    .resp { display: grid; grid-template-columns: minmax(0,4fr) minmax(150px,1.5fr) minmax(130px,1fr); gap: 20px; align-items: start; }
+    .resp .wf .btn { white-space: normal; max-width: 100%; } .resp .wf .t { overflow-wrap: anywhere; }
+    .hub .n { width: 20%; } .hub .n:nth-of-type(3) { transform: translate(-70%,-50%); } .hub .n:nth-of-type(7) { transform: translate(-30%,-50%); }
+    .resp figure { margin: 0; display: grid; gap: 8px; } .resp img { width: 100%; display: block; border-radius: 4px; box-shadow: 0 24px 50px -30px rgba(0,0,0,.35); }
+    .resp figcaption { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--color-label); border: none !important; padding: 0 !important; }
+    @media (max-width: 900px) { .vt::before { left: 20px; } .vt > div { grid-template-columns: 40px minmax(0,1fr); gap: 10px; } .vt .k { grid-column: 1 !important; } .vt > div .z { grid-column: 2 !important; text-align: left !important; } .hub { aspect-ratio: auto; display: grid; gap: 8px; } .hub::before { display: none; } .hub .c, .hub .n { position: static; transform: none; width: auto; border-radius: 0; aspect-ratio: auto; } .issues { grid-template-columns: minmax(0,1fr); } .resp { grid-template-columns: 1fr 1fr; } .resp figure:first-child { grid-column: 1 / -1; } }
+  </style>
+  <link rel="stylesheet" href="assets/editorial.css">
 </head>
-<body>
-  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
-  </button>
 
+
+<body data-theme="capita">
+  <div class="progress" id="progress"></div>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <nav>
-    <a href="index.html" class="nav-back">
-      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4" fill="none"/><path d="M35 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M65 45 L50 65" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><path d="M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
-      Back to Portfolio
-    </a>
-    <div class="nav-links">
-      <a href="case-study-eos-salesforce.html">← Previous</a>
-      <a href="index.html">All Projects</a>
-      <a href="case-study-axelos.html">Next →</a>
-    </div>
+    <a href="portfolio.html" class="nav-back"><svg viewBox="0 0 100 100" width="30" height="30" fill="none"><circle cx="50" cy="30" r="15" stroke="#171717" stroke-width="4"/><path d="M35 45 L50 65 M65 45 L50 65 M50 65 L50 90" stroke="#171717" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#171717"/><circle cx="65" cy="45" r="4" fill="#171717"/><circle cx="50" cy="90" r="4" fill="#171717"/></svg> Yogesh Malik</a>
+    <div class="nav-links"><a href="case-study-axelos.html">← Previous</a><a href="portfolio.html">All projects</a><a href="case-study-absencesoft.html">Next →</a></div>
   </nav>
 
   <header class="case-header">
-    <div class="case-meta">
-      <span class="case-tag">Corporate Website</span>
-      <span class="case-tag">Design System</span>
-      <span class="case-tag">Drupal CMS</span>
-      <span class="case-tag">Capita PLC</span>
-    </div>
-    <h1>Capita.com Global Website Redesign</h1>
-    <p class="case-intro">Led an enterprise-wide digital transformation for 45,000+ employees, redesigning the global website ecosystem to improve task completion by 60% and reduce support tickets by 40%.</p>
+    <div class="case-meta"><span class="case-tag">Corporate website redesign</span><span class="case-tag">Drupal CMS · Low-code / no-code</span></div>
+    <h1>Redesigning <em>Capita.com</em> on Drupal for clients, careers and investors</h1>
+    <p class="case-intro">Capita is a consulting, transformation and digital services business that serves millions of people across governments and businesses. I led the UX/UI redesign of Capita.com during its move to Drupal 10, rebuilding navigation around user problems and creating a responsive, accessible component library.</p>
   </header>
 
   <div class="hero-image">
-    <img src="images/Home-v3_1.png" alt="Capita.com Homepage Redesign with modern visual design">
+    <figure>
+      <img src="images/capita/desk.png" alt="Redesigned Capita.com home page" style="aspect-ratio:16/9;object-fit:cover;object-position:top">
+      <figcaption>Redesigned home page: a clear hero, then tailored solutions for each industry. <a href="https://www.capita.com/" target="_blank">capita.com ↗</a></figcaption>
+    </figure>
   </div>
 
-  <div class="quick-stats">
-    <div class="quick-stat"><div class="quick-stat-label">Timeline</div><div class="quick-stat-value">2022 – 2023</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">My Role</div><div class="quick-stat-value">Lead UX Designer</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Platform</div><div class="quick-stat-value">Drupal CMS</div></div>
-    <div class="quick-stat"><div class="quick-stat-label">Impact</div><div class="quick-stat-value">45,000+ Employees</div></div>
-  </div>
+  <dl class="snapshot">
+    <div><dt>Client</dt><dd>Capita plc</dd></div>
+    <div><dt>My role</dt><dd>Lead UX/UI Designer</dd></div>
+    <div><dt>Timeline</dt><dd>~5–6 months</dd></div>
+    <div><dt>Platform</dt><dd>Acquia Drupal 10, Site Studio</dd></div>
+    <div><dt>Standard</dt><dd>WCAG 2.1 AA · UK GDS</dd></div>
+  </dl>
 
-  <div class="case-content">
-    <section class="case-section">
-      <p class="case-section-label">Context</p>
-      <h2>The Challenge</h2>
-      <p>Capita's corporate website had grown organically over years, resulting in inconsistent experiences, fragmented information architecture, and declining engagement metrics.</p>
-      <div class="callout"><p><strong>Key Problem Statement:</strong> How might we create a unified corporate digital experience that serves diverse user groups while establishing a scalable design system for future growth?</p></div>
-    </section>
+  <div class="layout"><main>
 
-    <section class="case-section">
-      <p class="case-section-label">Discovery</p>
-      <h2>Understanding the Problem Space</h2>
-      <div class="process-grid">
-        <div class="process-step"><div class="process-step-number">1</div><h4>Stakeholder Workshops</h4><p>Facilitated sessions with marketing, HR, investor relations, and IT.</p></div>
-        <div class="process-step"><div class="process-step-number">2</div><h4>Analytics Deep Dive</h4><p>Analyzed 12 months of site data to identify drop-off points.</p></div>
-        <div class="process-step"><div class="process-step-number">3</div><h4>User Interviews</h4><p>Conducted interviews with job seekers, investors, and existing clients.</p></div>
-        <div class="process-step"><div class="process-step-number">4</div><h4>Competitive Analysis</h4><p>Evaluated 8 competitor corporate sites.</p></div>
-      </div>
-      <h3>Key Findings</h3>
-      <ul>
-        <li><strong>Navigation confusion:</strong> 45% of users abandoned before completing their task</li>
-        <li><strong>Inconsistent branding:</strong> 5 different visual styles across sub-sites</li>
-        <li><strong>Poor mobile experience:</strong> 38% of traffic was mobile, but the site wasn't fully responsive</li>
-        <li><strong>Recruitment friction:</strong> 67% drop-off in job application process</li>
-      </ul>
-    </section>
+      <section class="case-section" id="the-challenge">
+        <p class="label">The challenge</p>
+        <h2>Problem statement and pain points</h2>
+        <p>The site had fragmented UI, an outdated technology stack and weak responsiveness, which hurt engagement, SEO and stakeholder satisfaction.</p>
+        <div class="wide"><div class="issues"><article><h4>User experience</h4><ul><li><b>Navigation complexity:</b> users struggled to find services across 200+ pages</li><li><b>Content fragmentation:</b> duplicate, inconsistent messaging</li><li><b>Technical debt:</b> legacy CMS limited design and content updates</li><li><b>Mobile:</b> 60% of traffic on mobile, with a weak responsive design</li></ul></article><article><h4>Technical limitations</h4><ul><li>Drupal 8 → 10 migration underway, but legacy modules and themes still hurt performance and security</li><li>No central governance for UI/UX decisions across Drupal, SEO, content and design</li></ul></article><article><h4>SEO &amp; content</h4><ul><li>Inconsistent heading tags and anchor-link behaviour</li><li>Missing hover states and semantic markup for accessibility and SEO</li></ul></article><article><h4>Responsiveness &amp; accessibility</h4><ul><li>UI broke on mobile because of oversized spacing and elements</li><li>Missing alt text, keyboard navigation and contrast fixes</li></ul></article></div></div>
+      </section>
 
-    <section class="case-section">
-      <p class="case-section-label">Process</p>
-      <h2>From Sketches to High-Fidelity</h2>
+      <section class="case-section" id="goals">
+        <p class="label">Goals</p>
+        <h2>Seven goals for the redesign</h2>
+        <p>A modern, accessible site that communicates Capita’s value to clients, candidates and investors, on a CMS editors can update quickly.</p>
+        <div class="wide"><div class="hub"><div class="c">Capita.com<br>redesign goals</div><div class="n" style="left:72%;top:8%">Improve user experience</div><div class="n" style="left:94%;top:40%">Enhance accessibility</div><div class="n" style="left:84%;top:82%">Strengthen brand consistency</div><div class="n" style="left:50%;top:95%">Optimise SEO &amp; performance</div><div class="n" style="left:16%;top:82%">Support stakeholder needs</div><div class="n" style="left:6%;top:40%">Scalable content management</div><div class="n" style="left:28%;top:8%">Drive digital campaigns</div></div></div>
+      </section>
 
-      <h3>Hand Sketches & Responsive Planning</h3>
-      <div class="image-showcase">
-        <img src="images/hand-scktech.png" alt="Hand-drawn responsive wireframes showing desktop, tablet, and mobile layouts">
-        <p class="image-showcase-caption">Early responsive sketches exploring layout patterns across breakpoints</p>
-      </div>
+      <section class="case-section" id="solutions">
+        <p class="label">Approach</p>
+        <h2>Solutions to the challenges</h2>
+        <ol class="numbered">
+          <li><span><strong>Persona-based journeys:</strong> journey mapping and usability testing with real users.</span></li>
+          <li><span><strong>Responsive design:</strong> responsive frameworks plus automated accessibility testing with AXE and NVDA.</span></li>
+          <li><span><strong>High-fidelity validation:</strong> prototypes tested before development.</span></li>
+          <li><span><strong>Drupal 10 migration:</strong> standardised modules and themes for performance and security.</span></li>
+          <li><span><strong>Cloud-native architecture:</strong> aligned with Capita’s enterprise security principles.</span></li>
+          <li><span><strong>Cross-functional governance:</strong> UX, SEO, content and tech decide together.</span></li>
+          <li><span><strong>Agile delivery:</strong> sprints with regular stakeholder feedback loops.</span></li>
+        </ol>
+      </section>
 
-      <h3>Detailed Wireframing</h3>
-      <div class="image-grid">
-        <img src="images/Desktop_-_2.png" alt="Homepage wireframe with sections for highlights, insights, and case studies">
-        <img src="images/hand-scktech-1.png" alt="E-commerce and category page wireframe patterns">
-        <p class="image-grid-caption">Wireframes establishing content hierarchy, navigation structure, and component patterns</p>
-      </div>
+      <section class="case-section" id="process">
+        <p class="label">Design process</p>
+        <h2>A six-phase delivery timeline</h2>
+        <p>About five to six months, balancing strategy, design, build and stakeholder engagement.</p>
+        <div class="wide"><div class="vt"><div><span class="k">1</span><div class="z"><h4><small>Phase 1</small>Discovery</h4><p>Stakeholder interviews, UX audits and technical assessment.</p></div></div><div><span class="k">2</span><div class="z"><h4><small>Phase 2</small>Design &amp; prototyping</h4><p>4–6 weeks of IA, wireframes and high-fidelity prototypes.</p></div></div><div><span class="k">3</span><div class="z"><h4><small>Phase 3</small>Development &amp; integration</h4><p>8–12 weeks building on Drupal 10 and Site Studio.</p></div></div><div><span class="k">4</span><div class="z"><h4><small>Phase 4</small>Content migration &amp; QA</h4><p>3–4 weeks moving and checking content.</p></div></div><div><span class="k">5</span><div class="z"><h4><small>Phase 5</small>UAT &amp; stakeholder review</h4><p>2–3 weeks of acceptance testing and sign-off.</p></div></div><div><span class="k">6</span><div class="z"><h4><small>Phase 6</small>Launch &amp; post-go-live</h4><p>2 weeks of launch support and fixes.</p></div></div></div></div>
+      </section>
 
-      <h3>High-Fidelity Design</h3>
-      <div class="image-showcase">
-        <img src="images/Home-v3_1.png" alt="Final high-fidelity homepage design">
-        <p class="image-showcase-caption">Final homepage design featuring hero video, service pillars, and content modules</p>
-      </div>
-    </section>
+      <section class="case-section" id="audience">
+        <p class="label">Audience</p>
+        <h2>Target audience</h2>
+        <p>Public- and private-sector clients across the UK, Ireland, Germany, Switzerland, India, South Africa, Bulgaria and Poland, plus internal teams and investors.</p>
+        <ol class="numbered">
+          <li><span><strong>Existing clients</strong> already working with Capita.</span></li>
+          <li><span><strong>Prospective clients</strong> exploring outsourcing, digital transformation or CXM.</span></li>
+          <li><span><strong>Industry decision-makers:</strong> procurement leads, operations managers, transformation officers.</span></li>
+          <li><span><strong>Internal stakeholders</strong> using campaign hubs, service plans and documentation.</span></li>
+          <li><span><strong>Investors and shareholders</strong> looking for reports, share price and governance.</span></li>
+        </ol>
+      </section>
 
-    <section class="case-section">
-      <p class="case-section-label">Solution</p>
-      <h2>Design System & Components</h2>
-      <ul>
-        <li><strong>Modular page templates:</strong> 6 flexible templates that could create 50+ page variations</li>
-        <li><strong>Workday integration:</strong> Seamless job search experience embedded within the site</li>
-        <li><strong>Investor portal:</strong> Dedicated section with financial reports and governance info</li>
-        <li><strong>Accessibility built-in:</strong> All components designed to WCAG 2.1 AA standards</li>
-      </ul>
-      <h3>Tools & Technologies</h3>
-      <div class="tools-grid">
-        <span class="tool-tag">Adobe XD</span>
-        <span class="tool-tag">Drupal 9</span>
-        <span class="tool-tag">Workday HRMS</span>
-        <span class="tool-tag">Zeplin</span>
-        <span class="tool-tag">Confluence</span>
-      </div>
-    </section>
+      <section class="case-section" id="roles">
+        <p class="label">Roles</p>
+        <h2>My roles and responsibilities</h2>
+        <div class="roles"><span>Design strategy</span><span>Problem solving</span><span>Information architecture</span><span>Empathy mapping</span><span>Usability testing</span><span>User flow</span><span>Prototyping</span><span>Project management</span><span>User persona</span><span>Wireframes</span><span>User research</span><span>Business analysis</span><span>Visual design</span><span>UI implementation via HTML/CSS</span></div>
+      </section>
 
-    <section class="case-section">
-      <p class="case-section-label">Results</p>
-      <h2>Measurable Impact</h2>
-      <div class="results-grid">
-        <div class="result-card"><div class="result-value">+60%</div><div class="result-label">Task Completion</div></div>
-        <div class="result-card"><div class="result-value">-40%</div><div class="result-label">Support Tickets</div></div>
-        <div class="result-card"><div class="result-value">+35%</div><div class="result-label">Job Conversions</div></div>
-        <div class="result-card"><div class="result-value">-50%</div><div class="result-label">Design-to-Dev Time</div></div>
-        <div class="result-card"><div class="result-value">+25%</div><div class="result-label">Overall Conversions</div></div>
-        <div class="result-card"><div class="result-value">12+</div><div class="result-label">Teams Using DS</div></div>
-      </div>
-      <h3>Recognition</h3>
-      <p>This project earned the <strong>Center of Excellence Award 2022</strong> from Capita PLC.</p>
-    </section>
+      <section class="case-section" id="research">
+        <p class="label">Research</p>
+        <h2>User research</h2>
+        <p>One-to-one interviews, surveys and observation sessions, organised around five themes.</p>
+        <div class="wide"><div class="qa" style="grid-template-columns:repeat(5,minmax(0,1fr));font-size:.95rem"><div><span class="label" style="display:block;margin-bottom:8px">Needs &amp; pain points</span>Why do you visit Capita.com, and what blocks you?</div><div><span class="label" style="display:block;margin-bottom:8px">Navigation</span>Do you prefer browsing by category, search or guided prompts?</div><div><span class="label" style="display:block;margin-bottom:8px">Device &amp; accessibility</span>Which device do you use, and what accessibility features do you wish existed?</div><div><span class="label" style="display:block;margin-bottom:8px">Content</span>Is content tailored to your industry and interests?</div><div><span class="label" style="display:block;margin-bottom:8px">Trust &amp; brand</span>Does the site reflect Capita’s brand, and would you recommend it?</div></div></div>
+      </section>
 
-    <section class="case-section">
-      <p class="case-section-label">Reflection</p>
-      <h2>What I Learned</h2>
-      <ul class="learnings-list">
-        <li><span><strong>Sketch first, pixel later.</strong> The hand-sketching phase was invaluable for rapid stakeholder alignment.</span></li>
-        <li><span><strong>Design systems pay compound returns.</strong> The upfront investment reduced ongoing design work by 50%.</span></li>
-        <li><span><strong>Integration is everything.</strong> The Workday HRMS integration had the biggest impact on recruitment metrics.</span></li>
-      </ul>
-    </section>
-  </div>
+      <section class="case-section" id="card-sorting">
+        <p class="label">Card sorting</p>
+        <h2>How users organise services</h2>
+        <dl class="sort-setup"><div><dt>Participants</dt><dd>20 (10 power + 10 standard)</dd></div><div><dt>Method</dt><dd>Open sort + closed validation</dd></div><div><dt>Cards</dt><dd>8 services, 9 industries, 15+ outcomes</dd></div><div><dt>Tools</dt><dd>Optimal Workshop, UserTesting</dd></div><div><dt>Analysis</dt><dd>Affinity maps, dendrograms</dd></div></dl>
+        <div class="wide"><div class="findings" style="margin-top:24px;grid-template-columns:repeat(3,minmax(0,1fr))"><article><h4>Problem first</h4><p>Most grouped services by business problem (reduce costs, improve CX) rather than service type.</p><p class="stat">65% problem · 25% industry · 10% service</p></article><article><h4>Industry is critical</h4><p>Users wanted industry-specific solutions; government buyers skipped non-government cases.</p><p class="stat">72% used industry as their main filter</p></article><article><h4>Terminology mismatch</h4><p>Service names didn’t match user language (“Improve customer service”).</p><p class="stat">58% confused by current naming</p></article><article><h4>Progressive disclosure</h4><p>Standard users wanted simplicity; power users wanted everything. One size didn’t fit.</p><p class="stat">70% simplified · 30% advanced</p></article><article><h4>Role-based paths</h4><p>B2B: problem → industry → solution. Job seekers: role → culture → benefits. Investors: financials → growth.</p></article><article style="background:var(--color-label);color:#fff"><h4 style="color:#fff">Key insight</h4><p style="color:#e8ecff">Users think in business problems and industries, not service features. Navigation should match that.</p></article></div></div>
+      </section>
+
+      <section class="case-section" id="competitors">
+        <p class="label">Market</p>
+        <h2>Competitor and reference analysis</h2>
+        <p>Competitor and best-practice sites were compared on visual design, IA, content, SEO and accessibility, alongside Capita’s internal audits.</p>
+        <div class="wide"><div class="table-wrap"><table><thead><tr><th>Reference</th><th>Strengths</th><th>Capita.com gap</th><th>Design recommendation</th></tr></thead><tbody><tr><td>Infosys Cortex</td><td>Interactive feature cards, hover effects, dark-mode transitions</td><td>No hover interactivity or visual depth</td><td class="us">Feature cards with hover transitions and dark styling</td></tr><tr><td>Finbuzz theme</td><td>Animated cards with CTA reveal on hover</td><td>Static cards with little engagement</td><td class="us">Animated service cards with CTA reveal</td></tr><tr><td>Orken theme</td><td>Statistics counters, vertical tab layouts</td><td>No dynamic counters or tabbed content</td><td class="us">Animated counters and vertical tabs</td></tr><tr><td>Tesla / DHL</td><td>Lazy loading, performance tuning</td><td>Heavy images, slow rendering</td><td class="us">Lazy loading and optimised assets</td></tr><tr><td>Capita internal audit</td><td>Drupal upgrades, accessibility tools, cookie fixes</td><td>Inconsistent components, outdated modules</td><td class="us">Upgrade Drupal core, unify components</td></tr><tr><td>Capita UI review</td><td>Detailed spacing, font and alignment issues</td><td>Excessive spacing, inconsistent type, broken forms</td><td class="us">Standardise spacing, align CTAs, fix forms</td></tr><tr><td>Capita global search</td><td>Faceted filters, auto-suggest, AJAX filtering</td><td>Basic search, no filters</td><td class="us">Search with filters, suggestions and AJAX</td></tr></tbody></table></div></div>
+      </section>
+
+      <section class="case-section" id="personas">
+        <p class="label">Define</p>
+        <h2>User personas</h2>
+        <p>Three personas from Capita’s pension-services audience, from a first-time registrant to a retired beneficiary.</p>
+        <div class="wide"><div class="people"><div class="person"><div class="id"><img src="images/capita/emma.png" alt="Emma Martin" loading="lazy"><h4>Emma Martin</h4><span>29 · Early Career Teacher<br>Local Education Authority · Manchester</span></div><div class="bio"><h5>Biography</h5><p>A newly qualified teacher in a public school. Tech-savvy but unfamiliar with pension systems; she values clarity and expects mobile-friendly access.</p></div><div><h5>Needs</h5><ul><li>Clear onboarding</li><li>Mobile-friendly access</li><li>Simple language</li></ul></div><div><h5>Pain points</h5><ul><li>Confusing registration process</li><li>Dense content</li></ul></div><div><h5>Goals</h5><ul><li>Register for her pension</li><li>Understand benefits</li><li>Track contributions</li></ul></div></div><div class="person"><div class="id"><img src="images/capita/david.png" alt="David Hedson" loading="lazy"><h4>David Hedson</h4><span>58 · Senior Administrator<br>NHS Trust · Birmingham</span></div><div class="bio"><h5>Biography</h5><p>Preparing for retirement. Cautious with digital platforms; he prefers straightforward, secure interfaces and values trust in financial services.</p></div><div><h5>Needs</h5><ul><li>Secure, simple navigation</li><li>Reliable benefit estimates</li><li>Accessibility support</li></ul></div><div><h5>Pain points</h5><ul><li>Difficulty navigating forms</li><li>Accessibility issues</li></ul></div><div><h5>Goals</h5><ul><li>Estimate retirement benefits</li><li>Use calculators</li><li>Update personal details</li></ul></div></div><div class="person"><div class="id"><img src="images/capita/margaret.png" alt="Margaret Barnet" loading="lazy"><h4>Margaret Barnet</h4><span>67 · Pension Beneficiary<br>Retired civil servant · Bristol</span></div><div class="bio"><h5>Biography</h5><p>Uses Capita.com to manage her pension, usually on a tablet. She likes clear instructions and dislikes frequent password resets.</p></div><div><h5>Needs</h5><ul><li>Easy login</li><li>Clear instructions</li><li>Tablet-friendly design</li></ul></div><div><h5>Pain points</h5><ul><li>Complex login process</li><li>Frustration with passcodes</li></ul></div><div><h5>Goals</h5><ul><li>View benefit statements</li><li>Track payments</li><li>Contact support</li></ul></div></div></div></div>
+      </section>
+
+      <section class="case-section" id="recommendations">
+        <p class="label">Recommendations</p>
+        <h2>Top priority recommendations</h2>
+        <p>Based on research and design testing; each one has a predicted impact we agreed to track.</p>
+        <div class="wide"><div class="recs"><article><h4>Progressive disclosure navigation</h4><p>Show 5–6 primary services by default; specialist services sit in expandable sections.</p><span class="imp">Predicted: −75% navigation time</span></article><article><h4>Problem-based IA</h4><p>Organise by user problems: “Reduce costs”, “Improve CX”, “Scale operations”.</p><span class="imp">Predicted: −57% find time, −86% errors</span></article><article><h4>Progressive forms</h4><p>Three essential fields first, then conditional fields based on answers.</p><span class="imp">Predicted: −40% abandonment</span></article><article><h4>Role-based homepage</h4><p>A role selector (B2B, careers, investor, news) with tailored content paths.</p><span class="imp">Predicted: +65% engagement</span></article><article><h4>Problem → solution → proof → action</h4><p>Every service page follows one clear narrative arc with case studies.</p><span class="imp">Predicted: +188% form submissions</span></article><article><h4>10 more recommendations</h4><p>Industry landing pages, structured error messages, homepage hierarchy, quantified results, design system and WCAG AA.</p><span class="imp">Predicted: +133% total conversions</span></article></div></div>
+      </section>
+
+      <section class="case-section" id="ia">
+        <p class="label">Ideate</p>
+        <h2>Information architecture</h2>
+        <p>A rebuilt sitemap with problem-based services, industry pages and role-based entry points, plus global search and accessibility tools on every page.</p>
+        <div class="wide"><div class="tree"><div class="root">Capita.com</div><div class="stem"></div><div class="row"><div class="col"><div class="h">Homepage</div><div class="l">Hero banners</div><div class="l">Featured services</div><div class="l">News slider</div></div><div class="col"><div class="h">About us</div><div class="l">Executive committee</div><div class="l">Company overview</div><div class="l">Policy &amp; legal pages</div></div><div class="col"><div class="h">Industries</div><div class="l">Industry solutions</div><div class="l">Service templates</div><div class="l">Breadcrumb navigation</div></div><div class="col"><div class="h">Services</div><div class="l">Problem-based groups</div><div class="l">Expandable specialist services</div></div><div class="col"><div class="h">Insights</div><div class="l">Thought leadership</div><div class="l">Author cards</div><div class="l">Tag navigation</div></div><div class="col"><div class="h">News &amp; events</div><div class="l">Newsroom</div><div class="l">Events</div></div><div class="col"><div class="h">Careers</div><div class="l">Workday job listings</div><div class="l">Culture &amp; benefits</div></div><div class="col"><div class="h">Contact</div><div class="l">Contact forms</div><div class="l">Auto-predict fields</div><div class="l">Location-based routing</div></div></div><div class="stem" style="margin-top:14px"></div><div class="row" style="grid-template-columns:repeat(4,minmax(110px,1fr));min-width:0;max-width:640px"><div class="col"><div class="h">Search</div><div class="l">Internal search</div><div class="l">Filters &amp; suggestions</div></div><div class="col"><div class="h">Accessibility tools</div><div class="l">Recite Me toolbar</div><div class="l">Customisable views</div></div><div class="col"><div class="h">Global footer</div><div class="l">Sitemap links</div><div class="l">Legal notices</div></div><div class="col"><div class="h">Investors</div><div class="l">Annual reports</div><div class="l">Share price</div></div></div></div></div>
+      </section>
+
+      <section class="case-section" id="sketches">
+        <p class="label">Sketch</p>
+        <h2>Paper sketching</h2>
+        <p>Quick sketches across desktop, tablet and mobile settled the layout grid and how components stack before anything went into a design tool.</p>
+        <div class="wide"><img class="photo" style="margin-top:0;background:#fff" src="images/capita/sketch.png" alt="Paper sketches of the Capita.com home page at desktop, tablet and mobile sizes" loading="lazy"></div>
+      </section>
+
+      <section class="case-section" id="wireframes">
+        <p class="label">Low-fidelity wireframes</p>
+        <h2>Greyscale wireframes at three breakpoints</h2>
+        <p>After paper sketching, each breakpoint was wireframed in greyscale with the same sections, order and components as the final design: desktop, tablet and mobile. Teams agreed content hierarchy and component behaviour before any brand styling.</p>
+        <div class="wide"><div class="resp"><figure><figcaption>Desktop · 1920 px</figcaption><div class="wf"><div class="bar" style="background:#c4c4bf;border-bottom-color:#777"><span class="t l">▌Capita</span><div class="r sp" style="gap:8px"><span class="s" style="color:#222">Industries ▾</span><span class="s" style="color:#222">Expertise ▾</span><span class="s" style="color:#222">Insights &amp; News ▾</span><span class="s" style="color:#222">About us ▾</span><span class="s" style="color:#222">Careers ▾</span><span class="s" style="color:#222">Investors ▾</span><span class="ic"></span></div></div><div class="pad" style="background:#c4c4bf;grid-template-columns:1.2fr 1fr;align-items:center;padding:16px 4%;gap:12px"><div class="st" style="gap:6px;border-left:3px solid #555;padding-left:8px"><span class="t xl">Shaping tomorrow together towards technology &amp; innovation</span><i></i><i class="w8"></i><div class="r"><span class="btn">Discover Capita More ↗</span><span class="btn">Full Year 2021 Annual Report ↗</span></div><div class="r" style="gap:3px"><span class="dot"></span><span class="dot" style="background:#aaa"></span><span class="dot" style="background:#aaa"></span></div></div><div class="img" style="aspect-ratio:1.4/1;border:none"></div></div>
+<div class="pad" style="padding:12px 4%;gap:7px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Industries We Serve</span><span class="t l">We Provide Tailored Solutions For Each Industry</span></div><i></i><i class="w8"></i><div class="r" style="align-items:center"><div class="g3 f"><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Business Operations</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">People Solutions</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Government Services</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div></div><div class="st" style="gap:4px;flex:none"><span class="btn">‹</span><span class="btn">›</span></div></div><span class="btn" style="justify-self:start">View All Industries ↗</span></div>
+<div class="pad band" style="padding:12px 4%;gap:7px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Case Studies</span><span class="t l">See How We Deliver On The Power of Digital</span></div><i class="w8"></i><div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:6px"><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">People Solutions</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Education Sector</span></div></div><div class="g3"><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Finance Sector</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Health Care Sector</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Software &amp; Technology</span></div></div><span class="btn" style="justify-self:start">View All Case Studies ↗</span></div>
+<div class="pad" style="background:#c4c4bf;padding:12px 4%;gap:7px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Services We Provide</span><span class="t l">Areas of Services For Each Sectors</span></div><i class="w8"></i><div class="r"><div class="g3 f"><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Education and Learning</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Financial Services</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Telecommunications</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div></div><div class="st" style="gap:4px;flex:none"><span class="btn">‹</span><span class="btn">›</span></div></div><span class="btn" style="justify-self:start">View All Services ↗</span></div>
+<div class="pad" style="padding:12px 4%;gap:7px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Key Points From Leadership</span><span class="t l">Key Features of Leadership and Broadcast Story</span></div><div class="g2" style="gap:0;border:1.2px solid #999"><div class="st" style="gap:4px;padding:8px"><span class="t ">To know about the our Leadership thoughts and future planning please contact us online</span><i></i><i></i><i></i><i class="w6"></i><div class="r"><span class="btn">Get in Touch ↗</span><span class="s">or</span><span class="t ">+44 (0) 20 7799 1525</span></div></div><div class="img" style="border:none;display:grid;place-items:center"><span class="btn p">▶</span></div></div></div>
+<div class="pad band" style="padding:12px 4%;gap:7px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Insights and Thinking</span><span class="t l">Capita Latest Insights and Thinking</span></div><div class="g3"><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="chip" style="justify-self:start">INSTITUTE</span><span class="t ">The great opportunity? Pulse 1: March 2021</span><span class="s">By Capita</span><i></i><span class="s">☐ 20/09/2021 &nbsp; ◷ 5 mins read</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="chip" style="justify-self:start">DIGITAL</span><span class="t ">The great opportunity? Pulse 1: March 2021</span><span class="s">By Capita</span><i></i><span class="s">☐ 20/09/2021 &nbsp; ◷ 5 mins read</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="chip" style="justify-self:start">CENTRAL GOVERNMENT</span><span class="t ">The great opportunity? Pulse 1: March 2021</span><span class="s">By Capita</span><i></i><span class="s">☐ 20/09/2021 &nbsp; ◷ 5 mins read</span></div></div><span class="btn" style="justify-self:start">View All Insights ↗</span></div>
+<div class="pad" style="padding:12px 4%;gap:7px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Capita News</span><span class="t l">Our Latest News and Updates</span></div><div class="g2" style="align-items:start"><div class="g2"><div class="img" style="aspect-ratio:1/1.1"></div><div class="img" style="aspect-ratio:1/1.1"></div></div><div class="st" style="gap:6px"><div class="r" style="align-items:start"><div class="img n" style="width:34%;aspect-ratio:1.4/1"></div><div class="st f"><span class="s">September 15, 2021 · 5 mins read</span><span class="t ">The spending review lifelong learning…</span><i></i><span class="s"><u>Read More</u></span></div></div><div class="r" style="align-items:start"><div class="img n" style="width:34%;aspect-ratio:1.4/1"></div><div class="st f"><span class="s">September 15, 2021 · 5 mins read</span><span class="t ">The spending review lifelong…</span><i></i><span class="s"><u>Read More</u></span></div></div></div></div><span class="btn" style="justify-self:start">View All News ↗</span></div>
+<div class="pad" style="background:#c4c4bf;padding:14px 6%;gap:10px"><div class="r" style="align-items:center;gap:12px"><div class="img n" style="width:70px;aspect-ratio:1.3/1;border-style:dashed"></div><div class="st f" style="gap:5px"><span class="t l">Subscribe Your Newsletter Directly in Your Inbox</span><div class="r"><span class="fld f">Full Name*</span><span class="fld f">Email Address*</span><span class="btn">Get Free Newsletter</span></div></div></div><div class="hr" style="border-color:#999"></div><div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:8px"><div class="st"><span class="t l">▌Capita</span><i></i><i></i><i class="w6"></i></div><div class="st"><span class="t ">Quick Links</span><span class="s">Careers</span><span class="s">Investors</span><span class="s">Responsible business</span></div><div class="st"><span class="t ">Who We Are</span><span class="s">About Capita</span><span class="s">Industries We Serve</span><span class="s">Services</span><span class="s">Newsroom</span></div><div class="st"><span class="t ">Legal</span><span class="s">Legal notice</span><span class="s">Privacy notice</span><span class="s">Cookies</span><span class="s">Accessibility</span></div><div class="st"><span class="t ">Follow us</span><span class="s">Twitter</span><span class="s">Facebook</span><span class="s">LinkedIn</span></div></div><div class="r"><span class="s">© 2023 Copyright Capita Software. All Rights Reserved.</span><span class="s" style="margin-left:auto">Privacy Policy | Terms &amp; Conditions</span></div></div></div></figure><figure><figcaption>Tablet · 768 px</figcaption><div class="wf" style="font-size:8.5px"><div class="bar" style="background:#c4c4bf;padding:6px 8px"><span class="t ">▌Capita</span><div class="r sp" style="gap:4px"><span class="ic"></span><span class="ic"></span></div></div><div class="pad" style="background:#c4c4bf;gap:5px"><span class="t l">Shaping tomorrow together towards technology &amp; innovation</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Discover Capita More ↗</span><span class="btn" style="justify-self:start">Full Year 2021 Annual Report ↗</span><div class="r" style="gap:3px;justify-content:center"><span class="dot"></span><span class="dot" style="background:#aaa"></span><span class="dot" style="background:#aaa"></span></div></div><div class="pad" style="gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Industries We Serve</span><span class="t l">We Provide Tailored Solutions For Each Industry</span></div><i></i><i class="w8"></i><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Business Operations</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div><div class="r" style="gap:3px;justify-content:center"><span class="dot"></span><span class="dot" style="background:#ccc"></span><span class="dot" style="background:#ccc"></span></div><span class="btn" style="justify-self:start">View All Industries ↗</span></div><div class="pad band" style="gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Case Studies</span><span class="t l">See How We Deliver On The Power of Digital</span></div><i class="w8"></i><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">People Solutions</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Education Sector</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Finance Sector</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Health Care Sector</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Software &amp; Technology</span></div><span class="btn" style="justify-self:start">View All Case Studies ↗</span></div><div class="pad" style="background:#c4c4bf;gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Services We Provide</span><span class="t l">Areas of Services For Each Sectors</span></div><i></i><i class="w8"></i><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Education and Learning</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div><span class="btn" style="justify-self:start">View All Services ↗</span></div><div class="pad" style="gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Key Points From Leadership</span><span class="t l">Key Features of Leadership</span></div><div class="cd"><span class="t ">To know about the our Leadership thoughts</span><div class="img" style="aspect-ratio:1.6/1;display:grid;place-items:center"><span class="btn p">▶</span></div><i></i><i></i><i class="w6"></i><span class="btn" style="justify-self:start">Get in Touch ↗</span></div></div><div class="pad band" style="gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Insights and Thinking</span><span class="t l">Capita Latest Insights</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="chip" style="justify-self:start">INSTITUTE</span><span class="t ">The great opportunity? Pulse 1</span><i></i></div><span class="btn" style="justify-self:start">View All Insights ↗</span></div><div class="pad" style="background:#c4c4bf;gap:5px"><span class="t ">Subscribe Your Newsletter</span><span class="fld">Full Name*</span><span class="fld">Email Address*</span><span class="btn" style="justify-self:start">Get Free Newsletter</span><div class="hr" style="border-color:#999"></div><span class="t ">▌Capita</span><i></i><i class="w8"></i><div class="r"><span class="s" style="color:#222">Quick Links</span><span class="s" style="margin-left:auto">›</span></div><div class="r"><span class="s" style="color:#222">Who We Are</span><span class="s" style="margin-left:auto">›</span></div><div class="r"><span class="s" style="color:#222">Legal</span><span class="s" style="margin-left:auto">›</span></div><div class="r"><span class="ic"></span><span class="ic"></span><span class="ic"></span></div></div></div></figure><figure><figcaption>Mobile · 460 px</figcaption><div class="wf" style="font-size:7.5px"><div class="bar" style="background:#c4c4bf;padding:6px 8px"><span class="t ">▌Capita</span><div class="r sp" style="gap:4px"><span class="ic"></span><span class="ic"></span></div></div><div class="pad" style="background:#c4c4bf;gap:5px"><span class="t l">We believe to simplify the links between businesses &amp; customers</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Discover Capita More ↗</span><span class="btn" style="justify-self:start">Full Year 2021 Annual Report ↗</span><div class="r" style="gap:3px;justify-content:center"><span class="dot"></span><span class="dot" style="background:#aaa"></span><span class="dot" style="background:#aaa"></span></div></div><div class="pad" style="gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Industries We Serve</span><span class="t l">We Provide Tailored Solutions For Each Industry</span></div><i></i><i class="w8"></i><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Business Operations</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div><div class="r" style="gap:3px;justify-content:center"><span class="dot"></span><span class="dot" style="background:#ccc"></span><span class="dot" style="background:#ccc"></span></div><span class="btn" style="justify-self:start">View All Industries ↗</span></div><div class="pad band" style="gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Case Studies</span><span class="t l">See How We Deliver On The Power of Digital</span></div><i class="w8"></i><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">People Solutions</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Education Sector</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Finance Sector</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Health Care Sector</span></div><div class="img" style="aspect-ratio:1.5/1;display:grid;align-content:end;padding:4px"><span class="t" style="background:#fbfbf9;justify-self:start;padding:0 3px">Software &amp; Technology</span></div><span class="btn" style="justify-self:start">View All Case Studies ↗</span></div><div class="pad" style="background:#c4c4bf;gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Services We Provide</span><span class="t l">Areas of Services For Each Sectors</span></div><i></i><i class="w8"></i><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="t ">Education and Learning</span><i></i><i class="w8"></i><span class="btn" style="justify-self:start">Read More ↗</span></div><span class="btn" style="justify-self:start">View All Services ↗</span></div><div class="pad" style="gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Key Points From Leadership</span><span class="t l">Key Features of Leadership</span></div><div class="cd"><span class="t ">To know about the our Leadership thoughts</span><div class="img" style="aspect-ratio:1.6/1;display:grid;place-items:center"><span class="btn p">▶</span></div><i></i><i></i><i class="w6"></i><span class="btn" style="justify-self:start">Get in Touch ↗</span></div></div><div class="pad band" style="gap:6px"><div class="st" style="gap:1px;border-left:3px solid #888;padding-left:5px"><span class="s">Insights and Thinking</span><span class="t l">Capita Latest Insights</span></div><div class="cd" style="padding:4px"><div class="img" style="aspect-ratio:1.6/1"></div><span class="chip" style="justify-self:start">INSTITUTE</span><span class="t ">The great opportunity? Pulse 1</span><i></i></div><span class="btn" style="justify-self:start">View All Insights ↗</span></div><div class="pad" style="background:#c4c4bf;gap:5px"><span class="t ">Subscribe Your Newsletter</span><span class="fld">Full Name*</span><span class="fld">Email Address*</span><span class="btn" style="justify-self:start">Get Free Newsletter</span><div class="hr" style="border-color:#999"></div><span class="t ">▌Capita</span><i></i><i class="w8"></i><div class="r"><span class="s" style="color:#222">Quick Links</span><span class="s" style="margin-left:auto">›</span></div><div class="r"><span class="s" style="color:#222">Who We Are</span><span class="s" style="margin-left:auto">›</span></div><div class="r"><span class="s" style="color:#222">Legal</span><span class="s" style="margin-left:auto">›</span></div><div class="r"><span class="ic"></span><span class="ic"></span><span class="ic"></span></div></div></div></figure></div></div>
+      </section>
+
+      <section class="case-section" id="design">
+        <p class="label">Design</p>
+        <h2>High-fidelity screens</h2>
+        <p>Capita navy and cyan, bold section labels, image-led case studies and a newsletter band, built as reusable Site Studio components across every breakpoint.</p>
+        <div class="wide"><div class="resp"><figure><figcaption>Desktop</figcaption><img src="images/capita/desk.png" alt="Capita.com desktop home page" loading="lazy"></figure><figure><figcaption>Tablet</figcaption><img src="images/capita/tab.png" alt="Capita.com tablet home page" loading="lazy"></figure><figure><figcaption>Mobile</figcaption><img src="images/capita/mob.png" alt="Capita.com mobile home page" loading="lazy"></figure></div></div>
+      </section>
+
+      <section class="case-section" id="rationale">
+        <p class="label">Rationale</p>
+        <h2>Design rationale and decisions</h2>
+        <p>Four decisions that shaped the redesign, each backed by research.</p>
+        <div class="wide"><div class="findings"><article><h4>Problem-based vs feature-based navigation</h4><p><b>Challenge:</b> Service names like “Customer Experience Management” didn’t match how users talk (“How do we reduce costs?”).</p><p><b>Evidence:</b> 65% grouped by problem; 58% confused by current names.</p><p><b>Decision:</b> Renamed navigation in user language, e.g. “Improve customer experience”.</p></article><article><h4>Progressive disclosure for services</h4><p><b>Challenge:</b> 8 services + 9 industries = 40+ visible options, causing decision paralysis.</p><p><b>Evidence:</b> 70% preferred simplified navigation.</p><p><b>Decision:</b> 5–6 primary services by default; specialist services expandable.</p></article><article><h4>Progressive forms over long forms</h4><p><b>Challenge:</b> 7–8 field forms caused about 70% abandonment.</p><p><b>Evidence:</b> A/B benchmarks: progressive forms cut abandonment ~40%.</p><p><b>Decision:</b> Three essential fields first; conditional fields appear as needed.</p></article><article><h4>Role-based homepage segmentation</h4><p><b>Challenge:</b> Job seekers, B2B buyers and investors have very different goals.</p><p><b>Evidence:</b> Card sorting revealed different mental models by role.</p><p><b>Decision:</b> Role selector in the hero, with tailored content and CTAs.</p></article></div></div>
+      </section>
+
+      <section class="case-section" id="principles">
+        <p class="label">Principles</p>
+        <h2>Design laws applied</h2>
+        <p>UX laws that informed decisions where research alone didn’t settle the choice.</p>
+        <div class="wide"><div class="laws"><article><h4><small>Fewer choices</small>Hick’s Law</h4><p><b>Applied:</b> Visible services reduced from 8 to 5–6.</p><p><b>Impact:</b> Faster decisions.</p></article><article><h4><small>Familiar models</small>Jakob’s Law</h4><p><b>Applied:</b> Problem-based language that matches how users think.</p><p><b>Impact:</b> Less hesitation.</p></article><article><h4><small>Limited memory</small>Cognitive Load Theory</h4><p><b>Applied:</b> Progressive disclosure lowers information density.</p><p><b>Impact:</b> Fewer form drop-offs.</p></article><article><h4><small>Grouping</small>Gestalt principles</h4><p><b>Applied:</b> Services grouped by problem with consistent visual treatment.</p><p><b>Impact:</b> Clearer hierarchy and navigation.</p></article><article><h4><small>Distinct = memorable</small>Von Restorff Effect</h4><p><b>Applied:</b> CTAs stand out through colour, size and position.</p><p><b>Impact:</b> Higher CTA engagement.</p></article><article><h4><small>5–7 items</small>Miller’s Law</h4><p><b>Applied:</b> No more than about seven visible options at once.</p><p><b>Impact:</b> Less cognitive friction.</p></article></div></div>
+      </section>
+
+      <section class="case-section" id="accessibility">
+        <p class="label">Accessibility</p>
+        <h2>WCAG 2.1 AA, aligned with UK GDS</h2>
+        <p>Accessibility was audited at the start and given a target for launch, with a pre-launch checklist for every template.</p>
+        <div class="wide"><div class="table-wrap"><table><thead><tr><th>Standard</th><th>Current</th><th>Target</th><th>Improvement</th></tr></thead><tbody><tr><td>WCAG 2.1 Level AA</td><td>23%</td><td>95%+</td><td class="us">+312%</td></tr><tr><td>Keyboard navigation</td><td>60%</td><td>100%</td><td class="us">+67%</td></tr><tr><td>Screen-reader support</td><td>40%</td><td>100%</td><td class="us">+150%</td></tr><tr><td>Colour contrast</td><td>50%</td><td>100%</td><td class="us">+100%</td></tr></tbody></table></div><div class="wcag" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-top:20px"><article><h4>Visual</h4><ul><li>Colour contrast ≥ 4.5:1</li><li>Visible focus indicators</li><li>No colour-only information</li><li>Text resizable to 200%</li></ul></article><article><h4>Structural</h4><ul><li>Proper heading hierarchy</li><li>Landmark regions</li><li>Associated form labels</li><li>Errors linked to fields</li></ul></article><article><h4>Keyboard &amp; navigation</h4><ul><li>Every element Tab-accessible</li><li>Logical tab order</li><li>No keyboard traps</li><li>Skip links</li></ul></article><article><h4>Screen reader &amp; ARIA</h4><ul><li>ARIA labels on buttons</li><li>aria-live for dynamic content</li><li>Descriptive link text</li><li>Page structure announced</li></ul></article></div></div>
+      </section>
+
+      <section class="case-section" id="results">
+        <p class="label">Results</p>
+        <h2>Outcomes and business impact</h2>
+        <p>Results of the Capita.com redesign and the design library behind it.</p>
+        <div class="results" style="grid-template-columns:repeat(4,minmax(0,1fr))"><div><span class="v">+40%</span><span class="l">Usability scores</span></div><div><span class="v">−25%</span><span class="l">Navigation time</span></div><div><span class="v">+35%</span><span class="l">Application conversion (Workday)</span></div><div><span class="v">−60%</span><span class="l">Design inconsistency, 15+ designers</span></div></div>
+        <div class="wide"><p class="label" style="margin:32px 0 12px">Launch targets agreed with stakeholders</p><div class="grid-2" style="margin-top:24px"><div><div class="table-wrap"><table><thead><tr><th>Engagement (30 days)</th><th>Current</th><th>Target</th><th>Change</th></tr></thead><tbody><tr><td>Avg session duration</td><td>2:45</td><td>4:15</td><td class="us">+70%</td></tr><tr><td>Pages per session</td><td>2.0</td><td>3.5</td><td class="us">+75%</td></tr><tr><td>Bounce rate</td><td>56%</td><td>35%</td><td class="us">−37%</td></tr></tbody></table></div></div><div><div class="table-wrap"><table><thead><tr><th>Conversion (90 days)</th><th>Current</th><th>Target</th><th>Change</th></tr></thead><tbody><tr><td>Contact submissions</td><td>150/mo</td><td>350/mo</td><td class="us">+133%</td></tr><tr><td>Form completion</td><td>52%</td><td>75%</td><td class="us">+44%</td></tr><tr><td>Demo requests</td><td>20/mo</td><td>65/mo</td><td class="us">+225%</td></tr></tbody></table></div></div></div></div>
+      </section>
+
+      <section class="case-section" id="closing">
+        <p class="label">Closing</p>
+        <h2>Key takeaways</h2>
+        <ul class="learn">
+          <li><span><strong>Low-code at enterprise scale:</strong> built on Acquia Drupal with Site Studio for modular themes and custom components.</span></li>
+          <li><span><strong>Connected content:</strong> Workday powers live job listings, and REST APIs bring in external data.</span></li>
+          <li><span><strong>One design system:</strong> Adobe XD and ZeroHeight keep components, colour, type and logo usage consistent, though the documentation still needs work.</span></li>
+          <li><span><strong>New components:</strong> navigation blocks, homepage slider and banners, and better “Get in touch” and case study pages.</span></li>
+          <li><span><strong>Shared ownership:</strong> UX, content strategists, writers and SEO engineers worked together for consistency and discoverability.</span></li>
+        </ul>
+        <div class="tools"><span>Adobe XD</span><span>Photoshop</span><span>Illustrator</span><span>Figma</span><span>Miro</span><span>Acquia Drupal</span><span>Site Studio</span><span>ZeroHeight</span><span>Azure DevOps</span><span>Jira</span><span>AXE</span><span>NVDA</span><span>Microsoft 365 Copilot</span></div>
+      </section>
+  </main></div>
+
+  <div class="thanks"><h3>Thanks for reading</h3><p>Questions or feedback? I’d love to hear them: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></p></div>
 
   <div class="next-project">
-    <p>Next Case Study</p>
-    <h3>Axelos UK Government Platform</h3>
-    <a href="case-study-axelos.html" class="btn-primary">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <p>Next case study</p>
+    <h3>AbsenceSoft: Medical Leave &amp; Accommodation Platform</h3>
+    <a href="case-study-absencesoft.html" class="btn-primary">View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
-
+  <footer><span>© 2026 Yogesh Malik · Get in touch: <a href="mailto:yogeshmalikbe@gmail.com">yogeshmalikbe@gmail.com</a></span><span><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></span></footer>
   <script>
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
-    scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    const btn = document.getElementById('scrollToTop'), bar = document.getElementById('progress');
+    const links = [...document.querySelectorAll('.toc a')];
+    const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      btn.classList.toggle('visible', h.scrollTop > 300);
+      let i = secs.findLastIndex(s => s && s.getBoundingClientRect().top < 160);
+      links.forEach((a, j) => a.classList.toggle('active', j === i));
+    });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/modal.js" defer></script>
 </body>
 </html>

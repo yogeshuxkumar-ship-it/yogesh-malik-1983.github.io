@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--
+  REUSABLE CASE-STUDY TEMPLATE: Yogesh Malik portfolio
+  Duplicate this file, rename it (case-study-<project>.html) and replace the content
+  inside each block marked  ▸ EDIT. Delete any optional section you don't need.
+  Section order: Header → Hero image → Snapshot → TL;DR → Context → Domain landscape →
+  Research → Insights → Principles → Solution → Accessibility & trust → Results →
+  My role → Learnings → Next project.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ▸ EDIT: title + description -->
+  <title>Health &amp; Benefits: Medical Leave and Accommodation Platform | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Healthcare and benefits UX case study: simplifying medical leave, ADA accommodation and PWFA workflows for a multi-tenant SaaS platform used by HR and benefits teams.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0a0a0a;
+      --color-bg-elevated: #141414;
+      --color-bg-card: #1a1a1a;
+      --color-text: #f5f5f5;
+      --color-text-muted: #a3a3a3;
+      --color-accent: #c9ff57;
+      --color-accent-dim: rgba(201, 255, 87, 0.15);
+      --color-border: #2a2a2a;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Instrument Sans', -apple-system, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--color-bg); color: var(--color-text); line-height: 1.7; }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { color: var(--color-text); }
+
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--color-accent); z-index: 1001; }
+    .scroll-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: var(--color-accent); color: var(--color-bg); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out-expo); z-index: 9998; box-shadow: 0 4px 20px rgba(201, 255, 87, 0.3); }
+    .scroll-to-top.visible { opacity: 1; visibility: visible; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%); }
+    .nav-back { display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); font-weight: 500; }
+    .nav-back:hover { color: var(--color-accent); }
+    .nav-links { display: flex; gap: 24px; font-size: 0.9rem; }
+    .nav-links a { color: var(--color-text-muted); }
+    .nav-links a:hover { color: var(--color-text); }
+
+    .case-header { padding: 160px 48px 64px; max-width: 1100px; margin: 0 auto; }
+    .case-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+    .case-tag { background: var(--color-accent-dim); color: var(--color-accent); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+    .case-tag.outline { background: transparent; border: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .case-header h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 24px; text-wrap: balance; }
+    .case-header h1 em { color: var(--color-accent); }
+    .case-intro { font-size: 1.25rem; color: var(--color-text-muted); max-width: 760px; text-wrap: pretty; }
+
+    .hero-image { max-width: 1200px; margin: 0 auto 64px; padding: 0 48px; }
+    .hero-image figure { border-radius: 24px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .hero-image img { width: 100%; height: auto; display: block; }
+    figcaption { font-size: 0.85rem; color: var(--color-text-muted); padding: 14px 20px; border-top: 1px solid var(--color-border); }
+
+    .snapshot { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--color-border); max-width: 1104px; margin: 0 auto 96px; border-radius: 16px; overflow: hidden; }
+    .snapshot div { background: var(--color-bg-card); padding: 28px 22px; }
+    .snapshot dt { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .snapshot dd { font-weight: 600; line-height: 1.4; }
+
+    .layout { max-width: 1104px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 64px; }
+    .toc { position: sticky; top: 120px; align-self: start; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; }
+    .toc a { color: var(--color-text-muted); border-left: 2px solid var(--color-border); padding-left: 14px; transition: color .2s, border-color .2s; }
+    .toc a:hover, .toc a.active { color: var(--color-accent); border-color: var(--color-accent); }
+
+    .case-section { margin-bottom: 96px; scroll-margin-top: 120px; }
+    .label { font-size: 0.8rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .case-section h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.15; margin-bottom: 24px; text-wrap: balance; }
+    .case-section h3 { font-size: 1.15rem; margin: 40px 0 16px; }
+    .case-section p { color: var(--color-text-muted); margin-bottom: 20px; font-size: 1.05rem; text-wrap: pretty; }
+    .case-section p strong, .case-section li strong { color: var(--color-text); }
+
+    .tldr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tldr div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; }
+    .tldr h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 10px; }
+    .tldr p { font-size: 0.95rem; margin: 0; }
+
+    .problem { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.3; color: var(--color-text); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 32px 0; margin: 32px 0; }
+    .problem span { color: var(--color-accent); font-style: italic; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 16px; padding: 24px; transition: border-color .3s; }
+    .card:hover { border-color: rgba(201, 255, 87, 0.4); }
+    .card h4 { margin-bottom: 8px; font-size: 1.02rem; }
+    .card p { font-size: 0.95rem; margin: 0; }
+    .card .k { font-family: var(--font-display); font-size: 1.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 12px; display: block; }
+
+    .reg { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .reg div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding: 18px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .reg div:last-child { border-bottom: none; }
+    .reg b { color: var(--color-accent); font-weight: 600; }
+    .reg span { color: var(--color-text-muted); font-size: 0.95rem; }
+
+    .persona { display: flex; flex-direction: column; gap: 10px; }
+    .persona .role { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+    .persona ul { list-style: none; display: flex; flex-direction: column; gap: 6px; color: var(--color-text-muted); font-size: 0.92rem; }
+    .persona li::before { content: ',  '; color: var(--color-accent); }
+
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 24px 0; counter-reset: s; }
+    .flow div { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; padding: 20px; counter-increment: s; }
+    .flow div::before { content: counter(s, decimal-leading-zero); display: block; font-family: var(--font-display); color: var(--color-accent); font-size: 1.4rem; margin-bottom: 8px; }
+    .flow h4 { font-size: 0.98rem; margin-bottom: 6px; }
+    .flow p { font-size: 0.88rem; margin: 0; }
+
+    .shot { margin: 32px 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .shot img { width: 100%; display: block; }
+
+    .before-after { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+    .before-after div { border-radius: 16px; padding: 24px; border: 1px solid var(--color-border); background: var(--color-bg-card); }
+    .before-after div.after { border-color: rgba(201, 255, 87, 0.4); }
+    .before-after h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; color: var(--color-text-muted); }
+    .before-after .after h4 { color: var(--color-accent); }
+    .before-after ul { list-style: none; display: flex; flex-direction: column; gap: 8px; color: var(--color-text-muted); font-size: 0.95rem; }
+
+    .results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--color-border); border-radius: 16px; overflow: hidden; margin: 24px 0; }
+    .results div { background: var(--color-bg-card); padding: 32px 24px; }
+    .results .v { font-family: var(--font-display); font-size: 2.6rem; color: var(--color-accent); line-height: 1; margin-bottom: 10px; }
+    .results .l { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.4; }
+    .note { font-size: 0.85rem !important; color: var(--color-text-muted); font-style: italic; }
+
+    .tools { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .tools span { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: 100px; font-size: 0.88rem; color: var(--color-text-muted); }
+
+    .learn { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .learn li { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; color: var(--color-text-muted); }
+    .learn li::before { content: '→'; color: var(--color-accent); font-weight: 700; flex-shrink: 0; }
+
+    .next-project { background: var(--color-bg-elevated); padding: 96px 48px; text-align: center; }
+    .next-project p { color: var(--color-text-muted); margin-bottom: 12px; }
+    .next-project h3 { font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 32px; }
+    .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s; }
+    .btn-primary:hover { color: var(--color-bg); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201, 255, 87, 0.3); }
+
+    footer { padding: 40px 48px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--color-text-muted); font-size: 0.9rem; }
+    footer a { color: var(--color-text-muted); }
+    footer a:hover { color: var(--color-accent); }
+
+    @media (max-width: 1000px) {
+      .layout { grid-template-columns: minmax(0, 1fr); }
+      .toc { display: none; }
+      .snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-left: 24px; margin-right: 24px; }
+      .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      nav, .case-header, .layout, .hero-image, .next-project, footer { padding-left: 24px; padding-right: 24px; }
+      .nav-links { display: none; }
+      .tldr, .grid-2, .grid-3, .before-after, .results, .flow { grid-template-columns: minmax(0, 1fr); }
+      .reg div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+      .scroll-to-top { bottom: 24px; right: 24px; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/editorial.css">
+</head>
+<body data-theme="health">
+  <div class="progress" id="progress"></div>
+  <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <nav>
+    <a href="portfolio.html" class="nav-back">
+      <svg viewBox="0 0 100 100" width="32" height="32" fill="none"><circle cx="50" cy="30" r="15" stroke="#c9ff57" stroke-width="4"/><path d="M35 45 L50 65 M65 45 L50 65 M50 65 L50 90" stroke="#c9ff57" stroke-width="4" stroke-linecap="round"/><circle cx="35" cy="45" r="4" fill="#c9ff57"/><circle cx="65" cy="45" r="4" fill="#c9ff57"/><circle cx="50" cy="90" r="4" fill="#c9ff57"/></svg>
+      Back to Work
+    </a>
+    <!-- ▸ EDIT: previous / next links -->
+    <div class="nav-links">
+      <a href="case-study-capita-website.html">← Previous</a>
+      <a href="portfolio.html">All Projects</a>
+      <a href="case-study-consilio.html">Next →</a>
+    </div>
+  </nav>
+
+  <!-- ▸ EDIT: HEADER, domain tags first, then platform / client tags -->
+  <header class="case-header">
+    <div class="case-meta">
+      <span class="case-tag">Healthcare &amp; Benefits</span>
+      <span class="case-tag">HR Tech &amp; Compliance</span>
+      <span class="case-tag outline">Multi-Tenant SaaS</span>
+      <span class="case-tag outline">AbsenceSoft · via Harman Connected Services</span>
+    </div>
+    <h1>Making <em>medical leave</em> and workplace accommodation simple, compliant and humane</h1>
+    <p class="case-intro">I led experience design for a leave and accommodation platform that HR and benefits teams use to manage employees' medical leave, ADA accommodations and pregnancy-related requests. The work cut the time it takes new users to get productive and reduced compliance errors in a domain where mistakes affect people's health and income.</p>
+  </header>
+
+  <!-- ▸ EDIT: HERO IMAGE -->
+  <div class="hero-image">
+    <figure>
+      <img src="images/FMLADivision - Dashboard.png" alt="Case management dashboard showing active medical leave cases, compliance rate, upcoming deadlines and a leave density heatmap">
+      <figcaption>Case management dashboard: active cases, compliance timeline, deadlines and leave-density heatmap in one view.</figcaption>
+    </figure>
+  </div>
+
+  <!-- ▸ EDIT: SNAPSHOT, 5 short facts -->
+  <dl class="snapshot">
+    <div><dt>Timeline</dt><dd>2018 – 2019</dd></div>
+    <div><dt>My role</dt><dd>Lead Experience Designer</dd></div>
+    <div><dt>Domain</dt><dd>Health benefits, leave &amp; accommodation</dd></div>
+    <div><dt>Users</dt><dd>HR, benefits &amp; case managers, employees</dd></div>
+    <div><dt>Platform</dt><dd>Web SaaS, multi-tenant</dd></div>
+  </dl>
+
+  <div class="layout">
+    <aside class="toc" aria-label="On this page">
+      <a href="#summary">Summary</a>
+      <a href="#context">Context</a>
+      <a href="#domain">Domain landscape</a>
+      <a href="#research">Research</a>
+      <a href="#solution">Solution</a>
+      <a href="#trust">Accessibility &amp; trust</a>
+      <a href="#results">Results</a>
+      <a href="#role">My role</a>
+      <a href="#learnings">Learnings</a>
+    </aside>
+
+    <main>
+      <!-- ▸ EDIT: TL;DR, for recruiters who only skim -->
+      <section class="case-section" id="summary">
+        <p class="label">Summary</p>
+        <h2>The 30-second version</h2>
+        <div class="tldr">
+          <div><h4>Problem</h4><p>Medical leave and accommodation rules (FMLA, ADA, PWFA, state laws) made the product slow to learn and easy to get wrong.</p></div>
+          <div><h4>Approach</h4><p>Mapped the end-to-end case journey, then rebuilt intake as a guided flow and gave case managers a deadline-first dashboard.</p></div>
+          <div><h4>Outcome</h4><p>30% less training time, 25% faster user flows and 15% shorter case resolution.</p></div>
+        </div>
+      </section>
+
+      <section class="case-section" id="context">
+        <p class="label">Context</p>
+        <h2>When an employee needs medical leave, every delay matters</h2>
+        <p>AbsenceSoft helps US employers manage absence, leave and accommodation. Behind every case there is a person dealing with surgery, a chronic condition, pregnancy or caring for a sick family member, and an HR or benefits professional trying to apply overlapping federal and state rules correctly.</p>
+        <p>The existing interface exposed that complexity directly. New case managers needed about a week of training before they could handle cases on their own. Forms showed every field regardless of leave type, and nobody could see where a request was in the approval chain.</p>
+        <p class="problem">How might we help case managers handle <span>sensitive medical leave and accommodation</span> requests quickly and correctly, without needing to be compliance experts?</p>
+      </section>
+
+      <!-- ▸ EDIT/OPTIONAL: DOMAIN LANDSCAPE, shows domain depth -->
+
+      <section class="case-section" id="process">
+        <p class="label">Design process</p>
+        <h2>A double-diamond process for a regulated domain</h2>
+        <p>Two rounds of diverging and converging: first to understand the leave and accommodation rules and the people behind each case, then to shape and validate the solution.</p>
+        <div class="wide"><div class="dd"><div class="shape"><span>Diverge</span><span>Converge</span></div><div class="shape"><span>Diverge</span><span>Converge</span></div><div class="space">Problem space</div><div class="space">Solution space</div><div class="ph"><h4>Discover</h4><p>Interviews and contextual walkthroughs with case managers, HR and compliance; support-ticket review.</p></div><div class="ph"><h4>Define</h4><p>End-to-end case journey, personas and a rules matrix for FMLA, ADA, PWFA and state laws.</p></div><div class="ph"><h4>Develop</h4><p>Hand sketches and co-design sessions; guided intake and dashboard concepts.</p></div><div class="ph"><h4>Deliver</h4><p>Wireframes, hi-fi prototypes, usability testing and design-system handoff.</p></div></div></div>
+      </section>
+
+<section class="case-section" id="domain">
+        <p class="label">Domain landscape</p>
+        <h2>Designing inside a regulated healthcare-adjacent space</h2>
+        <p>Before designing screens I mapped the rules the product had to respect, so each design decision could be traced back to a regulation or a user need.</p>
+        <div class="reg">
+          <div><b>FMLA</b><span>Up to 12 weeks of job-protected leave for serious health conditions, childbirth or family care. Eligibility depends on tenure, hours worked and employer size.</span></div>
+          <div><b>ADA</b><span>Reasonable workplace accommodations for employees with disabilities, managed through an interactive process with documented steps.</span></div>
+          <div><b>PWFA</b><span>Accommodations for pregnancy, childbirth and related medical conditions, with their own documentation rules.</span></div>
+          <div><b>State laws</b><span>Paid family and medical leave programmes that vary by state and sometimes overlap with federal leave.</span></div>
+          <div><b>Health data</b><span>Medical certifications and diagnoses are sensitive. Access had to be limited by role and logged.</span></div>
+        </div>
+      </section>
+
+      <section class="case-section" id="research">
+        <p class="label">Research</p>
+        <h2>Who we designed for</h2>
+        <p>I ran interviews and contextual walkthroughs with HR generalists, benefits administrators, case managers and compliance officers across several client tenants, and reviewed support tickets to find recurring failure points.</p>
+        <div class="grid-3">
+          <div class="card persona"><span class="role">Primary</span><h4>Case manager</h4><ul><li>Handles 40+ open cases</li><li>Lives by deadlines</li><li>Fears missing a certification date</li></ul></div>
+          <div class="card persona"><span class="role">Secondary</span><h4>Benefits administrator</h4><ul><li>Configures policies per tenant</li><li>Answers "am I eligible?"</li><li>Needs audit-ready records</li></ul></div>
+          <div class="card persona"><span class="role">Secondary</span><h4>Employee on leave</h4><ul><li>Often unwell or stressed</li><li>Wants status and next steps</li><li>Doesn't know the legal terms</li></ul></div>
+        </div>
+        <h3>Key insights</h3>
+        <div class="grid-2">
+          <div class="card"><span class="k">01</span><h4>Legal jargon blocked people</h4><p>Terms like "intermittent leave" and "reduced schedule" confused most users we spoke to, internal staff included.</p></div>
+          <div class="card"><span class="k">02</span><h4>Too much on one screen</h4><p>Intake showed 15+ fields regardless of leave type, which led to wrong entries and rework.</p></div>
+          <div class="card"><span class="k">03</span><h4>No sense of status</h4><p>Neither managers nor employees could see where a request stood, so they chased updates by email and phone.</p></div>
+          <div class="card"><span class="k">04</span><h4>Deadlines lived in spreadsheets</h4><p>Case managers tracked certification and recertification dates outside the product.</p></div>
+        </div>
+      </section>
+
+
+      <section class="case-section" id="wireframes">
+        <p class="label">Low-fidelity wireframes</p>
+        <h2>Greyscale wireframes of every key screen</h2>
+        <p>The case-manager dashboard was wireframed at full fidelity of layout, panel for panel, so every widget earned its place before colour and type were applied.</p>
+        <div class="wide"><div class="wf-set one"><figure class="wf-card"><h4><span>01</span>Case-manager dashboard</h4><div class="wf"><div class="bar l"><span class="ic" style="width:16px;height:16px"></span><span class="t l">FMLADivision</span><span class="fld" style="width:30%">⌕ Search cases, employees, or reports…</span><span class="ic sp"></span><span class="av" style="width:20px;height:20px"></span></div><div class="shell" style="height:auto"><div class="nav"><div class="it on"><span class="ic"></span>Dashboard</div><div class="it"><span class="ic"></span>Cases</div><div class="it"><span class="ic"></span>Employees</div><div class="it"><span class="ic"></span>Reports</div><div class="it"><span class="ic"></span>Calendar</div><div class="it"><span class="ic"></span>Settings</div></div><div class="pad" style="gap:9px"><div class="g5"><div class="cd"><span class="ic"></span><span class="s">Active Cases</span><b style="width:45%;height:11px"></b><span class="s">+12% from last month</span></div><div class="cd"><span class="ic"></span><span class="s">Pending Approvals</span><b style="width:45%;height:11px"></b><span class="s">Action required</span></div><div class="cd"><span class="ic"></span><span class="s">Compliance Rate %</span><b style="width:45%;height:11px"></b><span class="s">Maintaining excellence</span></div><div class="cd"><span class="ic"></span><span class="s">Training Reduction %</span><b style="width:45%;height:11px"></b><span class="s">Improved efficiency</span></div><div class="cd"><span class="ic"></span><span class="s">User Adoption %</span><b style="width:45%;height:11px"></b><span class="s">Positive engagement</span></div></div><div class="g3" style="align-items:start;gap:9px"><div class="st" style="gap:9px"><div class="cd"><div class="r"><span class="t l">Case Overview</span><span class="s" style="margin-left:auto"><u>View All Cases</u></span></div><div style="--c:1.1fr 1.3fr 1fr .5fr"><div class="row h"><span>Employee</span><span>Case type</span><span>Status</span><span>Due</span></div><div class="row"><span class="s">Alice Johnson</span><span class="s">FMLA Leave</span><span class="chip">Pending</span><i></i></div><div class="row"><span class="s">Bob Smith</span><span class="s">ADA Accommodation</span><span class="chip">Approved</span><i></i></div><div class="row"><span class="s">Charlie Brown</span><span class="s">PWFRA Request</span><span class="chip">Declined</span><i></i></div><div class="row"><span class="s">Diana Prince</span><span class="s">FMLA Leave</span><span class="chip">Approved</span><i></i></div><div class="row"><span class="s">Eve Adams</span><span class="s">ADA Accommodation</span><span class="chip">Pending</span><i></i></div></div><span class="btn p">⊕ Create New Case</span></div><div class="cd"><div class="r"><span class="t l">Tasks &amp; Alerts</span><span class="s" style="margin-left:auto"><u>View All</u></span></div><div class="r" style="border:1px solid #ccc;border-radius:3px;padding:4px 5px"><span class="ic"></span><span class="s" style="flex:1">Review Alice Johnson's FMLA paperwork</span><span class="chip">High</span><i style="width:18px"></i></div><div class="r" style="border:1px solid #ccc;border-radius:3px;padding:4px 5px"><span class="ic"></span><span class="s" style="flex:1">Follow up on Bob Smith's ADA requests</span><span class="chip">Medium</span><i style="width:18px"></i></div><div class="r" style="border:1px solid #ccc;border-radius:3px;padding:4px 5px"><span class="ic"></span><span class="s" style="flex:1">Schedule Q3 compliance training</span><span class="chip">Low</span><i style="width:18px"></i></div><div class="r" style="border:1px solid #ccc;border-radius:3px;padding:4px 5px"><span class="ic"></span><span class="s" style="flex:1">Draft new parental leave policy</span><span class="chip">High</span><i style="width:18px"></i></div><div class="r" style="border:1px solid #ccc;border-radius:3px;padding:4px 5px"><span class="ic"></span><span class="s" style="flex:1">Verify Diana Prince's leave status</span><span class="chip">Medium</span><i style="width:18px"></i></div></div><div class="cd"><div class="r"><span class="t l">Team Activity Feed</span><span class="s" style="margin-left:auto"><u>View All</u></span></div><div class="r" style="align-items:start"><span class="av"></span><div class="st f"><span class="t ">Grace Hopper</span><i class="w8"></i><i class="w4"></i></div></div><div class="r" style="align-items:start"><span class="av"></span><div class="st f"><span class="t ">Alan Turing</span><i class="w8"></i><i class="w4"></i></div></div><div class="r" style="align-items:start"><span class="av"></span><div class="st f"><span class="t ">Ada Lovelace</span><i class="w8"></i><i class="w4"></i></div></div><div class="r" style="align-items:start"><span class="av"></span><div class="st f"><span class="t ">Linus Torvalds</span><i class="w8"></i><i class="w4"></i></div></div></div></div><div class="st" style="gap:9px"><div class="cd"><div class="r"><span class="t l">Compliance Timeline</span><span class="fld sp">Last 6 Months ▾</span></div><div class="chart" style="min-height:120px"></div><div class="r" style="justify-content:space-between"><span class="s">Jan</span><span class="s">Feb</span><span class="s">Mar</span><span class="s">Apr</span><span class="s">May</span><span class="s">Jun</span></div></div><div class="cd"><div class="r"><span class="t l">Leave Density Heatmap</span><span class="fld sp">July 2024 ▾</span></div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px"><span class="s" style="text-align:center">Mon</span><span class="s" style="text-align:center">Tue</span><span class="s" style="text-align:center">Wed</span><span class="s" style="text-align:center">Thu</span><span class="s" style="text-align:center">Fri</span><span class="s" style="text-align:center">Sat</span><span class="s" style="text-align:center">Sun</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">1</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">2</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">3</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">4</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">5</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">6</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">7</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">8</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">9</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">10</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">11</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">12</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">13</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">14</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">15</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">16</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">17</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">18</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">19</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">20</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">21</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">22</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">23</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">24</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">25</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">26</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">27</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;background:#dcdcd7;color:#222">28</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">29</span><span class="s" style="text-align:center;padding:2px 0;border-radius:3px;">30</span></div></div><div class="cd"><span class="t l">Quick Actions</span><div class="g2"><span class="btn">Create New Case</span><span class="btn">Send Notification</span><span class="btn">Schedule Evaluation</span><span class="btn">Update Employee Record</span></div></div></div><div class="st" style="gap:9px"><div class="cd"><span class="t l">Upcoming Deadlines</span><div class="r"><span class="s" style="flex:1;color:#333">Q3 Policy Review Meeting</span><i style="width:40px"></i></div><div class="r"><span class="s" style="flex:1;color:#333">Annual Compliance Audit Prep</span><i style="width:40px"></i></div><div class="r"><span class="s" style="flex:1;color:#333">HR Software Update Training</span><i style="width:40px"></i></div><div class="r"><span class="s" style="flex:1;color:#333">Employee Satisfaction Survey Launch</span><i style="width:40px"></i></div><span class="s" style="text-align:center"><u>View All Deadlines</u></span></div><div class="cd"><span class="t l">Recent Documents</span><div class="r"><span class="ic"></span><div class="st f"><span class="s" style="color:#333">FMLA Policy 2024 Update</span><i class="w4"></i></div></div><div class="r"><span class="ic"></span><div class="st f"><span class="s" style="color:#333">ADA Accommodation Guide</span><i class="w4"></i></div></div><div class="r"><span class="ic"></span><div class="st f"><span class="s" style="color:#333">Leave Request Form</span><i class="w4"></i></div></div><div class="r"><span class="ic"></span><div class="st f"><span class="s" style="color:#333">Employee Handbook v3.1</span><i class="w4"></i></div></div><div class="r"><span class="ic"></span><div class="st f"><span class="s" style="color:#333">Q2 Leave Report</span><i class="w4"></i></div></div><span class="s" style="text-align:center"><u>View All Documents</u></span></div><div class="cd"><div class="r"><span class="t l">Design Impact &amp; Notes</span></div><div class="r"><span class="s">Show Details</span><span class="s" style="margin-left:auto">▾</span></div><div class="r" style="align-items:start"><span class="dot" style="width:4px;height:4px;margin-top:2px"></span><div class="st f"><i></i><i class="w6"></i></div></div><div class="r" style="align-items:start"><span class="dot" style="width:4px;height:4px;margin-top:2px"></span><div class="st f"><i></i><i class="w6"></i></div></div><div class="r" style="align-items:start"><span class="dot" style="width:4px;height:4px;margin-top:2px"></span><div class="st f"><i></i><i class="w6"></i></div></div><div class="r" style="align-items:start"><span class="dot" style="width:4px;height:4px;margin-top:2px"></span><div class="st f"><i></i><i class="w6"></i></div></div><div class="r" style="align-items:start"><span class="dot" style="width:4px;height:4px;margin-top:2px"></span><div class="st f"><i></i><i class="w6"></i></div></div></div></div></div></div></div></div><figcaption>Five KPIs up top; then cases, tasks and activity on the left, compliance trends and leave density in the middle, deadlines and documents on the right.</figcaption></figure></div></div>
+      </section>
+
+      <section class="case-section" id="solution">
+        <p class="label">Solution</p>
+        <h2>A guided intake and a deadline-first workspace</h2>
+        <h3>1. Guided case intake</h3>
+        <p>I replaced the long intake form with a four-step flow that shows only the fields that apply to the leave type chosen, written in plain language with legal terms explained inline.</p>
+        <div class="flow">
+          <div><h4>Reason</h4><p>Own health, family care, pregnancy or accommodation, in plain language.</p></div>
+          <div><h4>Eligibility</h4><p>Tenure and hours are checked automatically, and the result is explained.</p></div>
+          <div><h4>Dates &amp; documents</h4><p>Continuous or intermittent leave, plus the medical certification upload.</p></div>
+          <div><h4>Review</h4><p>A summary of entitlements, next steps and due dates.</p></div>
+        </div>
+        <h3>2. Case manager dashboard</h3>
+        <p>Upcoming deadlines, pending approvals and compliance rate come first. A leave-density heatmap helps managers plan cover, and every case shows its stage in the approval chain.</p>
+        <figure class="shot">
+          <img src="images/FMLADivision - Dashboard.png" alt="Dashboard detail with case overview, compliance timeline and task list">
+          <figcaption>Case overview, compliance timeline, tasks with priority, and quick actions.</figcaption>
+        </figure>
+        <h3>3. Early sketches</h3>
+        <p>I explored the flows in low-fidelity sketches with case managers before moving to high-fidelity prototypes.</p>
+        <figure class="shot">
+          <img src="images/hand-scktech.png" alt="Hand-drawn wireframes of list, grid and detail screens">
+          <figcaption>Low-fidelity sketches used in co-design sessions.</figcaption>
+        </figure>
+        <div class="before-after">
+          <div><h4>Before</h4><ul><li>15+ fields on one screen</li><li>Legal terms, no explanation</li><li>Deadlines tracked in spreadsheets</li><li>Status updates chased by email</li></ul></div>
+          <div class="after"><h4>After</h4><ul><li>Four steps, only relevant fields</li><li>Plain language with inline help</li><li>Deadlines and alerts on the dashboard</li><li>Visible approval stage on every case</li></ul></div>
+        </div>
+      </section>
+
+      <section class="case-section" id="trust">
+        <p class="label">Accessibility &amp; trust</p>
+        <h2>Designing for people who may be unwell</h2>
+        <div class="grid-3">
+          <div class="card"><h4>Accessible by default</h4><p>WCAG 2.1 AA contrast, keyboard paths through the whole intake flow, and labels screen readers can follow.</p></div>
+          <div class="card"><h4>Privacy of health data</h4><p>Role-based visibility, so diagnoses stay hidden from people who only need to know dates and status.</p></div>
+          <div class="card"><h4>Calm tone</h4><p>Supportive, plain microcopy for employees, with no legal threats in error messages.</p></div>
+        </div>
+      </section>
+
+      <!-- ▸ EDIT: RESULTS, only numbers you can explain in an interview -->
+      <section class="case-section" id="results">
+        <p class="label">Results</p>
+        <h2>Measurable impact</h2>
+        <div class="results">
+          <div><div class="v">−30%</div><div class="l">User training time</div></div>
+          <div><div class="v">−20%</div><div class="l">Support tickets</div></div>
+          <div><div class="v">4.5/5</div><div class="l">User satisfaction, up from 3.2</div></div>
+          <div><div class="v">95%</div><div class="l">Design-to-development accuracy</div></div>
+        </div>
+        <p class="note">Figures measured by the product team after release, comparing against the previous version.</p>
+      </section>
+
+      <section class="case-section" id="role">
+        <p class="label">My role</p>
+        <h2>What I owned</h2>
+        <p>I was the <strong>lead experience designer</strong>, working with a product owner, a compliance SME and an Angular engineering team. I owned research planning, journey mapping, information architecture, interaction design and prototypes, and worked with engineering on a reusable component set for future features.</p>
+        <div class="tools"><span>User interviews</span><span>Journey mapping</span><span>Information architecture</span><span>Prototyping</span><span>A/B testing</span><span>Sketch</span><span>InVision</span><span>Zeplin</span><span>Jira</span></div>
+      </section>
+
+      <section class="case-section" id="learnings">
+        <p class="label">Reflection</p>
+        <h2>What I learned</h2>
+        <ul class="learn">
+          <li><span><strong>Compliance doesn't have to mean complexity.</strong> Turning each rule into a single question made the regulations easier to follow.</span></li>
+          <li><span><strong>In healthcare-adjacent products, tone is part of the UX.</strong> Many of the people filling in the forms were going through a hard time.</span></li>
+          <li><span><strong>Deadlines are the real interface.</strong> Case managers needed a clear view of what was due, more than another data table.</span></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <!-- ▸ EDIT: NEXT PROJECT -->
+  <div class="next-project">
+    <p>Next case study</p>
+    <h3>Evolution of Sales: B2B Commerce for the Fire Service College</h3>
+    <a href="case-study-eos-salesforce.html" class="btn-primary">View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+
+  <footer>
+    <span>© 2026 Yogesh Malik. Designed with intention.</span>
+    <span><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="mailto:yogeshmalikbe@gmail.com">Email</a></span>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('scrollToTop'), bar = document.getElementById('progress');
+    const links = [...document.querySelectorAll('.toc a')];
+    const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      btn.classList.toggle('visible', h.scrollTop > 300);
+      let i = secs.findLastIndex(s => s && s.getBoundingClientRect().top < 160);
+      links.forEach((a, j) => a.classList.toggle('active', j === i));
+    });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/modal.js" defer></script>
+</body>
+</html>

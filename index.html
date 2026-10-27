@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yogesh Malik — Senior AI UX/UI Design Leader</title>
-  <meta name="description" content="Strategic AI UX/UI Design Leader with 16+ years helping enterprises build AI-powered, accessible digital experiences.">
+  <title>Yogesh Malik | Senior AI UX/UI Design Leader</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="description" content="Strategic AI UX/UI Design Leader with 16+ years helping enterprises build AI-powered, accessible digital experiences across healthcare, HR tech, public safety, eCommerce and government. Open to roles across PAN India.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -265,7 +266,7 @@
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeInRight { from { opacity: 0; transform: translate(30px, -50%); } to { opacity: 1; transform: translate(0, -50%); } }
 
-    .India-badge {
+    .germany-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -716,6 +717,43 @@
     .timeline-year { font-size: 0.85rem; color: var(--color-accent); font-weight: 600; margin-bottom: 8px; }
     .timeline-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
     .timeline-description { color: var(--color-text-muted); font-size: 0.95rem; }
+    .timeline-description a { color: var(--color-accent); }
+    .about-stats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1px; background: var(--color-border); border: 1px solid var(--color-border); border-radius: 16px; overflow: hidden; margin: 40px 0 24px; }
+    .about-stats div { background: var(--color-bg-card); padding: 20px; font-size: .85rem; color: var(--color-text-muted); display: grid; gap: 4px; }
+    .about-stats span { font-family: var(--font-display); font-size: 2rem; color: var(--color-accent); line-height: 1.1; }
+    .about-highlight { border: 1px solid var(--color-accent); border-radius: 16px; padding: 24px; display: grid; gap: 8px; background: rgba(201,255,87,.05); }
+    .about-highlight h4 { font-size: 1.15rem; } .about-highlight p { margin: 0 !important; font-size: .95rem !important; }
+    .about-facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 32px; margin: 8px 0 40px; padding-top: 40px; border-top: 1px solid var(--color-border); }
+    .about-facts h4 { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 12px; }
+    .about-facts ul { list-style: none; display: grid; gap: 8px; padding: 0; margin: 0; }
+    .about-facts li { color: var(--color-text-muted); font-size: .92rem; padding-left: 16px; position: relative; }
+    .about-facts li::before { content: ''; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-border); }
+    .case-study-card { grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important; }
+    .case-study-metrics .metric-label { display: block; }
+    @media (max-width: 1100px) { .case-study-card { grid-template-columns: minmax(0,1fr) !important; } .case-study-card .case-study-image { order: -1; } }
+    .rec-featured { position: relative; max-width: 1200px; margin: 0 auto 48px; background: var(--color-bg-card); border: 1px solid var(--color-accent); border-radius: 20px; padding: 48px 48px 36px; display: grid; gap: 20px; }
+    .rec-pull { font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.35; margin: 8px 0 0; color: var(--color-text); text-wrap: pretty; }
+    .rec-body { display: grid; gap: 14px; max-height: 0; overflow: hidden; transition: max-height .6s ease; }
+    .rec-featured.open .rec-body { max-height: 1400px; }
+    .rec-featured::before, .rec-featured::after, .testimonial-card::before, .testimonial-card::after { pointer-events: none; }
+    .rec-meta a, .testimonial-author a { position: relative; z-index: 3; pointer-events: auto; }
+    .rec-body p { color: var(--color-text-muted); line-height: 1.75; margin: 0; max-width: 900px; }
+    .rec-toggle { justify-self: start; background: none; border: 1px solid var(--color-border); color: var(--color-text); border-radius: 100px; padding: 8px 18px; font: inherit; font-size: .9rem; cursor: pointer; }
+    .rec-toggle:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .rec-featured .testimonial-author { border-top: 1px solid var(--color-border); padding-top: 20px; margin: 0; }
+    .rec-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: none; }
+    .rec-meta { margin-top: 4px; } .rec-meta a { color: var(--color-accent); }
+    @media (max-width: 700px) { .rec-featured { padding: 40px 24px 28px; } }
+    .nav-links a, .nav-cta, .hero-eyebrow { white-space: nowrap; }
+    @media (max-width: 1100px) { .nav-links { gap: 20px !important; } }
+    @media (max-width: 1000px) { .nav-cta { display: none !important; } }
+    .about-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .about-links a { border: 1px solid var(--color-border); border-radius: 100px; padding: 8px 16px; font-size: .9rem; color: var(--color-text); }
+    .about-links a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+    .ff-live { min-height: 320px; }
+    .cv-btn { display: inline-flex; align-items: center; gap: 8px; }
+    .nav-cv { color: var(--color-accent) !important; font-weight: 600; }
+    @media (max-width: 700px) { .about-stats { grid-template-columns: repeat(2, minmax(0,1fr)); } .about-facts { grid-template-columns: minmax(0,1fr); } }
 
     .writing { background: var(--color-bg); }
     .writing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
@@ -791,6 +829,7 @@
       <li><a href="#writing">Writing</a></li>
       <li><a href="awards.html">Awards</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="Yogesh_Malik_CV.pdf" target="_blank" rel="noopener" class="nav-cv">Download CV</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Let's Talk</a>
   </nav>
@@ -800,12 +839,13 @@
     <div class="hero-content">
       <span class="hero-eyebrow">Available for Senior & Lead UX Roles</span>
       <h1>I design <span class="highlight">AI-powered</span> experiences people actually want to use</h1>
-      <p class="hero-description">Strategic AI UX/UI Design Leader with 16+ years helping Fortune 500s, governments, and startups transform complex systems into intuitive, accessible digital products.</p>
+      <p class="hero-description">Strategic AI UX/UI Design Leader with 16+ years helping enterprises and governments turn complex, regulated systems into intuitive, accessible products, across Healthcare &amp; Benefits, HR Tech, Public Safety, Retail eCommerce and Legal Tech.</p>
       <div class="hero-ctas">
         <a href="#work" class="btn-primary">View Case Studies <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" class="btn-secondary" target="_blank">LinkedIn Profile</a>
+        <a href="Yogesh_Malik_CV.pdf" target="_blank" rel="noopener" class="btn-secondary cv-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg> Download CV</a>
+        <a class="btn-secondary" href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
       </div>
-       <!--<div class="germany-badge"><span>🇩🇪</span> Germany Opportunity Card Holder — No sponsorship required</div> -->
+       
     </div>
     <div class="hero-image">
       <img src="images/5.jpg" alt="Yogesh Malik - Senior AI UX/UI Design Leader">
@@ -815,6 +855,7 @@
   <section class="trusted-by">
     <p class="trusted-by-label">Trusted by industry leaders</p>
     <div class="trusted-logos stagger-children">
+      <span class="trusted-logo">🏗️ Intelliswift (an L&amp;T Technology Services company)</span>
       <span class="trusted-logo">🏛️ UK Government (GDS)</span>
       <span class="trusted-logo">🏢 Capita PLC</span>
       <span class="trusted-logo">📜 Axelos</span>
@@ -995,54 +1036,56 @@
     <div class="section-header">
       <p class="section-eyebrow">Featured Work</p>
       <h2 class="section-title">Case studies that show impact, not just interfaces</h2>
-      <p class="section-description">9 projects spanning AI/ML, FinTech, Healthcare, Enterprise, and Government sectors.</p>
+      <p class="section-description">Selected work, most recent first: B2B commerce, global web, UK Government and AI experience design.</p>
     </div>
 
     <article class="case-study-card">
-      <div class="case-study-image"><img src="images/B2B_commerce_home-v4-FSC_1.png" alt="EOS B2B Commerce Platform Homepage"></div>
+      <div class="case-study-image"><img src="images/B2B_commerce_home-v4-FSC_1.png" alt="EOS B2B Commerce storefront home page" style="object-fit:cover;object-position:top"></div>
       <div class="case-study-content">
-        <div class="case-study-tags"><span class="case-study-tag">Salesforce B2B Commerce</span><span class="case-study-tag">Enterprise UX</span><span class="case-study-tag">2024-2025</span></div>
+        <div class="case-study-tags"><span class="case-study-tag">Salesforce B2B Commerce</span><span class="case-study-tag">Capita</span><span class="case-study-tag">2024–2025</span></div>
         <h3 class="case-study-title">Evolution of Sales (EOS) Platform</h3>
-        <p class="case-study-description">Led end-to-end Salesforce transformation at Capita, automating quoting processes and designing user journeys that dramatically improved sales efficiency.</p>
-        <div class="case-study-metrics">
-          <div class="metric"><span class="metric-value">+52%</span><span class="metric-label">Projected Sales</span></div>
-          <div class="metric"><span class="metric-value">-35%</span><span class="metric-label">Fulfillment Time</span></div>
-          <div class="metric"><span class="metric-value">-40%</span><span class="metric-label">Support Tickets</span></div>
-        </div>
+        <p class="case-study-description">Led an end-to-end Salesforce transformation at Capita: automated quoting, customer journeys and Figma/XD prototypes for B2B buyers.</p>
+        <div class="case-study-metrics"><div class="metric"><span class="metric-value">+52%</span><span class="metric-label">Projected sales</span></div><div class="metric"><span class="metric-value">−35%</span><span class="metric-label">Fulfilment time</span></div><div class="metric"><span class="metric-value">−40%</span><span class="metric-label">Support tickets</span></div></div>
         <a href="case-study-eos-salesforce.html" class="case-study-link">Read Full Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </article>
 
     <article class="case-study-card">
       <div class="case-study-content">
-        <div class="case-study-tags"><span class="case-study-tag">AI/ML</span><span class="case-study-tag">Design Systems</span><span class="case-study-tag">2022-2023</span></div>
-        <h3 class="case-study-title">AI-Powered Design System Dashboard</h3>
-        <p class="case-study-description">Designed an AI-enhanced design system platform at Capita that uses machine learning to suggest components, check accessibility, and maintain consistency across 8 product teams.</p>
-        <div class="case-study-metrics">
-          <div class="metric"><span class="metric-value">90%</span><span class="metric-label">Consistency Score</span></div>
-          <div class="metric"><span class="metric-value">-40%</span><span class="metric-label">Creation Time</span></div>
-          <div class="metric"><span class="metric-value">240+</span><span class="metric-label">Components</span></div>
-        </div>
-        <a href="case-study-ai-design-system.html" class="case-study-link">Read Full Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <div class="case-study-tags"><span class="case-study-tag">Drupal LCNC</span><span class="case-study-tag">Global website</span><span class="case-study-tag">2022–2023</span></div>
+        <h3 class="case-study-title">Capita.com Global Website Redesign</h3>
+        <p class="case-study-description">Redesigned the UI and interaction flow, integrated Workday job search and built a design library used by 15+ designers across 5 teams.</p>
+        <div class="case-study-metrics"><div class="metric"><span class="metric-value">+40%</span><span class="metric-label">Usability score</span></div><div class="metric"><span class="metric-value">−25%</span><span class="metric-label">Navigation time</span></div><div class="metric"><span class="metric-value">+35%</span><span class="metric-label">Conversion</span></div></div>
+        <a href="case-study-capita-website.html" class="case-study-link">Read Full Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-      <div class="case-study-image" style="background: linear-gradient(135deg, #A855F720 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center;">
-        <svg viewBox="0 0 200 120" width="80%" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="20" y="15" width="160" height="90" rx="8" fill="#1a1a1a" stroke="#A855F7" stroke-width="2"/>
-          <rect x="30" y="25" width="140" height="20" rx="10" fill="#A855F7" fill-opacity="0.2" stroke="#A855F7" stroke-width="1"/>
-          <text x="100" y="39" text-anchor="middle" fill="#A855F7" font-family="sans-serif" font-size="8">🔍 AI Search: "button for forms..."</text>
-          <rect x="30" y="55" width="40" height="40" rx="6" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
-          <text x="50" y="78" text-anchor="middle" fill="#A855F7" font-family="sans-serif" font-size="16">🔘</text>
-          <rect x="80" y="55" width="40" height="40" rx="6" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
-          <text x="100" y="78" text-anchor="middle" fill="#A855F7" font-family="sans-serif" font-size="16">📝</text>
-          <rect x="130" y="55" width="40" height="40" rx="6" fill="#A855F7" fill-opacity="0.15" stroke="#A855F7" stroke-width="1"/>
-          <text x="150" y="78" text-anchor="middle" fill="#A855F7" font-family="sans-serif" font-size="16">🎨</text>
-        </svg>
+      <div class="case-study-image"><img src="images/capita/desk.png" alt="Redesigned Capita.com home page" style="object-fit:cover;object-position:top"></div>
+    </article>
+
+    <article class="case-study-card">
+      <div class="case-study-image"><img src="images/axelos/home.png" alt="Redesigned Axelos.com home page" style="object-fit:cover;object-position:top"></div>
+      <div class="case-study-content">
+        <div class="case-study-tags"><span class="case-study-tag">UK Government</span><span class="case-study-tag">WCAG 2.1 AA · GDS</span><span class="case-study-tag">2019–2022</span></div>
+        <h3 class="case-study-title">AXELOS: UK Government Programme</h3>
+        <p class="case-study-description">UX audit and GDS-standard redesign of a platform serving 50,000+ students, including a 3-month onsite assignment in London.</p>
+        <div class="case-study-metrics"><div class="metric"><span class="metric-value">+55%</span><span class="metric-label">Page engagement</span></div><div class="metric"><span class="metric-value">−40%</span><span class="metric-label">User errors</span></div><div class="metric"><span class="metric-value">50k+</span><span class="metric-label">Students served</span></div></div>
+        <a href="case-study-axelos.html" class="case-study-link">Read Full Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
+    </article>
+
+    <article class="case-study-card">
+      <div class="case-study-content">
+        <div class="case-study-tags"><span class="case-study-tag">AI / GenAI</span><span class="case-study-tag">AI agent observability</span><span class="case-study-tag">2026</span></div>
+        <h3 class="case-study-title">Stratos AI: Mission Control for AI Agents</h3>
+        <p class="case-study-description">A redesigned console for monitoring, debugging and governing fleets of enterprise AI agents, built around triage: what needs attention first, then fleet to agent to trace.</p>
+        <div class="case-study-metrics"><div class="metric"><span class="metric-value">3</span><span class="metric-label">Live screens</span></div><div class="metric"><span class="metric-value">2 clicks</span><span class="metric-label">Fleet to trace</span></div><div class="metric"><span class="metric-value">AA</span><span class="metric-label">Status never colour-only</span></div></div>
+        <a href="case-study-stratos-ai.html" class="case-study-link">Read Full Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="case-study-image ff-live" style="position:relative;overflow:hidden;background:#f4f6fb"><iframe src="prototypes/stratos.dc.html" title="Stratos AI live prototype" loading="lazy" tabindex="-1" style="position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none"></iframe></div>
     </article>
 
   <div style="text-align: center; margin-top: 48px;">
       <a href="portfolio.html" class="btn-primary" style="background: var(--color-accent); color: var(--color-bg); padding: 16px 32px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-        View All 7 Case Studies
+        View All Case Studies
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -1053,8 +1096,27 @@
     <div class="section-header animate-on-scroll">
       <p class="section-eyebrow">Testimonials</p>
       <h2 class="section-title">What colleagues & stakeholders say</h2>
-      <p class="section-description">Feedback from people I've worked with across different organizations.</p>
+      <p class="section-description">A LinkedIn recommendation from my manager at Capita, plus feedback from people I’ve worked with.</p>
     </div>
+    <figure class="rec-featured stagger-children">
+      <div class="testimonial-quote-icon"><svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></div>
+      <blockquote class="rec-pull">Yogesh brings a rare combination of positivity, curiosity, and action. Even in challenging moments, he maintains a motivated and forward-thinking mindset.</blockquote>
+      <div class="rec-body">
+        <p>His curiosity for innovation is inspiring, and it’s been a pleasure to work alongside someone with such a positive spirit. Yogesh doesn’t just explore new ideas, he takes action. His self-driven approach to learning about GenAI has been impressive. He’s earned multiple certifications in GenAI, Salesforce Admin, AWS Hyperscaler, and Azure OpenAI Foundry, demonstrating a strong commitment to continuous learning and innovation.</p>
+        <p>Beyond certifications, Yogesh has made meaningful contributions across design, research, testing, analysis, and delivery. He has played a key role in coordinating developers and designers to ensure outcomes meet expectations and also align with strategic business goals. His agentic use of GenAI tools has helped drive efficiency and impact.</p>
+        <p>Yogesh has demonstrated strong cross-functional capabilities in design, research, and delivery. He’s led the creation of intuitive, user-centred interfaces aligned with strategic goals, supported by UX research and user interviews. His end-to-end testing across sprints ensured quality and usability, while his ability to translate stakeholder needs into actionable user stories in Azure DevOps helped streamline development. He has consistently fostered collaboration between developers and designers, ensuring outcomes meet expectations. His involvement in implementing the B2B Salesforce environment contributed to seamless integration and reliable functionality. Yogesh also brings a strong awareness of digital accessibility in practice, ensuring inclusive design across platforms.</p>
+        <p>It’s been a genuine pleasure to work with Yogesh: his energy, curiosity for emerging tech and innovation, and dedication make him a standout contributor. He’ll be a benefit to any company lucky enough to have him on board.</p>
+      </div>
+      <button class="rec-toggle" type="button" aria-expanded="false" onclick="const f=this.closest('.rec-featured');const o=f.classList.toggle('open');this.setAttribute('aria-expanded',o);this.textContent=o?'Show less':'Read full recommendation';">Read full recommendation</button>
+      <figcaption class="testimonial-author">
+        <img class="rec-avatar" src="images/karman-wong.png" alt="Karman Wong">
+        <div class="testimonial-author-info">
+          <h4>Karman Wong</h4>
+          <p>Human-centred AI Experience Design · Mentor · NN/g certified · SC Cleared</p>
+          <p class="rec-meta">Managed Yogesh directly · August 26, 2025 · <a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">View on LinkedIn ↗</a></p>
+        </div>
+      </figcaption>
+    </figure>
     <div class="testimonials-grid stagger-children">
       <div class="testimonial-card">
         <div class="testimonial-quote-icon">
@@ -1103,21 +1165,41 @@
       <div class="about-image"><img src="images/7.jpg" alt="Yogesh Malik - Professional photo"></div>
       <div class="about-content">
         <p class="section-eyebrow">About Me</p>
-        <h2>Design leader who bridges vision and execution</h2>
-        <p>I've spent 16+ years evolving from a junior web designer into a strategic UX leader who builds and mentors high-performing design teams. My work sits at the intersection of human-centered design, enterprise complexity, and emerging AI capabilities.</p>
-        <p>As a contributor to the UK Government Digital Service, I've developed deep expertise in designing for accessibility and inclusion at scale. I believe the best digital products serve everyone—not just the tech-savvy or able-bodied.</p>
-        <p>Currently exploring opportunities across India, including Bangalore, Pune, Hyderabad, Mumbai, Chennai, Noida, Delhi, and Lucknow, ready to bring my enterprise UX expertise to organizations building the next generation of digital products.</p>
+        <h2>Principal UX Architect for enterprise &amp; AI experiences</h2>
+        <p>I’m a Principal UX Architect and Senior Product Designer with 16+ years of experience, 12+ of them in UX and enterprise design. I design accessible, user-centred products across SaaS, commerce, government, workforce, legal tech and AI platforms.</p>
+        <p>I specialise in WCAG 2.1 AA accessibility, design systems and governance, and human–AI interaction: turning complex, regulated workflows into products people trust and adopt.</p>
+        <div class="about-stats">
+          <div><span>+52%</span>Sales uplift</div>
+          <div><span>+55%</span>Engagement growth</div>
+          <div><span>−40%</span>User errors</div>
+          <div><span>−30%</span>Training time</div>
+        </div>
+        <div class="about-highlight">
+          <span class="section-eyebrow" style="margin:0">Selected innovation · L&amp;T Infotech · June 2026</span>
+          <h4>SiliconMind: a semiconductor-aware agentic AI factory</h4>
+          <p>Selected through L&amp;T Infotech’s innovation programme: an agentic AI framework that applies semiconductor-domain context to automate engineering workflows.</p>
+        </div>
         <div class="expertise-grid">
-          <div class="expertise-item"><h4>🎯 Design Leadership</h4><p>Scaled UX teams, mentored talent, and drove design culture across distributed environments.</p></div>
-          <div class="expertise-item"><h4>♿ Accessibility & Ethics</h4><p>WCAG-compliant design for public sector and enterprise platforms.</p></div>
-          <div class="expertise-item"><h4>🤖 AI-Enhanced UX</h4><p>Integrated GenAI into design systems for predictive user flows and adaptive interfaces.</p></div>
-          <div class="expertise-item"><h4>🔧 Design Systems</h4><p>Scalable component libraries, design tokens, cross-platform consistency.</p></div>
+          <div class="expertise-item"><h4>UX strategy &amp; architecture</h4><p>UX vision, design roadmaps, information architecture, journeys and user flows.</p></div>
+          <div class="expertise-item"><h4>Accessibility</h4><p>WCAG 2.1 AA and UK GDS, from audit and heuristic evaluation to compliant delivery.</p></div>
+          <div class="expertise-item"><h4>AI experience design</h4><p>Human–AI interaction, multi-agent journeys, trust and progressive disclosure.</p></div>
+          <div class="expertise-item"><h4>Design systems &amp; DesignOps</h4><p>Reusable components, standards and governance adopted across teams.</p></div>
         </div>
         <div class="timeline">
-          <div class="timeline-item"><span class="timeline-year">2019 — Present</span><h4 class="timeline-title">Associate Architect – UX Design | Capita PLC</h4><p class="timeline-description">Led Salesforce transformation, global website redesign, and UK Government platform projects. Multiple award winner including Fearless Innovation Award 2025.</p></div>
-          <div class="timeline-item"><span class="timeline-year">2018 — 2019</span><h4 class="timeline-title">Lead Experience Designer | AbsenceSoft</h4><p class="timeline-description">Designed FMLA compliance workflows for multi-tenant SaaS, reducing training time by 30%.</p></div>
-          <div class="timeline-item"><span class="timeline-year">2014 — 2018</span><h4 class="timeline-title">Senior UX/UI Designer | Harman (Consilio)</h4><p class="timeline-description">Led legacy-to-web migration for eDiscovery platform serving 10,000+ legal professionals.</p></div>
+          <div class="timeline-item"><span class="timeline-year">01/2026 – 09/2026</span><h4 class="timeline-title">Principal Architect, UX Design · Intelliswift (an LTTS company), Pune</h4><p class="timeline-description">Neura Belden BHVA, a GenAI multi-agent virtual assistant. I set the UX vision and roadmap, designed 4 end-to-end agent journeys and specified 6 flagship features.</p></div>
+          <div class="timeline-item"><span class="timeline-year">05/2019 – 09/2025</span><h4 class="timeline-title">Associate Architect, UX Design · Capita India PLC, Pune</h4><p class="timeline-description">Led the <a href="case-study-eos-salesforce.html">EOS Salesforce B2B Commerce</a> transformation, the <a href="case-study-capita-website.html">Capita.com global redesign</a> and the <a href="case-study-axelos.html">AXELOS UK Government programme</a>, including an onsite assignment in London.</p></div>
+          <div class="timeline-item"><span class="timeline-year">07/2018 – 02/2019</span><h4 class="timeline-title">Lead Experience Designer · AbsenceSoft, Pune</h4><p class="timeline-description">FMLA and absence management for 10,000+ employees. Training time down 30%, satisfaction up from 3.2 to 4.5, and 95% design-to-development accuracy.</p></div>
+          <div class="timeline-item"><span class="timeline-year">01/2014 – 06/2018</span><h4 class="timeline-title">Senior UX/UI Designer · Harman Connected Services, Pune</h4><p class="timeline-description">Moved the Consilio eDiscovery suite from a legacy desktop app to the web for 5,000+ legal professionals. User errors down 40%, processing time down 25%.</p></div>
+          <div class="timeline-item"><span class="timeline-year">2007 – 2014</span><h4 class="timeline-title">Earlier career · Synechron, Cybage, Pure IT</h4><p class="timeline-description">Front-end and usability engineering for banking, insurance and product-engineering clients: the foundation for my enterprise UX work.</p></div>
         </div>
+        <div class="about-facts">
+          <div><h4>Awards</h4><ul><li>Capita Fearless Innovation Award, 2025</li><li>Capita Centre of Excellence Award, 2021–2023</li><li>Capita Pat on the Back Award, 2020, 2021, 2024, 2025</li><li>L&amp;T Infotech innovation idea selected, 2026</li></ul></div>
+          <div><h4>Education &amp; certifications</h4><ul><li>B.Tech, Computer Science, Pune (2002–2006)</li><li>Interaction Design Foundation (EQF Level 7)</li><li>AI &amp; agentic systems: DeepLearning.AI, Anthropic, AWS, IBM, Google</li><li>Certified Scrum Master (CSM)</li></ul></div>
+          <div><h4>Tools</h4><ul><li>Figma, Figma Make, Adobe XD, Creative Cloud</li><li>HTML5, CSS3, Bootstrap 5, Axe, WAVE, Lighthouse</li><li>Claude &amp; Claude Code, Copilot, Gemini, crewAI</li><li>Miro, FigJam, Jira, Confluence</li></ul></div>
+          <div><h4>Languages &amp; location</h4><ul><li>English: C2, proficient</li><li>German: A2, working towards B1</li><li>Based in Pune; open to onsite, hybrid or remote</li><li>Open to roles across India: Bangalore, Pune, Hyderabad, Mumbai, Chennai, Noida, Delhi and Lucknow</li></ul></div>
+        </div>
+        <div class="about-links"><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.credly.com/users/yogesh-malik.71d90138" target="_blank">Credly badges ↗</a><a href="https://topmate.io/yogesh_malik10" target="_blank">Book a chat on Topmate ↗</a></div>
+        <a href="Yogesh_Malik_CV.pdf" target="_blank" rel="noopener" class="btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg> View CV (PDF)</a>
       </div>
     </div>
   </section>
@@ -1129,10 +1211,10 @@
       <p class="section-description">Sharing lessons learned from 16+ years of designing enterprise products.</p>
     </div>
     <div class="writing-grid">
-      <article class="writing-card"><p class="writing-card-date">2024</p><h3>AI Will Not Replace UX Designers — Here's Why</h3><p>Headlines pop up daily about AI replacing UX designers. These predictions generate buzz but fail to capture what really makes design valuable.</p><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/recent-activity/articles/" class="writing-card-link" target="_blank">Read on LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
-      <article class="writing-card"><p class="writing-card-date">2024</p><h3>The Dawn of AI-Powered Experiences</h3><p>Exploring how AI is fundamentally reshaping the digital landscape and what it means for user experience design.</p><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/recent-activity/articles/" class="writing-card-link" target="_blank">Read on LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
-      <article class="writing-card"><p class="writing-card-date">2024</p><h3>Balance in UI Design: Why It's Crucial</h3><p>In design, particularly in user interfaces (UI), balance is crucial. Balance makes an interface attractive and pleasant to use.</p><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/recent-activity/articles/" class="writing-card-link" target="_blank">Read on LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
-      <article class="writing-card"><p class="writing-card-date">2024</p><h3>Data-Driven Design Decisions</h3><p>Unlocking the power of data-driven design decisions in an era where user experience can make or break a digital product.</p><a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/recent-activity/articles/" class="writing-card-link" target="_blank">Read on LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
+      <article class="writing-card"><p class="writing-card-date">2024</p><h3>AI Will Not Replace UX Designers: Here's Why</h3><p>Headlines pop up daily about AI replacing UX designers. These predictions generate buzz but fail to capture what really makes design valuable.</p><a class="writing-card-link" href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">Read on LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
+      <article class="writing-card"><p class="writing-card-date">2024</p><h3>The Dawn of AI-Powered Experiences</h3><p>Exploring how AI is fundamentally reshaping the digital landscape and what it means for user experience design.</p><a class="writing-card-link" href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">Read on LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
+      <article class="writing-card"><p class="writing-card-date">2024</p><h3>Balance in UI Design: Why It's Crucial</h3><p>In design, particularly in user interfaces (UI), balance is crucial. Balance makes an interface attractive and pleasant to use.</p><a class="writing-card-link" href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">Read on LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
+      <article class="writing-card"><p class="writing-card-date">2024</p><h3>Data-Driven Design Decisions</h3><p>Unlocking the power of data-driven design decisions in an era where user experience can make or break a digital product.</p><a class="writing-card-link" href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">Read on LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
     </div>
   </section>
 
@@ -1140,10 +1222,10 @@
     <div class="contact-inner">
       <p class="section-eyebrow">Get in Touch</p>
       <h2>Let's build something meaningful together</h2>
-      <p>Open to senior and lead UX roles including Bangalore, Pune, Hyderabad, Mumbai, Chennai, Noida, Delhi, and Lucknow, I’m open to any location across PAN India, available to join immediately.</p>
+      <p>Open to senior and lead UX roles across PAN India: Bangalore, Pune, Hyderabad, Mumbai, Chennai, Noida, Delhi and Lucknow.</p>
       <div class="contact-methods">
         <a href="mailto:yogeshmalikbe@gmail.com" class="contact-method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>yogeshmalikbe@gmail.com</a>
-        <a href="https://linkedin.com/in/yogesh-malik-68386a1a" class="contact-method" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn Profile</a>
+        <a class="contact-method" href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn Profile</a>
         <a href="tel:+918484044570" class="contact-method"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+91 8484044570</a>
       </div>
       <a href="mailto:yogeshmalikbe@gmail.com" class="btn-primary">Start a Conversation <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -1151,9 +1233,9 @@
   </section>
 
   <footer>
-    <p class="footer-text">© 2025 Yogesh Malik. Designed with intention.</p>
+    <p class="footer-text">© 2026 Yogesh Malik. Designed with intention.</p>
     <div class="footer-links">
-      <a href="https://linkedin.com/in/yogesh-malik-68386a1a" target="_blank">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/yogesh-malik-68386a1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="awards.html">Awards</a>
       <a href="mailto:yogeshmalikbe@gmail.com">Email</a>
     </div>
@@ -1193,5 +1275,8 @@
       observer.observe(el);
     });
   </script>
-  </body>
+    <script src="assets/motion.js" defer></script>
+  <script>function fitLive(){document.querySelectorAll('.ff-live').forEach(v=>{const f=v.querySelector('iframe');const s=Math.max(v.clientWidth/1440,v.clientHeight/900);f.style.transform='scale('+s+')';});}addEventListener('resize',fitLive);addEventListener('load',fitLive);fitLive();</script>
+  <script src="assets/modal.js" defer></script>
+</body>
 </html>

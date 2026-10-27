@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MedConnect Patient Portal Redesign — Case Study | Yogesh Malik</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="description" content="How I redesigned a healthcare patient portal, increasing adoption from 8% to 47% and achieving WCAG 2.1 AA compliance for elderly users.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,8 +141,10 @@
       .scroll-to-top { bottom: 24px; right: 24px; }
     }
   </style>
+  <link rel="stylesheet" href="assets/editorial.css">
+  <link rel="stylesheet" href="assets/legacy-bridge.css">
 </head>
-<body>
+<body data-theme="medconnect">
   <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
   </button>
@@ -761,5 +764,7 @@
     window.addEventListener('scroll', () => { if (window.pageYOffset > 300) { scrollToTopBtn.classList.add('visible'); } else { scrollToTopBtn.classList.remove('visible'); } });
     scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
   </script>
+  <script src="assets/motion.js" defer></script>
+  <script src="assets/modal.js" defer></script>
 </body>
 </html>
