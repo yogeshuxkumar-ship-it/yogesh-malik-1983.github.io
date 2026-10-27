@@ -1,0 +1,63 @@
+/* Bridges the older case-study template (case-section-label, quick-stats, result-card…) onto the editorial theme. Load after editorial.css. */
+.case-content { max-width: 1104px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 1; }
+.case-section-label { color: var(--color-label) !important; font-size: .72rem !important; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 6px !important; }
+.case-section > .case-section-label { grid-column: 1; grid-row: 1 !important; align-self: start; }
+.case-section > .case-section-label + h2 { grid-column: 1; grid-row: 1 / span 40 !important; align-self: start; margin-top: 1.9rem !important; }
+.case-section > *:not(.case-section-label):not(h2) { grid-column: 2; }
+.case-section > .diagram-container, .case-section > .results-grid, .case-section > .persona-grid,
+.case-section > .process-grid, .case-section > .accessibility-grid, .case-section > .style-grid, .case-section > .workflow-visual,
+.case-section > .template-grid, .case-section > .template-library, .case-section > .ab-test-container, .case-section > .gallery,
+.case-section > .gallery-grid, .case-section > .quote-block, .case-section > .callout, .case-section > .learnings-list,
+.case-section > .usability-grid, .case-section > .before-after, .case-section > div[style*="grid"], .case-section > table,
+.case-section > .prompt-example, .case-section > .checklist { grid-column: 1 / -1 !important; }
+
+.quick-stats { display: grid !important; grid-template-columns: repeat(4, minmax(0,1fr)); max-width: 1104px; margin: 0 auto 72px !important; background: transparent !important; border-radius: 0 !important; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); gap: 0 !important; position: relative; z-index: 1; }
+.quick-stat { background: transparent !important; border: none !important; border-radius: 0 !important; padding: 24px 20px !important; }
+.quick-stat + .quick-stat { border-left: 1px solid var(--color-border) !important; }
+.quick-stat-label { color: var(--color-label) !important; font-size: .72rem !important; letter-spacing: .12em; text-transform: uppercase; }
+.quick-stat-value { color: var(--color-text) !important; font-weight: 500 !important; font-family: var(--font-body) !important; font-size: 1rem !important; }
+
+.result-card, .persona-card, .accessibility-card, .template-card, .style-card, .process-step, .ab-variant, .diagram-container,
+.quote-block, .gallery-item, .usability-stat, .workflow-step, .prompt-example {
+  background: var(--color-bg-card) !important; border: none !important; border-radius: 0 !important; box-shadow: none !important; color: var(--color-text);
+}
+.diagram-container { padding: 28px !important; }
+.diagram-title, .persona-role, .accessibility-label, .prompt-label, .template-tags, .gallery-label { color: var(--color-label) !important; }
+.diagram-caption, .persona-details, .quote-author, .result-label { color: var(--color-text-muted) !important; }
+.result-value, .usability-stat .metric, .process-step-number { color: var(--color-label) !important; font-family: var(--font-display) !important; font-weight: 300 !important; }
+.result-card { text-align: center; }
+.persona-avatar { background: var(--color-accent-dim) !important; color: var(--color-label) !important; }
+.persona-name, .template-header, .quote-text { color: var(--color-text) !important; }
+.quote-text { font-family: var(--font-display) !important; font-weight: 300 !important; }
+.callout { background: var(--color-bg-card) !important; border: none !important; border-left: 4px solid var(--color-label) !important; border-radius: 0 !important; padding: 24px 28px !important; }
+.callout p, .callout strong { color: var(--color-text) !important; }
+.tool-tag, .template-tag, .case-tag { background: transparent !important; color: var(--color-text) !important; border: 1px solid var(--color-text) !important; border-radius: 100px; }
+.highlight, .variable { color: var(--color-label) !important; background: var(--color-accent-dim) !important; }
+.workflow-icon { background: var(--color-label) !important; color: #fff !important; }
+.workflow-arrow { color: var(--color-label) !important; }
+.winner-badge { background: var(--color-label) !important; color: #fff !important; }
+.check { color: #0f8a4a !important; } .cross { color: #c5221f !important; }
+.before { border-top: 3px solid #c5221f !important; } .after { border-top: 3px solid #0f8a4a !important; }
+.change { color: #0f8a4a !important; }
+.hipaa-badge { background: var(--color-accent-dim) !important; color: var(--color-label) !important; border-color: var(--color-label) !important; }
+table, .competitor-table { background: #fff; }
+.competitor-table th, .competitor-table td, table th, table td { border-color: #e6e6e3 !important; color: var(--color-text-muted); }
+.competitor-table th, table th { color: var(--color-label) !important; }
+.learnings-list li { background: var(--color-bg-card) !important; border: none !important; border-radius: 0 !important; color: var(--color-text-muted); }
+.learnings-list li strong { color: var(--color-text); }
+.next-project { position: relative; z-index: 1; }
+
+/* Device mockup bands built with hard-coded dark backgrounds stay dark, with light text. */
+[style*="#0a0a0a"], [style*="#0a1a15"], [style*="#0a0f1a"], [style*="#0f0a1a"], [style*="#1a1a1a"], [style*="#111"] {
+  --color-text: #f3f1ec; --color-text-muted: #b9b5ad; --color-border: #2f2c29; --color-bg-card: #1c1c1c; color: #f3f1ec;
+}
+
+@media (max-width: 900px) {
+  .case-content { padding: 0 20px; }
+  .case-section > * , .case-section > .case-section-label, .case-section > .case-section-label + h2 { grid-column: 1 !important; grid-row: auto !important; margin-top: 0 !important; }
+  .quick-stats { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .quick-stat + .quick-stat { border-left: none !important; }
+}
+.tool-tag, .template-tag { white-space: nowrap; display: inline-flex !important; align-items: center; height: auto !important; line-height: 1.4 !important; }
+.case-section > .tools-grid { grid-column: 2 !important; margin-bottom: 18px; }
+.case-section > .learnings-list { margin-top: 24px !important; }

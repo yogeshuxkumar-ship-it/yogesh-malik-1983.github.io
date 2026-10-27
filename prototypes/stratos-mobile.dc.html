@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;font-family:'Roboto',system-ui,sans-serif;background:#f8f9fa;color:#202124}a{color:#1a73e8;text-decoration:none}a:hover{text-decoration:underline}</style>
+</helmet>
+<div style="max-width:430px;margin:0 auto;min-height:100vh;background:#f8f9fa;display:flex;flex-direction:column;">
+  <header style="position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #e8eaed;display:flex;align-items:center;gap:10px;padding:12px 14px;">
+    <button aria-label="Open menu" style="width:40px;height:40px;border:0;background:none;border-radius:50%;display:grid;place-items:center;cursor:pointer;" style-hover="background:#f1f3f4;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button>
+    <div style="width:28px;height:28px;border-radius:50%;background:#1a73e8;display:grid;place-items:center;flex:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+    <div style="font-size:18px;font-weight:500;flex:1;">{{ title }}</div>
+    <div style="width:32px;height:32px;border-radius:50%;background:#e8f0fe;color:#1a73e8;display:grid;place-items:center;font-size:13px;font-weight:500;">A</div>
+  </header>
+
+  <main style="flex:1;padding:14px 14px 90px;display:grid;gap:12px;align-content:start;">
+    <sc-if value="{{ isMission }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fce8e6;border:1px solid #f6c7c2;border-radius:12px;padding:14px;display:grid;gap:8px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;"><span style="width:24px;height:24px;border-radius:50%;background:#d93025;color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;flex:none;">!</span><div style="display:grid;gap:4px;"><div style="font-weight:500;font-size:15px;color:#a50e0e;">Fleet needs attention</div><div style="font-size:13px;color:#5f2120;line-height:1.45;">6 of 7 agents offline · python error rate at 12% · Research-google latency exceeding SLO.</div></div></div>
+        <div style="display:flex;gap:8px;align-items:center;"><span style="font-size:12px;font-weight:500;background:#d93025;color:#fff;padding:3px 10px;border-radius:100px;">1 Critical</span><span style="font-size:12px;font-weight:500;background:#fef7e0;color:#b06000;padding:3px 10px;border-radius:100px;">2 Warnings</span><button style="margin-left:auto;background:#d93025;color:#fff;border:0;border-radius:100px;padding:8px 16px;font:500 13px Roboto,sans-serif;cursor:pointer;">Review</button></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;">
+        <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+          <div style="background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:12px;display:grid;gap:4px;">
+            <div style="font-size:12px;color:#5f6368;">{{ k.label }}</div>
+            <div style="font-size:22px;font-weight:500;">{{ k.value }}<span style="font-size:13px;color:#80868b;">{{ k.unit }}</span></div>
+            <div style="font-size:11px;color:{{ k.subColor }};">{{ k.sub }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:14px;display:grid;gap:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;"><div style="font-weight:500;">Spend by agent</div><div style="font-size:12px;color:#80868b;">est. USD</div></div>
+        <sc-for list="{{ spend }}" as="s" hint-placeholder-count="4">
+          <div style="display:grid;gap:4px;"><div style="display:flex;justify-content:space-between;font-size:13px;"><span>{{ s.name }}</span><span style="font-family:'Roboto Mono',monospace;color:#5f6368;">{{ s.cost }}</span></div><div style="height:6px;background:#e8f0fe;border-radius:3px;"><div style="height:100%;width:{{ s.w }};background:#1a73e8;border-radius:3px;"></div></div></div>
+        </sc-for>
+      </div>
+      <div style="background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:14px;display:grid;gap:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;"><div style="font-weight:500;">Recent activity</div><a href="?page=traces">View all</a></div>
+        <sc-for list="{{ recent }}" as="r" hint-placeholder-count="3">
+          <div style="display:grid;gap:2px;border-top:1px solid #f1f3f4;padding-top:8px;"><div style="display:flex;justify-content:space-between;font-size:13px;"><b style="font-weight:500;">{{ r.agent }}</b><span style="color:#80868b;font-size:12px;">{{ r.short }}</span></div><div style="font-family:'Roboto Mono',monospace;font-size:12px;color:#5f6368;">{{ r.spanTask }}</div></div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isAgents }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+          <button onClick="{{ f.pick }}" aria-pressed="{{ f.on }}" style="flex:none;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.color }};border-radius:100px;padding:8px 16px;font:500 13px Roboto,sans-serif;cursor:pointer;">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <div style="font-size:12px;color:#5f6368;">{{ agentCount }}</div>
+      <sc-for list="{{ agents }}" as="a" hint-placeholder-count="4">
+        <div style="background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:14px;display:grid;gap:10px;">
+          <div onClick="{{ a.toggle }}" style="display:flex;gap:10px;align-items:center;cursor:pointer;">
+            <span style="width:10px;height:10px;border-radius:50%;background:{{ a.dot }};flex:none;"></span>
+            <div style="flex:1;min-width:0;display:grid;gap:2px;"><div style="font-weight:500;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ a.name }}</div><div style="font-size:12px;color:#5f6368;">{{ a.kindLabel }} · {{ a.env }} · {{ a.statusText }}</div></div>
+            <span style="font-size:18px;color:#5f6368;">{{ a.chev }}</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;text-align:center;">
+            <div style="background:#f8f9fa;border-radius:8px;padding:6px;"><div style="font-size:11px;color:#5f6368;">Latency</div><div style="font-size:14px;font-weight:500;">{{ a.lat }}</div></div>
+            <div style="background:#f8f9fa;border-radius:8px;padding:6px;"><div style="font-size:11px;color:#5f6368;">Error</div><div style="font-size:14px;font-weight:500;color:{{ a.errColor }};">{{ a.err }}</div></div>
+            <div style="background:#f8f9fa;border-radius:8px;padding:6px;"><div style="font-size:11px;color:#5f6368;">Uptime</div><div style="font-size:14px;font-weight:500;">{{ a.up }}</div></div>
+          </div>
+          <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
+            <div style="border-top:1px solid #f1f3f4;padding-top:10px;display:grid;gap:4px;font-size:13px;color:#3c4043;">
+              <div><span style="color:#80868b;">model:</span> {{ a.modelText }}</div>
+              <div><span style="color:#80868b;">framework:</span> {{ a.framework }} · <span style="color:#80868b;">team:</span> {{ a.team }}</div>
+              <div><span style="color:#80868b;">cost:</span> {{ a.cost }} · <span style="color:#80868b;">tokens:</span> {{ a.tokens }}</div>
+              <div><span style="color:#80868b;">tools:</span> {{ a.toolsText }}</div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </sc-if>
+
+    <sc-if value="{{ isTraces }}" hint-placeholder-val="{{ false }}">
+      <label style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #dadce0;border-radius:100px;padding:10px 14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input value="{{ q }}" onInput="{{ onQ }}" placeholder="Search prompt" aria-label="Search prompt" style="border:0;outline:0;flex:1;font:15px Roboto,sans-serif;background:none;"></label>
+      <div style="display:flex;gap:8px;overflow-x:auto;">
+        <sc-for list="{{ facets }}" as="f" hint-placeholder-count="4"><span style="flex:none;border:1px solid #dadce0;background:#fff;border-radius:8px;padding:7px 12px;font-size:13px;color:#3c4043;">{{ f }} ▾</span></sc-for>
+      </div>
+      <div style="font-size:12px;color:#5f6368;">{{ traceCount }}</div>
+      <sc-for list="{{ traces }}" as="t" hint-placeholder-count="5">
+        <div style="background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:12px 14px;display:grid;gap:6px;">
+          <div style="display:flex;justify-content:space-between;gap:8px;font-size:13px;"><b style="font-weight:500;">{{ t.agent }}</b><span style="color:#80868b;font-size:12px;">{{ t.time }}</span></div>
+          <div style="font-family:'Roboto Mono',monospace;font-size:12px;color:#1a73e8;">{{ t.spanTask }}</div>
+          <div style="font-size:13px;color:#3c4043;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">{{ t.prompt }}</div>
+          <div style="font-size:11px;color:#80868b;">{{ t.model }} · {{ t.framework }}</div>
+        </div>
+      </sc-for>
+    </sc-if>
+  </main>
+
+  <nav aria-label="Primary" style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#fff;border-top:1px solid #e8eaed;display:grid;grid-template-columns:repeat(3,1fr);">
+    <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+      <a href="{{ t.href }}" style="display:grid;justify-items:center;gap:4px;padding:10px 0 14px;font-size:12px;font-weight:500;color:{{ t.color }};text-decoration:none;"><span style="width:56px;height:28px;border-radius:100px;background:{{ t.pill }};display:grid;place-items:center;font-size:15px;">{{ t.icon }}</span>{{ t.label }}</a>
+    </sc-for>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AG = [
+  ['weather','MCP',false,'dev','prod','claude','MCP','2.0K','$0.0057',420,2.1,99.2,'search_location, get_forecast'],
+  ['weather','Agent',false,'dev','prod','meta/llama-3.1-8b-instruct','langgraph','2.4K','$0.0029',890,4.5,98.1,'geocode_city, get_weather'],
+  ['Research-google','Agent',false,'dev','dev','gemini-3-flash-preview','langgraph','1.1K','$0.0012',1300,6.2,95.0,'get_current_time'],
+  ['stockAgent','Agent',false,'development','dev','gpt-4o-mini','langchain','6','$0.0000',610,0.0,99.9,'get_weather'],
+  ['crewai-math','Agent',false,'dev','prod','openai/meta/llama-3.1-8b-instruct','crewai','1.8K','$0.0021',730,3.3,97.8,'multiply'],
+  ['python','Agent',false,'test','test',null,'langgraph','0','$0.0000',0,12.0,80.1,''],
+  ['agent-quick-start-rb521','Agent',true,'test','test','Amazon Nova Micro','bedrock','0','$0.0000',210,0.0,100,'']
+];
+const TR = [
+  ['7/6/2026, 3:32 PM','weather','tool:get_forecast','get_forecast {"latitude":12.9716,"longitude":77.5946,"days":3}','claude','MCP'],
+  ['7/1/2026, 11:34 AM','python','execute_task llm','what is 2345/3456','n/a','langgraph'],
+  ['7/1/2026, 7:14 AM','crewai-math','litellm.chat','Analyze the tool result. If requirements are met, provide the final answer.','llama-3.1-8b','crewai'],
+  ['7/1/2026, 7:14 AM','crewai-math','litellm.chat','Current Task: What is 23 * 19? Use the multiply tool and return the result.','llama-3.1-8b','crewai'],
+  ['6/30/2026, 5:05 PM','stockAgent','tool:get_weather','{"args":[],"kwargs":{}}','gpt-4o-mini','langchain'],
+  ['6/30/2026, 12:32 PM','Research-google','tool:get_current_time','Get the current time for the research task','gemini-3-flash','langgraph'],
+  ['6/30/2026, 12:11 PM','weather','chat NvidiaChatModel','wether in chennai','llama-3.1-8b','langgraph'],
+  ['6/26/2026, 5:04 PM','weather','tool:search_location','search_location {"query":"Pune, India","limit":1}','claude','MCP']
+];
+class Component extends DCLogic {
+  state = { page: new URLSearchParams(location.search).get('page') || 'mission-control', filter: 'All', open: null, q: '' };
+  renderVals() {
+    const { page, filter, open, q } = this.state;
+    const agentsF = AG.map((a, i) => ({ a, i })).filter(({ a }) => filter === 'All' || (filter === 'MCP' && a[1] === 'MCP') || (filter === 'Online' && a[2]) || (filter === 'Offline' && !a[2]));
+    const tr = TR.filter(t => !q || (t[3] + t[1] + t[2]).toLowerCase().includes(q.toLowerCase()));
+    const titles = { 'mission-control': 'Mission Control', agents: 'Agents', traces: 'Traces' };
+    return {
+      title: titles[page] || 'Mission Control',
+      isMission: page === 'mission-control', isAgents: page === 'agents', isTraces: page === 'traces',
+      kpis: [
+        { label: 'Agents online', value: '1', unit: '/7', sub: '6 offline', subColor: '#d93025' },
+        { label: 'Total tokens', value: '7.3K', unit: '', sub: '↑ 12% vs prev 7d', subColor: '#1e8e3e' },
+        { label: 'Total spend', value: '$0.0119', unit: '', sub: 'across 7 days', subColor: '#80868b' },
+        { label: 'Avg uptime', value: '96.3%', unit: '', sub: '14% healthy', subColor: '#b06000' }
+      ],
+      spend: [['weather', '$0.0057', 100], ['weather (agent)', '$0.0029', 51], ['crewai-math', '$0.0021', 37], ['Research-google', '$0.0012', 21]].map(s => ({ name: s[0], cost: s[1], w: s[2] + '%' })),
+      recent: TR.slice(0, 3).map(t => ({ agent: t[1], short: t[0].split(', ')[1], spanTask: t[2] })),
+      filters: ['All', 'MCP', 'Online', 'Offline'].map(l => ({ label: l, on: String(l === filter), bg: l === filter ? '#e8f0fe' : '#fff', color: l === filter ? '#1967d2' : '#3c4043', border: l === filter ? '#d2e3fc' : '#dadce0', pick: () => this.setState({ filter: l, open: null }) })),
+      agentCount: agentsF.length + ' of 7 agents',
+      agents: agentsF.map(({ a, i }) => ({
+        name: a[0], kindLabel: a[1], env: a[4], team: a[3], framework: a[6], tokens: a[7], cost: a[8],
+        statusText: a[2] ? 'Online' : 'Offline', dot: a[2] ? '#1e8e3e' : '#d93025',
+        lat: a[9] ? a[9] + 'ms' : 'n/a', err: a[10].toFixed(1) + '%', errColor: a[10] > 5 ? '#d93025' : '#202124', up: a[11] + '%',
+        modelText: a[5] || 'not set', toolsText: a[12] || 'No tools registered',
+        open: open === i, chev: open === i ? '▴' : '▾', toggle: () => this.setState({ open: open === i ? null : i })
+      })),
+      q, onQ: (e) => this.setState({ q: e.target.value }),
+      facets: ['All Agents', 'All Types', 'All Teams', 'All Models'],
+      traceCount: 'Showing ' + tr.length + ' of ' + TR.length + ' traces',
+      traces: tr.map(t => ({ time: t[0], agent: t[1], spanTask: t[2], prompt: t[3], model: t[4], framework: t[5] })),
+      tabs: [['mission-control', 'Mission', '▦'], ['agents', 'Agents', '◉'], ['traces', 'Traces', '≡']].map(t => ({ href: '?page=' + t[0], label: t[1], icon: t[2], color: page === t[0] ? '#1967d2' : '#5f6368', pill: page === t[0] ? '#e8f0fe' : 'transparent' }))
+    };
+  }
+}
+</script>
+</body>
+</html>

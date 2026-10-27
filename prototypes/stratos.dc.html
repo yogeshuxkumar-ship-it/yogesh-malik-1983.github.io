@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @keyframes stratos-toast{0%{transform:translate(-50%,20px);opacity:0}100%{transform:translate(-50%,0);opacity:1}}
+  body{margin:0;font-family:'Roboto',ui-sans-serif,system-ui,Arial,sans-serif;}
+  ::-webkit-scrollbar{width:12px;height:12px}
+  ::-webkit-scrollbar-thumb{background:#dadce0;border-radius:12px;border:3px solid #fff}
+  ::-webkit-scrollbar-thumb:hover{background:#bdc1c6}
+  a{color:#1a73e8;text-decoration:none}
+  a:hover{text-decoration:underline}
+</style>
+</helmet>
+
+<div style="display:flex;min-height:100vh;background:#f8f9fa;color:#202124;">
+
+  <!-- SIDEBAR -->
+  <aside style="{{ sidebarStyle }}">
+    <div style="{{ brandRowStyle }}">
+      <div style="width:32px;height:32px;border-radius:50%;background:#1a73e8;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+      </div>
+      <div style="{{ brandStyle }}">Stratos AI</div>
+      <button title="Toggle menu" onClick="{{ toggleSidebar }}" style="{{ hamburgerStyle }}" style-hover="background:#f1f3f4;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{{ hamburgerIcon }}</svg></button>
+    </div>
+
+    <div style="padding:8px 12px;">
+      <div onClick="{{ goMission }}" title="Mission Control" style="{{ navStyleMission }}" style-hover="background:#f1f3f4;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
+        <span style="{{ labelStyle }}">Mission Control</span>
+      </div>
+      <div onClick="{{ goAgents }}" title="Agents" style="{{ navStyleAgents }}" style-hover="background:#f1f3f4;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><circle cx="8" cy="16" r="1"></circle><circle cx="16" cy="16" r="1"></circle></svg>
+        <span style="{{ labelStyle }}">Agents</span>
+      </div>
+      <div onClick="{{ goTraces }}" title="Traces" style="{{ navStyleTraces }}" style-hover="background:#f1f3f4;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+        <span style="{{ labelStyle }}">Traces</span>
+      </div>
+    </div>
+
+    <div style="height:1px;background:#dadce0;margin:8px 24px;"></div>
+
+    <div style="{{ sectionStyle }}">Govern</div>
+    <div style="padding:0 12px 8px;">
+      <div title="Token Economy" style="display:flex;align-items:center;gap:16px;padding:10px 12px;border-radius:0 20px 20px 0;font-size:14px;color:#5f6368;cursor:default;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+        <span style="{{ labelStyle }}">Token Economy</span>
+      </div>
+      <div onClick="{{ goMission }}" title="Incidents" style="display:flex;align-items:center;gap:16px;padding:10px 12px;border-radius:0 20px 20px 0;font-size:14px;color:#5f6368;cursor:pointer;{{ incidentRowExtra }}" style-hover="background:#f1f3f4;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        <span style="{{ labelFlexStyle }}">Incidents</span>
+        <span style="{{ incidentBadgeStyle }}">3</span>
+      </div>
+      <div title="Ask Stratos AI" style="display:flex;align-items:center;gap:16px;padding:10px 12px;border-radius:0 20px 20px 0;font-size:14px;color:#5f6368;cursor:default;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8-5.8 1.9 5.8 1.9L12 18l1.9-5.8 5.8-1.9-5.8-1.9L12 3z"></path></svg>
+        <span style="{{ labelStyle }}">Ask Stratos AI</span>
+      </div>
+    </div>
+
+    <div style="height:1px;background:#dadce0;margin:8px 24px;"></div>
+
+    <div style="padding:0 12px;">
+      <div title="MCP Proxy" style="display:flex;align-items:center;gap:16px;padding:10px 12px;border-radius:0 20px 20px 0;font-size:14px;color:#5f6368;cursor:default;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+        <span style="{{ labelStyle }}">MCP Proxy</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div style="{{ mainStyle }}">
+
+    <!-- TOP BAR -->
+    <div style="height:64px;box-sizing:border-box;background:#fff;border-bottom:1px solid #dadce0;display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:4;">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div style="font-size:22px;font-weight:400;color:#3c4043;">{{ pageTitle }}</div>
+        <span style="{{ autoRefreshStyle }}" onClick="{{ toggleAutoRefresh }}">
+          <span style="width:7px;height:7px;border-radius:50%;background:currentColor;"></span>
+          Live · {{ autoRefreshLabel }}
+        </span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;align-items:center;background:#f1f3f4;border-radius:8px;padding:2px;">
+          <button style="padding:7px 16px;font-size:14px;font-weight:500;color:#1a73e8;background:#fff;border:none;border-radius:6px;cursor:pointer;font-family:inherit;box-shadow:0 1px 2px rgba(60,64,67,.2);">Day</button>
+          <button style="padding:7px 16px;font-size:14px;font-weight:500;color:#5f6368;background:transparent;border:none;border-radius:6px;cursor:pointer;font-family:inherit;">Week</button>
+          <button style="padding:7px 16px;font-size:14px;font-weight:500;color:#5f6368;background:transparent;border:none;border-radius:6px;cursor:pointer;font-family:inherit;">Month</button>
+        </div>
+        <button title="Register agent" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:9px 22px;border-radius:8px;border:none;cursor:pointer;background:#1a73e8;color:#fff;font-family:inherit;box-shadow:0 1px 2px rgba(60,64,67,.2);" style-hover="background:#1b66c9;box-shadow:0 1px 3px 1px rgba(60,64,67,.25);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Register agent
+        </button>
+        <div style="width:1px;height:28px;background:#dadce0;margin:0 4px;"></div>
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:6px 12px;border-radius:16px;background:#f1f3f4;color:#5f6368;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+          admin
+        </span>
+        <button title="Profile" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:6px 8px 6px 14px;border-radius:20px;border:1px solid #dadce0;background:#fff;color:#3c4043;cursor:pointer;font-family:inherit;" style-hover="background:#f8f9fa;">
+          Profile
+          <span style="width:28px;height:28px;border-radius:50%;background:#1a73e8;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#fff;">A</span>
+        </button>
+      </div>
+    </div>
+
+    <main style="padding:28px 32px 56px;">
+      <div style="font-size:14px;color:#5f6368;margin-bottom:22px;">{{ pageSubtitle }}</div>
+
+      <!-- ==================== MISSION CONTROL ==================== -->
+      <sc-if value="{{ isMission }}" hint-placeholder-val="{{ true }}">
+        <div data-screen-label="Mission Control">
+
+          <!-- ALERT BANNER -->
+          <div style="display:flex;align-items:center;gap:16px;background:#fce8e6;border-radius:8px;padding:14px 18px;margin-bottom:24px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d93025" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:14px;font-weight:500;color:#c5221f;">Fleet needs attention — 1 critical and 2 warnings active</div>
+              <div style="font-size:13px;color:#5f6368;margin-top:2px;">6 of 7 agents offline · python error rate at 12% · Research-google latency exceeding SLO.</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:5px 12px;border-radius:16px;background:#fad2cf;color:#c5221f;"><span style="width:7px;height:7px;border-radius:50%;background:#d93025;"></span>1 Critical</span>
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:5px 12px;border-radius:16px;background:#feefc3;color:#b06000;"><span style="width:7px;height:7px;border-radius:50%;background:#f9ab00;"></span>2 Warnings</span>
+              <button onClick="{{ openIncidents }}" style="font-size:14px;font-weight:500;padding:9px 20px;border-radius:8px;border:none;background:#d93025;color:#fff;cursor:pointer;font-family:inherit;box-shadow:0 1px 2px rgba(60,64,67,.3);" style-hover="background:#c5221f;box-shadow:0 1px 3px 1px rgba(60,64,67,.3);">Review</button>
+            </div>
+          </div>
+
+          <!-- COUNT CHIPS (reference-style summary) -->
+          <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px;">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
+              <div style="{{ c.style }}">
+                <span style="font-family:'Roboto Mono',monospace;font-size:20px;font-weight:500;">{{ c.value }}</span>
+                <span style="font-size:13px;font-weight:500;">{{ c.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- KPI CARDS -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px;">
+            <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="8">
+              <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;padding:18px 20px;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                  <div style="{{ k.iconWrapStyle }}">
+                    <span style="width:8px;height:8px;border-radius:50%;background:currentColor;"></span>
+                  </div>
+                  <div style="font-size:13px;color:#5f6368;">{{ k.label }}</div>
+                </div>
+                <div style="font-family:'Roboto',sans-serif;font-size:28px;font-weight:400;color:#202124;">{{ k.value }}<span style="font-size:16px;color:#80868b;">{{ k.unit }}</span></div>
+                <div style="{{ k.subStyle }}">{{ k.sub }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- FLEET HEALTH + SPEND -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;padding:22px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                <div style="font-size:16px;font-weight:500;color:#202124;">Fleet health</div>
+                <div style="font-size:13px;color:#80868b;">7 agents</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:24px;">
+                <div style="position:relative;width:132px;height:132px;flex-shrink:0;">
+                  <svg width="132" height="132" viewBox="0 0 42 42">
+                    <circle cx="21" cy="21" r="15.9155" fill="none" stroke="#f1f3f4" stroke-width="4"></circle>
+                    <sc-for list="{{ healthSegments }}" as="seg" hint-placeholder-count="3">
+                      <circle cx="21" cy="21" r="15.9155" fill="none" stroke="{{ seg.color }}" stroke-width="4" stroke-dasharray="{{ seg.dash }}" stroke-dashoffset="{{ seg.offset }}" stroke-linecap="butt"></circle>
+                    </sc-for>
+                  </svg>
+                  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                    <div style="font-family:'Roboto',sans-serif;font-size:24px;font-weight:400;color:#202124;line-height:1;">14%</div>
+                    <div style="font-size:11px;color:#80868b;margin-top:3px;">healthy</div>
+                  </div>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:14px;min-width:0;">
+                  <sc-for list="{{ healthLegend }}" as="l" hint-placeholder-count="3">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <span style="width:10px;height:10px;border-radius:2px;background:{{ l.color }};flex-shrink:0;"></span>
+                      <span style="font-size:13px;color:#5f6368;flex:1;">{{ l.label }}</span>
+                      <span style="font-family:'Roboto Mono',monospace;font-size:13px;font-weight:500;color:#202124;">{{ l.value }}</span>
+                    </div>
+                  </sc-for>
+                  <div style="border-top:1px solid #e8eaed;padding-top:12px;display:flex;justify-content:space-between;font-size:13px;color:#5f6368;">
+                    <span>Avg uptime</span><span style="font-family:'Roboto Mono',monospace;font-weight:500;color:#202124;">96.3%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;padding:22px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+                <div style="font-size:16px;font-weight:500;color:#202124;">Spend by agent</div>
+                <div style="font-size:13px;color:#80868b;">est. USD</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:16px;">
+                <sc-for list="{{ spendByAgent }}" as="s" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:12px;">
+                    <div style="width:110px;font-size:13px;color:#202124;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ s.name }}</div>
+                    <div style="flex:1;height:6px;border-radius:3px;background:#f1f3f4;overflow:hidden;">
+                      <div style="{{ s.barStyle }}"></div>
+                    </div>
+                    <div style="width:66px;text-align:right;font-family:'Roboto Mono',monospace;font-size:12px;color:#202124;flex-shrink:0;">{{ s.cost }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <!-- TREND GRAPHS -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px;">
+            <sc-for list="{{ trendCards }}" as="c" hint-placeholder-count="4">
+              <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;padding:18px 18px 0;overflow:hidden;">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div style="font-size:13px;color:#5f6368;">{{ c.title }}</div>
+                  <span style="{{ c.deltaStyle }}">{{ c.delta }}</span>
+                </div>
+                <div style="font-family:'Roboto',sans-serif;font-size:24px;font-weight:400;margin-top:6px;color:#202124;">{{ c.value }}</div>
+                <div style="font-size:12px;color:#80868b;margin-top:2px;">7-day trend</div>
+                <svg width="100%" height="52" viewBox="0 0 100 42" preserveAspectRatio="none" style="display:block;margin-top:10px;">
+                  <defs>
+                    <linearGradient id="{{ c.gradId }}" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="{{ c.color }}" stop-opacity="0.2"></stop>
+                      <stop offset="100%" stop-color="{{ c.color }}" stop-opacity="0"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path d="{{ c.areaPath }}" fill="url(#{{ c.gradId }})"></path>
+                  <path d="{{ c.linePath }}" fill="none" stroke="{{ c.color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- RECENT ACTIVITY + INCIDENTS -->
+          <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px;">
+            <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;padding:22px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                <div style="font-size:16px;font-weight:500;color:#202124;">Recent activity</div>
+                <span onClick="{{ goTraces }}" style="font-size:13px;color:#1a73e8;cursor:pointer;font-weight:500;">View all traces</span>
+              </div>
+              <div style="display:flex;flex-direction:column;">
+                <sc-for list="{{ recentActivity }}" as="r" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid #e8eaed;">
+                    <div style="{{ r.iconStyle }}">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">{{ r.iconPath }}</svg>
+                    </div>
+                    <div style="flex:1;min-width:0;">
+                      <div style="font-size:13px;color:#202124;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><span style="font-weight:500;">{{ r.agent }}</span> · {{ r.action }}</div>
+                    </div>
+                    <span style="{{ r.kindChipStyle }}">{{ r.kind }}</span>
+                    <span style="font-family:'Roboto Mono',monospace;font-size:11px;color:#80868b;flex-shrink:0;width:60px;text-align:right;">{{ r.time }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;padding:22px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                <div style="font-size:16px;font-weight:500;color:#202124;">Active incidents</div>
+                <span style="font-size:12px;font-weight:500;color:#d93025;">3 open</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <sc-for list="{{ incidents }}" as="i" hint-placeholder-count="3">
+                  <div style="border:1px solid #e8eaed;border-left:3px solid {{ i.accent }};border-radius:8px;padding:12px 14px;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+                      <span style="{{ i.sevStyle }}">{{ i.sev }}</span>
+                      <span style="font-family:'Roboto Mono',monospace;font-size:11px;color:#80868b;margin-left:auto;">{{ i.time }}</span>
+                    </div>
+                    <div style="font-size:13px;font-weight:500;color:#202124;">{{ i.title }}</div>
+                    <div style="font-size:12px;color:#5f6368;margin-top:2px;line-height:1.45;">{{ i.detail }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ==================== AGENTS ==================== -->
+      <sc-if value="{{ isAgents }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="Agents">
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:20px;">
+            <div style="position:relative;flex:1;min-width:240px;max-width:420px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" placeholder="Search agents" value="{{ agentSearch }}" onChange="{{ onAgentSearch }}" style="background:#f1f3f4;border:1px solid transparent;color:#202124;border-radius:24px;padding:11px 16px 11px 44px;font-size:14px;width:100%;box-sizing:border-box;font-family:inherit;outline:none;" style-focus="background:#fff;border-color:#dadce0;box-shadow:0 1px 3px rgba(60,64,67,.2);" />
+            </div>
+            <div style="display:flex;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #dadce0;">
+              <button onClick="{{ setAgentTypeAll }}" style="{{ agentTypeAllStyle }}">All</button>
+              <button onClick="{{ setAgentTypeAgents }}" style="{{ agentTypeAgentsStyle }}">Agents</button>
+              <button onClick="{{ setAgentTypeMcp }}" style="{{ agentTypeMcpStyle }}">MCP</button>
+            </div>
+            <div style="display:flex;background:#fff;border-radius:8px;overflow:hidden;border:1px solid #dadce0;">
+              <button onClick="{{ setAgentStatusAll }}" style="{{ agentStatusAllStyle }}">All</button>
+              <button onClick="{{ setAgentStatusOnline }}" style="{{ agentStatusOnlineStyle }}">Online</button>
+              <button onClick="{{ setAgentStatusOffline }}" style="{{ agentStatusOfflineStyle }}">Offline</button>
+            </div>
+            <select value="{{ agentEnv }}" onChange="{{ setAgentEnv }}" style="{{ envSelectStyle }}">
+              <option value="ALL">All Environments</option>
+              <option value="prod">prod</option>
+              <option value="dev">dev</option>
+              <option value="test">test</option>
+            </select>
+          </div>
+
+          <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;overflow:hidden;">
+            <div style="overflow-x:auto;">
+              <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:960px;">
+                <thead>
+                  <tr style="text-align:left;border-bottom:1px solid #dadce0;">
+                    <th style="padding:14px 24px;font-weight:500;font-size:12px;color:#5f6368;">Agent</th>
+                    <th style="padding:14px 12px;font-weight:500;font-size:12px;color:#5f6368;">Type</th>
+                    <th style="padding:14px 12px;font-weight:500;font-size:12px;color:#5f6368;">Env</th>
+                    <th style="padding:14px 12px;font-weight:500;font-size:12px;color:#5f6368;">Status</th>
+                    <th style="padding:14px 12px;font-weight:500;font-size:12px;color:#5f6368;text-align:right;">Latency</th>
+                    <th style="padding:14px 12px;font-weight:500;font-size:12px;color:#5f6368;text-align:right;">Error</th>
+                    <th style="padding:14px 12px;font-weight:500;font-size:12px;color:#5f6368;text-align:right;">Uptime</th>
+                    <th style="padding:14px 12px;font-weight:500;font-size:12px;color:#5f6368;text-align:right;">Tokens</th>
+                    <th style="padding:14px 24px;font-weight:500;font-size:12px;color:#5f6368;text-align:right;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <sc-for list="{{ tableAgents }}" as="a" hint-placeholder-count="7">
+                    <tr style="{{ a.rowStyle }}" style-hover="background:#f8f9fa;">
+                      <td style="padding:14px 24px;">
+                        <div style="display:flex;align-items:center;gap:14px;">
+                          <div style="{{ a.avatarStyle }}">{{ a.initials }}</div>
+                          <div style="min-width:0;">
+                            <div style="font-size:14px;font-weight:500;color:#202124;">{{ a.name }}</div>
+                            <div style="font-size:12px;color:#80868b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:170px;">{{ a.framework }}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="padding:14px 12px;"><span style="{{ a.kindChipStyle }}">{{ a.kindLabel }}</span></td>
+                      <td style="padding:14px 12px;"><span style="{{ a.envChipStyle }}">{{ a.env }}</span></td>
+                      <td style="padding:14px 12px;"><span style="{{ a.statusChipStyle }}"><span style="width:7px;height:7px;border-radius:50%;background:currentColor;"></span>{{ a.statusLabel }}</span></td>
+                      <td style="padding:14px 12px;text-align:right;font-family:'Roboto Mono',monospace;font-size:12px;color:#202124;">{{ a.latencyLabel }}</td>
+                      <td style="padding:14px 12px;text-align:right;font-family:'Roboto Mono',monospace;font-size:12px;"><span style="{{ a.errStyle }}">{{ a.errLabel }}</span></td>
+                      <td style="padding:14px 12px;text-align:right;font-family:'Roboto Mono',monospace;font-size:12px;"><span style="{{ a.uptimeStyle }}">{{ a.uptimeLabel }}</span></td>
+                      <td style="padding:14px 12px;text-align:right;font-family:'Roboto Mono',monospace;font-size:12px;color:#202124;">{{ a.tokens }}</td>
+                      <td style="padding:14px 24px;">
+                        <div style="display:flex;align-items:center;justify-content:flex-end;gap:2px;">
+                          <button title="View details" onClick="{{ a.onToggle }}" style="{{ a.detailsBtnStyle }}" style-hover="background:#e8f0fe;color:#1a73e8;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
+                          <button title="Restart agent" onClick="{{ a.onRestart }}" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:none;background:transparent;color:#5f6368;cursor:pointer;" style-hover="background:#f1f3f4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></button>
+                          <button title="View logs" onClick="{{ a.onLogs }}" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:none;background:transparent;color:#5f6368;cursor:pointer;" style-hover="background:#f1f3f4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></button>
+                          <button title="Open traces" onClick="{{ a.onOpenTraces }}" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:none;background:transparent;color:#5f6368;cursor:pointer;" style-hover="background:#f1f3f4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg></button>
+                        </div>
+                      </td>
+                    </tr>
+                    <sc-if value="{{ a.isExpanded }}" hint-placeholder-val="{{ false }}">
+                      <tr>
+                        <td colspan="9" style="padding:0;">
+                          <div style="background:#f8f9fa;padding:18px 24px;border-bottom:1px solid #dadce0;">
+                            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+                              <div>
+                                <div style="font-size:11px;color:#80868b;margin-bottom:8px;letter-spacing:.6px;text-transform:uppercase;font-weight:500;">Configuration</div>
+                                <div style="font-size:13px;color:#5f6368;margin-bottom:4px;">model: <span style="color:#202124;font-weight:500;font-family:'Roboto Mono',monospace;">{{ a.modelLabel }}</span></div>
+                                <div style="font-size:13px;color:#5f6368;margin-bottom:4px;">framework: <span style="color:#202124;font-weight:500;font-family:'Roboto Mono',monospace;">{{ a.framework }}</span></div>
+                                <div style="font-size:13px;color:#5f6368;">team: <span style="color:#202124;font-weight:500;">{{ a.team }}</span></div>
+                              </div>
+                              <div>
+                                <div style="font-size:11px;color:#80868b;margin-bottom:8px;letter-spacing:.6px;text-transform:uppercase;font-weight:500;">Consumption</div>
+                                <div style="font-size:13px;color:#5f6368;margin-bottom:4px;">cost: <span style="color:#202124;font-weight:500;font-family:'Roboto Mono',monospace;">{{ a.cost }}</span></div>
+                                <div style="font-size:13px;color:#5f6368;margin-bottom:4px;">queries: <span style="color:#202124;font-weight:500;font-family:'Roboto Mono',monospace;">{{ a.queries }}</span></div>
+                                <div style="font-size:13px;color:#5f6368;">sessions: <span style="color:#202124;font-weight:500;font-family:'Roboto Mono',monospace;">{{ a.sessions }}</span></div>
+                              </div>
+                              <div>
+                                <div style="font-size:11px;color:#80868b;margin-bottom:8px;letter-spacing:.6px;text-transform:uppercase;font-weight:500;">Tools</div>
+                                <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                                  <sc-for list="{{ a.tools }}" as="t" hint-placeholder-count="2">
+                                    <span style="display:inline-flex;align-items:center;font-size:12px;padding:4px 12px;border-radius:16px;background:#e8f0fe;color:#1967d2;font-family:'Roboto Mono',monospace;">{{ t }}</span>
+                                  </sc-for>
+                                  <sc-if value="{{ a.noTools }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#80868b;">No tools registered</span></sc-if>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </sc-if>
+                  </sc-for>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style="font-size:13px;color:#80868b;margin-top:14px;padding-left:2px;">{{ agentCount }} of 7 agents shown</div>
+        </div>
+      </sc-if>
+
+      <!-- ==================== TRACES ==================== -->
+      <sc-if value="{{ isTraces }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="Traces">
+          <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;padding:20px;margin-bottom:20px;">
+            <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+              <div>
+                <label style="font-size:12px;font-weight:500;color:#5f6368;display:block;margin-bottom:7px;">Search prompt</label>
+                <div style="position:relative;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5f6368" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input type="text" placeholder="Search text or task..." value="{{ traceSearch }}" onChange="{{ onTraceSearch }}" style="background:#fff;border:1px solid #dadce0;color:#202124;border-radius:8px;padding:10px 12px 10px 38px;font-size:14px;width:100%;box-sizing:border-box;font-family:inherit;outline:none;" style-focus="border-color:#1a73e8;" />
+                </div>
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:500;color:#5f6368;display:block;margin-bottom:7px;">Agent</label>
+                <select value="{{ traceAgent }}" onChange="{{ setTraceAgent }}" style="{{ selectStyle }}">
+                  <option value="ALL">All Agents</option>
+                  <sc-for list="{{ agentNames }}" as="n" hint-placeholder-count="5"><option value="{{ n }}">{{ n }}</option></sc-for>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:500;color:#5f6368;display:block;margin-bottom:7px;">Type</label>
+                <select value="{{ traceType }}" onChange="{{ setTraceType }}" style="{{ selectStyle }}">
+                  <option value="ALL">All Types</option>
+                  <option value="mcp">MCP</option>
+                  <option value="agent">Agent</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:500;color:#5f6368;display:block;margin-bottom:7px;">Team</label>
+                <select value="{{ traceTeam }}" onChange="{{ setTraceTeam }}" style="{{ selectStyle }}">
+                  <option value="ALL">All Teams</option>
+                  <sc-for list="{{ teams }}" as="t" hint-placeholder-count="3"><option value="{{ t }}">{{ t }}</option></sc-for>
+                </select>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div>
+                <label style="font-size:12px;font-weight:500;color:#5f6368;display:block;margin-bottom:7px;">Model</label>
+                <select value="{{ traceModel }}" onChange="{{ setTraceModel }}" style="{{ selectStyle }}">
+                  <option value="ALL">All Models</option>
+                  <sc-for list="{{ models }}" as="m" hint-placeholder-count="4"><option value="{{ m }}">{{ m }}</option></sc-for>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:500;color:#5f6368;display:block;margin-bottom:7px;">Framework</label>
+                <select value="{{ traceFramework }}" onChange="{{ setTraceFramework }}" style="{{ selectStyle }}">
+                  <option value="ALL">All Frameworks</option>
+                  <sc-for list="{{ frameworks }}" as="f" hint-placeholder-count="4"><option value="{{ f }}">{{ f }}</option></sc-for>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#fff;border:1px solid #dadce0;border-radius:8px;overflow:hidden;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="text-align:left;border-bottom:1px solid #dadce0;">
+                  <th style="padding:14px 24px;font-weight:500;font-size:12px;color:#5f6368;">Time</th>
+                  <th style="padding:14px 16px;font-weight:500;font-size:12px;color:#5f6368;">Agent</th>
+                  <th style="padding:14px 16px;font-weight:500;font-size:12px;color:#5f6368;">Span / Task</th>
+                  <th style="padding:14px 16px;font-weight:500;font-size:12px;color:#5f6368;">Prompt preview</th>
+                  <th style="padding:14px 16px;font-weight:500;font-size:12px;color:#5f6368;">Model</th>
+                </tr>
+              </thead>
+              <tbody>
+                <sc-for list="{{ pagedTraces }}" as="r" hint-placeholder-count="10">
+                  <tr onClick="{{ r.onToggle }}" style="{{ r.rowStyle }}" style-hover="background:#f8f9fa;">
+                    <td style="padding:13px 24px;font-family:'Roboto Mono',monospace;font-size:12px;color:#202124;white-space:nowrap;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="{{ r.chevStyle }}"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                      {{ r.time }}
+                    </td>
+                    <td style="padding:13px 16px;">
+                      <span style="color:#202124;font-weight:500;">{{ r.agent }}</span>
+                      <span style="{{ r.kindChipStyle }}">{{ r.agentType }}</span>
+                    </td>
+                    <td style="padding:13px 16px;font-family:'Roboto Mono',monospace;font-size:12px;color:#5f6368;">{{ r.spanTask }}</td>
+                    <td style="padding:13px 16px;color:#5f6368;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ r.prompt }}</td>
+                    <td style="padding:13px 16px;font-family:'Roboto Mono',monospace;font-size:12px;color:#202124;">{{ r.model }}</td>
+                  </tr>
+                  <sc-if value="{{ r.isExpanded }}" hint-placeholder-val="{{ false }}">
+                    <tr>
+                      <td colspan="5" style="padding:0;">
+                        <div style="background:#f8f9fa;padding:16px 24px 16px 52px;border-bottom:1px solid #dadce0;">
+                          <div style="font-size:12px;color:#80868b;margin-bottom:8px;">team: {{ r.team }} · framework: {{ r.framework }}</div>
+                          <div style="font-family:'Roboto Mono',monospace;font-size:12px;color:#3c4043;white-space:pre-wrap;background:#fff;border:1px solid #e8eaed;border-radius:8px;padding:12px 14px;">{{ r.detail }}</div>
+                        </div>
+                      </td>
+                    </tr>
+                  </sc-if>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px;">
+            <span style="font-size:13px;color:#80868b;">Showing {{ pageRangeStart }}–{{ pageRangeEnd }} of {{ traceCount }} traces</span>
+            <div style="display:flex;align-items:center;gap:4px;">
+              <button onClick="{{ goPrevPage }}" style="width:36px;height:36px;border-radius:50%;border:none;background:transparent;color:#5f6368;cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="background:#f1f3f4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+              <sc-for list="{{ pageNumbers }}" as="p" hint-placeholder-count="2">
+                <button onClick="{{ p.onClick }}" style="{{ p.style }}">{{ p.label }}</button>
+              </sc-for>
+              <button onClick="{{ goNextPage }}" style="width:36px;height:36px;border-radius:50%;border:none;background:transparent;color:#5f6368;cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="background:#f1f3f4;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+    </main>
+  </div>
+
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:12px;background:#3c4043;color:#fff;padding:14px 20px;border-radius:8px;box-shadow:0 3px 5px -1px rgba(60,64,67,.3),0 6px 10px 0 rgba(60,64,67,.15);font-size:14px;animation:stratos-toast .22s ease;">
+      {{ toast }}
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AGENTS_RAW = [
+  { id: 1, name: 'weather', kindLabel: 'MCP', online: false, team: 'dev', env: 'prod', desc: 'weatermcpclaude', model: 'claude', framework: 'MCP', tokens: '2.0K', cost: '$0.0057', queries: 14, sessions: 2, latency: 420, errorRate: 2.1, uptime: 99.2, toolsCount: 2, tools: ['search_location', 'get_forecast'] },
+  { id: 2, name: 'weather', kindLabel: 'Agent', online: false, team: 'dev', env: 'prod', desc: 'weather agent', model: 'meta/llama-3.1-8b-instruct', framework: 'langgraph', tokens: '2.4K', cost: '$0.0029', queries: 14, sessions: 1, latency: 890, errorRate: 4.5, uptime: 98.1, toolsCount: 2, tools: ['geocode_city', 'get_weather'] },
+  { id: 3, name: 'Research-google', kindLabel: 'Agent', online: false, team: 'dev', env: 'dev', desc: 'google adk', model: 'gemini-3-flash-preview', framework: 'langgraph', tokens: '1.1K', cost: '$0.0012', queries: 6, sessions: 0, latency: 1300, errorRate: 6.2, uptime: 95.0, toolsCount: 1, tools: ['get_current_time'] },
+  { id: 4, name: 'stockAgent', kindLabel: 'Agent', online: false, team: 'development', env: 'dev', desc: 'stockAgent', model: 'gpt-4o-mini', framework: 'langchain', tokens: '6', cost: '$0.0000', queries: 3, sessions: 0, latency: 610, errorRate: 0.0, uptime: 99.9, toolsCount: 1, tools: ['get_weather'] },
+  { id: 5, name: 'crewai-math', kindLabel: 'Agent', online: false, team: 'dev', env: 'prod', desc: 'math crew', model: 'openai/meta/llama-3.1-8b-instruct', framework: 'crewai', tokens: '1.8K', cost: '$0.0021', queries: 12, sessions: 0, latency: 730, errorRate: 3.3, uptime: 97.8, toolsCount: 1, tools: ['multiply'] },
+  { id: 6, name: 'python', kindLabel: 'Agent', online: false, team: 'test', env: 'test', desc: 'pyhton', model: null, framework: 'langgraph', tokens: '0', cost: '$0.0000', queries: 2, sessions: 0, latency: 0, errorRate: 12.0, uptime: 80.1, toolsCount: 0, tools: [] },
+  { id: 7, name: 'agent-quick-start-rb521', kindLabel: 'Agent', online: true, team: 'test', env: 'test', desc: 'AWS Bedrock Agent', model: 'Amazon Nova Micro', framework: 'bedrock', tokens: '0', cost: '$0.0000', queries: 0, sessions: 0, latency: 210, errorRate: 0.0, uptime: 100, toolsCount: 0, tools: [] }
+];
+
+const TRACES_RAW = [
+  { id: 1, time: '7/6/2026, 3:32:25 PM', agent: 'weather', agentType: 'mcp', team: 'dev', spanTask: 'tool:get_forecast', prompt: 'get_forecast {"latitude":12.9716,"longitude":77.5946,"days":3}', model: 'claude', framework: 'MCP' },
+  { id: 2, time: '7/1/2026, 11:34:43 AM', agent: 'python', agentType: 'agent', team: 'test', spanTask: 'execute_task llm', prompt: 'what is 2345/3456', model: '—', framework: 'langgraph' },
+  { id: 3, time: '7/1/2026, 11:32:51 AM', agent: 'python', agentType: 'agent', team: 'test', spanTask: 'execute_task llm', prompt: 'what is 234/456', model: '—', framework: 'langgraph' },
+  { id: 4, time: '7/1/2026, 7:14:50 AM', agent: 'crewai-math', agentType: 'agent', team: 'dev', spanTask: 'Mathematician.agent', prompt: '—', model: 'openai/meta/llama-3.1-8b-instruct', framework: 'crewai' },
+  { id: 5, time: '7/1/2026, 7:14:49 AM', agent: 'crewai-math', agentType: 'agent', team: 'dev', spanTask: 'litellm.chat', prompt: 'Analyze the tool result. If requirements are met, provide the final answer.', model: 'openai/meta/llama-3.1-8b-instruct', framework: 'crewai' },
+  { id: 6, time: '7/1/2026, 7:14:47 AM', agent: 'crewai-math', agentType: 'agent', team: 'dev', spanTask: 'litellm.chat', prompt: 'Current Task: What is 23 * 19? Use the multiply tool and return the result.', model: 'openai/meta/llama-3.1-8b-instruct', framework: 'crewai' },
+  { id: 7, time: '7/1/2026, 7:04:47 AM', agent: 'crewai-math', agentType: 'agent', team: 'dev', spanTask: 'generate_content gemini-2.0-flash', prompt: 'Current Task: What is 23 * 19? Use the multiply tool and return the result.', model: 'gemini-2.0-flash', framework: 'crewai' },
+  { id: 8, time: '6/30/2026, 5:05:14 PM', agent: 'stockAgent', agentType: 'agent', team: 'development', spanTask: 'weather_chat.workflow', prompt: '{"args":[],"kwargs":{}}', model: 'gpt-4o-mini', framework: 'langchain' },
+  { id: 9, time: '6/30/2026, 5:05:12 PM', agent: 'stockAgent', agentType: 'agent', team: 'development', spanTask: 'tool:get_weather', prompt: '{"args":[],"kwargs":{}}', model: 'gpt-4o-mini', framework: 'langchain' },
+  { id: 10, time: '6/30/2026, 12:32:57 PM', agent: 'Research-google', agentType: 'agent', team: 'dev', spanTask: 'call_llm', prompt: '—', model: 'gemini-3-flash-preview', framework: 'langgraph' },
+  { id: 11, time: '6/30/2026, 12:32:36 PM', agent: 'Research-google', agentType: 'agent', team: 'dev', spanTask: 'tool:get_current_time', prompt: '—', model: 'gemini-3-flash-preview', framework: 'langgraph' },
+  { id: 12, time: '6/30/2026, 12:11:07 PM', agent: 'weather', agentType: 'agent', team: 'dev', spanTask: 'chat NvidiaChatModel', prompt: 'wether in chennai', model: 'meta/llama-3.1-8b-instruct', framework: 'langgraph' },
+  { id: 13, time: '6/30/2026, 12:11:06 PM', agent: 'weather', agentType: 'agent', team: 'dev', spanTask: 'tool:get_weather', prompt: '{"args":[],"kwargs":{}}', model: 'meta/llama-3.1-8b-instruct', framework: 'langgraph' },
+  { id: 14, time: '6/30/2026, 12:10:22 PM', agent: 'weather', agentType: 'agent', team: 'dev', spanTask: 'chat NvidiaChatModel', prompt: 'what is the weather in Indore', model: 'meta/llama-3.1-8b-instruct', framework: 'langgraph' },
+  { id: 15, time: '6/26/2026, 5:35:52 PM', agent: 'weather', agentType: 'mcp', team: 'dev', spanTask: 'tool:get_forecast', prompt: 'get_forecast {"days":3,"granularity":"daily","include":"precip"}', model: 'claude', framework: 'MCP' },
+  { id: 16, time: '6/26/2026, 5:04:31 PM', agent: 'weather', agentType: 'mcp', team: 'dev', spanTask: 'tool:search_location', prompt: 'search_location {"query":"Pune, India","limit":1}', model: 'claude', framework: 'MCP' },
+  { id: 17, time: '6/26/2026, 4:59:41 PM', agent: 'weather', agentType: 'mcp', team: 'dev', spanTask: 'tool:get_forecast', prompt: 'get_forecast {"days":10,"granularity":"daily","include":"precip"}', model: 'claude', framework: 'MCP' },
+  { id: 18, time: '6/26/2026, 4:41:04 PM', agent: 'weather', agentType: 'mcp', team: 'dev', spanTask: 'tool:search_location', prompt: '# Location Search Results **Query:** "Jaggaiahpet, India"', model: 'claude', framework: 'MCP' }
+];
+
+const SPEND_BY_AGENT = [
+  { name: 'weather', cost: '$0.0057', pct: 100 },
+  { name: 'weather', cost: '$0.0029', pct: 51 },
+  { name: 'crewai-math', cost: '$0.0021', pct: 37 },
+  { name: 'Research-google', cost: '$0.0012', pct: 21 },
+  { name: 'stockAgent', cost: '$0.0000', pct: 2 }
+];
+
+const KPIS = [
+  { label: 'Agents online', value: '1', unit: '/7', accent: '#ea4335', sub: '6 offline', subColor: '#d93025' },
+  { label: 'Total tokens', value: '7.3K', unit: '', accent: '#1a73e8', sub: '↑ 12% vs prev 7d', subColor: '#1e8e3e' },
+  { label: 'Total spend', value: '$0.0119', unit: '', accent: '#1a73e8', sub: 'across 7 days', subColor: '#80868b' },
+  { label: 'Queries', value: '51', unit: '', accent: '#34a853', sub: '↑ 8 today', subColor: '#1e8e3e' },
+  { label: 'Error rate', value: '3.8', unit: '%', accent: '#ea4335', sub: '↑ 0.6% vs prev', subColor: '#d93025' },
+  { label: 'Avg latency', value: '642', unit: 'ms', accent: '#1a73e8', sub: '↓ 40ms faster', subColor: '#1e8e3e' },
+  { label: 'Uptime', value: '96.3', unit: '%', accent: '#34a853', sub: '30-day rolling', subColor: '#80868b' },
+  { label: 'Active sessions', value: '3', unit: '', accent: '#fbbc04', sub: 'live now', subColor: '#1e8e3e' }
+];
+
+const CHIPS = [
+  { value: '7', label: 'Total agents', fg: '#1967d2', bg: '#e8f0fe' },
+  { value: '1', label: 'Online', fg: '#1e8e3e', bg: '#e6f4ea' },
+  { value: '6', label: 'Offline', fg: '#5f6368', bg: '#f1f3f4' },
+  { value: '3', label: 'Incidents', fg: '#c5221f', bg: '#fce8e6' }
+];
+
+const TREND_DEFS = [
+  { title: 'Cost trend', value: '$0.0119', delta: '↑ 41%', deltaColor: '#1967d2', deltaBg: '#e8f0fe', color: '#1a73e8', gradId: 'v3-grad-cost', data: [22, 9, 5, 3, 4, 11, 53] },
+  { title: 'Query volume', value: '51', delta: '↑ 8', deltaColor: '#1e8e3e', deltaBg: '#e6f4ea', color: '#34a853', gradId: 'v3-grad-q', data: [6, 4, 3, 9, 7, 10, 12] },
+  { title: 'Avg latency', value: '642ms', delta: '↓ 6%', deltaColor: '#1e8e3e', deltaBg: '#e6f4ea', color: '#1a73e8', gradId: 'v3-grad-lat', data: [520, 610, 700, 890, 760, 655, 642] },
+  { title: 'Error rate', value: '3.8%', delta: '↑ 0.6%', deltaColor: '#c5221f', deltaBg: '#fce8e6', color: '#ea4335', gradId: 'v3-grad-err', data: [1.2, 2.0, 1.5, 4.1, 3.0, 4.6, 3.8] }
+];
+
+const CHECK_PATH = '<polyline points="20 6 9 17 4 12"></polyline>';
+const X_PATH = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+
+const RECENT_ACTIVITY = [
+  { time: '3:32 PM', agent: 'weather', kind: 'mcp', action: 'get_forecast completed', ok: true },
+  { time: '11:34 AM', agent: 'python', kind: 'agent', action: 'execute_task failed', ok: false },
+  { time: '7:14 AM', agent: 'crewai-math', kind: 'agent', action: 'multiply tool call', ok: true },
+  { time: '12:32 PM', agent: 'Research-google', kind: 'agent', action: 'call_llm completed', ok: true },
+  { time: '5:05 PM', agent: 'stockAgent', kind: 'agent', action: 'get_weather completed', ok: true }
+];
+
+const INCIDENTS = [
+  { sev: 'CRITICAL', accent: '#ea4335', title: 'python · high error rate', detail: '12% errors · 3 failed executions in the last hour', time: '2h ago' },
+  { sev: 'WARNING', accent: '#fbbc04', title: 'Fleet capacity low', detail: '6 of 7 registered agents are offline', time: '1h ago' },
+  { sev: 'WARNING', accent: '#fbbc04', title: 'Research-google · latency', detail: '1.3s p95 exceeds the 1s SLO threshold', time: '3h ago' }
+];
+
+const PAGE_SIZE = 10;
+
+const SELECT_STYLE = "background:#fff;border:1px solid #dadce0;color:#202124;border-radius:8px;padding:10px 34px 10px 12px;font-size:14px;width:100%;box-sizing:border-box;font-family:inherit;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none;background-repeat:no-repeat;background-position:right 10px center;background-size:18px;background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%235f6368' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>\");";
+
+function sparkPaths(values) {
+  const w = 100, h = 42, pad = 3;
+  const max = Math.max(...values), min = Math.min(...values);
+  const range = (max - min) || 1;
+  const n = values.length;
+  const pts = values.map((v, i) => {
+    const x = n === 1 ? w / 2 : (i / (n - 1)) * (w - pad * 2) + pad;
+    const y = h - pad - ((v - min) / range) * (h - pad * 2);
+    return [x, y];
+  });
+  const line = pts.map((p, i) => (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+  const area = line + ' L ' + pts[n - 1][0].toFixed(1) + ' ' + h + ' L ' + pts[0][0].toFixed(1) + ' ' + h + ' Z';
+  return { line, area };
+}
+
+function donutSegments(items) {
+  const total = items.reduce((s, it) => s + it.value, 0) || 1;
+  let cumulative = 0;
+  return items.map(it => {
+    const pct = it.value / total * 100;
+    const seg = {
+      color: it.color, label: it.label, value: it.value,
+      dash: pct.toFixed(2) + ' ' + (100 - pct).toFixed(2),
+      offset: (25 - cumulative).toFixed(2)
+    };
+    cumulative += pct;
+    return seg;
+  });
+}
+
+class Component extends DCLogic {
+  state = {
+    page: new URLSearchParams(location.search).get('page') || 'mission-control',
+    agentSearch: '', agentType: 'ALL', agentStatus: 'ALL', agentEnv: 'ALL',
+    expandedAgent: null,
+    traceSearch: '', traceAgent: 'ALL', traceType: 'ALL', traceTeam: 'ALL', traceModel: 'ALL', traceFramework: 'ALL',
+    expandedTrace: null,
+    autoRefresh: true,
+    tracePage: 1,
+    toast: null,
+    sidebarCollapsed: false
+  };
+
+  showToast(msg) {
+    this.setState({ toast: msg });
+    clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(() => this.setState({ toast: null }), 2600);
+  }
+
+  segStyle(active) {
+    return active
+      ? "padding:9px 16px;font-size:13px;font-weight:500;color:#1a73e8;background:#e8f0fe;border:none;cursor:pointer;font-family:inherit;"
+      : "padding:9px 16px;font-size:13px;font-weight:500;color:#5f6368;background:#fff;border:none;cursor:pointer;font-family:inherit;";
+  }
+
+  pageBtnStyle(active) {
+    return active
+      ? "min-width:36px;height:36px;padding:0 10px;border-radius:50%;border:none;background:#e8f0fe;color:#1a73e8;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;"
+      : "min-width:36px;height:36px;padding:0 10px;border-radius:50%;border:none;background:transparent;color:#5f6368;font-size:13px;cursor:pointer;font-family:inherit;";
+  }
+
+  renderVals() {
+    const s = this.state;
+
+    const chips = CHIPS.map(c => ({
+      value: c.value, label: c.label,
+      style: "display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:12px;background:" + c.bg + ";color:" + c.fg + ";"
+    }));
+
+    const kpis = KPIS.map(k => ({
+      label: k.label, value: k.value, unit: k.unit, sub: k.sub,
+      iconWrapStyle: "width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:" + k.accent + ";background:" + k.accent + "1f;",
+      subStyle: "font-size:12px;margin-top:6px;font-weight:500;color:" + k.subColor + ";"
+    }));
+
+    const healthSegments = donutSegments([
+      { label: 'Online', value: 1, color: '#34a853' },
+      { label: 'Offline', value: 6, color: '#dadce0' }
+    ]);
+    const healthLegend = [
+      { label: 'Healthy', value: '1', color: '#34a853' },
+      { label: 'Degraded', value: '2', color: '#fbbc04' },
+      { label: 'Offline', value: '4', color: '#dadce0' }
+    ];
+
+    const spendByAgent = SPEND_BY_AGENT.map(x => ({
+      name: x.name, cost: x.cost,
+      barStyle: "width:" + Math.max(x.pct, 2) + "%;height:100%;border-radius:3px;background:#1a73e8;"
+    }));
+
+    const trendCards = TREND_DEFS.map(t => {
+      const p = sparkPaths(t.data);
+      return {
+        title: t.title, value: t.value, delta: t.delta, color: t.color, gradId: t.gradId,
+        linePath: p.line, areaPath: p.area,
+        deltaStyle: "font-size:12px;font-weight:500;padding:2px 8px;border-radius:8px;background:" + t.deltaBg + ";color:" + t.deltaColor + ";"
+      };
+    });
+
+    const recentActivity = RECENT_ACTIVITY.map(r => ({
+      time: r.time, agent: r.agent, kind: r.kind, action: r.action,
+      iconPath: r.ok ? CHECK_PATH : X_PATH,
+      iconStyle: "width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:" + (r.ok ? '#1e8e3e' : '#d93025') + ";background:" + (r.ok ? '#e6f4ea' : '#fce8e6') + ";",
+      kindChipStyle: "display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 10px;border-radius:12px;flex-shrink:0;" + (r.kind === 'mcp' ? "background:#e8f0fe;color:#1967d2;" : "background:#f1f3f4;color:#5f6368;")
+    }));
+
+    const incidents = INCIDENTS.map(i => ({
+      sev: i.sev, title: i.title, detail: i.detail, time: i.time, accent: i.accent,
+      sevStyle: "display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 8px;border-radius:4px;" + (i.sev === 'CRITICAL' ? "background:#fce8e6;color:#c5221f;" : "background:#fef7e0;color:#b06000;")
+    }));
+
+    const envChip = (env) => {
+      const fg = { prod: '#1967d2', dev: '#1e8e3e', test: '#5f6368' };
+      const bg = { prod: '#e8f0fe', dev: '#e6f4ea', test: '#f1f3f4' };
+      return "display:inline-flex;align-items:center;font-size:12px;font-weight:500;padding:3px 10px;border-radius:12px;background:" + bg[env] + ";color:" + fg[env] + ";";
+    };
+    const metricColor = (v, warn, bad, invert) => {
+      if (invert) { if (v >= bad) return '#1e8e3e'; if (v >= warn) return '#b06000'; return '#d93025'; }
+      if (v >= bad) return '#d93025'; if (v >= warn) return '#b06000'; return '#1e8e3e';
+    };
+
+    const tableAgents = AGENTS_RAW.filter(a => {
+      if (s.agentSearch && !a.name.toLowerCase().includes(s.agentSearch.toLowerCase())) return false;
+      if (s.agentType === 'AGENTS' && a.kindLabel !== 'Agent') return false;
+      if (s.agentType === 'MCP' && a.kindLabel !== 'MCP') return false;
+      if (s.agentStatus === 'ONLINE' && !a.online) return false;
+      if (s.agentStatus === 'OFFLINE' && a.online) return false;
+      if (s.agentEnv !== 'ALL' && a.env !== s.agentEnv) return false;
+      return true;
+    }).map(a => {
+      const expanded = s.expandedAgent === a.id;
+      return {
+        id: a.id, name: a.name, kindLabel: a.kindLabel, env: a.env, framework: a.framework,
+        statusLabel: a.online ? 'Online' : 'Offline',
+        initials: (a.name.replace(/[^a-zA-Z]/g, '').slice(0, 2) || 'AG').toUpperCase(),
+        latencyLabel: a.latency ? a.latency + 'ms' : '—',
+        errLabel: a.errorRate.toFixed(1) + '%',
+        uptimeLabel: a.uptime.toFixed(1) + '%',
+        tokens: a.tokens, cost: a.cost, queries: a.queries, sessions: a.sessions,
+        team: a.team, modelLabel: a.model || '—', tools: a.tools, noTools: a.tools.length === 0,
+        isExpanded: expanded,
+        avatarStyle: "width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;background:" + (a.kindLabel === 'MCP' ? '#e8f0fe;color:#1967d2' : '#e6f4ea;color:#1e8e3e') + ";",
+        rowStyle: "border-top:1px solid #e8eaed;" + (expanded ? "background:#f8f9fa;" : ""),
+        kindChipStyle: a.kindLabel === 'MCP'
+          ? "display:inline-flex;align-items:center;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:500;background:#e8f0fe;color:#1967d2;"
+          : "display:inline-flex;align-items:center;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:500;background:#f1f3f4;color:#5f6368;",
+        envChipStyle: envChip(a.env),
+        statusChipStyle: "display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:500;background:" + (a.online ? '#e6f4ea' : '#fce8e6') + ";color:" + (a.online ? '#1e8e3e' : '#c5221f') + ";",
+        errStyle: "color:" + metricColor(a.errorRate, 2, 5, false) + ";font-weight:500;",
+        uptimeStyle: "color:" + metricColor(a.uptime, 95, 99, true) + ";font-weight:500;",
+        detailsBtnStyle: "display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;background:" + (expanded ? '#e8f0fe' : 'transparent') + ";color:" + (expanded ? '#1a73e8' : '#5f6368') + ";",
+        onToggle: () => this.setState(st => ({ expandedAgent: st.expandedAgent === a.id ? null : a.id })),
+        onRestart: (e) => { e.stopPropagation(); this.showToast('Restart requested · ' + a.name); },
+        onLogs: (e) => { e.stopPropagation(); this.showToast('Opening logs · ' + a.name); },
+        onOpenTraces: (e) => { e.stopPropagation(); this.setState({ page: 'traces', traceAgent: a.name, tracePage: 1 }); }
+      };
+    });
+
+    const agentNames = [...new Set(TRACES_RAW.map(t => t.agent))];
+    const teams = [...new Set(TRACES_RAW.map(t => t.team))];
+    const models = [...new Set(TRACES_RAW.map(t => t.model).filter(m => m !== '—'))];
+    const frameworks = [...new Set(TRACES_RAW.map(t => t.framework))];
+
+    const filteredTraces = TRACES_RAW.filter(t => {
+      if (s.traceSearch && !t.prompt.toLowerCase().includes(s.traceSearch.toLowerCase())) return false;
+      if (s.traceAgent !== 'ALL' && t.agent !== s.traceAgent) return false;
+      if (s.traceType !== 'ALL' && t.agentType !== s.traceType) return false;
+      if (s.traceTeam !== 'ALL' && t.team !== s.traceTeam) return false;
+      if (s.traceModel !== 'ALL' && t.model !== s.traceModel) return false;
+      if (s.traceFramework !== 'ALL' && t.framework !== s.traceFramework) return false;
+      return true;
+    }).map(t => {
+      const expanded = s.expandedTrace === t.id;
+      return {
+        ...t,
+        isExpanded: expanded,
+        detail: t.prompt,
+        onToggle: () => this.setState(st => ({ expandedTrace: st.expandedTrace === t.id ? null : t.id })),
+        rowStyle: "border-top:1px solid #e8eaed;cursor:pointer;" + (expanded ? "background:#f8f9fa;" : ""),
+        chevStyle: "vertical-align:middle;margin-right:6px;transition:transform .15s;" + (expanded ? "transform:rotate(90deg);" : ""),
+        kindChipStyle: "display:inline-flex;align-items:center;font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px;margin-left:8px;" + (t.agentType === 'mcp' ? "background:#e8f0fe;color:#1967d2;" : "background:#f1f3f4;color:#5f6368;")
+      };
+    });
+
+    const totalPages = Math.max(1, Math.ceil(filteredTraces.length / PAGE_SIZE));
+    const currentPage = Math.min(s.tracePage, totalPages);
+    const pageRangeStart = filteredTraces.length === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1;
+    const pageRangeEnd = Math.min(currentPage * PAGE_SIZE, filteredTraces.length);
+    const pagedTraces = filteredTraces.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1).map(n => ({
+      label: n,
+      style: this.pageBtnStyle(n === currentPage),
+      onClick: () => this.setState({ tracePage: n })
+    }));
+
+    const titles = {
+      'mission-control': ['Mission Control', 'Real-time AI agent fleet operation control center.'],
+      'agents': ['Agents', 'Manage and monitor your registered agents.'],
+      'traces': ['Traces', 'Inspect GenAI request, tool-use, and execution spans.']
+    };
+    const [pageTitle, pageSubtitle] = titles[s.page];
+
+    const collapsed = s.sidebarCollapsed;
+    const sbWidth = collapsed ? 76 : 256;
+    const labelStyle = collapsed ? "display:none;" : "";
+    const labelFlexStyle = collapsed ? "display:none;" : "flex:1;";
+    const incidentRowExtra = collapsed ? "justify-content:center;" : "";
+    const incidentBadgeStyle = "min-width:20px;height:20px;padding:0 6px;box-sizing:border-box;border-radius:10px;background:#ea4335;color:#fff;font-size:11px;font-weight:500;align-items:center;justify-content:center;" + (collapsed ? "display:none;" : "display:inline-flex;");
+
+    const navBase = "display:flex;align-items:center;gap:16px;padding:10px 12px;border-radius:0 20px 20px 0;font-size:14px;cursor:pointer;margin-bottom:2px;";
+    const navActive = navBase + "background:#e8f0fe;color:#1967d2;font-weight:500;";
+    const navInactive = navBase + "color:#5f6368;";
+
+    return {
+      isMission: s.page === 'mission-control',
+      isAgents: s.page === 'agents',
+      isTraces: s.page === 'traces',
+      pageTitle, pageSubtitle,
+      goMission: () => this.setState({ page: 'mission-control' }),
+      goAgents: () => this.setState({ page: 'agents' }),
+      goTraces: () => this.setState({ page: 'traces' }),
+      openIncidents: () => this.showToast('Opening incident center'),
+      toggleSidebar: () => this.setState(st => ({ sidebarCollapsed: !st.sidebarCollapsed })),
+      sidebarStyle: "position:fixed;left:0;top:0;height:100vh;width:" + sbWidth + "px;box-sizing:border-box;background:#fff;border-right:1px solid #dadce0;padding:0;overflow-x:hidden;overflow-y:auto;z-index:5;transition:width .18s ease;",
+      mainStyle: "margin-left:" + sbWidth + "px;flex:1;min-width:0;box-sizing:border-box;transition:margin-left .18s ease;",
+      brandRowStyle: "display:flex;align-items:center;gap:12px;padding:20px 20px;box-sizing:border-box;" + (collapsed ? "flex-direction:column;height:auto;" : "height:64px;"),
+      brandStyle: "font-family:'Roboto',sans-serif;font-size:20px;font-weight:500;color:#3c4043;letter-spacing:.2px;white-space:nowrap;flex:1;" + (collapsed ? "display:none;" : ""),
+      hamburgerStyle: "display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;color:#5f6368;cursor:pointer;flex-shrink:0;" + (collapsed ? "border:1px solid #dadce0;border-radius:12px;background:#fff;" : "border:none;border-radius:50%;background:transparent;"),
+      hamburgerIcon: collapsed
+        ? React.createElement('polyline', { points: '9 18 15 12 9 6' })
+        : React.createElement(React.Fragment, null,
+            React.createElement('line', { x1: 3, y1: 6, x2: 21, y2: 6 }),
+            React.createElement('line', { x1: 3, y1: 12, x2: 21, y2: 12 }),
+            React.createElement('line', { x1: 3, y1: 18, x2: 21, y2: 18 })),
+      incidentRowExtra, incidentBadgeStyle,
+      sectionStyle: "padding:0 24px 6px;font-size:11px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;color:#5f6368;margin-top:8px;white-space:nowrap;" + (collapsed ? "visibility:hidden;height:0;padding:0;margin:0;" : ""),
+      labelStyle, labelFlexStyle,
+      navStyleMission: s.page === 'mission-control' ? navActive : navInactive,
+      navStyleAgents: s.page === 'agents' ? navActive : navInactive,
+      navStyleTraces: s.page === 'traces' ? navActive : navInactive,
+
+      autoRefresh: s.autoRefresh,
+      autoRefreshLabel: s.autoRefresh ? 'ON' : 'OFF',
+      autoRefreshStyle: "display:inline-flex;align-items:center;gap:7px;font-size:12px;padding:5px 12px;border-radius:12px;font-weight:500;cursor:pointer;" + (s.autoRefresh ? "background:#e6f4ea;color:#1e8e3e;" : "background:#f1f3f4;color:#5f6368;"),
+      toggleAutoRefresh: () => this.setState(st => ({ autoRefresh: !st.autoRefresh })),
+
+      chips, kpis, healthSegments, healthLegend, spendByAgent, trendCards, recentActivity, incidents,
+
+      agentSearch: s.agentSearch,
+      onAgentSearch: e => this.setState({ agentSearch: e.target.value }),
+      setAgentTypeAll: () => this.setState({ agentType: 'ALL' }),
+      setAgentTypeAgents: () => this.setState({ agentType: 'AGENTS' }),
+      setAgentTypeMcp: () => this.setState({ agentType: 'MCP' }),
+      agentTypeAllStyle: this.segStyle(s.agentType === 'ALL'),
+      agentTypeAgentsStyle: this.segStyle(s.agentType === 'AGENTS'),
+      agentTypeMcpStyle: this.segStyle(s.agentType === 'MCP'),
+      setAgentStatusAll: () => this.setState({ agentStatus: 'ALL' }),
+      setAgentStatusOnline: () => this.setState({ agentStatus: 'ONLINE' }),
+      setAgentStatusOffline: () => this.setState({ agentStatus: 'OFFLINE' }),
+      agentStatusAllStyle: this.segStyle(s.agentStatus === 'ALL'),
+      agentStatusOnlineStyle: this.segStyle(s.agentStatus === 'ONLINE'),
+      agentStatusOfflineStyle: this.segStyle(s.agentStatus === 'OFFLINE'),
+      agentEnv: s.agentEnv,
+      setAgentEnv: e => this.setState({ agentEnv: e.target.value }),
+      envSelectStyle: SELECT_STYLE + "max-width:190px;",
+      tableAgents,
+      agentCount: tableAgents.length,
+
+      selectStyle: SELECT_STYLE,
+      traceSearch: s.traceSearch,
+      onTraceSearch: e => this.setState({ traceSearch: e.target.value, tracePage: 1 }),
+      traceAgent: s.traceAgent, setTraceAgent: e => this.setState({ traceAgent: e.target.value, tracePage: 1 }),
+      traceType: s.traceType, setTraceType: e => this.setState({ traceType: e.target.value, tracePage: 1 }),
+      traceTeam: s.traceTeam, setTraceTeam: e => this.setState({ traceTeam: e.target.value, tracePage: 1 }),
+      traceModel: s.traceModel, setTraceModel: e => this.setState({ traceModel: e.target.value, tracePage: 1 }),
+      traceFramework: s.traceFramework, setTraceFramework: e => this.setState({ traceFramework: e.target.value, tracePage: 1 }),
+      agentNames, teams, models, frameworks,
+      filteredTraces,
+      traceCount: filteredTraces.length,
+      pagedTraces,
+      pageRangeStart, pageRangeEnd,
+      goPrevPage: () => this.setState(st => ({ tracePage: Math.max(1, st.tracePage - 1) })),
+      goNextPage: () => this.setState(st => ({ tracePage: Math.min(totalPages, st.tracePage + 1) })),
+      pageNumbers,
+
+      hasToast: !!s.toast,
+      toast: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

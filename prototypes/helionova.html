@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HelioNova Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   HelioNova tokens
+   ========================================================= */
+:root{
+  --hn-canvas:#F3F7F6; --hn-surface:#FFFFFF; --hn-tint:#E8F4F0;
+  --hn-ink:#12293B; --hn-ink-2:#3E5566; --hn-muted:#5E7380; --hn-line:#D9E3E1; --hn-line-strong:#B3C3C6;
+  --hn-primary:#0B7A63; --hn-primary-strong:#075E4C; --hn-primary-soft:#D3EEE5; --hn-on-primary:#FFFFFF;
+  --hn-sun:#F2A900; --hn-sun-soft:#FFF1CC; --hn-sun-ink:#7A4800; --hn-on-sun:#2B1D00;
+  --hn-sky:#2D6FB0; --hn-sky-soft:#E2EEFA; --hn-sky-ink:#1D4E80;
+  --hn-danger:#B83A2B; --hn-danger-soft:#FBE5E1; --hn-danger-ink:#8A2A1F;
+  --hn-warn-ink:#8A5300;
+  --hn-focus:#2D6FB0;
+  --hn-code-bg:#12293B; --hn-code-ink:#DCEBE6;
+  --hn-shadow-1:0 1px 2px rgba(18,41,59,.06),0 1px 1px rgba(18,41,59,.04);
+  --hn-shadow-2:0 4px 12px -2px rgba(18,41,59,.10),0 2px 4px rgba(18,41,59,.05);
+  --hn-shadow-3:0 18px 40px -8px rgba(18,41,59,.22),0 6px 12px rgba(18,41,59,.08);
+  --hn-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l4 4 10-10'/%3E%3C/svg%3E");
+  --hn-dash:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
+  --hn-font-display:"Sora","Segoe UI",system-ui,sans-serif;
+  --hn-font-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --hn-font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --hn-r-sm:6px; --hn-r-md:10px; --hn-r-lg:16px; --hn-r-pill:999px;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --hn-canvas:#0D1A23; --hn-surface:#132531; --hn-tint:#16302F;
+    --hn-ink:#E6F0EE; --hn-ink-2:#B9CBC9; --hn-muted:#8FA5AC; --hn-line:#25404C; --hn-line-strong:#3A5A66;
+    --hn-primary:#3CC29F; --hn-primary-strong:#74DABD; --hn-primary-soft:#123A33; --hn-on-primary:#062A22;
+    --hn-sun:#FFC23D; --hn-sun-soft:#3A2E10; --hn-sun-ink:#FFD47A; --hn-on-sun:#2B1D00;
+    --hn-sky:#7FB4EA; --hn-sky-soft:#142C44; --hn-sky-ink:#A9CCF2;
+    --hn-danger:#F08A7B; --hn-danger-soft:#3B1D1A; --hn-danger-ink:#F6B0A5;
+    --hn-warn-ink:#FFD47A; --hn-focus:#7FB4EA;
+    --hn-code-bg:#081219; --hn-code-ink:#D2E4DF;
+    --hn-shadow-1:0 1px 2px rgba(0,0,0,.4); --hn-shadow-2:0 6px 16px -4px rgba(0,0,0,.5); --hn-shadow-3:0 20px 44px -8px rgba(0,0,0,.65);
+    --hn-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23062A22' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l4 4 10-10'/%3E%3C/svg%3E");
+    --hn-dash:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23062A22' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --hn-canvas:#0D1A23; --hn-surface:#132531; --hn-tint:#16302F;
+  --hn-ink:#E6F0EE; --hn-ink-2:#B9CBC9; --hn-muted:#8FA5AC; --hn-line:#25404C; --hn-line-strong:#3A5A66;
+  --hn-primary:#3CC29F; --hn-primary-strong:#74DABD; --hn-primary-soft:#123A33; --hn-on-primary:#062A22;
+  --hn-sun:#FFC23D; --hn-sun-soft:#3A2E10; --hn-sun-ink:#FFD47A; --hn-on-sun:#2B1D00;
+  --hn-sky:#7FB4EA; --hn-sky-soft:#142C44; --hn-sky-ink:#A9CCF2;
+  --hn-danger:#F08A7B; --hn-danger-soft:#3B1D1A; --hn-danger-ink:#F6B0A5;
+  --hn-warn-ink:#FFD47A; --hn-focus:#7FB4EA;
+  --hn-code-bg:#081219; --hn-code-ink:#D2E4DF;
+  --hn-shadow-1:0 1px 2px rgba(0,0,0,.4); --hn-shadow-2:0 6px 16px -4px rgba(0,0,0,.5); --hn-shadow-3:0 20px 44px -8px rgba(0,0,0,.65);
+  --hn-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23062A22' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l4 4 10-10'/%3E%3C/svg%3E");
+  --hn-dash:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23062A22' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
+  color-scheme:dark;
+}
+
+/* =========================================================
+   Base + docs shell
+   ========================================================= */
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;min-height:100%;background:var(--hn-canvas);color:var(--hn-ink);font:400 16px/1.6 var(--hn-font-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--hn-surface)}
+img,svg{max-width:100%}
+a{color:var(--hn-primary)}
+:focus-visible{outline:3px solid var(--hn-focus);outline-offset:2px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--hn-font-display);color:var(--hn-ink);margin:0;letter-spacing:-.01em}
+p{margin:0}
+.hn-icon{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:64px;display:flex;align-items:center;gap:20px;padding:0 20px;background:var(--hn-surface);border-bottom:1px solid var(--hn-line)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--hn-ink);font:600 17px/1 var(--hn-font-display)}
+.brand small{display:block;font:500 12px/1.2 var(--hn-font-body);color:var(--hn-muted);margin-top:3px}
+.brand-mark{width:34px;height:34px}
+.topnav{display:flex;gap:4px;margin-left:12px}
+.topnav a{padding:8px 12px;border-radius:var(--hn-r-md);text-decoration:none;color:var(--hn-ink-2);font-weight:500;font-size:15px}
+.topnav a:hover{background:var(--hn-canvas)}
+.topnav a[aria-current="true"]{color:var(--hn-primary-strong);background:var(--hn-primary-soft)}
+.top-tools{margin-left:auto;display:flex;align-items:center;gap:10px}
+.search{position:relative;display:flex;align-items:center}
+.search .hn-icon{position:absolute;left:11px;color:var(--hn-muted);width:18px;height:18px;pointer-events:none}
+.search input{width:240px;height:38px;padding:0 12px 0 36px;border:1px solid var(--hn-line);border-radius:var(--hn-r-md);background:var(--hn-canvas);color:var(--hn-ink);font:inherit;font-size:14.5px}
+.search input:focus{outline:none;border-color:var(--hn-focus);box-shadow:0 0 0 3px color-mix(in srgb,var(--hn-focus) 25%,transparent)}
+.icon-btn{width:38px;height:38px;display:inline-grid;place-items:center;border:1px solid var(--hn-line);border-radius:var(--hn-r-md);background:var(--hn-surface);color:var(--hn-ink-2);cursor:pointer}
+.icon-btn:hover{background:var(--hn-canvas)}
+.menu-btn{display:none}
+
+.layout{display:grid;grid-template-columns:256px minmax(0,1fr)}
+.sidenav{position:sticky;top:calc(64px + env(safe-area-inset-top,0px));height:calc(100vh - 64px - env(safe-area-inset-top,0px));overflow-y:auto;padding:20px 14px 40px;border-right:1px solid var(--hn-line);background:var(--hn-surface)}
+.nav-group{margin-bottom:18px}
+.nav-group h4{font:600 13px/1 var(--hn-font-body);color:var(--hn-muted);padding:6px 12px 8px;letter-spacing:0}
+.nav-group a{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:8px;color:var(--hn-ink-2);text-decoration:none;font-size:14.5px}
+.nav-group a:hover{background:var(--hn-canvas);color:var(--hn-ink)}
+.nav-group a[aria-current="page"]{background:var(--hn-primary-soft);color:var(--hn-primary-strong);font-weight:600;box-shadow:inset 3px 0 0 var(--hn-primary)}
+.nav-empty{padding:8px 12px;font-size:14px;color:var(--hn-muted)}
+.scrim{display:none}
+
+main{min-width:0;padding:40px 48px 96px}
+.page{max-width:920px;margin:0 auto}
+.crumbs{font-size:14px;color:var(--hn-muted);margin-bottom:10px}
+.crumbs a{color:var(--hn-muted)}
+.page-title{font-size:40px;line-height:1.15;font-weight:600}
+.lede{font-size:18px;line-height:1.6;color:var(--hn-ink-2);margin-top:12px;max-width:64ch}
+.section{margin-top:48px}
+.section>h2{font-size:24px;line-height:1.3;font-weight:600}
+.section>p.note{color:var(--hn-ink-2);margin-top:6px;max-width:68ch}
+.prose p{max-width:68ch;color:var(--hn-ink-2);margin-top:12px}
+
+/* demo frame */
+.demo{margin-top:18px;border:1px solid var(--hn-line);border-radius:var(--hn-r-lg);background:var(--hn-surface);overflow:hidden}
+.demo-stage{padding:32px;background-image:radial-gradient(var(--hn-line) 1px,transparent 1px);background-size:18px 18px;background-color:var(--hn-surface)}
+.demo-bar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-top:1px solid var(--hn-line);background:var(--hn-canvas)}
+.demo-bar .tag{font-size:13px;color:var(--hn-muted);margin-right:auto}
+.tool-btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--hn-line);border-radius:8px;background:var(--hn-surface);color:var(--hn-ink-2);font:500 13.5px var(--hn-font-body);cursor:pointer}
+.tool-btn:hover{color:var(--hn-ink);border-color:var(--hn-line-strong)}
+.tool-btn .hn-icon{width:16px;height:16px}
+.code{display:none;margin:0;padding:18px 20px;background:var(--hn-code-bg);color:var(--hn-code-ink);font:400 13px/1.65 var(--hn-font-mono);overflow-x:auto;white-space:pre;tab-size:2}
+.demo.show-code .code{display:block}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.stack{display:grid;gap:14px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+
+.callout{margin-top:18px;padding:16px 18px;border-radius:var(--hn-r-lg);background:var(--hn-tint);color:var(--hn-ink-2)}
+.callout strong{color:var(--hn-ink)}
+.pager{display:flex;justify-content:space-between;gap:16px;margin-top:64px;padding-top:24px;border-top:1px solid var(--hn-line)}
+.pager a{display:flex;flex-direction:column;gap:2px;padding:12px 16px;border:1px solid var(--hn-line);border-radius:var(--hn-r-md);text-decoration:none;color:var(--hn-ink);background:var(--hn-surface);min-width:160px}
+.pager a span{font-size:13px;color:var(--hn-muted)}
+.pager a strong{font-family:var(--hn-font-display);font-weight:600}
+.pager a:last-child{text-align:right;margin-left:auto}
+
+/* overview hero */
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:end;gap:8px;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--hn-sun-soft) 0%,var(--hn-tint) 78%);border:1px solid var(--hn-line)}
+.hero-copy{padding:44px 0 44px 44px;align-self:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--hn-primary-strong);font-size:15px}
+.hero h1{font-size:52px;line-height:1.05;font-weight:700;margin-top:14px;letter-spacing:-.025em}
+.hero-tag{font-family:var(--hn-font-display);font-size:20px;font-weight:500;color:var(--hn-ink-2);margin-top:14px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hero-art{display:block;width:100%;height:auto}
+.hero-art .arc{stroke:var(--hn-sun-ink);stroke-dasharray:3 7;opacity:.55}
+.hero-art .ground{fill:var(--hn-primary-soft)}
+.hero-art .horizon{stroke:var(--hn-primary);opacity:.5}
+.hero-art .sun{fill:var(--hn-sun)}
+.hero-art .halo{fill:var(--hn-sun);opacity:.22}
+.hero-art .struct{stroke:var(--hn-primary-strong);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero-art .panel{fill:var(--hn-sky);opacity:.85}
+.hero-art .panel-line{stroke:var(--hn-sky-soft);stroke-width:1}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:28px;border:1px solid var(--hn-line);border-radius:var(--hn-r-lg);background:var(--hn-surface)}
+.facts div{padding:18px 22px}
+.facts div+div{border-left:1px solid var(--hn-line)}
+.facts strong{display:block;font:600 26px/1.2 var(--hn-font-display)}
+.facts span{color:var(--hn-muted);font-size:14.5px}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:20px}
+.doc-card{display:flex;flex-direction:column;text-decoration:none;color:var(--hn-ink);border:1px solid var(--hn-line);border-radius:var(--hn-r-lg);background:var(--hn-surface);overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.doc-card:hover{border-color:var(--hn-primary);box-shadow:var(--hn-shadow-2)}
+.doc-thumb{position:relative;height:128px;overflow:hidden;background:var(--hn-tint);border-bottom:1px solid var(--hn-line);pointer-events:none}
+.doc-thumb>div{position:absolute;left:50%;top:50%;width:380px;transform:translate(-50%,-50%) scale(.5);transform-origin:center}
+.doc-card-body{padding:14px 16px 16px}
+.doc-card-body strong{font:600 16px/1.3 var(--hn-font-display)}
+.doc-card-body p{font-size:13.5px;line-height:1.5;color:var(--hn-muted);margin-top:4px}
+.found-card .doc-thumb{display:grid;place-items:center}
+.found-card .doc-thumb>div{position:static;width:auto;transform:none}
+
+/* foundations */
+.scale{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));border-radius:var(--hn-r-md);overflow:hidden;margin-top:12px;border:1px solid var(--hn-line)}
+.scale button{all:unset;cursor:pointer;padding:44px 8px 10px;font:500 12px/1.35 var(--hn-font-body)}
+.scale button:focus-visible{outline:3px solid var(--hn-focus);outline-offset:-3px}
+.scale b{display:block;font-weight:700}
+.scale-name{display:flex;align-items:baseline;gap:10px;margin-top:28px}
+.scale-name h3{font-size:18px;font-weight:600}
+.scale-name span{color:var(--hn-muted);font-size:14px}
+.token-table{width:100%;border-collapse:collapse;font-size:14.5px}
+.token-table th{text-align:left;font-weight:600;color:var(--hn-muted);font-size:13px;padding:10px 12px;border-bottom:1px solid var(--hn-line)}
+.token-table td{padding:10px 12px;border-bottom:1px solid var(--hn-line);vertical-align:middle}
+.token-table code,.inline-code{font:500 13px var(--hn-font-mono);background:var(--hn-canvas);border:1px solid var(--hn-line);padding:2px 6px;border-radius:6px;color:var(--hn-ink)}
+.chip-swatch{display:inline-block;width:28px;height:28px;border-radius:8px;border:1px solid var(--hn-line);vertical-align:middle}
+.type-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--hn-line)}
+.type-row .meta{font-size:13px;color:var(--hn-muted)}
+.type-row .meta b{display:block;color:var(--hn-ink);font-size:14px}
+.space-row{display:grid;grid-template-columns:110px 70px 1fr;align-items:center;gap:16px;padding:8px 0}
+.space-bar{height:16px;border-radius:4px;background:var(--hn-primary)}
+.radius-box{width:96px;height:72px;background:var(--hn-primary-soft);border:2px solid var(--hn-primary)}
+.elev-box{height:110px;border-radius:var(--hn-r-lg);background:var(--hn-surface);display:grid;place-items:center;font-weight:600}
+.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:10px;margin-top:20px}
+.icon-tile{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 8px;border:1px solid var(--hn-line);border-radius:var(--hn-r-md);background:var(--hn-surface);font-size:13px;color:var(--hn-ink-2)}
+.icon-tile:hover{border-color:var(--hn-primary);color:var(--hn-ink)}
+.icon-tile:focus-visible{outline:3px solid var(--hn-focus);outline-offset:2px}
+.icon-tile .hn-icon{width:28px;height:28px;color:var(--hn-ink)}
+.steps-doc{counter-reset:s;list-style:none;padding:0;margin:20px 0 0;display:grid;gap:14px}
+.steps-doc li{counter-increment:s;display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;padding:20px;border:1px solid var(--hn-line);border-radius:var(--hn-r-lg);background:var(--hn-surface)}
+.steps-doc li::before{content:counter(s);width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--hn-sun);color:var(--hn-on-sun);font:700 16px var(--hn-font-display)}
+.steps-doc h3{font-size:18px;font-weight:600}
+.steps-doc p{color:var(--hn-ink-2);margin-top:4px}
+.steps-doc pre{margin:12px 0 0;padding:14px 16px;border-radius:var(--hn-r-md);background:var(--hn-code-bg);color:var(--hn-code-ink);font:13px/1.6 var(--hn-font-mono);overflow-x:auto}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}
+.principles div{padding:20px;border-left:3px solid var(--hn-sun);background:var(--hn-surface);border-radius:0 var(--hn-r-md) var(--hn-r-md) 0}
+.principles h3{font-size:17px;font-weight:600}
+.principles p{color:var(--hn-ink-2);font-size:15px;margin-top:6px}
+
+/* =========================================================
+   HelioNova components (hn-*)
+   ========================================================= */
+/* Button */
+.hn-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 18px;border:1px solid transparent;border-radius:var(--hn-r-md);font:600 15px/1 var(--hn-font-body);cursor:pointer;text-decoration:none;white-space:nowrap;transition:background-color .15s,border-color .15s}
+.hn-btn .hn-icon{width:18px;height:18px}
+.hn-btn--primary{background:var(--hn-primary);color:var(--hn-on-primary)}
+.hn-btn--primary:hover{background:var(--hn-primary-strong)}
+.hn-btn--solar{background:var(--hn-sun);color:var(--hn-on-sun)}
+.hn-btn--solar:hover{filter:brightness(.95)}
+.hn-btn--secondary{background:var(--hn-surface);color:var(--hn-ink);border-color:var(--hn-line-strong)}
+.hn-btn--secondary:hover{background:var(--hn-canvas)}
+.hn-btn--ghost{background:transparent;color:var(--hn-primary-strong)}
+.hn-btn--ghost:hover{background:var(--hn-primary-soft)}
+.hn-btn--danger{background:var(--hn-danger);color:#fff}
+:root[data-theme="dark"] .hn-btn--danger{color:#2A0D09}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hn-btn--danger{color:#2A0D09}}
+.hn-btn--sm{height:32px;padding:0 12px;font-size:14px;border-radius:8px}
+.hn-btn--lg{height:48px;padding:0 24px;font-size:16px}
+.hn-btn--icon{width:40px;padding:0}
+.hn-btn:disabled,.hn-btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed;filter:none}
+.hn-spinner{width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:hn-spin .8s linear infinite}
+@keyframes hn-spin{to{transform:rotate(360deg)}}
+
+/* Accordion */
+.hn-accordion{border:1px solid var(--hn-line);border-radius:var(--hn-r-lg);background:var(--hn-surface);overflow:hidden;max-width:560px}
+.hn-accordion__item+.hn-accordion__item{border-top:1px solid var(--hn-line)}
+.hn-accordion summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;cursor:pointer;font-weight:600;list-style:none;color:var(--hn-ink)}
+.hn-accordion summary::-webkit-details-marker{display:none}
+.hn-accordion summary:hover{background:var(--hn-canvas)}
+.hn-accordion summary .hn-icon{transition:transform .2s;color:var(--hn-muted)}
+.hn-accordion details[open] summary .hn-icon{transform:rotate(180deg)}
+.hn-accordion details[open] summary{color:var(--hn-primary-strong)}
+.hn-accordion__body{padding:0 18px 18px;color:var(--hn-ink-2);font-size:15px}
+
+/* Alert */
+.hn-alert{--a-bg:var(--hn-sky-soft);--a-fg:var(--hn-sky-ink);--a-line:var(--hn-sky);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:start;padding:14px 16px;border-radius:var(--hn-r-md);background:var(--hn-surface);border:1px solid var(--hn-line);border-left:4px solid var(--a-line);max-width:560px}
+.hn-alert>.hn-icon{color:var(--a-line);margin-top:2px}
+.hn-alert__title{font-weight:600;color:var(--hn-ink)}
+.hn-alert__text{color:var(--hn-ink-2);font-size:15px}
+.hn-alert--success{--a-line:var(--hn-primary)}
+.hn-alert--warning{--a-line:var(--hn-sun)}
+.hn-alert--error{--a-line:var(--hn-danger)}
+.hn-alert--filled{background:var(--a-bg);border-color:transparent}
+.hn-alert--filled.hn-alert--success{--a-bg:var(--hn-primary-soft)}
+.hn-alert--filled.hn-alert--warning{--a-bg:var(--hn-sun-soft)}
+.hn-alert--filled.hn-alert--error{--a-bg:var(--hn-danger-soft)}
+.hn-alert__close{all:unset;cursor:pointer;color:var(--hn-muted);display:grid;place-items:center;width:28px;height:28px;border-radius:6px}
+.hn-alert__close:hover{background:var(--hn-canvas);color:var(--hn-ink)}
+.hn-alert__close:focus-visible{outline:3px solid var(--hn-focus)}
+.hn-alert__actions{display:flex;gap:8px;margin-top:10px}
+
+/* Avatar */
+.hn-avatar{position:relative;display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--hn-primary-soft);color:var(--hn-primary-strong);font:600 15px var(--hn-font-display);flex:none}
+.hn-avatar--sm{width:28px;height:28px;font-size:11px}
+.hn-avatar--lg{width:56px;height:56px;font-size:20px}
+.hn-avatar--sun{background:var(--hn-sun-soft);color:var(--hn-sun-ink)}
+.hn-avatar--sky{background:var(--hn-sky-soft);color:var(--hn-sky-ink)}
+.hn-avatar__status{position:absolute;right:0;bottom:0;width:30%;height:30%;border-radius:50%;background:var(--hn-primary);border:2px solid var(--hn-surface)}
+.hn-avatar__status--away{background:var(--hn-sun)}
+.hn-avatar-group{display:flex}
+.hn-avatar-group .hn-avatar{border:2px solid var(--hn-surface);margin-left:-10px}
+.hn-avatar-group .hn-avatar:first-child{margin-left:0}
+
+/* Badge */
+.hn-badge{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px;border-radius:var(--hn-r-pill);font:600 12.5px/1 var(--hn-font-body);background:var(--hn-canvas);color:var(--hn-ink-2);border:1px solid var(--hn-line)}
+.hn-badge--success{background:var(--hn-primary-soft);color:var(--hn-primary-strong);border-color:transparent}
+.hn-badge--warning{background:var(--hn-sun-soft);color:var(--hn-warn-ink);border-color:transparent}
+.hn-badge--error{background:var(--hn-danger-soft);color:var(--hn-danger-ink);border-color:transparent}
+.hn-badge--info{background:var(--hn-sky-soft);color:var(--hn-sky-ink);border-color:transparent}
+.hn-badge__dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.hn-badge .hn-icon{width:14px;height:14px}
+.hn-count{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--hn-danger);color:#fff;font:700 11.5px var(--hn-font-body)}
+
+/* Breadcrumb */
+.hn-breadcrumb ol{display:flex;flex-wrap:wrap;align-items:center;gap:6px;list-style:none;margin:0;padding:0;font-size:14.5px}
+.hn-breadcrumb li{display:flex;align-items:center;gap:6px;color:var(--hn-muted)}
+.hn-breadcrumb li+li::before{content:"";width:14px;height:14px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
+.hn-breadcrumb a{color:var(--hn-ink-2);text-decoration:none}
+.hn-breadcrumb a:hover{color:var(--hn-primary);text-decoration:underline}
+.hn-breadcrumb [aria-current]{color:var(--hn-ink);font-weight:600}
+
+/* Card */
+.hn-card{border:1px solid var(--hn-line);border-radius:var(--hn-r-lg);background:var(--hn-surface);overflow:hidden;max-width:340px;box-shadow:var(--hn-shadow-1)}
+.hn-card__media{height:120px;display:grid;place-items:center;background:linear-gradient(160deg,var(--hn-sun-soft),var(--hn-primary-soft));color:var(--hn-primary-strong)}
+.hn-card__media .hn-icon{width:48px;height:48px;stroke-width:1.4}
+.hn-card__body{padding:18px 20px}
+.hn-card__title{font:600 18px/1.3 var(--hn-font-display)}
+.hn-card__meta{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--hn-muted);margin-top:4px}
+.hn-card__meta .hn-icon{width:16px;height:16px}
+.hn-card__text{color:var(--hn-ink-2);font-size:15px;margin-top:10px}
+.hn-card__footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 20px;border-top:1px solid var(--hn-line)}
+.hn-card--interactive{cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.hn-card--interactive:hover{border-color:var(--hn-primary);box-shadow:var(--hn-shadow-2)}
+
+/* Checkbox / Radio */
+.hn-check{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:15px;color:var(--hn-ink)}
+.hn-check input{appearance:none;-webkit-appearance:none;margin:0;width:20px;height:20px;border:2px solid var(--hn-line-strong);border-radius:6px;background:var(--hn-surface);display:grid;place-items:center;cursor:pointer;flex:none}
+.hn-check input[type="radio"]{border-radius:50%}
+.hn-check input:hover{border-color:var(--hn-primary)}
+.hn-check input[type="checkbox"]:checked{background:var(--hn-primary) var(--hn-check) center/14px no-repeat;border-color:var(--hn-primary)}
+.hn-check input[type="checkbox"]:indeterminate{background:var(--hn-primary) var(--hn-dash) center/14px no-repeat;border-color:var(--hn-primary)}
+.hn-check input[type="radio"]:checked{border:6px solid var(--hn-primary)}
+.hn-check input:disabled{opacity:.45;cursor:not-allowed}
+.hn-check:has(input:disabled){color:var(--hn-muted);cursor:not-allowed}
+.hn-fieldset{border:0;padding:0;margin:0;display:grid;gap:12px}
+.hn-fieldset legend{font-weight:600;margin-bottom:10px;padding:0}
+
+/* Chip */
+.hn-chip{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:var(--hn-r-pill);border:1px solid var(--hn-line-strong);background:var(--hn-surface);color:var(--hn-ink-2);font:500 14px var(--hn-font-body);cursor:pointer}
+.hn-chip .hn-icon{width:16px;height:16px}
+.hn-chip .hn-chip__check{display:none}
+.hn-chip:hover{border-color:var(--hn-primary)}
+.hn-chip[aria-pressed="true"]{background:var(--hn-primary-soft);border-color:var(--hn-primary);color:var(--hn-primary-strong);font-weight:600}
+.hn-chip[aria-pressed="true"] .hn-chip__check{display:block}
+
+/* Table */
+.hn-table-wrap{overflow-x:auto;border:1px solid var(--hn-line);border-radius:var(--hn-r-lg);background:var(--hn-surface)}
+.hn-table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+.hn-table th{text-align:left;font-weight:600;font-size:13px;color:var(--hn-muted);padding:12px 16px;background:var(--hn-canvas);border-bottom:1px solid var(--hn-line)}
+.hn-table td{padding:12px 16px;border-bottom:1px solid var(--hn-line);color:var(--hn-ink)}
+.hn-table tr:last-child td{border-bottom:0}
+.hn-table tbody tr:hover td{background:var(--hn-canvas)}
+.hn-table .num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* Overlays: drawer + modal */
+.hn-overlay{position:fixed;inset:0;z-index:200;display:none;background:rgba(10,24,33,.5)}
+.hn-overlay.is-open{display:flex}
+.hn-modal{margin:auto;width:min(480px,calc(100% - 32px));background:var(--hn-surface);border-radius:20px;box-shadow:var(--hn-shadow-3);padding:24px;animation:hn-pop .18s ease-out}
+.hn-modal__head{display:flex;align-items:start;justify-content:space-between;gap:12px}
+.hn-modal__title{font:600 20px/1.3 var(--hn-font-display)}
+.hn-modal__body{color:var(--hn-ink-2);margin-top:10px}
+.hn-modal__foot{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}
+.hn-drawer{margin-left:auto;width:min(400px,100%);height:100%;background:var(--hn-surface);box-shadow:var(--hn-shadow-3);display:flex;flex-direction:column;animation:hn-slide .22s ease-out;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.hn-drawer__head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--hn-line)}
+.hn-drawer__body{padding:20px;overflow-y:auto;flex:1;display:grid;gap:16px;align-content:start}
+.hn-drawer__foot{padding:16px 20px;border-top:1px solid var(--hn-line);display:flex;gap:10px;justify-content:flex-end}
+@keyframes hn-pop{from{opacity:0;transform:translateY(8px) scale(.98)}}
+@keyframes hn-slide{from{transform:translateX(40px);opacity:0}}
+
+/* Dropdown */
+.hn-dropdown{position:relative;display:inline-block}
+.hn-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:20;min-width:220px;padding:6px;margin:0;list-style:none;background:var(--hn-surface);border:1px solid var(--hn-line);border-radius:var(--hn-r-md);box-shadow:var(--hn-shadow-2);display:none}
+.hn-dropdown.is-open .hn-menu{display:block}
+.hn-menu button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;font-size:14.5px;color:var(--hn-ink);cursor:pointer}
+.hn-menu button:hover,.hn-menu button:focus-visible{background:var(--hn-canvas)}
+.hn-menu button:focus-visible{outline:2px solid var(--hn-focus)}
+.hn-menu .hn-icon{width:18px;height:18px;color:var(--hn-muted)}
+.hn-menu hr{border:0;border-top:1px solid var(--hn-line);margin:6px 0}
+.hn-menu .is-danger{color:var(--hn-danger)}
+.hn-menu .is-danger .hn-icon{color:var(--hn-danger)}
+
+/* Empty state */
+.hn-empty{text-align:center;max-width:380px;margin:0 auto;padding:24px}
+.hn-empty__icon{width:64px;height:64px;margin:0 auto;border-radius:50%;display:grid;place-items:center;background:var(--hn-sun-soft);color:var(--hn-sun-ink)}
+.hn-empty__icon .hn-icon{width:30px;height:30px}
+.hn-empty h3{font-size:19px;font-weight:600;margin-top:16px}
+.hn-empty p{color:var(--hn-ink-2);margin:6px 0 18px}
+
+/* Energy stat */
+.hn-stat{padding:18px 20px;border:1px solid var(--hn-line);border-radius:var(--hn-r-lg);background:var(--hn-surface);min-width:220px}
+.hn-stat__label{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--hn-muted);font-weight:500}
+.hn-stat__label .hn-icon{width:18px;height:18px;color:var(--hn-primary)}
+.hn-stat__value{font:600 32px/1.15 var(--hn-font-display);margin-top:8px;font-variant-numeric:tabular-nums}
+.hn-stat__value small{font:500 15px var(--hn-font-body);color:var(--hn-muted);margin-left:4px}
+.hn-stat__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;font-size:13px;color:var(--hn-muted)}
+.hn-stat__spark{display:block;width:100%;height:36px;margin-top:10px;color:var(--hn-primary)}
+.hn-stat--solar .hn-stat__label .hn-icon,.hn-stat--solar .hn-stat__spark{color:var(--hn-sun)}
+
+/* Input / Select / Textarea */
+.hn-field{display:grid;gap:6px;max-width:360px}
+.hn-label{font-weight:600;font-size:14.5px;color:var(--hn-ink)}
+.hn-label .opt{font-weight:400;color:var(--hn-muted)}
+.hn-input,.hn-select,.hn-textarea{width:100%;height:42px;padding:0 12px;border:1px solid var(--hn-line-strong);border-radius:var(--hn-r-md);background:var(--hn-surface);color:var(--hn-ink);font:inherit;font-size:15px}
+.hn-textarea{height:auto;min-height:96px;padding:10px 12px;resize:vertical}
+.hn-input::placeholder,.hn-textarea::placeholder{color:var(--hn-muted)}
+.hn-input:hover,.hn-select:hover,.hn-textarea:hover{border-color:var(--hn-ink-2)}
+.hn-input:focus,.hn-select:focus,.hn-textarea:focus{outline:none;border-color:var(--hn-focus);box-shadow:0 0 0 3px color-mix(in srgb,var(--hn-focus) 25%,transparent)}
+.hn-input:disabled,.hn-select:disabled{background:var(--hn-canvas);color:var(--hn-muted);cursor:not-allowed}
+.hn-input-wrap{position:relative;display:flex;align-items:center}
+.hn-input-wrap .hn-input{padding-right:48px}
+.hn-input-wrap .hn-suffix{position:absolute;right:12px;font-size:14px;color:var(--hn-muted);pointer-events:none}
+.hn-input-wrap .hn-prefix-icon{position:absolute;left:12px;color:var(--hn-muted);width:18px;height:18px;pointer-events:none}
+.hn-input-wrap .hn-prefix-icon~.hn-input{padding-left:38px}
+.hn-help{font-size:13.5px;color:var(--hn-muted)}
+.hn-field--error .hn-input{border-color:var(--hn-danger)}
+.hn-field--error .hn-help{color:var(--hn-danger);display:flex;gap:6px;align-items:center}
+.hn-field--error .hn-help .hn-icon{width:16px;height:16px}
+.hn-select-wrap{position:relative}
+.hn-select{appearance:none;-webkit-appearance:none;padding-right:40px;cursor:pointer}
+.hn-select-wrap .hn-icon{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--hn-muted)}
+
+/* Pagination */
+.hn-pagination{display:flex;align-items:center;gap:4px;list-style:none;padding:0;margin:0}
+.hn-pagination a,.hn-pagination span{display:inline-grid;place-items:center;min-width:36px;height:36px;padding:0 8px;border-radius:8px;text-decoration:none;color:var(--hn-ink-2);font-size:14.5px;font-weight:500}
+.hn-pagination a:hover{background:var(--hn-canvas);color:var(--hn-ink)}
+.hn-pagination a[aria-current="page"]{background:var(--hn-primary);color:var(--hn-on-primary)}
+.hn-pagination a[aria-disabled="true"]{opacity:.4;pointer-events:none}
+.hn-pagination .hn-icon{width:18px;height:18px}
+
+/* Progress */
+.hn-progress{display:grid;gap:6px;max-width:420px}
+.hn-progress__head{display:flex;justify-content:space-between;font-size:14px}
+.hn-progress__head span:last-child{color:var(--hn-muted);font-variant-numeric:tabular-nums}
+.hn-progress__track{height:8px;border-radius:4px;background:var(--hn-line);overflow:hidden}
+.hn-progress__bar{height:100%;border-radius:4px;background:var(--hn-primary)}
+.hn-progress--solar .hn-progress__bar{background:var(--hn-sun)}
+.hn-battery{display:inline-flex;align-items:center;gap:3px}
+.hn-battery__body{width:84px;height:36px;padding:3px;border:2px solid var(--hn-ink-2);border-radius:8px}
+.hn-battery__fill{height:100%;border-radius:4px;background:var(--hn-primary)}
+.hn-battery__cap{width:4px;height:14px;border-radius:0 3px 3px 0;background:var(--hn-ink-2)}
+.hn-battery--low .hn-battery__fill{background:var(--hn-danger)}
+.hn-ring{position:relative;width:96px;height:96px}
+.hn-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.hn-ring circle{fill:none;stroke-width:9}
+.hn-ring .track{stroke:var(--hn-line)}
+.hn-ring .bar{stroke:var(--hn-primary);stroke-linecap:round}
+.hn-ring span{position:absolute;inset:0;display:grid;place-items:center;font:600 20px var(--hn-font-display)}
+
+/* Skeleton */
+.hn-skel{border-radius:8px;background:linear-gradient(90deg,var(--hn-line) 0%,var(--hn-canvas) 50%,var(--hn-line) 100%);background-size:200% 100%;animation:hn-shimmer 1.4s linear infinite}
+@keyframes hn-shimmer{to{background-position:-200% 0}}
+
+/* Slider */
+.hn-slider{display:grid;gap:8px;max-width:380px}
+.hn-slider__head{display:flex;justify-content:space-between;align-items:baseline}
+.hn-slider output{font:600 18px var(--hn-font-display);font-variant-numeric:tabular-nums}
+.hn-slider input[type="range"]{width:100%;accent-color:var(--hn-primary);height:24px;cursor:pointer}
+.hn-slider__ticks{display:flex;justify-content:space-between;font-size:12.5px;color:var(--hn-muted)}
+
+/* Stepper */
+.hn-stepper{display:flex;list-style:none;margin:0;padding:0;counter-reset:st;width:100%}
+.hn-stepper li{flex:1;position:relative;counter-increment:st;display:grid;justify-items:center;text-align:center;gap:8px;font-size:14px;color:var(--hn-muted)}
+.hn-stepper li::before{content:counter(st);position:relative;z-index:1;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:600 14px var(--hn-font-display);border:2px solid var(--hn-line-strong);background:var(--hn-surface);color:var(--hn-muted)}
+.hn-stepper li+li::after{content:"";position:absolute;top:16px;right:50%;width:100%;height:2px;background:var(--hn-line-strong)}
+.hn-stepper li.is-done::before{content:"✓";background:var(--hn-primary);border-color:var(--hn-primary);color:var(--hn-on-primary)}
+.hn-stepper li.is-done,.hn-stepper li.is-current{color:var(--hn-ink)}
+.hn-stepper li.is-current{font-weight:600}
+.hn-stepper li.is-current::before{border-color:var(--hn-primary);color:var(--hn-primary-strong);box-shadow:0 0 0 4px var(--hn-primary-soft)}
+.hn-stepper li.is-done+li::after,.hn-stepper li.is-done+li.is-current::after{background:var(--hn-primary)}
+.hn-stepper li::after{z-index:0}
+
+/* Switch */
+.hn-switch{display:inline-flex;align-items:center;gap:12px;cursor:pointer;font-size:15px;position:relative}
+.hn-switch input{position:absolute;opacity:0;width:44px;height:26px;margin:0;cursor:pointer}
+.hn-switch__track{position:relative;width:44px;height:26px;border-radius:13px;background:var(--hn-line-strong);transition:background .18s;flex:none}
+.hn-switch__track::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .18s}
+.hn-switch input:checked+.hn-switch__track{background:var(--hn-primary)}
+.hn-switch input:checked+.hn-switch__track::after{transform:translateX(18px)}
+.hn-switch input:focus-visible+.hn-switch__track{outline:3px solid var(--hn-focus);outline-offset:2px}
+.hn-switch input:disabled+.hn-switch__track{opacity:.45}
+.hn-switch:has(input:disabled){color:var(--hn-muted);cursor:not-allowed}
+
+/* Tabs */
+.hn-tabs [role="tablist"]{display:flex;gap:4px;border-bottom:1px solid var(--hn-line);overflow-x:auto}
+.hn-tabs [role="tab"]{all:unset;cursor:pointer;padding:10px 14px;font-weight:500;font-size:15px;color:var(--hn-muted);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.hn-tabs [role="tab"]:hover{color:var(--hn-ink)}
+.hn-tabs [role="tab"]:focus-visible{outline:3px solid var(--hn-focus);outline-offset:-3px}
+.hn-tabs [role="tab"][aria-selected="true"]{color:var(--hn-primary-strong);border-bottom-color:var(--hn-primary);font-weight:600}
+.hn-tabs [role="tabpanel"]{padding:16px 2px;color:var(--hn-ink-2)}
+.hn-tabs--pill [role="tablist"]{border:0;background:var(--hn-canvas);padding:4px;border-radius:var(--hn-r-md);display:inline-flex}
+.hn-tabs--pill [role="tab"]{border:0;margin:0;border-radius:8px;padding:8px 14px}
+.hn-tabs--pill [role="tab"][aria-selected="true"]{background:var(--hn-surface);box-shadow:var(--hn-shadow-1)}
+
+/* Toast */
+.hn-toast-region{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:300;display:grid;gap:10px;width:min(360px,calc(100% - 40px))}
+.hn-toast{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 14px;border-radius:var(--hn-r-md);background:var(--hn-ink);color:var(--hn-canvas);box-shadow:var(--hn-shadow-3);font-size:14.5px;animation:hn-pop .2s ease-out}
+.hn-toast .hn-icon{color:var(--hn-primary-soft)}
+.hn-toast--warning .hn-icon{color:var(--hn-sun)}
+.hn-toast--error .hn-icon{color:#F6B0A5}
+.hn-toast button{all:unset;cursor:pointer;opacity:.7;display:grid;place-items:center}
+.hn-toast button:hover{opacity:1}
+
+/* Tooltip */
+.hn-tooltip{position:relative;display:inline-flex}
+.hn-tooltip__tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);padding:6px 10px;border-radius:6px;background:var(--hn-ink);color:var(--hn-canvas);font-size:13px;line-height:1.4;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .12s;pointer-events:none;z-index:10}
+.hn-tooltip__tip::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:var(--hn-ink)}
+.hn-tooltip:hover .hn-tooltip__tip,.hn-tooltip:focus-within .hn-tooltip__tip{opacity:1;visibility:visible}
+.hn-tooltip--bottom .hn-tooltip__tip{bottom:auto;top:calc(100% + 8px)}
+.hn-tooltip--bottom .hn-tooltip__tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--hn-ink)}
+
+/* Divider + Link + Tag list (small extras) */
+.hn-divider{border:0;border-top:1px solid var(--hn-line);margin:0;width:100%}
+.hn-divider-label{display:flex;align-items:center;gap:12px;color:var(--hn-muted);font-size:13.5px;width:100%}
+.hn-divider-label::before,.hn-divider-label::after{content:"";flex:1;border-top:1px solid var(--hn-line)}
+.hn-link{color:var(--hn-primary-strong);font-weight:600;text-underline-offset:3px}
+.hn-link:hover{color:var(--hn-primary)}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width:1080px){
+  .search input{width:180px}
+  main{padding:32px 28px 80px}
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:36px 32px 0}
+}
+@media (max-width:860px){
+  .menu-btn{display:inline-grid}
+  .topnav{display:none}
+  .layout{grid-template-columns:1fr}
+  .sidenav{position:fixed;z-index:70;top:0;left:0;bottom:0;width:280px;height:100%;padding-top:calc(20px + env(safe-area-inset-top,0px));transform:translateX(-100%);transition:transform .2s;box-shadow:var(--hn-shadow-3)}
+  body.nav-open .sidenav{transform:none}
+  body.nav-open .scrim{display:block;position:fixed;inset:0;z-index:65;background:rgba(10,24,33,.45)}
+  .search{display:none}
+  .page-title{font-size:32px}
+  .hero h1{font-size:38px}
+  .facts{grid-template-columns:1fr}
+  .facts div+div{border-left:0;border-top:1px solid var(--hn-line)}
+  .scale{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .type-row{grid-template-columns:1fr;gap:6px}
+}
+@media (max-width:520px){
+  main{padding:24px 16px 72px}
+  .topbar{padding:0 12px;gap:10px}
+  .brand small{display:none}
+  .demo-stage{padding:20px}
+  .hero-copy{padding:28px 22px 0}
+  .pager{flex-direction:column}
+  .pager a:last-child{margin-left:0}
+  .hn-stepper li{font-size:12.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+@media print{.topbar,.sidenav,.demo-bar,.pager{display:none}.layout{display:block}main{padding:0}}
+</style>
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h10a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/></symbol>
+    <symbol id="i-turbine" viewBox="0 0 24 24"><circle cx="12" cy="9" r="1.4"/><path d="M12 7.6V2.5M13.2 9.7l4.4 2.6M10.8 9.7l-4.4 2.6M12 10.4V22M9 22h6"/></symbol>
+    <symbol id="i-panel" viewBox="0 0 24 24"><path d="M5 4h14l2 10H3zM4 9h16M9.5 4l-.8 10M14.5 4l.8 10M12 14v4M8 21h8"/></symbol>
+    <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 11v2M6 10v4M9.5 10v4"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 20c0-9 6-15 15-15 0 9-6 15-14 15zM5 20l8-8"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/></symbol>
+    <symbol id="i-tower" viewBox="0 0 24 24"><path d="M12 2 7 22M12 2l5 20M8.6 9h6.8M6.5 15h11M9 6h6M8 22h8"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 4l9 7M5 9.5V20h14V9.5M10 20v-6h4v6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h16M8 16v-5M12 16V8M16 16v-3"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20zM12 10v4M12 17h.01"/></symbol>
+    <symbol id="i-error" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6-7-12a7 7 0 0 1 14 0c0 6-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0M12 18l4-6"/></symbol>
+    <symbol id="i-co2" viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9.5 4.3 4.3 0 0 0 7 18z"/></symbol>
+  </defs>
+</svg>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false"><svg class="hn-icon"><use href="#i-menu"/></svg></button>
+  <a class="brand" href="#home" aria-label="HelioNova Design System home">
+    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+      <rect width="40" height="40" rx="11" fill="var(--hn-primary)"/>
+      <path d="M8 27h24" stroke="var(--hn-on-primary)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M12 27a8 8 0 0 1 16 0" fill="var(--hn-sun)"/>
+      <path d="M20 9v4M10 14l2.6 2.6M30 14l-2.6 2.6" stroke="var(--hn-sun)" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <span>HelioNova<small>Design System v1.0</small></span>
+  </a>
+  <nav class="topnav" aria-label="Primary">
+    <a href="#get-started" data-top="get-started">Get started</a>
+    <a href="#colours" data-top="foundations">Foundations</a>
+    <a href="#components" data-top="components">Components</a>
+  </nav>
+  <div class="top-tools">
+    <label class="search"><span class="sr-only">Search the design system</span>
+      <svg class="hn-icon"><use href="#i-search"/></svg>
+      <input id="search" type="search" placeholder="Search components" autocomplete="off">
+    </label>
+    <button class="icon-btn" id="themeBtn" aria-label="Switch colour theme"><svg class="hn-icon"><use href="#i-moon"/></svg></button>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="sidenav" id="sidenav" aria-label="Design system"></nav>
+  <div class="scrim" id="scrim"></div>
+  <main id="main" tabindex="-1"><div class="page" id="page"></div></main>
+</div>
+
+<div class="hn-toast-region" id="toasts" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+const I = n => '<svg class="hn-icon"><use href="#i-' + n + '"/></svg>';
+
+/* ---------------------------------------------------------
+   Component catalogue
+   --------------------------------------------------------- */
+const C = [
+{slug:"accordion",name:"Accordion",desc:"Shows and hides sections of related content so people can scan headings first and open only what they need.",
+a11y:"Built on native details and summary, so it works with keyboard and screen readers without extra scripting. Keep summaries short and descriptive.",
+sections:[
+{t:"Single open",n:"Opening one item closes the others. Good for FAQs where people read one answer at a time.",h:
+`<div class="hn-accordion">
+  <details class="hn-accordion__item" name="faq-solar" open>
+    <summary>How much can solar cut my bill?${I("chevron-down")}</summary>
+    <div class="hn-accordion__body">Most homes with a 5 kW system offset 60–80% of daytime use, depending on roof direction and shading.</div>
+  </details>
+  <details class="hn-accordion__item" name="faq-solar">
+    <summary>Do panels work on cloudy days?${I("chevron-down")}</summary>
+    <div class="hn-accordion__body">Yes. Output drops to roughly 10–25% of rated capacity, and recovers as soon as the clouds pass.</div>
+  </details>
+  <details class="hn-accordion__item" name="faq-solar">
+    <summary>What happens during a power cut?${I("chevron-down")}</summary>
+    <div class="hn-accordion__body">Grid-tied systems switch off for safety. Pair your panels with a HelioNova battery to keep essentials running.</div>
+  </details>
+</div>`},
+{t:"Multiple open",n:"Any number of items can be open at once. Use when people compare answers side by side.",h:
+`<div class="hn-accordion">
+  <details class="hn-accordion__item" open>
+    <summary>Site survey${I("chevron-down")}</summary>
+    <div class="hn-accordion__body">An engineer checks your roof, wiring and meter. Takes about an hour.</div>
+  </details>
+  <details class="hn-accordion__item" open>
+    <summary>Installation${I("chevron-down")}</summary>
+    <div class="hn-accordion__body">Most rooftop systems are installed in one to two days.</div>
+  </details>
+  <details class="hn-accordion__item">
+    <summary>Grid connection${I("chevron-down")}</summary>
+    <div class="hn-accordion__body">We file the net-metering paperwork with your utility for you.</div>
+  </details>
+</div>`}]},
+
+{slug:"alert",name:"Alert",desc:"Inline messages that tell people about a change in system status or something that needs their attention.",
+a11y:"Use role=\"status\" for passive updates and role=\"alert\" only for urgent errors. Never rely on colour alone: every variant has its own icon.",
+sections:[
+{t:"Variants",n:"Each variant has a coloured edge and a matching icon. The text stays dark for readability on any background.",h:
+`<div class="stack">
+  <div class="hn-alert" role="status">${I("info")}
+    <div><p class="hn-alert__title">Maintenance window tonight</p><p class="hn-alert__text">Live monitoring pauses from 01:00 to 02:00 IST.</p></div>
+  </div>
+  <div class="hn-alert hn-alert--success" role="status">${I("check-circle")}
+    <div><p class="hn-alert__title">System connected</p><p class="hn-alert__text">Your inverter is now reporting generation every 5 minutes.</p></div>
+  </div>
+  <div class="hn-alert hn-alert--warning" role="status">${I("alert")}
+    <div><p class="hn-alert__title">Panel output below forecast</p><p class="hn-alert__text">Array B produced 18% less than expected. Dust build-up is the usual cause.</p></div>
+  </div>
+  <div class="hn-alert hn-alert--error" role="alert">${I("error")}
+    <div><p class="hn-alert__title">Inverter offline</p><p class="hn-alert__text">We haven’t received data since 09:42. Check the inverter’s Wi-Fi light.</p></div>
+  </div>
+</div>`},
+{t:"Filled, dismissible and with actions",n:"Filled alerts suit page-level messages. Add a close button when the message is informational, and actions when there’s a clear next step.",h:
+`<div class="stack">
+  <div class="hn-alert hn-alert--filled hn-alert--success" role="status">${I("check-circle")}
+    <div><p class="hn-alert__title">Subsidy approved</p><p class="hn-alert__text">₹78,000 will be credited after commissioning.</p></div>
+    <button class="hn-alert__close" aria-label="Dismiss" data-hn-dismiss>${I("x")}</button>
+  </div>
+  <div class="hn-alert hn-alert--filled hn-alert--warning" role="status">${I("alert")}
+    <div><p class="hn-alert__title">Battery below 20%</p><p class="hn-alert__text">Backup time is about 1 hour 40 minutes at current load.</p>
+      <div class="hn-alert__actions"><button class="hn-btn hn-btn--sm hn-btn--secondary">View usage</button><button class="hn-btn hn-btn--sm hn-btn--ghost">Set reserve</button></div>
+    </div>
+    <button class="hn-alert__close" aria-label="Dismiss" data-hn-dismiss>${I("x")}</button>
+  </div>
+</div>`}]},
+
+{slug:"avatar",name:"Avatar",desc:"Represents a person or a site with initials, a status dot, or a stacked group.",
+a11y:"Give avatars an accessible name with aria-label or adjacent visible text. Status dots need a text equivalent.",
+sections:[
+{t:"Sizes and colours",n:"Small (28), default (40) and large (56). Colour helps tell teams apart but never carries meaning on its own.",h:
+`<div class="row">
+  <span class="hn-avatar hn-avatar--sm" aria-label="Asha Rao">AR</span>
+  <span class="hn-avatar" aria-label="Vikram Iyer">VI</span>
+  <span class="hn-avatar hn-avatar--lg" aria-label="Meera Kulkarni">MK</span>
+  <span class="hn-avatar hn-avatar--sun" aria-label="Rohan Shah">RS</span>
+  <span class="hn-avatar hn-avatar--sky" aria-label="Field team">${I("user")}</span>
+</div>`},
+{t:"Status and groups",n:"A green dot means online; amber means on site visit. Groups overlap and end with a count.",h:
+`<div class="row">
+  <span class="hn-avatar" aria-label="Asha Rao, online">AR<span class="hn-avatar__status"></span></span>
+  <span class="hn-avatar hn-avatar--sun" aria-label="Rohan Shah, on site visit">RS<span class="hn-avatar__status hn-avatar__status--away"></span></span>
+  <div class="hn-avatar-group" aria-label="Install crew, 6 people">
+    <span class="hn-avatar">AR</span><span class="hn-avatar hn-avatar--sun">RS</span><span class="hn-avatar hn-avatar--sky">VI</span><span class="hn-avatar">+3</span>
+  </div>
+</div>`}]},
+
+{slug:"badge",name:"Badge",desc:"Short labels that show the status or category of an item, such as a site, ticket or invoice.",
+a11y:"Badges are static text. Keep labels to one or two words and pair colour with words like Active or Offline.",
+sections:[
+{t:"Status badges",n:"Use semantic variants for status. Neutral works for categories.",h:
+`<div class="row">
+  <span class="hn-badge">Rooftop</span>
+  <span class="hn-badge hn-badge--success"><span class="hn-badge__dot"></span>Generating</span>
+  <span class="hn-badge hn-badge--warning"><span class="hn-badge__dot"></span>Low output</span>
+  <span class="hn-badge hn-badge--error"><span class="hn-badge__dot"></span>Offline</span>
+  <span class="hn-badge hn-badge--info"><span class="hn-badge__dot"></span>Scheduled</span>
+</div>`},
+{t:"With icons and counts",n:"Icons identify the energy source. Counts show unread items on buttons and tabs.",h:
+`<div class="row">
+  <span class="hn-badge hn-badge--warning">${I("sun")}Solar</span>
+  <span class="hn-badge hn-badge--info">${I("wind")}Wind</span>
+  <span class="hn-badge hn-badge--success">${I("battery")}Storage</span>
+  <button class="hn-btn hn-btn--secondary">Alerts <span class="hn-count">4</span></button>
+</div>`}]},
+
+{slug:"breadcrumb",name:"Breadcrumb",desc:"Shows where the current page sits in the site hierarchy and lets people step back up.",
+a11y:"Wrap in nav with aria-label=\"Breadcrumb\" and mark the last item with aria-current=\"page\".",
+sections:[
+{t:"Default",n:"Keep the trail to four levels or fewer. The current page is not a link.",h:
+`<nav class="hn-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="#breadcrumb">Portfolio</a></li>
+    <li><a href="#breadcrumb">Maharashtra</a></li>
+    <li><a href="#breadcrumb">Pune Solar Park</a></li>
+    <li><span aria-current="page">Inverter 04</span></li>
+  </ol>
+</nav>`}]},
+
+{slug:"button",name:"Button",desc:"Triggers an action, such as saving a setting, booking a survey or exporting a report.",
+a11y:"Use a real button element. Icon-only buttons need aria-label. Loading buttons set aria-busy and keep their width.",
+sections:[
+{t:"Variants",n:"One primary action per view. Solar is reserved for high-value conversion moments like getting a quote.",h:
+`<div class="row">
+  <button class="hn-btn hn-btn--primary">Save changes</button>
+  <button class="hn-btn hn-btn--solar">${I("sun")}Get a free quote</button>
+  <button class="hn-btn hn-btn--secondary">Export report</button>
+  <button class="hn-btn hn-btn--ghost">View details</button>
+  <button class="hn-btn hn-btn--danger">Remove site</button>
+</div>`},
+{t:"Sizes",n:"Small for dense tables, default for forms, large for marketing pages.",h:
+`<div class="row">
+  <button class="hn-btn hn-btn--primary hn-btn--sm">Small</button>
+  <button class="hn-btn hn-btn--primary">Default</button>
+  <button class="hn-btn hn-btn--primary hn-btn--lg">Large</button>
+  <button class="hn-btn hn-btn--secondary hn-btn--icon" aria-label="Download report">${I("download")}</button>
+</div>`},
+{t:"States",n:"Disabled buttons explain why nearby. Loading keeps the label so the layout doesn’t jump.",h:
+`<div class="row">
+  <button class="hn-btn hn-btn--primary" disabled>Book survey</button>
+  <button class="hn-btn hn-btn--primary" aria-busy="true"><span class="hn-spinner"></span>Saving</button>
+  <button class="hn-btn hn-btn--secondary" disabled>Export report</button>
+</div>`}]},
+
+{slug:"card",name:"Card",desc:"Groups related content and actions about a single subject, like a site, a plan or an article.",
+a11y:"If the whole card is clickable, use one link inside it and stretch its hit area rather than nesting multiple links.",
+sections:[
+{t:"Site card",n:"Media, title, metadata, supporting text and a footer with status and action.",h:
+`<div class="grid-2">
+  <article class="hn-card">
+    <div class="hn-card__media">${I("panel")}</div>
+    <div class="hn-card__body">
+      <h3 class="hn-card__title">Pune Solar Park</h3>
+      <p class="hn-card__meta">${I("pin")}Chakan, Maharashtra</p>
+      <p class="hn-card__text">12.4 MW ground-mounted array with single-axis trackers.</p>
+    </div>
+    <div class="hn-card__footer"><span class="hn-badge hn-badge--success"><span class="hn-badge__dot"></span>Generating</span><a class="hn-link" href="#card">Open site</a></div>
+  </article>
+  <article class="hn-card hn-card--interactive">
+    <div class="hn-card__media" style="background:linear-gradient(160deg,var(--hn-sky-soft),var(--hn-tint));color:var(--hn-sky-ink)">${I("turbine")}</div>
+    <div class="hn-card__body">
+      <h3 class="hn-card__title">Satara Wind Farm</h3>
+      <p class="hn-card__meta">${I("pin")}Satara, Maharashtra</p>
+      <p class="hn-card__text">18 turbines, 2.1 MW each, commissioned in 2024.</p>
+    </div>
+    <div class="hn-card__footer"><span class="hn-badge hn-badge--warning"><span class="hn-badge__dot"></span>Low wind</span><a class="hn-link" href="#card">Open site</a></div>
+  </article>
+</div>`}]},
+
+{slug:"checkbox",name:"Checkbox",desc:"Lets people select one or more options from a list, or turn a single option on.",
+a11y:"Group related checkboxes in a fieldset with a legend. Indeterminate is set with JavaScript and announces as mixed.",
+sections:[
+{t:"Group",n:"Use for independent choices. Labels are clickable.",h:
+`<fieldset class="hn-fieldset">
+  <legend>Send me alerts for</legend>
+  <label class="hn-check"><input type="checkbox" checked>Inverter faults</label>
+  <label class="hn-check"><input type="checkbox" checked>Daily generation summary</label>
+  <label class="hn-check"><input type="checkbox">Weather that affects output</label>
+</fieldset>`},
+{t:"States",n:"Unchecked, checked, indeterminate and disabled.",h:
+`<div class="row">
+  <label class="hn-check"><input type="checkbox">Unchecked</label>
+  <label class="hn-check"><input type="checkbox" checked>Checked</label>
+  <label class="hn-check"><input type="checkbox" data-indeterminate>Some sites</label>
+  <label class="hn-check"><input type="checkbox" disabled>Disabled</label>
+  <label class="hn-check"><input type="checkbox" checked disabled>Locked on</label>
+</div>`}]},
+
+{slug:"chip",name:"Chip",desc:"Compact toggles for filtering a list, like showing only solar sites or only faults.",
+a11y:"Chips are buttons with aria-pressed so screen readers announce whether each filter is on.",
+sections:[
+{t:"Filter chips",n:"Select any combination. The check mark confirms the filter is applied.",h:
+`<div class="row" role="group" aria-label="Filter sites by source">
+  <button class="hn-chip" aria-pressed="true"><svg class="hn-icon hn-chip__check"><use href="#i-check"/></svg>Solar</button>
+  <button class="hn-chip" aria-pressed="false"><svg class="hn-icon hn-chip__check"><use href="#i-check"/></svg>Wind</button>
+  <button class="hn-chip" aria-pressed="false"><svg class="hn-icon hn-chip__check"><use href="#i-check"/></svg>Hydro</button>
+  <button class="hn-chip" aria-pressed="true"><svg class="hn-icon hn-chip__check"><use href="#i-check"/></svg>Storage</button>
+</div>`}]},
+
+{slug:"data-table",name:"Data table",desc:"Displays structured data like site performance so people can compare rows and scan columns.",
+a11y:"Use th with scope for headers and a caption or aria-label. Right-align numbers and keep units in the header.",
+sections:[
+{t:"Site performance",n:"Numbers use tabular figures so digits line up. The wrapper scrolls on small screens.",h:
+`<div class="hn-table-wrap">
+  <table class="hn-table" aria-label="Site performance today">
+    <thead><tr><th scope="col">Site</th><th scope="col">Source</th><th scope="col" class="num">Capacity (MW)</th><th scope="col" class="num">Today (MWh)</th><th scope="col">Status</th></tr></thead>
+    <tbody>
+      <tr><td>Pune Solar Park</td><td>Solar</td><td class="num">12.4</td><td class="num">68.2</td><td><span class="hn-badge hn-badge--success"><span class="hn-badge__dot"></span>Generating</span></td></tr>
+      <tr><td>Satara Wind Farm</td><td>Wind</td><td class="num">37.8</td><td class="num">142.5</td><td><span class="hn-badge hn-badge--warning"><span class="hn-badge__dot"></span>Low wind</span></td></tr>
+      <tr><td>Koyna Micro Hydro</td><td>Hydro</td><td class="num">4.0</td><td class="num">88.9</td><td><span class="hn-badge hn-badge--success"><span class="hn-badge__dot"></span>Generating</span></td></tr>
+      <tr><td>Nashik Storage Hub</td><td>Battery</td><td class="num">20.0</td><td class="num">—</td><td><span class="hn-badge hn-badge--error"><span class="hn-badge__dot"></span>Offline</span></td></tr>
+    </tbody>
+  </table>
+</div>`}]},
+
+{slug:"divider",name:"Divider",desc:"A thin line that separates groups of content when spacing alone isn’t enough.",
+a11y:"Use hr for a thematic break. Purely decorative lines should be CSS borders instead.",
+sections:[
+{t:"Plain and labelled",n:"Labelled dividers suit sign-in forms and choice points.",h:
+`<div class="stack" style="max-width:420px">
+  <p>Today’s generation</p>
+  <hr class="hn-divider">
+  <p>This month’s generation</p>
+  <div class="hn-divider-label">or continue with</div>
+</div>`}]},
+
+{slug:"drawer",name:"Drawer",desc:"A panel that slides in from the edge to show details or a short form without leaving the page.",
+a11y:"Move focus into the drawer on open, trap it while open, close on Escape and return focus to the trigger.",
+sections:[
+{t:"Right drawer",n:"Use for editing a single record. Keep the main page visible behind it for context.",h:
+`<button class="hn-btn hn-btn--secondary" data-hn-open="site-drawer">${I("edit")}Edit site details</button>
+<div class="hn-overlay" data-hn-id="site-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <aside class="hn-drawer">
+    <div class="hn-drawer__head"><h3 id="drawer-title" class="hn-modal__title">Edit site</h3><button class="hn-alert__close" aria-label="Close" data-hn-close>${I("x")}</button></div>
+    <div class="hn-drawer__body">
+      <div class="hn-field"><label class="hn-label" for="dr-name">Site name</label><input class="hn-input" id="dr-name" value="Pune Solar Park"></div>
+      <div class="hn-field"><label class="hn-label" for="dr-cap">Capacity</label><div class="hn-input-wrap"><input class="hn-input" id="dr-cap" value="12.4" inputmode="decimal"><span class="hn-suffix">MW</span></div></div>
+      <label class="hn-switch"><input type="checkbox" role="switch" checked><span class="hn-switch__track"></span>Send fault alerts</label>
+    </div>
+    <div class="hn-drawer__foot"><button class="hn-btn hn-btn--secondary" data-hn-close>Cancel</button><button class="hn-btn hn-btn--primary" data-hn-close data-hn-toast="Site saved">Save site</button></div>
+  </aside>
+</div>`}]},
+
+{slug:"dropdown",name:"Dropdown menu",desc:"A list of actions that opens from a button, used when there are too many actions to show at once.",
+a11y:"The trigger has aria-haspopup and aria-expanded. Close on Escape or outside click. Destructive actions sit last, separated.",
+sections:[
+{t:"Action menu",n:"Group related actions and separate destructive ones.",h:
+`<div class="hn-dropdown">
+  <button class="hn-btn hn-btn--secondary" data-hn-dropdown aria-haspopup="true" aria-expanded="false">Site actions${I("chevron-down")}</button>
+  <div class="hn-menu" role="menu">
+    <button role="menuitem">${I("chart")}View performance</button>
+    <button role="menuitem">${I("download")}Download monthly report</button>
+    <button role="menuitem">${I("calendar")}Schedule maintenance</button>
+    <hr>
+    <button role="menuitem" class="is-danger">${I("trash")}Remove site</button>
+  </div>
+</div>`}]},
+
+{slug:"empty-state",name:"Empty state",desc:"Fills a screen that has no data yet and points people to the action that will change that.",
+a11y:"The heading describes what’s missing; the button describes what happens next.",
+sections:[
+{t:"First-run",n:"Explain what will appear here and offer one clear action.",h:
+`<div class="hn-empty">
+  <div class="hn-empty__icon">${I("panel")}</div>
+  <h3>No sites yet</h3>
+  <p>Add your first site to start tracking generation, savings and carbon avoided.</p>
+  <button class="hn-btn hn-btn--primary">${I("plus")}Add a site</button>
+</div>`}]},
+
+{slug:"energy-stat",name:"Energy stat",desc:"A headline metric card for dashboards, showing a value, its unit, the change and a small trend line.",
+a11y:"Always show the unit and time range in text. The sparkline is decorative; the change is written out.",
+sections:[
+{t:"Metric cards",n:"Units sit beside the number in a lighter weight. Changes say up or down in words, not only arrows.",h:
+`<div class="grid-2">
+  <div class="hn-stat hn-stat--solar">
+    <p class="hn-stat__label">${I("sun")}Solar generated today</p>
+    <p class="hn-stat__value">68.2<small>MWh</small></p>
+    <svg class="hn-stat__spark" viewBox="0 0 120 36" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="currentColor" stroke-width="2" points="0,34 15,30 30,22 45,12 60,6 75,5 90,11 105,22 120,32"/></svg>
+    <p class="hn-stat__foot"><span class="hn-badge hn-badge--success">${I("arrow-up")}Up 8.4%</span><span>vs yesterday</span></p>
+  </div>
+  <div class="hn-stat">
+    <p class="hn-stat__label">${I("leaf")}CO₂ avoided this month</p>
+    <p class="hn-stat__value">1,284<small>tonnes</small></p>
+    <svg class="hn-stat__spark" viewBox="0 0 120 36" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="currentColor" stroke-width="2" points="0,30 20,28 40,24 60,22 80,15 100,10 120,4"/></svg>
+    <p class="hn-stat__foot"><span class="hn-badge hn-badge--success">${I("arrow-up")}Up 3.1%</span><span>vs last month</span></p>
+  </div>
+  <div class="hn-stat">
+    <p class="hn-stat__label">${I("battery")}Storage available</p>
+    <p class="hn-stat__value">14.6<small>MWh</small></p>
+    <svg class="hn-stat__spark" viewBox="0 0 120 36" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="currentColor" stroke-width="2" points="0,8 20,10 40,14 60,18 80,22 100,26 120,28"/></svg>
+    <p class="hn-stat__foot"><span class="hn-badge hn-badge--warning">${I("arrow-down")}Down 12%</span><span>since 06:00</span></p>
+  </div>
+</div>`}]},
+
+{slug:"input",name:"Text input",desc:"Lets people enter short text or numbers, like a name, an address or a monthly bill amount.",
+a11y:"Every input has a visible label. Help and error text is linked with aria-describedby, and errors also set aria-invalid.",
+sections:[
+{t:"Default and with units",n:"Show units inside the field so people never guess what to type.",h:
+`<div class="grid-2">
+  <div class="hn-field"><label class="hn-label" for="in-name">Full name</label><input class="hn-input" id="in-name" placeholder="e.g. Asha Rao"></div>
+  <div class="hn-field"><label class="hn-label" for="in-bill">Average monthly bill</label><div class="hn-input-wrap"><input class="hn-input" id="in-bill" inputmode="numeric" value="4,200" aria-describedby="in-bill-h"><span class="hn-suffix">₹</span></div><p class="hn-help" id="in-bill-h">We use this to size your system.</p></div>
+  <div class="hn-field"><label class="hn-label" for="in-pin">Site location <span class="opt">(optional)</span></label><div class="hn-input-wrap"><svg class="hn-icon hn-prefix-icon"><use href="#i-pin"/></svg><input class="hn-input" id="in-pin" placeholder="PIN code or city"></div></div>
+</div>`},
+{t:"States",n:"Error messages say what’s wrong and how to fix it.",h:
+`<div class="grid-2">
+  <div class="hn-field hn-field--error"><label class="hn-label" for="in-roof">Roof area</label><div class="hn-input-wrap"><input class="hn-input" id="in-roof" value="12" aria-invalid="true" aria-describedby="in-roof-e"><span class="hn-suffix">m²</span></div><p class="hn-help" id="in-roof-e">${I("error")}Enter at least 20 m² for a rooftop system.</p></div>
+  <div class="hn-field"><label class="hn-label" for="in-id">Consumer number</label><input class="hn-input" id="in-id" value="170234589012" disabled><p class="hn-help">Linked to your utility account.</p></div>
+  <div class="hn-field"><label class="hn-label" for="in-notes">Notes for the surveyor</label><textarea class="hn-textarea" id="in-notes" placeholder="Gate code, parking, roof access"></textarea></div>
+</div>`}]},
+
+{slug:"modal",name:"Modal",desc:"A focused dialog that asks people to confirm or complete something before they continue.",
+a11y:"Use role=\"dialog\" with aria-modal and a labelled title. Focus moves to the dialog and returns to the trigger on close.",
+sections:[
+{t:"Confirmation",n:"Title states the action; the confirming button repeats the verb.",h:
+`<button class="hn-btn hn-btn--danger" data-hn-open="remove-modal">Remove site</button>
+<div class="hn-overlay" data-hn-id="remove-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="hn-modal">
+    <div class="hn-modal__head"><h3 id="modal-title" class="hn-modal__title">Remove Nashik Storage Hub?</h3><button class="hn-alert__close" aria-label="Close" data-hn-close>${I("x")}</button></div>
+    <p class="hn-modal__body">Its history stays in past reports, but it will stop appearing on your dashboard and alerts.</p>
+    <div class="hn-modal__foot"><button class="hn-btn hn-btn--secondary" data-hn-close>Keep site</button><button class="hn-btn hn-btn--danger" data-hn-close data-hn-toast="Site removed|warning">Remove site</button></div>
+  </div>
+</div>`}]},
+
+{slug:"pagination",name:"Pagination",desc:"Splits long lists, like meter readings or invoices, into pages.",
+a11y:"Wrap in nav with a label. The current page has aria-current; previous and next have text labels.",
+sections:[
+{t:"Default",n:"Show the first, last and nearby pages. Ellipses mark skipped ranges.",h:
+`<nav aria-label="Invoices pages">
+  <ul class="hn-pagination">
+    <li><a href="#pagination" aria-label="Previous page">${I("chevron-left")}</a></li>
+    <li><a href="#pagination">1</a></li>
+    <li><a href="#pagination" aria-current="page">2</a></li>
+    <li><a href="#pagination">3</a></li>
+    <li><span>…</span></li>
+    <li><a href="#pagination">12</a></li>
+    <li><a href="#pagination" aria-label="Next page">${I("chevron-right")}</a></li>
+  </ul>
+</nav>`}]},
+
+{slug:"progress",name:"Progress",desc:"Shows how far along something is, from an installation to a battery’s charge.",
+a11y:"Use role=\"progressbar\" with aria-valuenow, min and max, and a visible text value.",
+sections:[
+{t:"Bars",n:"Primary for tasks; solar for generation against target.",h:
+`<div class="stack">
+  <div class="hn-progress"><div class="hn-progress__head"><span>Installation</span><span>3 of 4 steps</span></div><div class="hn-progress__track" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Installation"><div class="hn-progress__bar" style="width:75%"></div></div></div>
+  <div class="hn-progress hn-progress--solar"><div class="hn-progress__head"><span>Monthly generation target</span><span>612 / 900 MWh</span></div><div class="hn-progress__track" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" aria-label="Monthly generation target"><div class="hn-progress__bar" style="width:68%"></div></div></div>
+</div>`},
+{t:"Battery and ring",n:"Battery shows state of charge. The ring suits a single headline percentage.",h:
+`<div class="row" style="gap:32px">
+  <div class="hn-battery" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Battery 82%"><div class="hn-battery__body"><div class="hn-battery__fill" style="width:82%"></div></div><div class="hn-battery__cap"></div></div>
+  <div class="hn-battery hn-battery--low" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100" aria-label="Battery 14%"><div class="hn-battery__body"><div class="hn-battery__fill" style="width:14%"></div></div><div class="hn-battery__cap"></div></div>
+  <div class="hn-ring" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Self-sufficiency 72%"><svg viewBox="0 0 100 100"><circle class="track" cx="50" cy="50" r="42"/><circle class="bar" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="74"/></svg><span>72%</span></div>
+</div>`}]},
+
+{slug:"radio",name:"Radio group",desc:"Lets people pick exactly one option from a short list.",
+a11y:"Group radios in a fieldset with a legend. Arrow keys move between options natively.",
+sections:[
+{t:"Plan picker",n:"Use for two to five options. Pre-select the most common choice.",h:
+`<fieldset class="hn-fieldset">
+  <legend>Choose a system size</legend>
+  <label class="hn-check"><input type="radio" name="size">3 kW, for 1–2 bedroom homes</label>
+  <label class="hn-check"><input type="radio" name="size" checked>5 kW, for 3–4 bedroom homes</label>
+  <label class="hn-check"><input type="radio" name="size">10 kW, for large homes and small offices</label>
+  <label class="hn-check"><input type="radio" name="size" disabled>25 kW, available after site survey</label>
+</fieldset>`}]},
+
+{slug:"select",name:"Select",desc:"Lets people choose one option from a longer list, like a state or a utility provider.",
+a11y:"Uses the native select so it works with every keyboard, screen reader and mobile picker.",
+sections:[
+{t:"Default",n:"Use for six or more options. For fewer, use a radio group.",h:
+`<div class="grid-2">
+  <div class="hn-field"><label class="hn-label" for="sel-util">Electricity provider</label><div class="hn-select-wrap"><select class="hn-select" id="sel-util"><option>MSEDCL</option><option>Tata Power</option><option>Adani Electricity</option><option>BEST</option></select>${I("chevron-down")}</div></div>
+  <div class="hn-field"><label class="hn-label" for="sel-range">Report period</label><div class="hn-select-wrap"><select class="hn-select" id="sel-range"><option>Last 7 days</option><option selected>Last 30 days</option><option>This financial year</option></select>${I("chevron-down")}</div></div>
+</div>`}]},
+
+{slug:"skeleton",name:"Skeleton",desc:"A placeholder shaped like the content that’s loading, so the page doesn’t jump when data arrives.",
+a11y:"Mark the loading region with aria-busy=\"true\". The shimmer stops for people who prefer reduced motion.",
+sections:[
+{t:"Loading metric card",n:"Match the real layout: label, value and trend.",h:
+`<div class="hn-stat" aria-busy="true" aria-label="Loading generation" style="max-width:300px">
+  <div class="hn-skel" style="height:14px;width:55%"></div>
+  <div class="hn-skel" style="height:32px;width:40%;margin-top:12px"></div>
+  <div class="hn-skel" style="height:36px;margin-top:12px"></div>
+  <div class="hn-skel" style="height:14px;width:70%;margin-top:12px"></div>
+</div>`}]},
+
+{slug:"slider",name:"Slider",desc:"Lets people choose a value from a range, like how much of their bill to offset.",
+a11y:"Uses native input type=\"range\" with a visible label and output that updates as the value changes.",
+sections:[
+{t:"With live value",n:"Always show the current value and the range ends.",h:
+`<div class="hn-slider">
+  <div class="hn-slider__head"><label class="hn-label" for="sl-offset">Bill to offset</label><output for="sl-offset">70%</output></div>
+  <input type="range" id="sl-offset" min="20" max="100" step="5" value="70" data-hn-slider="%">
+  <div class="hn-slider__ticks"><span>20%</span><span>100%</span></div>
+</div>`}]},
+
+{slug:"stepper",name:"Stepper",desc:"Shows progress through a fixed sequence, like going from survey to switching on.",
+a11y:"Use an ordered list. The current step has aria-current=\"step\"; completed steps include the word Completed for screen readers.",
+sections:[
+{t:"Installation journey",n:"Steps are numbered because the order matters.",h:
+`<ol class="hn-stepper">
+  <li class="is-done">Site survey<span class="sr-only"> (completed)</span></li>
+  <li class="is-done">System design<span class="sr-only"> (completed)</span></li>
+  <li class="is-current" aria-current="step">Installation</li>
+  <li>Grid connection</li>
+</ol>`}]},
+
+{slug:"switch",name:"Switch",desc:"Turns a single setting on or off, with the change taking effect immediately.",
+a11y:"A checkbox with role=\"switch\". Labels describe the setting, not the state.",
+sections:[
+{t:"Settings",n:"Use switches for instant changes. If a save button is needed, use a checkbox.",h:
+`<div class="stack">
+  <label class="hn-switch"><input type="checkbox" role="switch" checked><span class="hn-switch__track"></span>Export surplus to the grid</label>
+  <label class="hn-switch"><input type="checkbox" role="switch"><span class="hn-switch__track"></span>Charge battery from grid at night</label>
+  <label class="hn-switch"><input type="checkbox" role="switch" disabled><span class="hn-switch__track"></span>Island mode (needs a battery)</label>
+</div>`}]},
+
+{slug:"tabs",name:"Tabs",desc:"Switch between related views of the same subject without leaving the page.",
+a11y:"Uses tablist, tab and tabpanel roles. Arrow keys move between tabs; only the active tab is in the tab order.",
+sections:[
+{t:"Underline",n:"The default for page-level sections.",h:
+`<div class="hn-tabs">
+  <div role="tablist" aria-label="Site views">
+    <button role="tab" aria-selected="true">Overview</button>
+    <button role="tab" aria-selected="false" tabindex="-1">Generation</button>
+    <button role="tab" aria-selected="false" tabindex="-1">Maintenance</button>
+  </div>
+  <div role="tabpanel">12.4 MW array, commissioned March 2025, running at 96% availability.</div>
+  <div role="tabpanel" hidden>68.2 MWh today, 1,912 MWh this month.</div>
+  <div role="tabpanel" hidden>Next panel cleaning is scheduled for 3 November.</div>
+</div>`},
+{t:"Segmented",n:"For switching a chart’s time range.",h:
+`<div class="hn-tabs hn-tabs--pill">
+  <div role="tablist" aria-label="Time range">
+    <button role="tab" aria-selected="false" tabindex="-1">Day</button>
+    <button role="tab" aria-selected="true">Week</button>
+    <button role="tab" aria-selected="false" tabindex="-1">Month</button>
+    <button role="tab" aria-selected="false" tabindex="-1">Year</button>
+  </div>
+</div>`}]},
+
+{slug:"toast",name:"Toast",desc:"A brief message that confirms an action finished, without interrupting what people are doing.",
+a11y:"Toasts appear in an aria-live region. Don’t put essential actions in a toast; they disappear after 5 seconds.",
+sections:[
+{t:"Trigger examples",n:"Messages use the same verb as the button that triggered them.",h:
+`<div class="row">
+  <button class="hn-btn hn-btn--primary" data-hn-toast="Report exported">Export report</button>
+  <button class="hn-btn hn-btn--secondary" data-hn-toast="Panel cleaning scheduled|warning">Schedule cleaning</button>
+  <button class="hn-btn hn-btn--secondary" data-hn-toast="Couldn’t reach inverter. Try again in a minute.|error">Ping inverter</button>
+</div>`}]},
+
+{slug:"tooltip",name:"Tooltip",desc:"A short label that explains an icon or a term when people hover or focus on it.",
+a11y:"Tooltips appear on keyboard focus as well as hover and are linked with aria-describedby. Never hide essential information in them.",
+sections:[
+{t:"Top and bottom",n:"Keep tooltips to one line.",h:
+`<div class="row" style="padding-top:36px">
+  <span class="hn-tooltip"><button class="hn-btn hn-btn--secondary hn-btn--icon" aria-label="Download report" aria-describedby="tt1">${I("download")}</button><span class="hn-tooltip__tip" role="tooltip" id="tt1">Download CSV</span></span>
+  <span class="hn-tooltip hn-tooltip--bottom"><button class="hn-btn hn-btn--ghost" aria-describedby="tt2">${I("info")}Capacity factor</button><span class="hn-tooltip__tip" role="tooltip" id="tt2">Actual output ÷ maximum possible output</span></span>
+</div>`}]}
+];
+
+/* ---------------------------------------------------------
+   Foundations data
+   --------------------------------------------------------- */
+const SCALES = [
+ {name:"Canopy",role:"Primary brand, success, positive change",dark:5,steps:["#EAF6F2","#D3EEE5","#A6DCCB","#6FC4AA","#3CA889","#0E8C71","#0B7A63","#075E4C","#064A3D","#04342B"]},
+ {name:"Helio",role:"Sunlight accent, solar data, warnings",dark:7,steps:["#FFF8E6","#FFF1CC","#FFE199","#FFCE5C","#FFBE2E","#F2A900","#CC8A00","#A86400","#7A4800","#4F2F00"]},
+ {name:"Sky",role:"Information, wind data, focus rings",dark:5,steps:["#EEF5FC","#E2EEFA","#C3DBF3","#8DB8E3","#5A93CC","#2D6FB0","#255F98","#1D4E80","#163C62","#0F2A45"]},
+ {name:"Slate",role:"Text, borders and surfaces",dark:5,steps:["#F3F7F6","#E4ECEB","#D9E3E1","#B3C3C6","#8496A0","#6A7F8C","#4F6574","#3E5566","#24394A","#12293B"]},
+ {name:"Ember",role:"Errors and destructive actions",dark:5,steps:["#FDF2F0","#FBE5E1","#F4C3BA","#EB9A8C","#D9695A","#B83A2B","#9E3123","#8A2A1F","#661F17","#43140F"]}
+];
+const SEMANTIC = [
+ ["--hn-primary","Primary actions, links, active states"],["--hn-primary-soft","Selected backgrounds, success fills"],
+ ["--hn-sun","Solar accent, highlight buttons"],["--hn-sky","Info, focus ring"],["--hn-danger","Errors, destructive actions"],
+ ["--hn-ink","Primary text"],["--hn-ink-2","Secondary text"],["--hn-muted","Hints and metadata"],
+ ["--hn-line","Borders and dividers"],["--hn-surface","Cards and panels"],["--hn-canvas","Page background"]
+];
+const TYPE = [
+ ["Display","Sora 700, 52 / 56","font:700 52px/1.05 var(--hn-font-display);letter-spacing:-.025em","Clean power, every hour"],
+ ["Heading 1","Sora 600, 40 / 46","font:600 40px/1.15 var(--hn-font-display)","Your solar dashboard"],
+ ["Heading 2","Sora 600, 28 / 36","font:600 28px/1.3 var(--hn-font-display)","Generation this month"],
+ ["Heading 3","Sora 600, 22 / 30","font:600 22px/1.35 var(--hn-font-display)","Pune Solar Park"],
+ ["Heading 4","Sora 600, 18 / 26","font:600 18px/1.4 var(--hn-font-display)","Inverter health"],
+ ["Body large","Public Sans 400, 18 / 29","font:400 18px/1.6 var(--hn-font-body)","Most homes recover the cost of a rooftop system in four to six years."],
+ ["Body","Public Sans 400, 16 / 26","font:400 16px/1.6 var(--hn-font-body)","Your panels produced 21.4 kWh today, enough to run your home until 7 pm."],
+ ["Small","Public Sans 500, 14 / 22","font:500 14px/1.55 var(--hn-font-body)","Last updated 2 minutes ago"],
+ ["Data","Sora 600, tabular figures","font:600 32px/1.2 var(--hn-font-display);font-variant-numeric:tabular-nums","1,284.6 MWh"]
+];
+const SPACE = [["space-1",4],["space-2",8],["space-3",12],["space-4",16],["space-5",24],["space-6",32],["space-7",48],["space-8",64]];
+const ICONS = ["sun","wind","turbine","panel","battery","bolt","leaf","drop","plug","tower","co2","gauge","home","chart","pin","calendar","info","check-circle","alert","error","check","x","plus","edit","trash","filter","download","copy","search","user","menu","chevron-down","chevron-right","arrow-up","arrow-down","moon"];
+
+const FOUNDATIONS = [
+ {slug:"colours",name:"Colours",icon:"drop",desc:"Five scales drawn from sunlight, canopy and sky, mapped to semantic tokens."},
+ {slug:"typography",name:"Typography",icon:"edit",desc:"Sora for headings and data, Public Sans for reading."},
+ {slug:"spacing",name:"Spacing & shape",icon:"gauge",desc:"A 4-point spacing scale, corner radii and elevation."},
+ {slug:"icons",name:"Icons",icon:"sun",desc:"A 24-pixel outline set with energy-specific symbols."}
+];
+
+/* ---------------------------------------------------------
+   Helpers
+   --------------------------------------------------------- */
+const $ = (s,r=document) => r.querySelector(s);
+const $$ = (s,r=document) => Array.from(r.querySelectorAll(s));
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const pageEl = $("#page");
+const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function toast(msg, variant){
+  const icon = variant==="error" ? "error" : variant==="warning" ? "alert" : "check-circle";
+  const t = document.createElement("div");
+  t.className = "hn-toast" + (variant ? " hn-toast--"+variant : "");
+  t.innerHTML = I(icon) + "<span></span><button aria-label=\"Dismiss\">" + I("x") + "</button>";
+  t.querySelector("span").textContent = msg;
+  t.querySelector("button").onclick = () => t.remove();
+  $("#toasts").appendChild(t);
+  setTimeout(() => t.remove(), 5000);
+}
+
+async function copyText(text, label){
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; } catch(e){
+    try { const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); ok=document.execCommand("copy"); ta.remove(); } catch(e2){ ok=false; }
+  }
+  toast(ok ? (label || "Copied to clipboard") : "Couldn’t copy. Select the code and copy it manually.", ok ? null : "error");
+}
+
+function demo(section, idx){
+  return `<div class="demo" data-demo="${idx}">
+    <div class="demo-stage">${section.h}</div>
+    <div class="demo-bar"><span class="tag">HTML</span>
+      <button class="tool-btn" data-act="toggle" aria-expanded="false">${I("code")}Show code</button>
+      <button class="tool-btn" data-act="copy">${I("copy")}Copy HTML</button>
+    </div>
+    <pre class="code"><code>${esc(section.h)}</code></pre>
+  </div>`;
+}
+
+function pager(prev, next){
+  const a = (p, dir) => p ? `<a href="#${p.slug}"><span>${dir}</span><strong>${p.name}</strong></a>` : "<span></span>";
+  return `<nav class="pager" aria-label="Pagination">${a(prev,"Previous")}${a(next,"Next")}</nav>`;
+}
+
+/* ---------------------------------------------------------
+   Pages
+   --------------------------------------------------------- */
+function heroArt(){
+  // Sun travels along its daily arc once on load
+  const motion = prefersReduced ? "" :
+    `<animateMotion dur="2.6s" fill="freeze" calcMode="spline" keyPoints="0;0.55" keyTimes="0;1" keySplines=".22 .8 .3 1"><mpath href="#sunpath"/></animateMotion>`;
+  const pos = prefersReduced ? `transform="translate(328 52)"` : "";
+  let panels = "";
+  for(let i=0;i<5;i++){
+    const x = 60 + i*46;
+    panels += `<g><path class="panel" d="M${x} 236 l34 0 l8 -22 l-34 0 z"/><path class="panel-line" d="M${x+4} 225 l34 0 M${x+17} 236 l8 -22"/><path class="struct" d="M${x+20} 236 v10"/></g>`;
+  }
+  const turbine = (x,h,s,delay) => `<g transform="translate(${x} ${246-h})"><path class="struct" d="M0 0 L0 ${h}"/><g><g class="blades">
+      <path class="struct" d="M0 0 L0 ${-s}"/><path class="struct" d="M0 0 L${s*0.87} ${s*0.5}"/><path class="struct" d="M0 0 L${-s*0.87} ${s*0.5}"/></g>
+      ${prefersReduced ? "" : `<animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="${7+delay}s" repeatCount="indefinite"/>`}</g>
+      <circle r="3.5" fill="var(--hn-primary-strong)"/></g>`;
+  return `<svg class="hero-art" viewBox="0 0 600 300" role="img" aria-label="The sun rising over solar panels and wind turbines">
+    <path id="sunpath" class="arc" fill="none" stroke-width="2" d="M120 246 A180 180 0 0 1 480 246"/>
+    <g ${pos}><circle class="halo" r="40"/><circle class="sun" r="22"/>${motion}</g>
+    <rect class="ground" x="0" y="246" width="600" height="60"/>
+    <path class="horizon" d="M0 246 H600" stroke-width="2"/>
+    ${panels}
+    ${turbine(430,120,42,0)}${turbine(520,90,32,2)}
+  </svg>`;
+}
+
+function renderHome(){
+  const compCards = C.map(c => `<a class="doc-card" href="#${c.slug}"><div class="doc-thumb" aria-hidden="true"><div>${thumb(c)}</div></div><div class="doc-card-body"><strong>${c.name}</strong><p>${c.desc}</p></div></a>`).join("");
+  const foundCards = FOUNDATIONS.map(f => `<a class="doc-card found-card" href="#${f.slug}"><div class="doc-thumb" aria-hidden="true"><div>${foundThumb(f.slug)}</div></div><div class="doc-card-body"><strong>${f.name}</strong><p>${f.desc}</p></div></a>`).join("");
+  return `
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="hero-kicker">${I("leaf")}HelioNova Energy</span>
+      <h1>HelioNova Design System</h1>
+      <p class="hero-tag">Powering Tomorrow, Naturally.</p>
+      <div class="hero-actions"><a class="hn-btn hn-btn--primary" href="#get-started">Get started</a><a class="hn-btn hn-btn--secondary" href="#components">Browse components</a></div>
+    </div>
+    ${heroArt()}
+  </section>
+  <div class="facts"><div><strong>${C.length}</strong><span>Components with live code</span></div><div><strong>4</strong><span>Foundation guides</span></div><div><strong>AA</strong><span>Contrast in light and dark</span></div></div>
+
+  <section class="section prose">
+    <h2>About HelioNova</h2>
+    <p>This is the shared set of foundations and components behind every HelioNova product, from the customer app that shows a family their rooftop generation to the operations console that monitors our wind and solar parks.</p>
+    <p>Start with the foundations to understand colour, type and spacing, then copy any component straight into your page. Everything here is plain HTML and CSS, so it works in any framework.</p>
+  </section>
+
+  <section class="section"><h2>Foundations</h2><div class="card-grid">${foundCards}</div></section>
+  <section class="section"><h2>Components</h2><div class="card-grid">${compCards}</div></section>`;
+}
+
+function thumb(c){
+  return c.sections[0].h.replace(/ id="[^"]*"/g,"").replace(/data-hn-[a-z]+(="[^"]*")?/g,"").replace(/<a\b/g,"<span").replace(/<\/a>/g,"</span>").replace(/<(button|input|select|textarea)\b/g,"<$1 tabindex=\"-1\"");
+}
+function foundThumb(slug){
+  if(slug==="colours") return `<div style="display:flex;gap:6px">${["#0B7A63","#F2A900","#2D6FB0","#12293B","#B83A2B"].map(c=>`<span style="width:26px;height:56px;border-radius:13px;background:${c}"></span>`).join("")}</div>`;
+  if(slug==="typography") return `<div style="font:700 54px/1 var(--hn-font-display);color:var(--hn-primary-strong)">Aa</div>`;
+  if(slug==="spacing") return `<div style="display:grid;gap:5px">${[16,32,52,76].map(w=>`<span style="display:block;height:9px;width:${w}px;border-radius:3px;background:var(--hn-primary)"></span>`).join("")}</div>`;
+  return `<div style="display:flex;gap:12px;color:var(--hn-primary-strong)">${["sun","turbine","battery"].map(i=>`<svg class="hn-icon" style="width:34px;height:34px"><use href="#i-${i}"/></svg>`).join("")}</div>`;
+}
+
+function renderComponentsIndex(){
+  return `<p class="crumbs"><a href="#home">Home</a> / Components</p>
+  <h1 class="page-title">Components</h1>
+  <p class="lede">${C.length} ready-to-use building blocks. Each page shows variants and states with live examples, the HTML to copy, and accessibility notes.</p>
+  <div class="card-grid" style="margin-top:32px">${C.map(c => `<a class="doc-card" href="#${c.slug}"><div class="doc-thumb" aria-hidden="true"><div>${thumb(c)}</div></div><div class="doc-card-body"><strong>${c.name}</strong><p>${c.desc}</p></div></a>`).join("")}</div>`;
+}
+
+function renderComponent(c){
+  const i = C.indexOf(c);
+  return `<p class="crumbs"><a href="#components">Components</a> / ${c.name}</p>
+  <h1 class="page-title">${c.name}</h1>
+  <p class="lede">${c.desc}</p>
+  ${c.sections.map((s,k)=>`<section class="section"><h2>${s.t}</h2><p class="note">${s.n}</p>${demo(s,k)}</section>`).join("")}
+  <section class="section"><h2>Accessibility</h2><div class="callout">${esc(c.a11y)}</div></section>
+  ${pager(C[i-1], C[i+1])}`;
+}
+
+function renderGetStarted(){
+  return `<p class="crumbs"><a href="#home">Home</a> / Get started</p>
+  <h1 class="page-title">Get started</h1>
+  <p class="lede">HelioNova is plain HTML and CSS. Add the tokens, copy a component, and follow four principles that keep our products clear and trustworthy.</p>
+  <section class="section"><h2>Set up in three steps</h2>
+  <ol class="steps-doc">
+    <li><div><h3>Add the fonts and tokens</h3><p>Load Sora and Public Sans, then paste the token block into your stylesheet. Every component reads from these variables, so light and dark themes come for free.</p>
+<pre>${esc(`:root{
+  --hn-primary:#0B7A63;  --hn-sun:#F2A900;
+  --hn-sky:#2D6FB0;      --hn-danger:#B83A2B;
+  --hn-ink:#12293B;      --hn-canvas:#F3F7F6;
+  --hn-font-display:"Sora", system-ui, sans-serif;
+  --hn-font-body:"Public Sans", system-ui, sans-serif;
+  --hn-r-md:10px;        --hn-r-lg:16px;
+}`)}</pre></div></li>
+    <li><div><h3>Copy a component</h3><p>Open any component page, press Copy HTML on the example you want, and paste it into your page. Class names all start with <code class="inline-code">hn-</code> so they won’t clash with your own styles.</p></div></li>
+    <li><div><h3>Check it in both themes</h3><p>Use the moon button in the top bar to switch themes. If something looks wrong in dark mode, you’ve probably used a raw hex value instead of a token.</p></div></li>
+  </ol></section>
+  <section class="section"><h2>Design principles</h2>
+  <div class="principles">
+    <div><h3>Honest numbers</h3><p>Every energy figure shows its unit and time range. We never round in our own favour.</p></div>
+    <div><h3>Calm by default</h3><p>Colour is reserved for meaning. Green is healthy, amber needs a look, red needs action now.</p></div>
+    <div><h3>Open to everyone</h3><p>AA contrast, full keyboard support and plain language, so a homeowner and an engineer both understand the screen.</p></div>
+    <div><h3>Light on resources</h3><p>Small pages, system-friendly fonts and no decoration that doesn’t help. Efficient software suits an efficient grid.</p></div>
+  </div></section>
+  ${pager(null, FOUNDATIONS[0])}`;
+}
+
+function renderColours(){
+  const scales = SCALES.map(s => `<div class="scale-name"><h3>${s.name}</h3><span>${s.role}</span></div>
+    <div class="scale">${s.steps.map((hex,k)=>`<button style="background:${hex};color:${k>=s.dark?"#fff":"#12293B"}" data-copy="${hex}" aria-label="Copy ${s.name} ${(k===0?50:k*100)} ${hex}"><b>${k===0?50:k*100}</b>${hex}</button>`).join("")}</div>`).join("");
+  const sem = SEMANTIC.map(([tok,role]) => `<tr><td><span class="chip-swatch" style="background:var(${tok})"></span></td><td><code>${tok}</code></td><td>${role}</td></tr>`).join("");
+  return `<p class="crumbs"><a href="#home">Home</a> / Foundations</p>
+  <h1 class="page-title">Colours</h1>
+  <p class="lede">Canopy green leads, Helio amber marks the sun, and Sky blue carries information. Press any swatch to copy its hex value.</p>
+  <section class="section"><h2>Brand scales</h2>${scales}</section>
+  <section class="section"><h2>Semantic tokens</h2><p class="note">Use tokens in your code, not hex values. Swatches below show the current theme’s value, so toggle the theme to see the dark palette.</p>
+    <div class="hn-table-wrap" style="margin-top:18px"><table class="token-table"><thead><tr><th>Swatch</th><th>Token</th><th>Use for</th></tr></thead><tbody>${sem}</tbody></table></div>
+  </section>
+  <section class="section"><h2>Contrast</h2><div class="callout"><strong>Body text on any surface passes WCAG AA (4.5:1).</strong> Helio amber is too light for text on white, so use it for fills, icons and highlights, and pair it with Helio 800 text.</div></section>
+  ${pager(null, FOUNDATIONS[1])}`;
+}
+
+function renderTypography(){
+  return `<p class="crumbs"><a href="#home">Home</a> / Foundations</p>
+  <h1 class="page-title">Typography</h1>
+  <p class="lede">Sora’s geometric shapes give headings and numbers a precise, engineered feel. Public Sans is plain and highly legible for longer reading.</p>
+  <section class="section"><h2>Type scale</h2><div style="margin-top:12px">
+  ${TYPE.map(([n,m,css,sample])=>`<div class="type-row"><p class="meta"><b>${n}</b>${m}</p><p style="${css};color:var(--hn-ink)">${sample}</p></div>`).join("")}
+  </div></section>
+  <section class="section"><h2>Guidelines</h2><div class="prose">
+    <p>Keep reading text between 45 and 75 characters per line. Use sentence case everywhere, including buttons and headings.</p>
+    <p>Set every energy figure in tabular numerals so columns of numbers line up, and always place the unit right after the value in a lighter weight.</p>
+  </div></section>
+  ${pager(FOUNDATIONS[0], FOUNDATIONS[2])}`;
+}
+
+function renderSpacing(){
+  return `<p class="crumbs"><a href="#home">Home</a> / Foundations</p>
+  <h1 class="page-title">Spacing & shape</h1>
+  <p class="lede">All spacing comes from a 4-point scale. Corners get rounder as elements get bigger, and shadows are tinted with slate rather than grey.</p>
+  <section class="section"><h2>Spacing scale</h2><div style="margin-top:12px">
+  ${SPACE.map(([n,v])=>`<div class="space-row"><code class="inline-code">--hn-${n}</code><span style="color:var(--hn-muted);font-size:14px">${v}px</span><span class="space-bar" style="width:${v*4}px;max-width:100%"></span></div>`).join("")}
+  </div></section>
+  <section class="section"><h2>Corner radius</h2><div class="row" style="margin-top:18px;gap:28px">
+  ${[["--hn-r-sm","6px","Tags, tooltips"],["--hn-r-md","10px","Buttons, inputs"],["--hn-r-lg","16px","Cards, panels"],["--hn-r-pill","999px","Chips, badges"]].map(([t,v,u])=>`<div><div class="radius-box" style="border-radius:${v==="999px"?"36px":v}"></div><p style="margin-top:8px;font-weight:600;font-size:14px">${v}</p><p style="font-size:13px;color:var(--hn-muted)">${u}</p></div>`).join("")}
+  </div></section>
+  <section class="section"><h2>Elevation</h2><div class="grid-2" style="margin-top:18px">
+  ${[["--hn-shadow-1","Resting cards"],["--hn-shadow-2","Hover, menus"],["--hn-shadow-3","Modals, drawers"]].map(([t,u])=>`<div class="elev-box" style="box-shadow:var(${t})"><div style="text-align:center"><code class="inline-code">${t}</code><p style="font-weight:400;font-size:13px;color:var(--hn-muted);margin-top:6px">${u}</p></div></div>`).join("")}
+  </div></section>
+  ${pager(FOUNDATIONS[1], FOUNDATIONS[3])}`;
+}
+
+function renderIcons(){
+  return `<p class="crumbs"><a href="#home">Home</a> / Foundations</p>
+  <h1 class="page-title">Icons</h1>
+  <p class="lede">Outline icons on a 24-pixel grid with a 1.8 stroke. They inherit the text colour. Press any icon to copy its markup.</p>
+  <div class="icon-grid">${ICONS.map(n=>`<button class="icon-tile" data-copy='<svg class="hn-icon"><use href="#i-${n}"/></svg>' data-copy-label="Copied ${n} icon">${I(n)}${n}</button>`).join("")}</div>
+  <section class="section"><h2>Usage</h2><div class="prose"><p>Pair icons with a text label wherever possible. Icon-only buttons need an aria-label and a tooltip. Use the energy icons (sun, wind, turbine, drop, battery) consistently to identify a source across every screen.</p></div></section>
+  ${pager(FOUNDATIONS[2], C[0])}`;
+}
+
+/* ---------------------------------------------------------
+   Navigation + router
+   --------------------------------------------------------- */
+function buildNav(){
+  const link = (slug, name, icon) => `<a href="#${slug}" data-slug="${slug}" data-name="${name.toLowerCase()}">${icon?I(icon):""}${name}</a>`;
+  $("#sidenav").innerHTML = `
+    <div class="nav-group"><h4>Start</h4>${link("home","Overview","home")}${link("get-started","Get started","bolt")}</div>
+    <div class="nav-group"><h4>Foundations</h4>${FOUNDATIONS.map(f=>link(f.slug,f.name)).join("")}</div>
+    <div class="nav-group"><h4>Components</h4>${link("components","All components")}${C.map(c=>link(c.slug,c.name)).join("")}</div>
+    <p class="nav-empty" hidden>No matches. Try “button” or “colour”.</p>`;
+}
+
+const ROUTES = {"home":renderHome,"get-started":renderGetStarted,"components":renderComponentsIndex,"colours":renderColours,"typography":renderTypography,"spacing":renderSpacing,"icons":renderIcons};
+
+function route(){
+  const slug = (location.hash || "#home").slice(1) || "home";
+  const comp = C.find(c=>c.slug===slug);
+  const fn = ROUTES[slug];
+  let title = "Overview";
+  if(comp){ pageEl.innerHTML = renderComponent(comp); title = comp.name; }
+  else if(fn){ pageEl.innerHTML = fn(); const f=FOUNDATIONS.find(x=>x.slug===slug); title = f ? f.name : slug==="get-started" ? "Get started" : slug==="components" ? "Components" : "Overview"; }
+  else { pageEl.innerHTML = renderHome(); }
+  document.title = title + " – HelioNova Design System";
+  $$("#sidenav a").forEach(a => { if(a.dataset.slug === (comp||fn ? slug : "home")) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  const section = comp || slug==="components" ? "components" : FOUNDATIONS.some(f=>f.slug===slug) ? "foundations" : slug==="get-started" ? "get-started" : "";
+  $$(".topnav a").forEach(a => a.setAttribute("aria-current", a.dataset.top===section ? "true" : "false"));
+  $$("input[data-indeterminate]", pageEl).forEach(i => i.indeterminate = true);
+  document.body.classList.remove("nav-open");
+  $("#menuBtn").setAttribute("aria-expanded","false");
+  window.scrollTo(0,0);
+  $("#main").focus({preventScroll:true});
+}
+
+/* ---------------------------------------------------------
+   Behaviour (event delegation)
+   --------------------------------------------------------- */
+let lastTrigger = null;
+function closeOverlays(){
+  $$(".hn-overlay.is-open").forEach(o => o.classList.remove("is-open"));
+  if(lastTrigger){ lastTrigger.focus(); lastTrigger = null; }
+}
+function closeDropdowns(except){
+  $$(".hn-dropdown.is-open").forEach(d => { if(d!==except){ d.classList.remove("is-open"); const b=d.querySelector("[data-hn-dropdown]"); b && b.setAttribute("aria-expanded","false"); }});
+}
+
+document.addEventListener("click", e => {
+  const t = e.target;
+  const act = t.closest("[data-act]");
+  if(act){
+    const d = act.closest(".demo"); const sec = d && C.find(c=>c.slug===(location.hash.slice(1)));
+    if(act.dataset.act==="toggle"){ const on = d.classList.toggle("show-code"); act.setAttribute("aria-expanded", on); act.lastChild.textContent = on ? "Hide code" : "Show code"; }
+    if(act.dataset.act==="copy" && sec){ copyText(sec.sections[+d.dataset.demo].h, "HTML copied"); }
+    return;
+  }
+  const cp = t.closest("[data-copy]");
+  if(cp){ copyText(cp.dataset.copy, cp.dataset.copyLabel || "Copied " + cp.dataset.copy); return; }
+
+  const opener = t.closest("[data-hn-open]");
+  if(opener){ const o = $(`[data-hn-id="${opener.dataset.hnOpen}"]`); if(o){ lastTrigger = opener; o.classList.add("is-open"); const f = o.querySelector("input,button"); f && f.focus(); } return; }
+  const toastBtn = t.closest("[data-hn-toast]");
+  if(toastBtn){ const [m,v] = toastBtn.dataset.hnToast.split("|"); toast(m, v); }
+  if(t.closest("[data-hn-close]") || t.classList.contains("hn-overlay")){ closeOverlays(); return; }
+  if(toastBtn) return;
+
+  const dis = t.closest("[data-hn-dismiss]");
+  if(dis){ dis.closest(".hn-alert").remove(); return; }
+
+  const dd = t.closest("[data-hn-dropdown]");
+  if(dd){ const w = dd.closest(".hn-dropdown"); const open = !w.classList.contains("is-open"); closeDropdowns(w); w.classList.toggle("is-open", open); dd.setAttribute("aria-expanded", open); if(open){ const first=w.querySelector('[role="menuitem"]'); first && first.focus(); } return; }
+  const mi = t.closest('.hn-menu [role="menuitem"]');
+  if(mi){ closeDropdowns(); toast(mi.textContent.trim() + (mi.classList.contains("is-danger") ? " needs confirmation" : " opened")); return; }
+  if(!t.closest(".hn-dropdown")) closeDropdowns();
+
+  const chip = t.closest(".hn-chip");
+  if(chip){ chip.setAttribute("aria-pressed", chip.getAttribute("aria-pressed")==="true" ? "false" : "true"); return; }
+
+  const tab = t.closest('[role="tab"]');
+  if(tab){ selectTab(tab); return; }
+
+  if(t.closest(".hn-pagination a")){
+    e.preventDefault(); const a = t.closest("a"); if(a.getAttribute("aria-label")) return;
+    $$(".hn-pagination a", a.closest(".hn-pagination")).forEach(x=>x.removeAttribute("aria-current")); a.setAttribute("aria-current","page"); return;
+  }
+  if(t.closest(".hn-breadcrumb a, .hn-card a")){ e.preventDefault(); return; }
+});
+
+function selectTab(tab){
+  const list = tab.closest('[role="tablist"]'); const root = tab.closest(".hn-tabs");
+  const tabs = $$('[role="tab"]', list); const panels = $$('[role="tabpanel"]', root);
+  tabs.forEach((x,k) => { const on = x===tab; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; if(panels[k]) panels[k].hidden = !on; });
+  tab.focus();
+}
+
+document.addEventListener("keydown", e => {
+  if(e.key==="Escape"){ closeOverlays(); closeDropdowns(); document.body.classList.remove("nav-open"); }
+  const tab = e.target.closest && e.target.closest('[role="tab"]');
+  if(tab && (e.key==="ArrowRight" || e.key==="ArrowLeft")){
+    const tabs = $$('[role="tab"]', tab.closest('[role="tablist"]')); let i = tabs.indexOf(tab);
+    i = (i + (e.key==="ArrowRight" ? 1 : -1) + tabs.length) % tabs.length; selectTab(tabs[i]); e.preventDefault();
+  }
+  const mi = e.target.closest && e.target.closest('.hn-menu [role="menuitem"]');
+  if(mi && (e.key==="ArrowDown" || e.key==="ArrowUp")){
+    const items = $$('[role="menuitem"]', mi.closest(".hn-menu")); let i = items.indexOf(mi);
+    items[(i + (e.key==="ArrowDown" ? 1 : -1) + items.length) % items.length].focus(); e.preventDefault();
+  }
+  // keep focus inside an open overlay
+  const ov = $(".hn-overlay.is-open");
+  if(ov && e.key==="Tab"){
+    const f = $$("button,input,select,textarea,a[href]", ov).filter(x=>!x.disabled);
+    if(!f.length) return;
+    if(e.shiftKey && document.activeElement===f[0]){ f[f.length-1].focus(); e.preventDefault(); }
+    else if(!e.shiftKey && document.activeElement===f[f.length-1]){ f[0].focus(); e.preventDefault(); }
+  }
+});
+
+document.addEventListener("input", e => {
+  const s = e.target.closest("[data-hn-slider]");
+  if(s){ const out = s.closest(".hn-slider").querySelector("output"); out.textContent = s.value + s.dataset.hnSlider; }
+});
+
+/* search */
+$("#search").addEventListener("input", e => {
+  const q = e.target.value.trim().toLowerCase(); let any = false;
+  $$(".nav-group").forEach(g => { let vis = 0; $$("a", g).forEach(a => { const m = !q || a.dataset.name.includes(q); a.hidden = !m; if(m) vis++; }); g.hidden = !vis; if(vis) any = true; });
+  $(".nav-empty").hidden = any;
+});
+$("#search").addEventListener("keydown", e => {
+  if(e.key==="Enter"){ const a = $$("#sidenav a").find(x=>!x.hidden && !x.closest(".nav-group").hidden && e.target.value.trim()); if(a){ location.hash = a.dataset.slug; e.target.value=""; e.target.dispatchEvent(new Event("input")); } }
+});
+
+/* theme */
+function currentTheme(){ const t = document.documentElement.dataset.theme; return t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); }
+function setThemeIcon(){ $("#themeBtn").innerHTML = I(currentTheme()==="dark" ? "sun" : "moon"); }
+try { const saved = localStorage.getItem("hn-theme"); if(saved) document.documentElement.dataset.theme = saved; } catch(e){}
+$("#themeBtn").addEventListener("click", () => {
+  const next = currentTheme()==="dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem("hn-theme", next); } catch(e){}
+  setThemeIcon();
+});
+
+/* mobile nav */
+$("#menuBtn").addEventListener("click", () => { const open = document.body.classList.toggle("nav-open"); $("#menuBtn").setAttribute("aria-expanded", open); });
+$("#scrim").addEventListener("click", () => document.body.classList.remove("nav-open"));
+
+buildNav(); setThemeIcon(); route();
+window.addEventListener("hashchange", route);
+})();
+</script>
+</body>
+</html>
